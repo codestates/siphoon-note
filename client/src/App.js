@@ -1,15 +1,24 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Landing from './pages/Landing';
+import Main from './pages/Main/Main';
+import Mypage from './pages/Mypage';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import Trial from './pages/Trial';
 
 function App() {
   return (
-    <h1>hello!</h1>
-    //* 라우팅
-    // 내비게이션바
-    // 엔드포인트가 루트인 경우 landing page 컴포넌트로 이동
-    // 엔드포인트가 로그인인 경우, 로그인 컴포넌트
-    // 엔드포인트가 회원가입인 경우, 회원가입 컴포넌트
-    // 엔드포인트가 메인페이지인 경우, AuthRoute 컴포넌트로 이동 후, 유저용/체험용 컴포넌트로 이동
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/trial" element={<Trial />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;
