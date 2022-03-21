@@ -2,14 +2,14 @@
   [사용법]
 
   1)  API URL이 필요한 파일의 상단에 하단의 변수 `config` 선언
-      const config = require(__dirname + /config.js');
+      const config = require(__dirname + /'config.js');
 
   2)  axios로 서버에 요청할 때 `config.[사용할 API_URL]` 로 사용 가능
       예) 1. 일기장 보기 요청 시 -> axios.get(config.API_GET_DIARIES)
 
 */
-const API_VER = "v1";
-const API_HOST = "http://localhost:5500";
+const API_VER = 'v1';
+const API_HOST = 'https://ec2-3-36-87-95.ap-northeast-2.compute.amazonaws.com';
 
 module.exports = {
   // 📝 Diaries
