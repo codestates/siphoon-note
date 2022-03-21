@@ -8,8 +8,8 @@
       예) 1. 일기장 보기 요청 시 -> axios.get(config.API_GET_DIARIES)
 
 */
-const API_VER = "v1";
-const API_HOST = "http://localhost:5500";
+const API_VER = 'v1';
+const API_HOST = 'http://localhost:5500';
 
 module.exports = {
   // 📝 Diaries

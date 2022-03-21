@@ -6,10 +6,12 @@ import Mypage from './pages/Mypage';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Trial from './pages/Trial';
+import GlobalStyle from './GlobalStyle';
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/main" element={<Main />} />
