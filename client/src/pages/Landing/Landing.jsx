@@ -4,7 +4,7 @@ export default function Landing() {
   //---------- 서버와 연결 확인용 코드 ----------
   // BASE_URL은 aws codeBuild에 환경변수로 등록된 서버의 엔드포인트
   axios
-    .get('http://ec2-3-36-87-95.ap-northeast-2.compute.amazonaws.com/')
+    .get(BASE_URL)
     .then(result => {
       console.log('😃 Server-Client Connection Success!', result);
     })
