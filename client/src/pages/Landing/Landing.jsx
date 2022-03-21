@@ -1,10 +1,10 @@
 import axios from 'axios';
-const config = require(__dirname + '/config.js');
 
 export default function Landing() {
   //---------- 서버와 연결 확인용 코드 ----------
+  // BASE_URL은 aws codeBuild에 환경변수로 등록된 서버의 엔드포인트
   axios
-    .get(config.API_HOST)
+    .get(BASE_URL)
     .then(result => {
       console.log('😃 Server-Client Connection Success!', result);
     })
