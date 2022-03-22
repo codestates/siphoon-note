@@ -15,9 +15,10 @@ export const Input = styled.input`
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
+  font-size: 20px;
   margin-top: 5px;
   &:focus {
-    outline: 1px solid var(--primary-light);
+    outline: 4px solid primary-light;
     border: none;
   }
 `;
