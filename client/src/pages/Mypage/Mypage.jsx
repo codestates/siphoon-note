@@ -1,5 +1,5 @@
-import { MypageWrapper, UpdateTextInput } from './Mypage.style';
-import { Footer, TextInput } from '../../components';
+import { MypageWrapper, UpdateTextInput, ButtonsWrapper } from './Mypage.style';
+import { Footer, SubmitBtn, TextInput } from '../../components';
 
 export default function Mypage() {
   const textInputList = [
@@ -31,7 +31,14 @@ export default function Mypage() {
       // onBlur: setEmail,
     },
   ];
-
+  const textInputBtn = [
+    {
+      value: '회원탈퇴',
+    },
+    {
+      value: '수정하기',
+    },
+  ];
   return (
     <div>
       <MypageWrapper>
@@ -64,7 +71,13 @@ export default function Mypage() {
               );
             }
           )}
+          <ButtonsWrapper>
+            {textInputBtn.map(({ value }, index) => {
+              return <SubmitBtn key={index} value={value} />;
+            })}
+          </ButtonsWrapper>
         </UpdateTextInput>
+
         <Footer />
       </MypageWrapper>
     </div>

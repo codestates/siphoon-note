@@ -1,4 +1,4 @@
 import TextInput from './TextInput';
 import Footer from './Footer';
-
-export { TextInput, Footer };
+import SubmitBtn from './SubmitBtn';
+export { TextInput, Footer, SubmitBtn };

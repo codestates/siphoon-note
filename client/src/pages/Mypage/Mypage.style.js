@@ -7,3 +7,8 @@ export const MypageWrapper = styled.div`
 `;
 
 export const UpdateTextInput = styled.div``;
+export const ButtonsWrapper = styled.div`
+  button + button {
+    margin-left: 10px;
+  }
+`;
