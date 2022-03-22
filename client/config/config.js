@@ -9,7 +9,7 @@
 
 */
 const API_VER = 'v1';
-const API_HOST = 'https://ec2-3-36-87-95.ap-northeast-2.compute.amazonaws.com';
+const API_HOST = 'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com';
 
 module.exports = {
   // 📝 Diaries
