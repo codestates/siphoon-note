@@ -4,10 +4,12 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
+  background-size: auto;
+  opacity: 85%;
+  align-items: end;
 `;
 
-export const Main = styled.div`
+export const Main = styled.span`
   display: flex;
   justify-content: center;
   text-align: center;
@@ -20,5 +22,7 @@ export const Button = styled.a`
   cursor: pointer;
   font-size: 6rem;
   font-weight: bold;
+
   text-decoration: none;
+  list-style: none;
 `;

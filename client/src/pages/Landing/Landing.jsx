@@ -1,17 +1,15 @@
 import { Container, Main, Button } from './Landing.style';
-import Navbar from '../../components/Navbar';
 import { NavLink } from 'react-router-dom';
 
 export default function Landing() {
   return (
     <>
-      <Container imgUrl="img/pattern1.svg">
-        <Navbar />
+      <Container imgUrl="img/test5.svg">
         <Main>
-          <NavLink to={'/main'}>
+          <NavLink to={'/diary'}>
             <Button>
               pattern
-              <br></br>number 3 <br></br>Test-ing
+              <br></br>number 5 <br></br>Test-ing
             </Button>
           </NavLink>
         </Main>

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { NavLink as Link } from 'react-router-dom';
+import Dropdown from './Dropdown';
+
 import styled from 'styled-components';
 
-// import { useRecoilValue } from 'recoil';
-// import { userProfileState } from 'Atoms';
-
 // 로그인 상태에 따른 조건부 렌더링 구현
-export default function Navbar() {
-  // const [isDropdown, SetIsDropdown] = useState(false);
+export default function Navbar({ isLogin, userInfo }) {
+  const [isDropdown, SetIsDropdown] = useState(false);
+
   const menuArr = [
     { title: '소개', to: '/about' },
     {
@@ -24,18 +24,43 @@ export default function Navbar() {
     <>
       <Nav>
         <NavMenu>
-          {menuArr.map(({ title, to }, index) => {
-            return (
-              <div key={index}>
-                <NavBtnLink to={to}>{title}</NavBtnLink>
-              </div>
-            );
-          })}
+          {isLogin ? (
+            <>
+              <Profile>{userInfo.name}님, 안녕하세요!</Profile>
+              <ImgWrapper
+                onClick={() => SetIsDropdown(!isDropdown)}
+                src="img/testava8.svg"
+              ></ImgWrapper>
+            </>
+          ) : (
+            menuArr.map(({ title, to }, index) => {
+              return (
+                <div key={index}>
+                  <NavBtnLink to={to}>{title}</NavBtnLink>
+                </div>
+              );
+            })
+          )}
         </NavMenu>
+        {isDropdown ? <Dropdown></Dropdown> : null}
       </Nav>
     </>
   );
 }
+
+const Profile = styled.div`
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 80px;
+  text-transform: uppercase;
+`;
+
+const ImgWrapper = styled.img`
+  font-weight: bold;
+  cursor: pointer;
+  width: 6rem;
+`;
 
 const Nav = styled.nav`
   position: fixed;
@@ -46,11 +71,12 @@ const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
+  margin-top: 5px;
 `;
 
 const NavMenu = styled.div`
   display: flex;
-  aligh-items: center;
+  justify-content: flex-end;
   margin-right: 50px;
 `;
 
