@@ -20,7 +20,7 @@ function App() {
       <GlobalStyle />
       <Navbar isLogin={isLogin} userInfo={userInfo} />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing />} />
         <Route path="/diary" element={<Diary />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signin" element={<Signin />} />

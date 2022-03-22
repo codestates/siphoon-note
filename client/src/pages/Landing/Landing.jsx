@@ -1,19 +1,15 @@
-import { Container, Main, Button } from './Landing.style';
-import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Landing() {
-  return (
-    <>
-      <Container imgUrl="img/test5.svg">
-        <Main>
-          <NavLink to={'/diary'}>
-            <Button>
-              pattern
-              <br></br>number 5 <br></br>Test-ing
-            </Button>
-          </NavLink>
-        </Main>
-      </Container>
-    </>
-  );
+  //---------- 서버와 연결 확인용 코드 ----------
+  axios
+    .get('http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com')
+    .then(result => {
+      console.log('😃 Server-Client Connection Success!', result);
+    })
+    .catch(error => {
+      console.log('🤢 Server-Client Connection Failed!', error);
+    });
+  //---------- 서버와 연결 확인용 코드 ----------
+  return <h1> Landing 페이지 입니다.</h1>;
 }
