@@ -9,7 +9,7 @@ export default function Navbar({ isLogin, userInfo }) {
   const [isDropdown, SetIsDropdown] = useState(false);
 
   const menuArr = [
-    { title: '소개', to: '/about' },
+    { title: '홈으로', to: '/' },
     {
       title: '로그인',
       to: '/signin',
@@ -50,7 +50,7 @@ export default function Navbar({ isLogin, userInfo }) {
 
 const Profile = styled.div`
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-align: center;
   line-height: 80px;
   text-transform: uppercase;
@@ -71,17 +71,17 @@ const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
-  margin-top: 5px;
+  margin-top: 15px;
 `;
 
 const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 50px;
+  margin-right: 15px;
 `;
 
 const NavBtnLink = styled(Link)`
-  font-weight: bold;
+  font-weight: 500;
   display: flex;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -89,11 +89,11 @@ const NavBtnLink = styled(Link)`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.4rem;
-  margin: 1rem;
-  padding: 0.7rem;
-
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  padding: 0.6rem;
   &:hover {
+    box-shadow: 5px 3px black;
     transition: all 0.2s ease-in-out;
   }
 `;
