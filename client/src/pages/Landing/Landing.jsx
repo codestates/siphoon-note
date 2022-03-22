@@ -1,3 +1,19 @@
+import { Container, Main, Button } from './Landing.style';
+import { NavLink } from 'react-router-dom';
+
 export default function Landing() {
-  return <h1> Landing 페이지 입니다.</h1>;
+  return (
+    <>
+      <Container imgUrl="img/test5.svg">
+        <Main>
+          <NavLink to={'/diary'}>
+            <Button>
+              pattern
+              <br></br>number 5 <br></br>Test-ing
+            </Button>
+          </NavLink>
+        </Main>
+      </Container>
+    </>
+  );
 }
