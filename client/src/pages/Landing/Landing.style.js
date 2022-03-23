@@ -63,13 +63,10 @@ export const Icon = styled.span`
   margin-top: 180px;
   margin-bottom: 5px;
   color: black;
-
   a:visited {
     color: black;
   }
-
   animation: up-down 0.6s infinite ease-in-out alternate;
-
   @keyframes up-down {
     from {
       transform: translatey(0px);
@@ -78,4 +75,13 @@ export const Icon = styled.span`
       transform: translatey(-10px);
     }
   }
+`;
+
+export const Icon2 = styled.div`
+  position: fixed;
+  font-size: 3.2rem;
+  cursor: pointer;
+  bottom: 15px;
+  right: 30px;
+  z-index: 500;
 `;
