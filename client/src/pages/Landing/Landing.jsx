@@ -1,17 +1,28 @@
-import { Container, Main, Button } from './Landing.style';
+import { Container, Image, Main, Span, Button } from './Landing.style';
 import { NavLink } from 'react-router-dom';
 
-export default function Landing() {
+export default function Landing({ isLogin }) {
   return (
     <>
-      <Container imgUrl="img/test5.svg">
+      <Container>
+        <Image imgUrl="img/test5.svg"></Image>
         <Main>
-          <NavLink to={'/diary'}>
-            <Button>
-              pattern
-              <br></br>number 5 <br></br>Test-ing
-            </Button>
-          </NavLink>
+          <Span>글쓰기 습관을 기르는 10분</Span>
+          {isLogin ? (
+            <>
+              <NavLink to={'/diary'}>
+                <Button>Lets Get Started!</Button>
+              </NavLink>
+              <Span>see more?</Span>
+            </>
+          ) : (
+            <>
+              <NavLink to={'/trial'}>
+                <Button>Lets Get Started!</Button>
+              </NavLink>
+              <Span>see more?</Span>
+            </>
+          )}
         </Main>
       </Container>
     </>

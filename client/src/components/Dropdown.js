@@ -58,8 +58,7 @@ const DropdownLayout = styled.div`
     transition: all 0.2s;
   }
   & a:hover {
-    background-color: gray;
-    color: white;
+    color: black;
   }
 `;
 const DropdownMenu = styled.ul``;
@@ -71,7 +70,7 @@ const MenuItems = styled.li`
 
   a {
     &:hover {
-      color: white;
+      color: gray;
     }
   }
 `;
