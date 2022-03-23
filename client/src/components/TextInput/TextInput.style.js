@@ -6,12 +6,12 @@ export const InputWrap = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 14px;
+  font-size: 20px;
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 45px;
+  height: 50px;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
