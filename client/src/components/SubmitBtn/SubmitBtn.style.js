@@ -15,21 +15,22 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 48.3%;
-  height: 40px;
+  height: 47px;
   border: none;
   border-radius: 5px;
-  background-color: green;
-  opacity: 0.5;
-  color: white;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  background-color: ${props => props.BackgroundColor};
+  opacity: 0.9;
+  color: ${props => props.color || 'white'};
 
   font-weight: bold;
-  font-size: 19px;
+  font-size: 20px;
   transition: opacity 0.2s;
   &:hover {
     opacity: 0.6;
     cursor: pointer;
   }
   &:active {
-    opacity: 0.8;
+    opacity: 0.2;
   }
 `;
