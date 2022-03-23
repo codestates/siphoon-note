@@ -50,19 +50,21 @@ export default function Navbar({ isLogin, userInfo }) {
 
 const Profile = styled.div`
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
-  line-height: 80px;
+  line-height: 75px;
   text-transform: uppercase;
 `;
 
 const ImgWrapper = styled.img`
   font-weight: bold;
   cursor: pointer;
-  width: 6rem;
+  width: 4rem;
+  margin-left: 4px;
 `;
 
 const Nav = styled.nav`
+  background: rgb(254, 205, 133, 0.02);
   position: fixed;
   height: 80px;
   top: 0;
@@ -71,13 +73,13 @@ const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
-  margin-top: 15px;
 `;
 
 const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 15px;
+  margin-right: 10px;
+  margin-top: 8px;
 `;
 
 const NavBtnLink = styled(Link)`
@@ -89,11 +91,11 @@ const NavBtnLink = styled(Link)`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.2rem;
-  margin: 0.5rem;
+  font-size: 1.05rem;
+  margin: 0.35rem;
   padding: 0.6rem;
   &:hover {
-    box-shadow: 5px 3px black;
+    box-shadow: 4px 2px black;
     transition: all 0.2s ease-in-out;
   }
 `;

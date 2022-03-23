@@ -1,5 +1,6 @@
-import { Container, Image, Main, Span, Button } from './Landing.style';
+import { Container, Image, Main, Span, Button, Icon } from './Landing.style';
 import { NavLink } from 'react-router-dom';
+import { BsArrowDown } from 'react-icons/bs';
 
 export default function Landing({ isLogin }) {
   return (
@@ -20,10 +21,20 @@ export default function Landing({ isLogin }) {
               <NavLink to={'/trial'}>
                 <Button>Lets Get Started!</Button>
               </NavLink>
-              <Span>see more?</Span>
+              <Icon>
+                <a href="#section2">
+                  <BsArrowDown></BsArrowDown>
+                </a>
+              </Icon>
             </>
           )}
         </Main>
+      </Container>
+      <Container id="section2">
+        <Image imgUrl="img/연필.svg"></Image>
+      </Container>
+      <Container>
+        <Image imgUrl="img/pattern1.svg"></Image>
       </Container>
     </>
   );
