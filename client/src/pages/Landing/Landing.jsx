@@ -49,18 +49,26 @@ export default function Landing({ isLogin }) {
       <Container>
         <Image imgUrl="img/test5.svg"></Image>
         <Main>
-          <Span>글쓰기 습관을 기르는 10분</Span>
+          <Span>가나다 라마바 사아자 차타카</Span>
           {isLogin ? (
             <>
               <NavLink to={'/diary'}>
-                <Button>Lets Get Started!</Button>
+                <Button>
+                  Helllllllllo<br></br>Whoa!
+                </Button>
               </NavLink>
-              <Span>see more?</Span>
+              <Icon>
+                <a href="#section2">
+                  <BsArrowDown></BsArrowDown>
+                </a>
+              </Icon>
             </>
           ) : (
             <>
               <NavLink to={'/trial'}>
-                <Button>Lets Get Started!</Button>
+                <Button>
+                  Helllllllllo<br></br>Whoa!
+                </Button>
               </NavLink>
               <Icon>
                 <a href="#section2">

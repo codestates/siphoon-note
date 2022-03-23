@@ -36,13 +36,12 @@ export default function Dropdown() {
 const DropdownLayout = styled.div`
   width: 150px;
   background: white;
-  border: 1px solid black;
+  border: 1.5px solid black;
   border-radius: 15px;
   position: absolute;
   overflow: hidden;
-
-  top: calc(100% + 10px);
-  right: 22px;
+  top: calc(100% + 7px);
+  right: 10px;
 
   & ul {
     padding: 0;
@@ -70,7 +69,7 @@ const MenuItems = styled.li`
 
   a {
     &:hover {
-      color: gray;
+      opacity: 70%;
     }
   }
 `;

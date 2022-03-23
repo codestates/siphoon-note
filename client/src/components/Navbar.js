@@ -61,6 +61,31 @@ const ImgWrapper = styled.img`
   cursor: pointer;
   width: 4rem;
   margin-left: 4px;
+
+  &:hover {
+    animation: spin 2s infinite linear;
+  }
+
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-ms-keyframes spin {
+    100% {
+      -ms-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const Nav = styled.nav`

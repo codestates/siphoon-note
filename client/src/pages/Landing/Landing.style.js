@@ -17,16 +17,16 @@ export const Image = styled.div`
   opacity: 85%;
   align-items: end;
 
-  // animation: up-down 1.4s infinite ease-in-out alternate;
+  animation: up-down 1.7s infinite ease-in-out alternate;
 
-  // @keyframes up-down {
-  //   from {
-  //     transform: translatey(0px);
-  //   }
-  //   to {
-  //     transform: translatey(-5px);
-  //   }
-  // }
+  @keyframes up-down {
+    from {
+      transform: translatey(0px);
+    }
+    to {
+      transform: translatey(-5px);
+    }
+  }
 `;
 
 export const Main = styled.span`
@@ -42,20 +42,24 @@ export const Main = styled.span`
 export const Button = styled.button`
   color: black;
   cursor: pointer;
-  font-size: 4.8rem;
+  font-size: 5rem;
   font-weight: bold;
   border: none;
   background: rgb(254, 205, 133, 0.02);
   &:hover {
-    text-decoration: underline;
+    opacity: 90%;
   }
 `;
 
 export const Span = styled.span`
+  border-bottom: 3.5px solid #fecd85;
+  border-radius: 3px;
+  padding: 5px;
   margin-top: 210px;
   margin-bottom: 20px;
   font-size: 1.5rem;
-  font-color: black;
+  color: rgb(0, 0, 0, 0.9);
+  font-weight: bold;
 `;
 
 export const Icon = styled.span`

@@ -47,7 +47,7 @@ export default function Diary() {
   return (
     <>
       <Container>
-        <Image imgUrl="img/test5.svg"></Image>
+        <Image imgUrl=""></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
           <InputWrapper>
@@ -72,7 +72,7 @@ export default function Diary() {
         <Main>
           {diaryList.map((diary, index) => {
             return (
-              <Card key={index} color="white">
+              <Card key={index} color="lightgray">
                 <span>{diary.username} </span>
                 <Title>나의 {diary.id}번째 일기</Title>
                 <Content>{diary.content}</Content>

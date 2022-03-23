@@ -33,11 +33,12 @@ export const Main = styled.div`
 `;
 
 export const Card = styled.div`
+  // display: inline-block;
   border: 2.5px solid rgb(157, 161, 255, 0.2);
   background: ${props => props.color};
   border-radius: 30px;
-  height: 250px;
-  overflow: hidden;
+  // min-height: 150px;
+  // overflow: hidden;
   padding: 20px;
   font-size: 1.1rem;
 `;
@@ -47,28 +48,6 @@ export const Title = styled.span`
   font-size: 1.1rem;
   font-weight: bold;
   height: 30px;
-`;
-export const Content = styled.div`
-  backbround-size: cover;
-`;
-
-export const ContentBox = styled.div`
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Content1 = styled.div`
-  padding: 0.25rem;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
-  opacity: 80%;
-  font-size: 1.3rem;
-  font-weight: bold;
 `;
 
 export const TimerWrapper = styled.div`
@@ -160,4 +139,27 @@ export const Image = styled.div`
       transform: translatey(-5px);
     }
   }
+`;
+
+export const Content = styled.div`
+  backbround-size: cover;
+`;
+
+export const ContentBox = styled.div`
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Content1 = styled.div`
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: url(${props => props.imgUrl}) no-repeat;
+  background-size: cover;
+  opacity: 80%;
+  font-size: 1.3rem;
+  font-weight: bold;
 `;
