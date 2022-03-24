@@ -14,11 +14,12 @@ import {
   ContentBox,
   Content1,
   Card,
+  CardWrapper,
+  ColorPalette,
   Title,
   Content,
   Emoticon,
   Image,
-  RadioButton,
 } from './Diary.style';
 
 export default function Diary() {
@@ -30,42 +31,38 @@ export default function Diary() {
   // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   // 클릭한 이미지 보여주기
-  const [emojiIndex, setEmojiIndex] = useState(null);
-  const handleEmoji = index => {
-    setEmojiIndex(index);
+  const [themeIndex, setThemeIndex] = useState(1);
+  const handleColorTheme = index => {
+    setThemeIndex(index);
   };
-
-  const Emoji = [
-    'img/smile.svg',
-    'img/sad2.svg',
-    'img/heart.svg',
-    'img/angry.svg',
-    'img/suspicious.svg',
-    'img/sad.svg',
+  const colorTheme = [
+    { color: 'rgb(255, 135, 70, 0.9)', picture: 'img/object1.svg' },
+    { color: 'rgb(254, 205, 133, 0.9)', picture: 'img/object6.svg' },
+    { color: 'rgb(157, 161, 255, 0.9)', picture: 'img/object3.svg' },
+    { color: 'rgb(144, 214, 255, 0.9)', picture: 'img/object10.svg' },
+    { color: 'rgb(247, 178, 206, 0.9)', picture: 'img/object5.svg' },
   ];
 
   return (
     <>
-      <Container>
-        <Image imgUrl=""></Image>
+      <Container color={colorTheme[themeIndex].color}>
+        <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
           <InputWrapper>
             <Input value={input} onChange={handleInput}></Input>
             <ButtonWrapper>
-              {Emoji.map((src, index) => {
+              <Button>엔터z</Button>
+              <Button>하이롱</Button>
+              {colorTheme.map((theme, index) => {
                 return (
-                  <Emoticon
-                    onClick={() => handleEmoji(index)}
+                  <ColorPalette
+                    onClick={() => handleColorTheme(index)}
                     key={index}
-                    src={src}
-                  ></Emoticon>
+                    color={theme.color}
+                  ></ColorPalette>
                 );
               })}
-
-              <Button>엔터</Button>
-              <Button1>NEW</Button1>
-              <Emoticon src={Emoji[emojiIndex]}></Emoticon>
             </ButtonWrapper>
           </InputWrapper>
         </SideBar>

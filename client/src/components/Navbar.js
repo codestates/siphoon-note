@@ -52,7 +52,7 @@ const Profile = styled.div`
   font-weight: bold;
   font-size: 1rem;
   text-align: center;
-  line-height: 75px;
+  line-height: 72px;
   text-transform: uppercase;
 `;
 
@@ -60,10 +60,10 @@ const ImgWrapper = styled.img`
   font-weight: bold;
   cursor: pointer;
   width: 4rem;
-  margin-left: 4px;
+  margin: 0px 5px;
 
   &:hover {
-    animation: spin 2s infinite linear;
+    animation: spin 1.5s infinite linear;
   }
 
   @-webkit-keyframes spin {
@@ -104,7 +104,7 @@ const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
-  margin-top: 8px;
+  margin-top: 13px;
 `;
 
 const NavBtnLink = styled(Link)`

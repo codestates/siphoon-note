@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
-  // border: 3px solid black;
+  background: ${props => props.color};
 `;
 
 export const SideBar = styled.div`
@@ -15,32 +13,58 @@ export const SideBar = styled.div`
   padding: 0.25rem;
   // border: 3px solid black;
   width: 500px;
-  top: 25px;
-  left: 10px;
+  top: 30px;
+  left: 20px;
 `;
 
 export const Main = styled.div`
   margin-left: 530px;
-  margin-right: 17px;
+  margin-right: 40px;
   border-radius: 10px;
   padding: 1rem;
   padding-top: 110px;
   // border: 3px solid black;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: max-content auto;
+  flex-wrap: wrap;
+
   gap: 30px;
 `;
 
+export const Image = styled.div`
+  position: fixed;
+  right: 0px;
+  left: 85px;
+  height: 100vh;
+  background: url(${props => props.imgUrl}) no-repeat;
+  background-size: contain;
+  opacity: 20%;
+  align-items: end;
+
+  // animation: up-down 1.4s infinite ease-in-out alternate;
+
+  // @keyframes up-down {
+  //   from {
+  //     transform: translatey(0px);
+  //   }
+  //   to {
+  //     transform: translatey(-5px);
+  //   }
+  // }
+`;
+
 export const Card = styled.div`
-  // display: inline-block;
-  border: 2.5px solid rgb(157, 161, 255, 0.2);
-  background: ${props => props.color};
+  border: 2.5px solid black;
+  // background: ${props => props.color};
+  background: white;
   border-radius: 30px;
-  // min-height: 150px;
-  // overflow: hidden;
-  padding: 20px;
+  height: 210px;
+  overflow: hidden;
+  flex-wrap: wrap;
   font-size: 1.1rem;
+  padding: 0.9rem;
+  box-shadow: 10px 5px 5px rgb(0, 0, 0, 0.2);
 `;
 
 export const Title = styled.span`
@@ -54,14 +78,14 @@ export const TimerWrapper = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
+  color: black;
   margin: 10px;
   height: 60px;
   width: 400px;
 `;
 export const InputWrapper = styled.div`
-  // background: gray;
   border-radius: 20px;
-  border: 2px solid gray;
+  border: 2.5px solid black;
   width: 90%;
   height: 45%;
   display: flex;
@@ -70,7 +94,7 @@ export const InputWrapper = styled.div`
   justify-contents: center;
 `;
 export const Input = styled.textarea`
-  border: 2px solid gray;
+  border: 2.5px solid black;
   margin-top: 30px;
   width: 90%;
   height: 75%;
@@ -90,54 +114,54 @@ export const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
-export const Emoticon = styled.img`
-  width: 33px;
-  src: ${props => props.src};
-  margin: 3px;
+export const ColorPalette = styled.span`
+  display: inline-block;
+  background: ${props => props.color};
+  border-radius: 100px;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
   cursor: pointer;
-  border: none;
-  padding: 1px;
-  border-radius: 5px;
-
   &:hover {
     transform: scale(1.2);
   }
 `;
 
 export const Button = styled.button`
-  margin-left: 30px;
-  border-radius: 10px;
-  background: white;
-`;
-
-export const Button1 = styled(Button)`
-  margin-left: 10px;
+  font-weight: 500;
+  display: flex;
   cursor: pointer;
-
-  &:active {
-    background: black;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+  border: solid;
+  background: white;
+  font-size: 1.05rem;
+  margin: 0.35rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 4px 2px black;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
-export const Image = styled.div`
-  position: fixed;
-  right: 0px;
-  width: 100vw;
-  height: 100vh;
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: full;
-  opacity: 15%;
-  align-items: end;
-
-  animation: up-down 1.4s infinite ease-in-out alternate;
-
-  @keyframes up-down {
-    from {
-      transform: translatey(0px);
-    }
-    to {
-      transform: translatey(-5px);
-    }
+export const Button1 = styled(Button)`
+  font-weight: 500;
+  display: flex;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+  border: solid;
+  background: white;
+  font-size: 1.05rem;
+  margin: 0.35rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 4px 2px black;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
