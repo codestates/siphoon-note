@@ -10,7 +10,6 @@ export default function Mypage() {
       autoComplete: 'on',
       minLength: 12,
       maxLength: 32,
-      // onBlur: setEmail,
     },
     {
       title: '패스워드',
@@ -19,7 +18,6 @@ export default function Mypage() {
       autoComplete: 'on',
       minLength: 12,
       maxLength: 32,
-      // onBlur: setEmail,
     },
     {
       title: '패스워드 확인',
@@ -28,7 +26,6 @@ export default function Mypage() {
       autoComplete: 'on',
       minLength: 12,
       maxLength: 32,
-      // onBlur: setEmail,
     },
   ];
   const textInputBtn = [
@@ -46,15 +43,7 @@ export default function Mypage() {
         <UpdateTextInput>
           {textInputList.map(
             (
-              {
-                title,
-                type,
-                placeholder,
-                autoComplete,
-                minLength,
-                maxLength,
-                onBlur,
-              },
+              { title, type, placeholder, autoComplete, minLength, maxLength },
               index
             ) => {
               return (
@@ -66,14 +55,15 @@ export default function Mypage() {
                   autoComplete={autoComplete}
                   minLength={minLength}
                   maxLength={maxLength}
-                  onBlur={onBlur}
                 />
               );
             }
           )}
           <ButtonsWrapper>
             {textInputBtn.map(({ value }, index) => {
-              return <SubmitBtn key={index} value={value} />;
+              return (
+                <SubmitBtn key={index} value={value} BackgroundColor="green" />
+              );
             })}
           </ButtonsWrapper>
         </UpdateTextInput>

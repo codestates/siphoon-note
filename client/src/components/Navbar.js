@@ -9,7 +9,7 @@ export default function Navbar({ isLogin, userInfo }) {
   const [isDropdown, SetIsDropdown] = useState(false);
 
   const menuArr = [
-    { title: '소개', to: '/about' },
+    { title: '홈으로', to: '/' },
     {
       title: '로그인',
       to: '/signin',
@@ -50,19 +50,46 @@ export default function Navbar({ isLogin, userInfo }) {
 
 const Profile = styled.div`
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
-  line-height: 80px;
+  line-height: 75px;
   text-transform: uppercase;
 `;
 
 const ImgWrapper = styled.img`
   font-weight: bold;
   cursor: pointer;
-  width: 6rem;
+  width: 4rem;
+  margin-left: 4px;
+
+  &:hover {
+    animation: spin 2s infinite linear;
+  }
+
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-ms-keyframes spin {
+    100% {
+      -ms-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const Nav = styled.nav`
+  background: rgb(254, 205, 133, 0.02);
   position: fixed;
   height: 80px;
   top: 0;
@@ -71,17 +98,17 @@ const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
-  margin-top: 5px;
 `;
 
 const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 50px;
+  margin-right: 10px;
+  margin-top: 8px;
 `;
 
 const NavBtnLink = styled(Link)`
-  font-weight: bold;
+  font-weight: 500;
   display: flex;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -89,11 +116,11 @@ const NavBtnLink = styled(Link)`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.4rem;
-  margin: 1rem;
-  padding: 0.7rem;
-
+  font-size: 1.05rem;
+  margin: 0.35rem;
+  padding: 0.6rem;
   &:hover {
+    box-shadow: 4px 2px black;
     transition: all 0.2s ease-in-out;
   }
 `;

@@ -7,7 +7,6 @@ export default function TextInput({
   autoComplete,
   minLength,
   maxLength,
-  onBlur,
 }) {
   return (
     <InputWrap>
@@ -19,7 +18,6 @@ export default function TextInput({
         autoComplete={autoComplete}
         minLength={minLength}
         maxLength={maxLength}
-        onBlur={event => onBlur(event.target.value)}
       ></Input>
     </InputWrap>
   );
