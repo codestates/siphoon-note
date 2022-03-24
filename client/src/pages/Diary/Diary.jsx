@@ -9,21 +9,21 @@ import {
   InputWrapper,
   Input,
   Button,
-  Button1,
   ButtonWrapper,
-  ContentBox,
-  Content1,
+  ButtonWrapper2,
   Card,
+  ColorPalette,
   Title,
   Content,
-  Emoticon,
   Image,
-  RadioButton,
+
 } from './Diary.style';
 
 export default function Diary() {
   // 출력창 데이터 받아오기
-  const [input, setInput] = useState(null);
+
+  const [input, setInput] = useState('');
+
   const handleInput = e => {
     setInput(e.target.value);
   };
@@ -44,50 +44,73 @@ export default function Diary() {
     'img/sad.svg',
   ];
 
+  // 글 리스트
+  const [diaryList, setDiaryList] = useState([
+    { id: 0, content: 'hello?' },
+    { id: 1, content: 'test' },
+  ]);
+
+  const handleSubmit = () => {
+    setInput('');
+    setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+  };
+  // 뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.
+  const [themeIndex, setThemeIndex] = useState(0);
+  const handleColorTheme = index => {
+    setThemeIndex(index);
+  };
+  const colorTheme = [
+    { color: 'rgb(255, 135, 70, 0.8)', picture: 'img/object1.svg' },
+    { color: 'rgb(254, 205, 133, 0.8)', picture: 'img/object6.svg' },
+    { color: 'rgb(157, 161, 255, 0.8)', picture: 'img/object3.svg' },
+    { color: 'rgb(144, 214, 255, 0.8)', picture: 'img/object10.svg' },
+    { color: 'rgb(247, 178, 206, 0.8)', picture: 'img/object5.svg' },
+  ];
+
   return (
     <>
-      <Container>
-        <Image imgUrl=""></Image>
+
+      <Container color={colorTheme[themeIndex].color}>
+        <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
+          {/* 인풋창 시작 */}
           <InputWrapper>
-            <Input value={input} onChange={handleInput}></Input>
             <ButtonWrapper>
-              {Emoji.map((src, index) => {
+              {colorTheme.map((theme, index) => {
                 return (
-                  <Emoticon
-                    onClick={() => handleEmoji(index)}
+                  <ColorPalette
+                    onClick={() => handleColorTheme(index)}
                     key={index}
-                    src={src}
-                  ></Emoticon>
+                    color={theme.color}
+                  ></ColorPalette>
                 );
               })}
-
-              <Button>엔터</Button>
-              <Button1>NEW</Button1>
-              <Emoticon src={Emoji[emojiIndex]}></Emoticon>
             </ButtonWrapper>
+            <Input value={input} onChange={handleInput}></Input>
+
+            <ButtonWrapper2>
+              <Button>리셋</Button>
+              <Button onClick={handleSubmit}>남기기</Button>
+            </ButtonWrapper2>
           </InputWrapper>
         </SideBar>
         <Main>
           {diaryList.map((diary, index) => {
-            return (
-              <Card key={index} color="lightgray">
-                <span>{diary.username} </span>
-                <Title>나의 {diary.id}번째 일기</Title>
+            return index === 0 ? (
+              <Card key={index} animation>
+                <Title>{diary.id}번째 글쓰기</Title>
+                <Content>{diary.content}</Content>
+              </Card>
+            ) : (
+              <Card key={index}>
+
                 <Content>{diary.content}</Content>
               </Card>
             );
           })}
         </Main>
-        {/* <ContentBox>
-          <Content1 imgUrl="img/test3.svg">
-            hi?<br></br>
-            <br></br>7일 연속 일기를 작성하셨어요!
-          </Content1>
-          <Content1>hello?</Content1>
-          <Content1>nice?</Content1>
-        </ContentBox> */}
+
       </Container>
     </>
   );
