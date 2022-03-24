@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background: ${props => props.color};
   width: 100%;
-  height: 100%;
+  height: 300vh;
 `;
 
 export const SideBar = styled.div`
@@ -203,4 +203,42 @@ export const Content1 = styled.div`
   opacity: 80%;
   font-size: 1.3rem;
   font-weight: bold;
+`;
+
+export const IconWrapper = styled.span`
+  position: absolute;
+  color: black;
+  right: 12px;
+  bottom: 43%;
+  font-size: 2rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(5px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
+`;
+
+export const IconWrapper2 = styled.span`
+  position: absolute;
+  color: black;
+  left: 500px;
+  bottom: 43%;
+  font-size: 2rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(3px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
