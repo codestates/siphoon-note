@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+
   background: ${props => props.color};
   width: 100%;
   height: 100%;
@@ -95,9 +96,11 @@ export const InputWrapper = styled.div`
   border: 2.5px solid black;
   width: 90%;
   height: 45%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 export const Input = styled.textarea.attrs({
   placeholder: 'Hello :)',
@@ -202,5 +205,9 @@ export const Content1 = styled.div`
   background-size: cover;
   opacity: 80%;
   font-size: 1.3rem;
+
+
   font-weight: bold;
+  height: 30px;
 `;
+

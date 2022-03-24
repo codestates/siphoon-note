@@ -16,14 +16,33 @@ import {
   Title,
   Content,
   Image,
+
 } from './Diary.style';
 
 export default function Diary() {
   // 출력창 데이터 받아오기
+
   const [input, setInput] = useState('');
+
   const handleInput = e => {
     setInput(e.target.value);
   };
+  // 다이어리 리스트
+  const [diaryList, setDiaryList] = useState(dummy);
+  // 클릭한 이미지 보여주기
+  const [emojiIndex, setEmojiIndex] = useState(null);
+  const handleEmoji = index => {
+    setEmojiIndex(index);
+  };
+
+  const Emoji = [
+    'img/smile.svg',
+    'img/sad2.svg',
+    'img/heart.svg',
+    'img/angry.svg',
+    'img/suspicious.svg',
+    'img/sad.svg',
+  ];
 
   // 글 리스트
   const [diaryList, setDiaryList] = useState([
@@ -50,6 +69,7 @@ export default function Diary() {
 
   return (
     <>
+
       <Container color={colorTheme[themeIndex].color}>
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
@@ -68,6 +88,7 @@ export default function Diary() {
               })}
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
+
             <ButtonWrapper2>
               <Button>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
@@ -83,12 +104,13 @@ export default function Diary() {
               </Card>
             ) : (
               <Card key={index}>
-                <Title>{diary.id}번째 글쓰기</Title>
+
                 <Content>{diary.content}</Content>
               </Card>
             );
           })}
         </Main>
+
       </Container>
     </>
   );
