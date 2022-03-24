@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: ${props => props.color};
+  width: 100%;
+  height: 100%;
 `;
 
 export const SideBar = styled.div`
@@ -35,7 +37,7 @@ export const Image = styled.div`
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: contain;
-  opacity: 20%;
+  opacity: 25%;
   align-items: end;
 `;
 
@@ -43,12 +45,32 @@ export const Card = styled.div`
   border: 2.5px solid black;
   background: white;
   border-radius: 30px;
-  height: 204px;
+  height: 230px;
   overflow: hidden;
   flex-wrap: wrap;
   font-size: 1.1rem;
   padding: 0.9rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  animation: ${props =>
+    props.animation
+      ? 'tilt-in-fwd-tl 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      : null};
+
+  @keyframes tilt-in-fwd-tl {
+    0% {
+      -webkit-transform: rotateY(-20deg) rotateX(35deg)
+        translate(-300px, -300px) skew(35deg, -10deg);
+      transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px)
+        skew(35deg, -10deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
+    }
+  }
 `;
 
 export const Title = styled.span`
