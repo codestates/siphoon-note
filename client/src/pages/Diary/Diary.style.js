@@ -14,7 +14,7 @@ export const SideBar = styled.div`
   align-items: center;
   padding: 0.25rem;
   width: 500px;
-  top: 41px;
+  top: 36px;
   left: 20px;
 `;
 
@@ -210,7 +210,7 @@ export const IconWrapper = styled.span`
   color: black;
   right: 12px;
   bottom: 43%;
-  font-size: 2rem;
+  font-size: 2.1rem;
   cursor: pointer;
 
   animation: left-right 0.6s infinite ease-in-out alternate;
@@ -227,9 +227,9 @@ export const IconWrapper = styled.span`
 export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;
-  left: 500px;
+  left: 501px;
   bottom: 43%;
-  font-size: 2rem;
+  font-size: 2.1rem;
   cursor: pointer;
 
   animation: left-right 0.6s infinite ease-in-out alternate;
