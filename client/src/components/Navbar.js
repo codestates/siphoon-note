@@ -49,10 +49,10 @@ export default function Navbar({ isLogin, userInfo }) {
 }
 
 const Profile = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1rem;
   text-align: center;
-  line-height: 72px;
+  line-height: 71px;
   text-transform: uppercase;
 `;
 

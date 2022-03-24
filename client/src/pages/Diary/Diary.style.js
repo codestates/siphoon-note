@@ -11,9 +11,8 @@ export const SideBar = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.25rem;
-  // border: 3px solid black;
   width: 500px;
-  top: 30px;
+  top: 41px;
   left: 20px;
 `;
 
@@ -23,13 +22,10 @@ export const Main = styled.div`
   border-radius: 10px;
   padding: 1rem;
   padding-top: 110px;
-  // border: 3px solid black;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: max-content auto;
   flex-wrap: wrap;
-
-  gap: 30px;
+  gap: 26px;
 `;
 
 export const Image = styled.div`
@@ -41,37 +37,26 @@ export const Image = styled.div`
   background-size: contain;
   opacity: 20%;
   align-items: end;
-
-  // animation: up-down 1.4s infinite ease-in-out alternate;
-
-  // @keyframes up-down {
-  //   from {
-  //     transform: translatey(0px);
-  //   }
-  //   to {
-  //     transform: translatey(-5px);
-  //   }
-  // }
 `;
 
 export const Card = styled.div`
   border: 2.5px solid black;
-  // background: ${props => props.color};
   background: white;
   border-radius: 30px;
-  height: 210px;
+  height: 204px;
   overflow: hidden;
   flex-wrap: wrap;
   font-size: 1.1rem;
   padding: 0.9rem;
-  box-shadow: 10px 5px 5px rgb(0, 0, 0, 0.2);
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 `;
 
 export const Title = styled.span`
   display: inline-block;
   font-size: 1.1rem;
   font-weight: bold;
-  height: 30px;
+  height: 25px;
+  text-align: center;
 `;
 
 export const TimerWrapper = styled.div`
@@ -79,7 +64,7 @@ export const TimerWrapper = styled.div`
   font-weight: bold;
   text-align: center;
   color: black;
-  margin: 10px;
+  margin: 3px;
   height: 60px;
   width: 400px;
 `;
@@ -91,15 +76,15 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-contents: center;
 `;
-export const Input = styled.textarea`
+export const Input = styled.textarea.attrs({
+  placeholder: 'Hello :)',
+})`
   border: 2.5px solid black;
-  margin-top: 30px;
-  width: 90%;
-  height: 75%;
+  margin-top: 3px;
+  width: 94%;
+  height: 100%;
   border-radius: 20px;
-  // border: none;
   padding: 20px;
 
   &:focus {
@@ -108,18 +93,28 @@ export const Input = styled.textarea`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 13px;
+  position: relative;
+  left: 5px;
+  width: 100%;
   display: flex;
-  justify-contents: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-top: 2px;
+`;
+
+export const ButtonWrapper2 = styled(ButtonWrapper)`
+  justify-content: flex-end;
+  left: 0px;
+  margin-right: 5px;
+  margin-bottom: 2px;
 `;
 
 export const ColorPalette = styled.span`
   display: inline-block;
   background: ${props => props.color};
   border-radius: 100px;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin: 5px;
   cursor: pointer;
   &:hover {
@@ -136,12 +131,12 @@ export const Button = styled.button`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.05rem;
-  margin: 0.35rem;
-  padding: 0.6rem;
+  font-size: 0.85rem;
+  margin: 0.3rem;
+  padding: 0.55rem;
   border-radius: 10px;
   &:hover {
-    box-shadow: 4px 2px black;
+    box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
 `;
