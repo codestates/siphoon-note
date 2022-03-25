@@ -49,7 +49,6 @@ export default function Navbar({ isLogin, userInfo }) {
 }
 
 const Profile = styled.div`
-
   font-weight: 500;
   font-size: 1rem;
   text-align: center;

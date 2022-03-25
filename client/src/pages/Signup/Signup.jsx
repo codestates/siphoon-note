@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Main, Select, Label, Section } from './Signup.style';
+import { Main, Input, Label, Section, Option, InputWrap } from './Signup.style';
+import { SubmitBtn, Footer, Select } from '../../components';
 
 export default function Signup() {
   const navigator = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
   const [errorMsg2, setErrorMsg2] = useState('');
   const [errorMsg3, setErrorMsg3] = useState('');
+  const [errorMsg4, setErrorMsg4] = useState('');
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -34,7 +36,6 @@ export default function Signup() {
         case 6:
           result += '-';
           break;
-
         default:
           break;
       }
@@ -88,12 +89,28 @@ export default function Signup() {
     }
   };
 
+  const currentyear = new Date().toISOString().slice(0, 4);
+  const curage = userInfo.year.slice(0, 4);
+  console.log(currentyear);
+  console.log(userInfo);
+  console.log(currentyear - curage + 1);
+
+  const yearHandler = () => {
+    if (currentyear - curage + 1 < 15) {
+      setErrorMsg4('15세 이상만 가입 가능합니다.');
+    } else {
+      setErrorMsg4('');
+    }
+  };
+
   useEffect(() => {
     // emailHandler();
+    yearHandler();
     passwordHandler();
   });
 
   const handleSignup = () => {
+    event.preventDefault();
     const { email, password, confirm, name, year } = userInfo;
 
     if (!email || !password || !confirm || !name || !year) {
@@ -104,7 +121,11 @@ export default function Signup() {
       return setErrorMsg3('사용자 정보를 올바르게 입력해주세요.');
     }
 
-    setErrorMsg3('');
+    if (currentyear - curage + 1 < 15) {
+      return setErrorMsg3('15세 미만은 가입을 할 수 없습니다.');
+    } else {
+      setErrorMsg3('');
+    }
     navigator('/signin');
     // axios
     //   .post(
@@ -137,8 +158,27 @@ export default function Signup() {
     setInputStatus(e);
   };
 
-  console.log(userInfo);
-  console.log(inputStatus);
+  // const handleKeyPress = e => {
+  //   if (e.key === 'Enter') {
+  //     e.target.blur();
+  //   }
+  // };
+
+  const textInputBtn = {
+    value: '회원가입',
+  };
+
+  const OPTIONS = [
+    { value: '지역', name: '지역' },
+    { value: '강원도', name: '강원도' },
+    { value: '경기도', name: '경기도' },
+    { value: '경상도', name: '경상도' },
+    { value: '서울', name: '서울' },
+    { value: '전라도', name: '전라도' },
+    { value: '제주도', name: '제주도' },
+    { value: '충청도', name: '충청도' },
+  ];
+
   return (
     <Main>
       <Section>
@@ -146,50 +186,54 @@ export default function Signup() {
           <h1>Sign Up</h1>
         </span>
         <br />
-        <div>
-          <Label>E-mail(필수)</Label>
+        <form
+          // onKeyPress={e => handleKeyPress(e)}
+          onSubmit={e => handleSignup(e)}
+        >
           <br />
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            onChange={handleInputValue('email')}
-          />
-        </div>
-        <div>
+          <InputWrap>
+            <Label htmlFor="email">E-mail(필수)</Label>
+            <br />
+            <Input
+              type="text"
+              name="email"
+              placeholder="email"
+              onChange={handleInputValue('email')}
+            />
+          </InputWrap>
           <Label>Password(필수) </Label>
           <br />
-          <input
+          <Input
             type="password"
             name="password"
             placeholder="password"
             onChange={handleInputValue('password')}
           />
-        </div>
-        <span id="error">{errorMsg2}</span>
-        <div>
-          <Label>Confirm Password(필수)</Label>
           <br />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={handleInputValue('confirm')}
-          />
-        </div>
-        <span>{errorMsg}</span>
-        <div>
-          <Label>Name(필수)</Label>
-          <br />
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            onChange={handleInputValue('name')}
-          />
-          <br />
-        </div>
-        {/* {userInfo.gender.map((value, i) => (
+          <span id="error">{errorMsg2}</span>
+          <div>
+            <Label>Confirm Password(필수)</Label>
+            <br />
+            <Input
+              type="password"
+              name="password"
+              placeholder="password"
+              onChange={handleInputValue('confirm')}
+            />
+          </div>
+          <span>{errorMsg}</span>
+          <div>
+            <Label>Name(필수)</Label>
+            <br />
+            <Input
+              type="text"
+              name="name"
+              placeholder="name"
+              onChange={handleInputValue('name')}
+            />
+            <br />
+          </div>
+          {/* {userInfo.gender.map((value, i) => (
           <React.Fragment key={i}>
             <input
               id={value}
@@ -202,39 +246,69 @@ export default function Signup() {
             {value}
           </React.Fragment>
         ))} */}
-        <div>
-          <Label>성별: </Label>
-          <input
-            type="radio"
-            id="radio"
-            value="남"
-            checked={inputStatus === '남'}
-            onChange={() => handleClickRadioButton('남')}
-          />
-          <Label htmlFor="radio">남</Label>
-          <input
-            type="radio"
-            id="radio1"
-            value="여"
-            checked={inputStatus === '여'}
-            onChange={() => handleClickRadioButton('여')}
-          />
-          <Label htmlFor="radio1">여</Label>
-        </div>
-        <br />
-        <label>지역: </label>
-        <select onChange={handleInputValue('address')}>
-          <option value="지역">지역</option>
-          <option value="서울">서울</option>
-          <option value="지역">경기도</option>
-          <option value="지역">강원도</option>
-          <option value="지역">충청도</option>
-          <option value="지역">전라도</option>
-          <option value="지역">경상도</option>
-          <option value="지역">제주도</option>
-        </select>
-        <br />
-        {/* <Label>생년월일: </Label>
+          <div>
+            <Label>성별: </Label>
+            <input
+              type="radio"
+              id="radio"
+              value="남"
+              checked={inputStatus === '남'}
+              onChange={() => handleClickRadioButton('남')}
+            />
+            <Label htmlFor="radio">남</Label>
+            <input
+              type="radio"
+              id="radio1"
+              value="여"
+              checked={inputStatus === '여'}
+              onChange={() => handleClickRadioButton('여')}
+            />
+            <Label htmlFor="radio1">여</Label>
+            <input
+              type="radio"
+              id="radio2"
+              value="공개 안함"
+              checked={inputStatus === '공개 안함'}
+              onChange={() => handleClickRadioButton('공개 안함')}
+            />
+            <Label htmlFor="radio1">공개 안함</Label>
+            <input
+              type="radio"
+              id="radio3"
+              value="사용자"
+              checked={inputStatus === '사용자 지정'}
+              onChange={() => handleClickRadioButton('사용자 지정')}
+            />
+            <Label htmlFor="radio1">사용자 지정</Label>
+          </div>
+
+          <label>지역: </label>
+          <Select onChange={handleInputValue('address')} options={OPTIONS} />
+          {/* <Option key="지역" value="지역">
+              지역
+            </Option>
+            <Option key="강원도" value="강원도">
+              강원도
+            </Option>
+            <Option key="경기도" value="경기도">
+              경기도
+            </Option>
+            <Option key="경상도" value="경상도">
+              경상도
+            </Option>
+            <Option key="서울" value="서울">
+              서울
+            </Option>
+            <Option key="전라도" value="전라도">
+              전라도
+            </Option>
+            <Option key="제주도" value="제주도">
+              제주도
+            </Option>
+            <Option value="충청도">충청도</Option> */}
+          {/* </Select> */}
+          <br />
+          {/* <Label>생년월일: </Label>
         <Select name="yy" id="year">
           <option value="2001">2001</option>
           <option value="2002">2002</option>
@@ -309,21 +383,25 @@ export default function Signup() {
           <option value="31">31</option>
         </Select>
         일 */}
-        <label>생년월일(필수)</label>
-        <br />
-        <input
-          type="tel"
-          name="year"
-          // value={userInfo}
-          ref={birth}
-          placeholder="0000-00-00 형태로 적어주세요."
-          onChange={handleInputValue('year')}
-        />
-        <br />
-        <span>{errorMsg3}</span>
-        <br />
-        <button onClick={handleSignup}>Sign Up</button>
+          <label>생년월일(필수)</label>
+          <br />
+          <Input
+            type="tel"
+            name="year"
+            // value={userInfo}
+            ref={birth}
+            placeholder="0000-00-00 형태로 적어주세요."
+            onChange={handleInputValue('year')}
+          />
+          <span>{errorMsg4}</span>
+          <br />
+          <span>{errorMsg3}</span>
+          <br />
+
+          <SubmitBtn type="submit" value={textInputBtn.value} />
+        </form>
       </Section>
+      <Footer />
     </Main>
   );
 }

@@ -16,7 +16,6 @@ import {
   Title,
   Content,
   Image,
-
 } from './Diary.style';
 
 export default function Diary() {
@@ -27,8 +26,6 @@ export default function Diary() {
   const handleInput = e => {
     setInput(e.target.value);
   };
-  // 다이어리 리스트
-  const [diaryList, setDiaryList] = useState(dummy);
   // 클릭한 이미지 보여주기
   const [emojiIndex, setEmojiIndex] = useState(null);
   const handleEmoji = index => {
@@ -69,7 +66,6 @@ export default function Diary() {
 
   return (
     <>
-
       <Container color={colorTheme[themeIndex].color}>
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
@@ -104,13 +100,11 @@ export default function Diary() {
               </Card>
             ) : (
               <Card key={index}>
-
                 <Content>{diary.content}</Content>
               </Card>
             );
           })}
         </Main>
-
       </Container>
     </>
   );
