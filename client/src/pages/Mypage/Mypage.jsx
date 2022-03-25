@@ -1,5 +1,11 @@
 import { MypageWrapper, UpdateTextInput, ButtonsWrapper } from './Mypage.style';
 import { Footer, SubmitBtn, TextInput } from '../../components';
+import { useState } from 'react';
+
+// export default function Signin() {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+// }
 
 export default function Mypage() {
   const textInputList = [

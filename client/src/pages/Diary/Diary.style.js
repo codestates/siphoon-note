@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background: ${props => props.color};
   width: 100%;
-  height: 100%;
+  height: 300vh;
 `;
 
 export const SideBar = styled.div`
@@ -14,7 +14,7 @@ export const SideBar = styled.div`
   align-items: center;
   padding: 0.25rem;
   width: 500px;
-  top: 41px;
+  top: 36px;
   left: 20px;
 `;
 
@@ -206,4 +206,42 @@ export const Content1 = styled.div`
 
   font-weight: bold;
   height: 30px;
+`;
+
+export const IconWrapper = styled.span`
+  position: absolute;
+  color: black;
+  right: 12px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(5px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
+`;
+
+export const IconWrapper2 = styled.span`
+  position: absolute;
+  color: black;
+  left: 501px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(3px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
