@@ -1,6 +1,7 @@
 import dummy from '../../static/dummyData';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Analysis from '../../components/Analysis';
+import Tag from '../../components/Tag';
 import { useState } from 'react';
 import {
   Container,
@@ -72,12 +73,14 @@ export default function Diary() {
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
             <ButtonWrapper2>
+              <Tag></Tag>
               <Button>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
         </SideBar>
         <Main>
+          {/* Main 코드 정리 필요함 */}
           {pageNum === 1 ? (
             diaryList.map((diary, index) => {
               return index === 0 ? (

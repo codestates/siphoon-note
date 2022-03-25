@@ -18,18 +18,6 @@ export const SideBar = styled.div`
   left: 20px;
 `;
 
-export const Main = styled.div`
-  margin-left: 530px;
-  margin-right: 40px;
-  border-radius: 10px;
-  padding: 1rem;
-  padding-top: 110px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  flex-wrap: wrap;
-  gap: 26px;
-`;
-
 export const Image = styled.div`
   position: fixed;
   right: 0px;
@@ -39,46 +27,6 @@ export const Image = styled.div`
   background-size: contain;
   opacity: 25%;
   align-items: end;
-`;
-
-export const Card = styled.div`
-  border: 2.5px solid black;
-  background: white;
-  border-radius: 30px;
-  height: 230px;
-  overflow: hidden;
-  flex-wrap: wrap;
-  font-size: 1.1rem;
-  padding: 0.9rem;
-  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-  animation: ${props =>
-    props.animation
-      ? 'tilt-in-fwd-tl 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      : null};
-
-  @keyframes tilt-in-fwd-tl {
-    0% {
-      -webkit-transform: rotateY(-20deg) rotateX(35deg)
-        translate(-300px, -300px) skew(35deg, -10deg);
-      transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px)
-        skew(35deg, -10deg);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
-        skew(0deg, 0deg);
-      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
-      opacity: 1;
-    }
-  }
-`;
-
-export const Title = styled.span`
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: bold;
-  height: 25px;
-  text-align: center;
 `;
 
 export const TimerWrapper = styled.div`
@@ -125,7 +73,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ButtonWrapper2 = styled(ButtonWrapper)`
-  justify-content: flex-end;
+  justify-content: center;
   left: 0px;
   margin-right: 5px;
   margin-bottom: 2px;
@@ -182,27 +130,60 @@ export const Button1 = styled(Button)`
   }
 `;
 
+export const Main = styled.div`
+  margin-left: 530px;
+  margin-right: 40px;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-top: 110px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+  gap: 26px;
+`;
+
+export const Card = styled.div`
+  border: 2.5px solid black;
+  background: white;
+  border-radius: 30px;
+  height: 230px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  padding: 0.9rem;
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  animation: ${props =>
+    props.animation
+      ? 'tilt-in-fwd-tl 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      : null};
+
+  @keyframes tilt-in-fwd-tl {
+    0% {
+      -webkit-transform: rotateY(-20deg) rotateX(35deg)
+        translate(-300px, -300px) skew(35deg, -10deg);
+      transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px)
+        skew(35deg, -10deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
+    }
+  }
+`;
+
+export const Title = styled.span`
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  height: 25px;
+  text-align: center;
+`;
+
 export const Content = styled.div`
   backbround-size: cover;
-`;
-
-export const ContentBox = styled.div`
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Content1 = styled.div`
-  padding: 0.25rem;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
-  opacity: 80%;
-  font-size: 1.3rem;
-  font-weight: bold;
 `;
 
 export const IconWrapper = styled.span`
@@ -242,3 +223,22 @@ export const IconWrapper2 = styled.span`
     }
   }
 `;
+
+// export const ContentBox = styled.div`
+//   display: flex;
+//   gap: 0.3rem;
+//   align-items: center;
+//   justify-content: center;
+// `;
+
+// export const Content1 = styled.div`
+//   padding: 0.25rem;
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 10px;
+//   background: url(${props => props.imgUrl}) no-repeat;
+//   background-size: cover;
+//   opacity: 80%;
+//   font-size: 1.3rem;
+//   font-weight: bold;
+// `;
