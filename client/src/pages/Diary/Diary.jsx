@@ -1,5 +1,6 @@
 import dummy from '../../static/dummyData';
-import { useEffect } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import Analysis from '../../components/Analysis';
 import { useState } from 'react';
 import {
   Container,
@@ -16,11 +17,12 @@ import {
   Title,
   Content,
   Image,
-
+  IconWrapper,
+  IconWrapper2,
 } from './Diary.style';
 
 export default function Diary() {
-  // 출력창 데이터 받아오기
+  // 사용자 인풋 받기
 
   const [input, setInput] = useState('');
 
@@ -45,16 +47,16 @@ export default function Diary() {
   ];
 
   // 글 리스트
-  const [diaryList, setDiaryList] = useState([
-    { id: 0, content: 'hello?' },
-    { id: 1, content: 'test' },
-  ]);
-
+  const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
     setInput('');
     setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
   };
-  // 뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.
+
+  // 페이지 전환
+  const [pageNum, setPageNum] = useState(1);
+
+  // 테마 인덱스 (뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.)
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
@@ -96,48 +98,37 @@ export default function Diary() {
           </InputWrapper>
         </SideBar>
         <Main>
-          {diaryList.map((diary, index) => {
-            return index === 0 ? (
-              <Card key={index} animation>
-                <Title>{diary.id}번째 글쓰기</Title>
-                <Content>{diary.content}</Content>
-              </Card>
-            ) : (
-              <Card key={index}>
-
-                <Content>{diary.content}</Content>
-              </Card>
-            );
-          })}
+          {pageNum === 1 ? (
+            diaryList.map((diary, index) => {
+              return index === 0 ? (
+                <Card key={index} animation>
+                  <Title>{diary.id}번째 글쓰기</Title>
+                  <Content>{diary.content}</Content>
+                </Card>
+              ) : (
+                <Card key={index}>
+                  <Title>{diary.id}번째 글쓰기</Title>
+                  <Content>{diary.content}</Content>
+                </Card>
+              );
+            })
+          ) : (
+            <Analysis></Analysis>
+          )}
+          {pageNum === 1 ? (
+            <IconWrapper>
+              <IoIosArrowForward
+                onClick={() => setPageNum(2)}
+              ></IoIosArrowForward>
+            </IconWrapper>
+          ) : (
+            <IconWrapper2>
+              <IoIosArrowBack onClick={() => setPageNum(1)}></IoIosArrowBack>
+            </IconWrapper2>
+          )}
         </Main>
 
       </Container>
     </>
   );
 }
-
-// const [index, setIndex] = useState(0);
-// const colors = [
-//   'rgb(254, 205, 133, 0.25)',
-//   'rgb(157, 161, 255, 0.1)',
-//   'rgb(144, 214, 255, 0.1)',
-//   'rgb(255, 135, 70, 0.1)',
-//   'rgb(255, 233, 242, 0.1)',
-// ];
-
-// const getIndex = () => {
-//   if (index === colors.length - 1) {
-//     index === 0;
-//   } else {
-//     setIndex(index + 1);
-//   }
-//   return 0;
-// };
-
-// useEffect(() => {
-//   getIndex();
-// }, []);
-
-// const color = colors[getIndex()];
-
-// console.log(color);
