@@ -49,16 +49,22 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+
+  &:focus-within {
+    height: 65%;
+  }
+
 `;
 export const Input = styled.textarea.attrs({
   placeholder: 'Hello :)',
 })`
   border: 2.5px solid black;
-  margin-top: 3px;
+  // margin-top: 3px;
   width: 94%;
   height: 100%;
   border-radius: 20px;
   padding: 20px;
+  overflow: hidden;
 
   &:focus {
     outline: none;
@@ -67,12 +73,22 @@ export const Input = styled.textarea.attrs({
 
 export const ButtonWrapper = styled.div`
   position: relative;
-  left: 5px;
+  left: 7px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin-top: 2px;
+  > div {
+    display: flex;
+    align-items: center;
+  }
+  > span {
+    display: flex;
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 1.4rem;
+  }
 `;
 
 export const ButtonWrapper2 = styled(ButtonWrapper)`
