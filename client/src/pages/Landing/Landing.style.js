@@ -65,12 +65,13 @@ export const Span = styled.span`
 export const Icon = styled.span`
   font-size: 3rem;
   margin-top: 180px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
   color: black;
   a:visited {
     color: black;
   }
-  animation: up-down 0.6s infinite ease-in-out alternate;
+  animation: up-down 0.4s 10 ease-in-out alternate;
+
   @keyframes up-down {
     from {
       transform: translatey(0px);

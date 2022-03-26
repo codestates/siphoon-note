@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
-  // border: 3px solid black;
+
+  background: ${props => props.color};
+  width: 100%;
+  height: 300vh;
 `;
 
 export const SideBar = styled.div`
@@ -13,69 +14,50 @@ export const SideBar = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.25rem;
-  // border: 3px solid black;
   width: 500px;
-  top: 25px;
-  left: 10px;
+  top: 36px;
+  left: 20px;
 `;
 
-export const Main = styled.div`
-  margin-left: 530px;
-  margin-right: 17px;
-  border-radius: 10px;
-  padding: 1rem;
-  padding-top: 110px;
-  // border: 3px solid black;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: max-content auto;
-  gap: 30px;
-`;
-
-export const Card = styled.div`
-  // display: inline-block;
-  border: 2.5px solid rgb(157, 161, 255, 0.2);
-  background: ${props => props.color};
-  border-radius: 30px;
-  // min-height: 150px;
-  // overflow: hidden;
-  padding: 20px;
-  font-size: 1.1rem;
-`;
-
-export const Title = styled.span`
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: bold;
-  height: 30px;
+export const Image = styled.div`
+  position: fixed;
+  right: 0px;
+  left: 85px;
+  height: 100vh;
+  background: url(${props => props.imgUrl}) no-repeat;
+  background-size: contain;
+  opacity: 25%;
+  align-items: end;
 `;
 
 export const TimerWrapper = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  margin: 10px;
+  color: black;
+  margin: 3px;
   height: 60px;
   width: 400px;
 `;
 export const InputWrapper = styled.div`
-  // background: gray;
   border-radius: 20px;
-  border: 2px solid gray;
+  border: 2.5px solid black;
   width: 90%;
   height: 45%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-contents: center;
+
 `;
-export const Input = styled.textarea`
-  border: 2px solid gray;
-  margin-top: 30px;
-  width: 90%;
-  height: 75%;
+export const Input = styled.textarea.attrs({
+  placeholder: 'Hello :)',
+})`
+  border: 2.5px solid black;
+  margin-top: 3px;
+  width: 94%;
+  height: 100%;
   border-radius: 20px;
-  // border: none;
   padding: 20px;
 
   &:focus {
@@ -84,82 +66,183 @@ export const Input = styled.textarea`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 13px;
+  position: relative;
+  left: 5px;
+  width: 100%;
   display: flex;
-  justify-contents: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-top: 2px;
 `;
 
-export const Emoticon = styled.img`
-  width: 33px;
-  src: ${props => props.src};
-  margin: 3px;
-  cursor: pointer;
-  border: none;
-  padding: 1px;
-  border-radius: 5px;
+export const ButtonWrapper2 = styled(ButtonWrapper)`
+  justify-content: center;
+  left: 0px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+`;
 
+export const ColorPalette = styled.span`
+  display: inline-block;
+  background: ${props => props.color};
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  cursor: pointer;
   &:hover {
     transform: scale(1.2);
   }
 `;
 
 export const Button = styled.button`
-  margin-left: 30px;
-  border-radius: 10px;
+  font-weight: 500;
+  display: flex;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+  border: solid;
   background: white;
+  font-size: 0.85rem;
+  margin: 0.3rem;
+  padding: 0.55rem;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 2px 1px black;
+    transition: all 0.2s ease-in-out;
+  }
 `;
 
 export const Button1 = styled(Button)`
-  margin-left: 10px;
+  font-weight: 500;
+  display: flex;
   cursor: pointer;
-
-  &:active {
-    background: black;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+  border: solid;
+  background: white;
+  font-size: 1.05rem;
+  margin: 0.35rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 4px 2px black;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
-export const Image = styled.div`
-  position: fixed;
-  right: 0px;
-  width: 100vw;
-  height: 100vh;
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: full;
-  opacity: 15%;
-  align-items: end;
+export const Main = styled.div`
+  margin-left: 530px;
+  margin-right: 40px;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-top: 110px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+  gap: 26px;
+`;
 
-  animation: up-down 1.4s infinite ease-in-out alternate;
+export const Card = styled.div`
+  border: 2.5px solid black;
+  background: white;
+  border-radius: 30px;
+  height: 230px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  padding: 0.9rem;
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  animation: ${props =>
+    props.animation
+      ? 'tilt-in-fwd-tl 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      : null};
 
-  @keyframes up-down {
-    from {
-      transform: translatey(0px);
+  @keyframes tilt-in-fwd-tl {
+    0% {
+      -webkit-transform: rotateY(-20deg) rotateX(35deg)
+        translate(-300px, -300px) skew(35deg, -10deg);
+      transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px)
+        skew(35deg, -10deg);
+      opacity: 0;
     }
-    to {
-      transform: translatey(-5px);
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
     }
   }
+`;
+
+
+export const Title = styled.span`
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  height: 25px;
+  text-align: center;
 `;
 
 export const Content = styled.div`
   backbround-size: cover;
 `;
 
-export const ContentBox = styled.div`
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  justify-content: center;
+export const IconWrapper = styled.span`
+  position: absolute;
+  color: black;
+  right: 12px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(5px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
 
-export const Content1 = styled.div`
-  padding: 0.25rem;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: url(${props => props.imgUrl}) no-repeat;
-  background-size: cover;
-  opacity: 80%;
-  font-size: 1.3rem;
-  font-weight: bold;
+export const IconWrapper2 = styled.span`
+  position: absolute;
+  color: black;
+  left: 501px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(3px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
+
+// export const ContentBox = styled.div`
+//   display: flex;
+//   gap: 0.3rem;
+//   align-items: center;
+//   justify-content: center;
+// `;
+
+// export const Content1 = styled.div`
+//   padding: 0.25rem;
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 10px;
+//   background: url(${props => props.imgUrl}) no-repeat;
+//   background-size: cover;
+//   opacity: 80%;
+//   font-size: 1.3rem;
+//   font-weight: bold;
+// `;
