@@ -49,10 +49,12 @@ export default function Navbar({ isLogin, userInfo }) {
 }
 
 const Profile = styled.div`
+
   font-weight: 500;
   font-size: 1rem;
   text-align: center;
   line-height: 71px;
+
   text-transform: uppercase;
 `;
 
@@ -60,6 +62,7 @@ const ImgWrapper = styled.img`
   font-weight: bold;
   cursor: pointer;
   width: 4rem;
+
   margin: 0px 5px;
 
   &:hover {
@@ -104,6 +107,7 @@ const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
+
   margin-top: 13px;
 `;
 

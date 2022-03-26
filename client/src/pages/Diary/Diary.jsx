@@ -33,10 +33,28 @@ export default function Diary() {
   };
 
   // 사용자 인풋 받기
+
   const [input, setInput] = useState('');
+
   const handleInput = e => {
     setInput(e.target.value);
   };
+  // 다이어리 리스트
+  const [diaryList, setDiaryList] = useState(dummy);
+  // 클릭한 이미지 보여주기
+  const [emojiIndex, setEmojiIndex] = useState(null);
+  const handleEmoji = index => {
+    setEmojiIndex(index);
+  };
+
+  const Emoji = [
+    'img/smile.svg',
+    'img/sad2.svg',
+    'img/heart.svg',
+    'img/angry.svg',
+    'img/suspicious.svg',
+    'img/sad.svg',
+  ];
 
   // 글 리스트
   const [diaryList, setDiaryList] = useState(dummy);
@@ -56,6 +74,7 @@ export default function Diary() {
 
   return (
     <>
+
       <Container color={colorTheme[themeIndex].color}>
         {isKeywordModal ? (
           <Keyword
@@ -85,6 +104,7 @@ export default function Diary() {
               </span>
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
+
             <ButtonWrapper2>
               <Tag></Tag>
               <Button>리셋</Button>
@@ -117,6 +137,7 @@ export default function Diary() {
             </IconWrapper2>
           )}
         </Main>
+
       </Container>
     </>
   );
