@@ -7,7 +7,7 @@ export default function TagToggle() {
 
   return (
     <Wrapper>
-      <div>TAGS</div>
+      <div>Tags</div>
       <span>
         <TiArrowSortedDown></TiArrowSortedDown>
       </span>
@@ -18,11 +18,11 @@ export default function TagToggle() {
 export const DropDownTag = () => {};
 
 const Wrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   font-weight: 500;
   font-size: 1.05rem;
   width: 88%;
-  height: 28px;
+  height: 29px;
   border: 2.5px solid black;
   display: flex;
   justify-content: space-between;

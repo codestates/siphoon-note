@@ -1,14 +1,29 @@
 import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
+import { useState } from 'react';
 
 export default function Searchbar() {
+  const [userInput, setUserInput] = useState(undefined);
+  const handleSearch = event => {
+    // 서버에 event.target.value 요청 보내기
+    event.target.value = '';
+  };
+
+  const handleDelete = () => {
+    // 서버에 다시 get 요청 보내기
+    setUserInput('');
+  };
+
   return (
     <Wrapper>
-      <Input></Input>
-      <span>&times;</span>
       <IconWrapper>
         <BiSearch></BiSearch>
       </IconWrapper>
+      <Input
+        onKeyUp={event => (event.key === 'Enter' ? handleSearch(event) : null)}
+        value={userInput}
+      ></Input>
+      <span onClick={handleDelete}>&times;</span>
     </Wrapper>
   );
 }
@@ -26,19 +41,23 @@ const Wrapper = styled.div`
   > span {
     display: flex;
     padding: 0px 10px;
-    background: white;
+    background: rgb(255, 255, 255, 0.9);
     align-items: center;
+    cursor: pointer;
   }
 `;
-const Input = styled.input.attrs({ placeholder: 'Search' })`
+const Input = styled.input.attrs({
+  placeholder: '검색어를 입력하고 Enter를 누르세요',
+})`
   border: none;
   padding: 10px;
-  width: 90%;
+  width: 85%;
   height: 100%;
   font-size: 0.8rem;
+  background: rgb(255, 255, 255, 0.9);
+
   &:focus {
     outline: none;
-    background: rgb(255, 255, 255);
   }
 `;
 const IconWrapper = styled.div`

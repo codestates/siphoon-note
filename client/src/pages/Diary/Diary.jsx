@@ -1,7 +1,7 @@
 import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { MdLightbulbOutline } from 'react-icons/md';
+import { RiGift2Line } from 'react-icons/ri';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -68,7 +68,6 @@ export default function Diary() {
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
-
           <InputWrapper>
             <ButtonWrapper>
               <div>
@@ -83,7 +82,7 @@ export default function Diary() {
                 })}
               </div>
               <span onClick={handleKeyword}>
-                <MdLightbulbOutline></MdLightbulbOutline>
+                <RiGift2Line></RiGift2Line>
               </span>
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>

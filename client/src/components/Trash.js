@@ -7,7 +7,7 @@ export default function Trash() {
 
   return (
     <Wrapper>
-      <div>TRASH</div>
+      <div>Trash</div>
       <span>
         <TiArrowSortedDown></TiArrowSortedDown>
       </span>
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   font-weight: 500;
   font-size: 1.05rem;
   width: 88%;
-  height: 28px;
+  height: 29px;
   border: 2.5px solid black;
   display: flex;
   justify-content: space-between;

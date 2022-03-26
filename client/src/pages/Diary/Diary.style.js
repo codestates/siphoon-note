@@ -48,7 +48,7 @@ export const InputWrapper = styled.div`
   align-items: center;
 
   &:focus-within {
-    height: 65%;
+    height: 66%;
   }
 `;
 export const Input = styled.textarea.attrs({
@@ -82,12 +82,12 @@ export const ButtonWrapper = styled.div`
     display: flex;
     cursor: pointer;
     margin-right: 12px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     opacity: 0.9;
 
     &:hover {
       // background: yellow;
-      // border-radius: 30px;
+      border-radius: 30px;
       opacity: 1;
     }
   }
