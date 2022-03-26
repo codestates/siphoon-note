@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function Tag() {
-  const defaultTags = ['기쁨'];
+  const defaultTags = ['오늘아침'];
   const [tags, setTags] = useState(defaultTags);
   console.log(tags);
   const removeTag = selected => {
@@ -16,7 +16,7 @@ export default function Tag() {
     const userInput = event.target.value;
     const filtered = tags.filter(tag => tag === userInput);
 
-    if (userInput !== '' && filtered.length === 0) {
+    if (userInput !== '' && filtered.length === 0 && userInput.length <= 5) {
       setTags([...tags, userInput]);
       event.target.value = '';
     }
@@ -40,7 +40,7 @@ export default function Tag() {
             className={`tag-input`}
             type="text"
             onKeyUp={event => (event.key === 'Enter' ? addTag(event) : null)}
-            placeholder="다섯자 미만 태그 달기"
+            placeholder="다섯자 이하 태그 :)"
           />
         )}
       </TagsInput>

@@ -66,7 +66,9 @@ export const Icon = styled.span`
   font-size: 3rem;
   margin-top: 180px;
   margin-bottom: 7px;
-  color: black;
+  a:link {
+    color: black;
+  }
   a:visited {
     color: black;
   }
