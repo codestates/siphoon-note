@@ -43,6 +43,15 @@ export default function Signin() {
       maxLength: 32,
       onBlur: setPassword,
     },
+    {
+      title: '패스워드',
+      type: 'password',
+      placeholder: '패스워드을 입력하세요',
+      autoComplete: 'on',
+      minLength: 8,
+      maxLength: 32,
+      onBlur: setPassword,
+    },
   ];
   return (
     <div>
