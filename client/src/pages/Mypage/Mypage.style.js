@@ -18,3 +18,7 @@ export const ButtonsWrapper = styled.div`
     margin-left: 10px;
   }
 `;
+
+export const Label = styled.label`
+  font-size: 20px;
+`;

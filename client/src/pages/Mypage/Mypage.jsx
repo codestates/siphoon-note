@@ -1,37 +1,54 @@
-import { MypageWrapper, UpdateTextInput, ButtonsWrapper } from './Mypage.style';
+import {
+  MypageWrapper,
+  UpdateTextInput,
+  ButtonsWrapper,
+  Label,
+} from './Mypage.style';
 import { Footer, SubmitBtn, TextInput } from '../../components';
+import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { useState } from 'react';
-
-// export default function Signin() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-// }
+import { setoption, setgender } from './select';
 
 export default function Mypage() {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setpasswordCheck] = useState('');
+
+  const [selecteOption, setSelecteOption] = useState('');
+  const [gender, setGender] = useState('');
+
+  console.log(selecteOption);
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
+
   const textInputList = [
     {
-      title: '이름',
-      type: 'name',
-      placeholder: '이름을 입력하세요',
-      autoComplete: 'on',
-      minLength: 12,
-      maxLength: 32,
-    },
-    {
-      title: '패스워드',
+      title: '변경할 패스워드',
       type: 'password',
       placeholder: '패스워드을 입력하세요',
       autoComplete: 'on',
       minLength: 12,
       maxLength: 32,
+      onBlur: setPassword,
     },
     {
       title: '패스워드 확인',
       type: 'passwordCheck',
-      placeholder: '패스워드 확인을 입력하세요',
+      placeholder: '동일한 패스워드를 입력하세요',
       autoComplete: 'on',
       minLength: 12,
       maxLength: 32,
+      onBlur: setpasswordCheck,
+    },
+    {
+      title: '닉네임',
+      type: 'name',
+      placeholder: '변경할 닉네임을 입력하세요',
+      autoComplete: 'on',
+      minLength: 12,
+      maxLength: 32,
+      onBlur: setName,
     },
   ];
   const textInputBtn = [
@@ -45,26 +62,43 @@ export default function Mypage() {
   return (
     <div>
       <MypageWrapper>
-        {/* <h1>Mypage 페이지 입니다.</h1> */}
         <UpdateTextInput>
-          {textInputList.map(
-            (
-              { title, type, placeholder, autoComplete, minLength, maxLength },
-              index
-            ) => {
-              return (
-                <TextInput
-                  key={index}
-                  title={title}
-                  type={type}
-                  placeholder={placeholder}
-                  autoComplete={autoComplete}
-                  minLength={minLength}
-                  maxLength={maxLength}
-                />
-              );
-            }
-          )}
+          <form onSubmit={event => handleSubmit(event)}>
+            {textInputList.map(
+              (
+                {
+                  title,
+                  type,
+                  placeholder,
+                  autoComplete,
+                  minLength,
+                  maxLength,
+                  onBlur,
+                },
+                index
+              ) => {
+                return (
+                  <TextInput
+                    key={index}
+                    title={title}
+                    type={type}
+                    placeholder={placeholder}
+                    autoComplete={autoComplete}
+                    minLength={minLength}
+                    maxLength={maxLength}
+                    onBlur={onBlur}
+                  />
+                );
+              }
+            )}
+            <Label>지역 </Label>
+            <Selectbox
+              options={setoption}
+              select={selecteOption}
+              setSelect={setSelecteOption}
+            />
+          </form>
+
           <ButtonsWrapper>
             {textInputBtn.map(({ value }, index) => {
               return (
