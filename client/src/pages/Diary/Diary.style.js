@@ -49,6 +49,7 @@ export const InputWrapper = styled.div`
 
   &:focus-within {
     height: 66%;
+    transition: all 0.5s ease-in-out;
   }
 `;
 export const Input = styled.textarea.attrs({

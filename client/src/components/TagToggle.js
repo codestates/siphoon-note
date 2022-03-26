@@ -8,14 +8,18 @@ export default function TagToggle() {
   return (
     <Wrapper>
       <div>Tags</div>
-      <span>
+      <span onClick={() => setIsDropdown(!isDropdown)}>
         <TiArrowSortedDown></TiArrowSortedDown>
       </span>
     </Wrapper>
   );
 }
 
-export const DropDownTag = () => {};
+export const Dropdown = () => {
+  return <Container></Container>;
+};
+
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   margin-top: 0.9rem;

@@ -35,6 +35,9 @@ export default function Diary() {
     setIsKeywordModal(!isKeywordModal);
   };
 
+  // trash dropdown
+  const [isDropdown, setIsDropdown] = useState(false);
+
   // 사용자 인풋 받기
   const [input, setInput] = useState('');
   const handleInput = e => {
@@ -68,7 +71,7 @@ export default function Diary() {
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
-          <InputWrapper>
+          <InputWrapper onClick={() => setIsDropdown(false)}>
             <ButtonWrapper>
               <div>
                 {colorTheme.map((theme, index) => {
@@ -93,7 +96,7 @@ export default function Diary() {
             </ButtonWrapper2>
           </InputWrapper>
           <TagToggle></TagToggle>
-          <Trash></Trash>
+          <Trash isDropdown={isDropdown} setIsDropdown={setIsDropdown}></Trash>
           <Searchbar></Searchbar>
         </SideBar>
         <Main>
