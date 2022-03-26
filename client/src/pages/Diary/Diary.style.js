@@ -43,7 +43,6 @@ export const InputWrapper = styled.div`
   border: 2.5px solid black;
   width: 90%;
   height: 45%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +55,6 @@ export const Input = styled.textarea.attrs({
   placeholder: 'Hello :)',
 })`
   border: 2.5px solid black;
-  // margin-top: 3px;
   width: 94%;
   height: 100%;
   border-radius: 20px;
@@ -85,6 +83,13 @@ export const ButtonWrapper = styled.div`
     cursor: pointer;
     margin-right: 12px;
     font-size: 1.4rem;
+    opacity: 0.9;
+
+    &:hover {
+      // background: yellow;
+      // border-radius: 30px;
+      opacity: 1;
+    }
   }
 `;
 
@@ -151,11 +156,11 @@ export const Main = styled.div`
   margin-right: 40px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 110px;
+  padding-top: 105px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
-  gap: 26px;
+  gap: 30px;
 `;
 
 export const Card = styled.div`

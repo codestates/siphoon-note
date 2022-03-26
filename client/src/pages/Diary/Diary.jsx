@@ -5,6 +5,9 @@ import { MdLightbulbOutline } from 'react-icons/md';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
+import Searchbar from '../../components/Searchbar';
+import TagToggle from '../../components/TagToggle';
+import Trash from '../../components/Trash';
 import { useState } from 'react';
 import {
   Container,
@@ -84,13 +87,15 @@ export default function Diary() {
               </span>
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
-
             <ButtonWrapper2>
               <Tag></Tag>
               <Button>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
+          <TagToggle></TagToggle>
+          <Trash></Trash>
+          <Searchbar></Searchbar>
         </SideBar>
         <Main>
           {pageNum === 0 ? (
