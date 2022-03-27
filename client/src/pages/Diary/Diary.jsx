@@ -1,10 +1,13 @@
 import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { MdLightbulbOutline } from 'react-icons/md';
+import { RiGift2Line } from 'react-icons/ri';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
+import Searchbar from '../../components/Searchbar';
+import TagToggle from '../../components/TagToggle';
+import Trash from '../../components/Trash';
 import { useState } from 'react';
 import {
   Container,
@@ -32,31 +35,19 @@ export default function Diary() {
     setIsKeywordModal(!isKeywordModal);
   };
 
+  // trash, tags dropdown
+  const [isTrashDropdown, setIsTrashDropdown] = useState(false);
+  const [isTagsDropdown, setIsTagsDropdown] = useState(false);
+  const handleDropdown = () => {
+    setIsTrashDropdown(false);
+    setIsTagsDropdown(false);
+  };
   // 사용자 인풋 받기
-
   const [input, setInput] = useState('');
-
   const handleInput = e => {
     setInput(e.target.value);
   };
   // 다이어리 리스트
-  const [diaryList, setDiaryList] = useState(dummy);
-  // 클릭한 이미지 보여주기
-  const [emojiIndex, setEmojiIndex] = useState(null);
-  const handleEmoji = index => {
-    setEmojiIndex(index);
-  };
-
-  const Emoji = [
-    'img/smile.svg',
-    'img/sad2.svg',
-    'img/heart.svg',
-    'img/angry.svg',
-    'img/suspicious.svg',
-    'img/sad.svg',
-  ];
-
-  // 글 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
     setInput('');
@@ -74,7 +65,6 @@ export default function Diary() {
 
   return (
     <>
-
       <Container color={colorTheme[themeIndex].color}>
         {isKeywordModal ? (
           <Keyword
@@ -85,8 +75,7 @@ export default function Diary() {
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
-
-          <InputWrapper>
+          <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
               <div>
                 {colorTheme.map((theme, index) => {
@@ -100,17 +89,28 @@ export default function Diary() {
                 })}
               </div>
               <span onClick={handleKeyword}>
-                <MdLightbulbOutline></MdLightbulbOutline>
+                <RiGift2Line></RiGift2Line>
               </span>
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
-
             <ButtonWrapper2>
               <Tag></Tag>
               <Button>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
+          <TagToggle
+            isTagsDropdown={isTagsDropdown}
+            setIsTagsDropdown={setIsTagsDropdown}
+            setIsTrashDropdown={setIsTrashDropdown}
+          ></TagToggle>
+
+          <Trash
+            isTrashDropdown={isTrashDropdown}
+            setIsTrashDropdown={setIsTrashDropdown}
+            setIsTagsDropdown={setIsTagsDropdown}
+          ></Trash>
+          <Searchbar></Searchbar>
         </SideBar>
         <Main>
           {pageNum === 0 ? (
@@ -137,7 +137,6 @@ export default function Diary() {
             </IconWrapper2>
           )}
         </Main>
-
       </Container>
     </>
   );

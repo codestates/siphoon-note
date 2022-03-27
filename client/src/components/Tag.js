@@ -4,7 +4,6 @@ import { useState } from 'react';
 export default function Tag() {
   const defaultTags = ['오늘아침'];
   const [tags, setTags] = useState(defaultTags);
-  console.log(tags);
   const removeTag = selected => {
     const filtered = tags.filter((_, index) => {
       return index !== selected;
