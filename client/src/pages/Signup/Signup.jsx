@@ -4,7 +4,7 @@ import { Main, Input, Label, Section, Submitwrap } from './Signup.style';
 import { TextInput, SubmitBtn, Footer } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { setoption, setgender } from './select';
-import { SignupModal } from '../../components/SignupModal';
+import { SignupModal } from './SignupModal';
 
 export default function Signup() {
   const [errorMsg, setErrorMsg] = useState('');
