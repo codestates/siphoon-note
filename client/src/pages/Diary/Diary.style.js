@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
   background: ${props => props.color};
   width: 100%;
   height: 300vh;
@@ -48,7 +47,6 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
 `;
 export const Input = styled.textarea.attrs({
   placeholder: 'Hello :)',
@@ -176,7 +174,6 @@ export const Card = styled.div`
     }
   }
 `;
-
 
 export const Title = styled.span`
   display: inline-block;

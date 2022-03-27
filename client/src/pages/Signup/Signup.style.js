@@ -27,8 +27,13 @@ export const Input = styled.input`
   }
 `;
 
-export const InputWrap = styled.div``;
-
 export const Label = styled.label`
   font-size: 20px;
+`;
+
+export const Submitwrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
 `;

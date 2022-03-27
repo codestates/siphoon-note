@@ -48,7 +48,7 @@ export default function Diary() {
   ];
 
   // 글 리스트
-  const [diaryList, setDiaryList] = useState(dummy);
+
   const handleSubmit = () => {
     setInput('');
     setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
@@ -72,7 +72,6 @@ export default function Diary() {
 
   return (
     <>
-
       <Container color={colorTheme[themeIndex].color}>
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
@@ -130,7 +129,6 @@ export default function Diary() {
             </IconWrapper2>
           )}
         </Main>
-
       </Container>
     </>
   );

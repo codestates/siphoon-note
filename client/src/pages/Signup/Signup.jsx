@@ -1,13 +1,12 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Main, Input, Label, Section, Option, InputWrap } from './Signup.style';
+import { Main, Input, Label, Section, Submitwrap } from './Signup.style';
 import { TextInput, SubmitBtn, Footer } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { setoption, setgender } from './select';
+import { SignupModal } from '../../components/SignupModal';
 
 export default function Signup() {
-  const navigator = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
 
   const [name, setName] = useState('');
@@ -18,6 +17,8 @@ export default function Signup() {
 
   const [selecteOption, setSelecteOption] = useState('');
   const [gender, setGender] = useState('');
+
+  const [show, setShow] = useState(false);
   console.log(email);
   console.log(name);
   console.log(password);
@@ -79,14 +80,15 @@ export default function Signup() {
     // }
 
     if (!email || !password || !confirm || !name) {
-      return setErrorMsg('필수항목을 모두 입력해주세요.');
+      setErrorMsg('필수항목을 모두 입력해주세요.');
     }
     if (email && password && confirm && name) {
       setErrorMsg('');
+      setShow(true);
     }
 
     if (!checkEmail(email)) {
-      setErrorMsg('정학한 형식으로 이메일을 작성해주세요.');
+      setErrorMsg('정확한 형식으로 이메일을 작성해주세요.');
     }
     if (!strongPassword(password)) {
       setErrorMsg(
@@ -97,7 +99,6 @@ export default function Signup() {
     if (password !== confirm) {
       setErrorMsg('비밀번호가 일치하지 않습니다.');
     }
-    navigator('/signin');
   };
 
   const textInputList = [
@@ -140,74 +141,78 @@ export default function Signup() {
         <br />
         <form onSubmit={e => handleSignup(e)}>
           <br />
-          <InputWrap>
-            <br />
-            {textInputList.map(
-              (
-                {
-                  title,
-                  type,
-                  value,
-                  ref,
-                  placeholder,
-                  autoComplete,
-                  minLength,
-                  maxLength,
-                  onBlur,
-                },
-                index
-              ) => {
-                return (
-                  <TextInput
-                    key={index}
-                    title={title}
-                    type={type}
-                    value={value}
-                    ref={ref}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    minLength={minLength}
-                    maxLength={maxLength}
-                    onBlur={onBlur}
-                  />
-                );
-              }
-            )}
-            <div>
-              <Label>성별</Label>
-              <Selectbox2
-                options={setgender}
-                gender={gender}
-                setGender={setGender}
-              />
 
-              <br />
-              <Label>지역 </Label>
-              <Selectbox
-                options={setoption}
-                select={selecteOption}
-                setSelect={setSelecteOption}
-              />
-            </div>
-            <br />
-            <Label>생년월일</Label>
-            <br />
-            <Input
-              type="text"
-              name="year"
-              ref={birth}
-              placeholder="0000-00-00 형태로 적어주세요."
-              onChange={handleInputValue('year')}
+          <br />
+          {textInputList.map(
+            (
+              {
+                title,
+                type,
+                value,
+                ref,
+                placeholder,
+                autoComplete,
+                minLength,
+                maxLength,
+                onBlur,
+              },
+              index
+            ) => {
+              return (
+                <TextInput
+                  key={index}
+                  title={title}
+                  type={type}
+                  value={value}
+                  ref={ref}
+                  placeholder={placeholder}
+                  autoComplete={autoComplete}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  onBlur={onBlur}
+                />
+              );
+            }
+          )}
+          <div>
+            <Label>성별</Label>
+            <Selectbox2
+              options={setgender}
+              gender={gender}
+              setGender={setGender}
             />
+
             <br />
-            <br />
-            <span>{errorMsg}</span>
-            <br />
+            <Label>지역 </Label>
+            <Selectbox
+              options={setoption}
+              select={selecteOption}
+              setSelect={setSelecteOption}
+            />
+          </div>
+          <br />
+          <Label>생년월일</Label>
+          <br />
+          <Input
+            type="text"
+            name="year"
+            ref={birth}
+            placeholder="0000-00-00 형태로 적어주세요."
+            onChange={handleInputValue('year')}
+          />
+          <br />
+          <br />
+          <span>{errorMsg}</span>
+          <br />
+          <Submitwrap>
             <SubmitBtn type="submit" value={textInputBtn.value} />
-          </InputWrap>
+          </Submitwrap>
         </form>
       </Section>
       {/* <Footer /> */}
+      {show ? (
+        <SignupModal content="가입이 완료되었습니다." setShow={setShow} />
+      ) : null}
     </Main>
   );
 }
