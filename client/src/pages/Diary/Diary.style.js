@@ -14,7 +14,7 @@ export const SideBar = styled.div`
   align-items: center;
   padding: 0.25rem;
   width: 500px;
-  top: 36px;
+  top: 33px;
   left: 20px;
 `;
 
@@ -46,6 +46,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease-in-out;
 
   &:focus-within {
     height: 66%;

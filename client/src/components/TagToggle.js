@@ -1,25 +1,92 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
 
-export default function TagToggle() {
-  const [isDropdown, setIsDropdown] = useState(false);
+export default function TagToggle({
+  setIsTagsDropdown,
+  isTagsDropdown,
+  setIsTrashDropdown,
+}) {
+  const dummy = [
+    'tag1',
+    'tag2',
+    'tag3',
+    'tag4',
+    'tag5',
+    'tag5',
+    'tag5',
+    'tag5',
+    'tag5',
+    'tag5',
+    ,
+    'tag5',
+    'tag5',
+    'tag5',
+    'tag5',
+    'tag5',
+  ];
 
+  const handleDropdown = () => {
+    setIsTrashDropdown(false);
+    setIsTagsDropdown(!isTagsDropdown);
+  };
   return (
-    <Wrapper>
-      <div>Tags</div>
-      <span onClick={() => setIsDropdown(!isDropdown)}>
-        <TiArrowSortedDown></TiArrowSortedDown>
-      </span>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <div>Tags</div>
+        <span onClick={handleDropdown}>
+          <TiArrowSortedDown></TiArrowSortedDown>
+        </span>
+      </Wrapper>
+      {isTagsDropdown ? (
+        <Container>
+          <div>
+            {dummy.map((tag, index) => {
+              return (
+                <span
+                  key={index}
+                  onClick={event => console.log(event.target.textContent)}
+                >
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
+          <span className="pagination">1 2 3 4</span>
+        </Container>
+      ) : null}
+    </>
   );
 }
 
-export const Dropdown = () => {
-  return <Container></Container>;
-};
+const Container = styled.div`
+  border: 2.5px solid black;
+  width: 88%;
+  background: white;
+  margin: 0px;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3px 8px;
 
-const Container = styled.div``;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 115px;
+
+    > span {
+      padding: 6px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  > span {
+    text-align: center;
+    margin-top: 3px;
+  }
+`;
 
 const Wrapper = styled.div`
   margin-top: 0.9rem;

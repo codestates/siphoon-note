@@ -37,7 +37,7 @@ const ModalView = styled.div.attrs(props => ({
   border: 3px solid black;
   background-color: #ffffff;
   text-align: center;
-  animation: fadeInText 1s linear; forwards;
+  animation: fadeInText 0.7s linear forwards;
 
   @keyframes fadeInText {
     0% {

@@ -30,7 +30,7 @@ export default function Searchbar() {
 
 const Wrapper = styled.div`
   position: absolute;
-  bottom: 50px;
+  bottom: 45px;
   left: 33px;
   width: 86.5%;
   height: 5.5%;
@@ -64,7 +64,6 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  // margin-right: 7px;
   padding: 0px 8px;
   font-size: 1.7rem;
   cursor: pointer;
