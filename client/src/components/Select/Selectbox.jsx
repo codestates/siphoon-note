@@ -98,7 +98,7 @@ export function Selectbox2({ gender, setGender, options }) {
       {gender === '사용자 지정' ? (
         <Input
           type="text"
-          placeholder="성별 대신 사용할 것을 적어주세요."
+          placeholder="직접 입력해주세요."
           onBlur={handleSelect2}
         />
       ) : (

@@ -17,8 +17,8 @@ export const View = styled.div.attrs(props => ({
   align-items: center;
   border: 1px solid lightskyblue;
   background-color: white;
-  width: 220px;
-  height: 120px;
+  width: 320px;
+  height: 150px;
   border-radius: 1rem;
   position: relative;
 
@@ -28,7 +28,7 @@ export const View = styled.div.attrs(props => ({
     width: 50px;
     height: 30px;
     border-radius: 1.5rem;
-    top: 3px;
+    top: 7px;
     center: 7px;
     margin: 2px;
     padding: 2px;
@@ -40,7 +40,7 @@ export const View = styled.div.attrs(props => ({
     width: 70px;
     height: 30px;
     border-radius: 1.5rem;
-    bottom: 2px;
+    bottom: 5px;
     center: 7px;
     cursor: pointer;
     border: 1px solid pink;
