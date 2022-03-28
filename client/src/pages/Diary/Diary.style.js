@@ -37,6 +37,9 @@ export const TimerWrapper = styled.div`
   margin: 3px;
   height: 60px;
   width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
@@ -54,7 +57,7 @@ export const InputWrapper = styled.div`
   }
 `;
 export const Input = styled.textarea.attrs({
-  placeholder: 'Hello :)',
+  placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
 })`
   border: 2.5px solid black;
   width: 94%;
@@ -126,7 +129,7 @@ export const Button = styled.button`
   background: white;
   font-size: 0.85rem;
   margin: 0.3rem;
-  padding: 0.55rem;
+  padding: 0.5rem;
   border-radius: 10px;
   &:hover {
     box-shadow: 2px 1px black;
@@ -246,22 +249,3 @@ export const IconWrapper2 = styled.span`
     }
   }
 `;
-
-// export const ContentBox = styled.div`
-//   display: flex;
-//   gap: 0.3rem;
-//   align-items: center;
-//   justify-content: center;
-// `;
-
-// export const Content1 = styled.div`
-//   padding: 0.25rem;
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 10px;
-//   background: url(${props => props.imgUrl}) no-repeat;
-//   background-size: cover;
-//   opacity: 80%;
-//   font-size: 1.3rem;
-//   font-weight: bold;
-// `;

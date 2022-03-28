@@ -8,7 +8,8 @@ import Keyword from '../../components/Keyword';
 import Searchbar from '../../components/Searchbar';
 import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
-import { useState } from 'react';
+import Timer from '../../components/Timer';
+import { useState, useEffect } from 'react';
 import {
   Container,
   Main,
@@ -29,6 +30,10 @@ import {
 } from './Diary.style';
 
 export default function Diary() {
+  // 타이머 버튼
+  const [timerOn, setTimerOn] = useState(false);
+  const [minute, setMinute] = useState(10);
+
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
   const handleKeyword = () => {
@@ -42,15 +47,20 @@ export default function Diary() {
     setIsTrashDropdown(false);
     setIsTagsDropdown(false);
   };
+
+  // 서버에 보내기
+
   // 사용자 인풋 받기
   const [input, setInput] = useState('');
   const handleInput = e => {
     setInput(e.target.value);
+    setTimerOn(true);
   };
   // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
     setInput('');
+    setTimerOn(false);
     setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
   };
 
@@ -67,14 +77,13 @@ export default function Diary() {
     <>
       <Container color={colorTheme[themeIndex].color}>
         {isKeywordModal ? (
-          <Keyword
-            themeIndex={themeIndex}
-            handleKeyword={handleKeyword}
-          ></Keyword>
+          <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
-        <Image imgUrl={colorTheme[themeIndex].picture}></Image>
+        <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
-          <TimerWrapper>10:59</TimerWrapper>
+          <TimerWrapper>
+            <Timer minute={minute} timerOn={timerOn} />
+          </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
               <div>
@@ -84,18 +93,18 @@ export default function Diary() {
                       onClick={() => handleColorTheme(index)}
                       key={index}
                       color={theme.color}
-                    ></ColorPalette>
+                    />
                   );
                 })}
               </div>
               <span onClick={handleKeyword}>
-                <RiGift2Line></RiGift2Line>
+                <RiGift2Line />
               </span>
             </ButtonWrapper>
-            <Input value={input} onChange={handleInput}></Input>
+            <Input value={input} onChange={handleInput} />
             <ButtonWrapper2>
-              <Tag></Tag>
-              <Button>리셋</Button>
+              <Tag />
+              <Button onClick={() => setTimerOn(false)}>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
@@ -103,14 +112,13 @@ export default function Diary() {
             isTagsDropdown={isTagsDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
-          ></TagToggle>
-
+          />
           <Trash
             isTrashDropdown={isTrashDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
-          ></Trash>
-          <Searchbar></Searchbar>
+          />
+          <Searchbar />
         </SideBar>
         <Main>
           {pageNum === 0 ? (
@@ -123,17 +131,15 @@ export default function Diary() {
               );
             })
           ) : (
-            <Analysis></Analysis>
+            <Analysis />
           )}
           {pageNum === 0 ? (
             <IconWrapper>
-              <IoIosArrowForward
-                onClick={() => setPageNum(1)}
-              ></IoIosArrowForward>
+              <IoIosArrowForward onClick={() => setPageNum(1)} />
             </IconWrapper>
           ) : (
             <IconWrapper2>
-              <IoIosArrowBack onClick={() => setPageNum(0)}></IoIosArrowBack>
+              <IoIosArrowBack onClick={() => setPageNum(0)} />
             </IconWrapper2>
           )}
         </Main>
