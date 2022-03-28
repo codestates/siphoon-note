@@ -1,13 +1,24 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Main, Input, Label, Section, Option, InputWrap } from './Signup.style';
+import {
+  Main,
+  WrapInput,
+  InputWrap,
+  InputWrap2,
+  TextWrap,
+  TextP,
+  Span,
+  Input,
+  Label,
+  Section,
+  Submitwrap,
+} from './Signup.style';
 import { TextInput, SubmitBtn, Footer } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
-import { setoption, setgender } from './select';
+import { regionOptions, genderOptions } from './select';
+import { SignupModal } from './SignupModal';
 
 export default function Signup() {
-  const navigator = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
 
   const [name, setName] = useState('');
@@ -18,6 +29,8 @@ export default function Signup() {
 
   const [selecteOption, setSelecteOption] = useState('');
   const [gender, setGender] = useState('');
+
+  const [show, setShow] = useState(false);
   console.log(email);
   console.log(name);
   console.log(password);
@@ -79,14 +92,15 @@ export default function Signup() {
     // }
 
     if (!email || !password || !confirm || !name) {
-      return setErrorMsg('필수항목을 모두 입력해주세요.');
+      setErrorMsg('필수항목을 모두 입력해주세요.');
     }
     if (email && password && confirm && name) {
       setErrorMsg('');
+      setShow(true);
     }
 
     if (!checkEmail(email)) {
-      setErrorMsg('정학한 형식으로 이메일을 작성해주세요.');
+      setErrorMsg('정확한 형식으로 이메일을 작성해주세요.');
     }
     if (!strongPassword(password)) {
       setErrorMsg(
@@ -97,30 +111,29 @@ export default function Signup() {
     if (password !== confirm) {
       setErrorMsg('비밀번호가 일치하지 않습니다.');
     }
-    navigator('/signin');
   };
 
   const textInputList = [
     {
-      title: '이메일(필수)',
+      title: '이메일*',
       type: 'text',
       placeholder: 'OOO@OOOO.OOO 형식으로 작성해주세요',
       onBlur: setEmail,
     },
     {
-      title: '비밀번호(필수)',
+      title: '비밀번호*',
       type: 'password',
       placeholder: '비밀번호를 입력하세요',
       onBlur: setPassword,
     },
     {
-      title: '비밀번호 확인(필수)',
+      title: '비밀번호 확인*',
       type: 'password',
       placeholder: '동일한 비밀번호를 입력하세요',
       onBlur: setConfirm,
     },
     {
-      title: '닉네임(필수)',
+      title: '닉네임*',
       type: 'text',
       placeholder: '닉네임을 입력하세요',
       onBlur: setName,
@@ -134,80 +147,108 @@ export default function Signup() {
   return (
     <Main>
       <Section>
-        <span className="dd">
-          <h1>Sign Up</h1>
-        </span>
         <br />
         <form onSubmit={e => handleSignup(e)}>
           <br />
-          <InputWrap>
-            <br />
-            {textInputList.map(
-              (
-                {
-                  title,
-                  type,
-                  value,
-                  ref,
-                  placeholder,
-                  autoComplete,
-                  minLength,
-                  maxLength,
-                  onBlur,
-                },
-                index
-              ) => {
-                return (
-                  <TextInput
-                    key={index}
-                    title={title}
-                    type={type}
-                    value={value}
-                    ref={ref}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    minLength={minLength}
-                    maxLength={maxLength}
-                    onBlur={onBlur}
-                  />
-                );
-              }
-            )}
-            <div>
-              <Label>성별</Label>
+
+          <br />
+          <WrapInput>
+            <InputWrap>
+              <span className="dd">
+                <h1>Sign Up</h1>
+              </span>
+              {textInputList.map(
+                (
+                  {
+                    title,
+                    type,
+                    value,
+                    ref,
+                    placeholder,
+                    autoComplete,
+                    minLength,
+                    maxLength,
+                    onBlur,
+                  },
+                  index
+                ) => {
+                  return (
+                    <TextInput
+                      key={index}
+                      title={title}
+                      type={type}
+                      value={value}
+                      ref={ref}
+                      placeholder={placeholder}
+                      autoComplete={autoComplete}
+                      minLength={minLength}
+                      maxLength={maxLength}
+                      onBlur={onBlur}
+                    />
+                  );
+                }
+              )}
+            </InputWrap>
+            <InputWrap2>
+              <Label>
+                성별<Span color="orange">**</Span>
+              </Label>
               <Selectbox2
-                options={setgender}
+                options={genderOptions}
                 gender={gender}
                 setGender={setGender}
               />
 
               <br />
-              <Label>지역 </Label>
+              <Label>
+                지역<Span color="orange">**</Span>
+              </Label>
               <Selectbox
-                options={setoption}
+                options={regionOptions}
                 select={selecteOption}
                 setSelect={setSelecteOption}
               />
-            </div>
-            <br />
-            <Label>생년월일</Label>
-            <br />
-            <Input
-              type="text"
-              name="year"
-              ref={birth}
-              placeholder="0000-00-00 형태로 적어주세요."
-              onChange={handleInputValue('year')}
-            />
-            <br />
-            <br />
-            <span>{errorMsg}</span>
-            <br />
-            <SubmitBtn type="submit" value={textInputBtn.value} />
-          </InputWrap>
+
+              <br />
+              <Label>
+                생년월일<Span color="orange">**</Span>
+              </Label>
+              <br />
+              <Input
+                type="text"
+                name="year"
+                ref={birth}
+                placeholder="0000-00-00 형태로 적어주세요."
+                onChange={handleInputValue('year')}
+              />
+              <br />
+              <TextWrap>
+                <TextP>
+                  <Span color="red">*</Span>로 적혀있는 곳은 필수로
+                  입력해주세요.
+                </TextP>
+                <TextP>
+                  <Span color="orange">**</Span>로 적혀있는 곳은 선택사항입니다.
+                  <br />
+                  선택사항은 사용자의 글쓰기 분석에 도움을 주기 위해 수집하는
+                  것입니다. <br />
+                  도움을 받고 싶으시다면 선택해주세요!!
+                </TextP>
+              </TextWrap>
+              <br />
+              <Span>{errorMsg}</Span>
+              <br />
+              <Submitwrap>
+                <SubmitBtn type="submit" value={textInputBtn.value} />
+              </Submitwrap>
+            </InputWrap2>
+          </WrapInput>
         </form>
       </Section>
-      {/* <Footer /> */}
+      <Footer />
+      {show ? (
+        <SignupModal content="가입이 완료되었습니다." setShow={setShow} />
+      ) : null}
     </Main>
   );
 }

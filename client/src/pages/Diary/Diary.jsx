@@ -1,7 +1,13 @@
 import dummy from '../../static/dummyData';
+import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { RiGift2Line } from 'react-icons/ri';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
+import Keyword from '../../components/Keyword';
+import Searchbar from '../../components/Searchbar';
+import TagToggle from '../../components/TagToggle';
+import Trash from '../../components/Trash';
 import { useState } from 'react';
 import {
   Container,
@@ -10,9 +16,9 @@ import {
   TimerWrapper,
   InputWrapper,
   Input,
-  Button,
   ButtonWrapper,
   ButtonWrapper2,
+  Button,
   Card,
   ColorPalette,
   Title,
@@ -23,29 +29,25 @@ import {
 } from './Diary.style';
 
 export default function Diary() {
+  // 키워드 모달
+  const [isKeywordModal, setIsKeywordModal] = useState(false);
+  const handleKeyword = () => {
+    setIsKeywordModal(!isKeywordModal);
+  };
+
+  // trash, tags dropdown
+  const [isTrashDropdown, setIsTrashDropdown] = useState(false);
+  const [isTagsDropdown, setIsTagsDropdown] = useState(false);
+  const handleDropdown = () => {
+    setIsTrashDropdown(false);
+    setIsTagsDropdown(false);
+  };
   // 사용자 인풋 받기
-
   const [input, setInput] = useState('');
-
   const handleInput = e => {
     setInput(e.target.value);
   };
-  // 클릭한 이미지 보여주기
-  const [emojiIndex, setEmojiIndex] = useState(null);
-  const handleEmoji = index => {
-    setEmojiIndex(index);
-  };
-
-  const Emoji = [
-    'img/smile.svg',
-    'img/sad2.svg',
-    'img/heart.svg',
-    'img/angry.svg',
-    'img/suspicious.svg',
-    'img/sad.svg',
-  ];
-
-  // 글 리스트
+  // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
     setInput('');
@@ -53,59 +55,67 @@ export default function Diary() {
   };
 
   // 페이지 전환
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(0);
 
   // 테마 인덱스 (뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.)
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
   };
-  const colorTheme = [
-    { color: 'rgb(255, 135, 70, 0.8)', picture: 'img/object1.svg' },
-    { color: 'rgb(254, 205, 133, 0.8)', picture: 'img/object6.svg' },
-    { color: 'rgb(157, 161, 255, 0.8)', picture: 'img/object3.svg' },
-    { color: 'rgb(144, 214, 255, 0.8)', picture: 'img/object10.svg' },
-    { color: 'rgb(247, 178, 206, 0.8)', picture: 'img/object5.svg' },
-  ];
 
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
+        {isKeywordModal ? (
+          <Keyword
+            themeIndex={themeIndex}
+            handleKeyword={handleKeyword}
+          ></Keyword>
+        ) : null}
         <Image imgUrl={colorTheme[themeIndex].picture}></Image>
         <SideBar>
           <TimerWrapper>10:59</TimerWrapper>
-          {/* 인풋창 시작 */}
-          <InputWrapper>
+          <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
-              {colorTheme.map((theme, index) => {
-                return (
-                  <ColorPalette
-                    onClick={() => handleColorTheme(index)}
-                    key={index}
-                    color={theme.color}
-                  ></ColorPalette>
-                );
-              })}
+              <div>
+                {colorTheme.map((theme, index) => {
+                  return (
+                    <ColorPalette
+                      onClick={() => handleColorTheme(index)}
+                      key={index}
+                      color={theme.color}
+                    ></ColorPalette>
+                  );
+                })}
+              </div>
+              <span onClick={handleKeyword}>
+                <RiGift2Line></RiGift2Line>
+              </span>
             </ButtonWrapper>
             <Input value={input} onChange={handleInput}></Input>
-
             <ButtonWrapper2>
               <Tag></Tag>
               <Button>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
+          <TagToggle
+            isTagsDropdown={isTagsDropdown}
+            setIsTagsDropdown={setIsTagsDropdown}
+            setIsTrashDropdown={setIsTrashDropdown}
+          ></TagToggle>
+
+          <Trash
+            isTrashDropdown={isTrashDropdown}
+            setIsTrashDropdown={setIsTrashDropdown}
+            setIsTagsDropdown={setIsTagsDropdown}
+          ></Trash>
+          <Searchbar></Searchbar>
         </SideBar>
         <Main>
-          {/* Main 코드 정리 필요함 */}
-          {pageNum === 1 ? (
+          {pageNum === 0 ? (
             diaryList.map((diary, index) => {
-              return index === 0 ? (
-                <Card key={index} animation>
-                  <Title>{diary.id}번째 글쓰기</Title>
-                  <Content>{diary.content}</Content>
-                </Card>
-              ) : (
+              return (
                 <Card key={index}>
                   <Title>{diary.id}번째 글쓰기</Title>
                   <Content>{diary.content}</Content>
@@ -115,15 +125,15 @@ export default function Diary() {
           ) : (
             <Analysis></Analysis>
           )}
-          {pageNum === 1 ? (
+          {pageNum === 0 ? (
             <IconWrapper>
               <IoIosArrowForward
-                onClick={() => setPageNum(2)}
+                onClick={() => setPageNum(1)}
               ></IoIosArrowForward>
             </IconWrapper>
           ) : (
             <IconWrapper2>
-              <IoIosArrowBack onClick={() => setPageNum(1)}></IoIosArrowBack>
+              <IoIosArrowBack onClick={() => setPageNum(0)}></IoIosArrowBack>
             </IconWrapper2>
           )}
         </Main>

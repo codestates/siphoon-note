@@ -14,7 +14,7 @@ export const SideBar = styled.div`
   align-items: center;
   padding: 0.25rem;
   width: 500px;
-  top: 36px;
+  top: 33px;
   left: 20px;
 `;
 
@@ -43,20 +43,20 @@ export const InputWrapper = styled.div`
   border: 2.5px solid black;
   width: 90%;
   height: 45%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease-in-out;
 
   &:focus-within {
-    height: 65%;
+    height: 66%;
+    transition: all 0.5s ease-in-out;
   }
 `;
 export const Input = styled.textarea.attrs({
   placeholder: 'Hello :)',
 })`
   border: 2.5px solid black;
-  // margin-top: 3px;
   width: 94%;
   height: 100%;
   border-radius: 20px;
@@ -84,7 +84,14 @@ export const ButtonWrapper = styled.div`
     display: flex;
     cursor: pointer;
     margin-right: 12px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    opacity: 0.9;
+
+    &:hover {
+      // background: yellow;
+      border-radius: 30px;
+      opacity: 1;
+    }
   }
 `;
 
@@ -151,11 +158,11 @@ export const Main = styled.div`
   margin-right: 40px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 110px;
+  padding-top: 105px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
-  gap: 26px;
+  gap: 30px;
 `;
 
 export const Card = styled.div`

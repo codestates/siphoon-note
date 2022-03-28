@@ -5,7 +5,7 @@ export function Selectbox({ options, select, setSelect }) {
   const handleSelect = e => {
     setSelect(e.target.value);
   };
-  console.log(options);
+
   return (
     <Select value={select} onChange={handleSelect}>
       {options.map(option => (
@@ -19,8 +19,6 @@ export function Selectbox({ options, select, setSelect }) {
 
 export function Selectbox2({ gender, setGender, options }) {
   const handleSelect2 = e => {
-    if (gender === '') {
-    }
     setGender(e.target.value);
   };
   console.log(options[3]);
@@ -36,7 +34,7 @@ export function Selectbox2({ gender, setGender, options }) {
       {gender === '사용자 지정' ? (
         <Input
           type="text"
-          placeholder="성별 대신 사용할 것을 적어주세요."
+          placeholder="직접 입력해주세요."
           onBlur={handleSelect2}
         />
       ) : (

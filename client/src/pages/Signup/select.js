@@ -1,4 +1,5 @@
-export const setoption = [
+export const regionOptions = [
+  '선택하세요',
   '강원도',
   '경기도',
   '경상도',
@@ -8,4 +9,10 @@ export const setoption = [
   '충청도',
 ];
 
-export const setgender = ['남자', '여', '공개 안함', '사용자 지정'];
+export const genderOptions = [
+  '선택하세요',
+  '남자',
+  '여',
+  '공개 안함',
+  '사용자 지정',
+];
