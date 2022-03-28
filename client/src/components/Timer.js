@@ -38,7 +38,7 @@ export default function Timer({ minute, timerOn }) {
   return (
     <>
       <span>
-        {minutes}분 {seconds < 10 ? `0${seconds}` : seconds}초
+        {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
       </span>
       {/* <Wrapper>
         <span className="arrow-up">
