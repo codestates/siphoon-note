@@ -1,43 +1,48 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  margin: 10px;
-  padding: 10px;
-`;
-
-export const Section = styled.section`
-  justify-content: center;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  height: 70vh;
 `;
 
-// .attrs(props => ({
-//   // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있습니다.
-//   role: 'dialog',
-// }))`
-//   display: flex;
-//   justify-content: center;
-//   text-align: center;
-//   align-items: center;
-//   min-height: 100vh;
+export const Section = styled.div`
+  width: auto;
+  margin: auto;
+`;
 
-//   > .dd {
-//     background-color: black;
-//     color: white;
-//     border: 1px solid yellow;
-//   }
-// `;
+export const Input = styled.input`
+  width: 100%;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 5px;
+  &:focus {
+    outline: 4px solid primary-light;
+    border: none;
+  }
+`;
 
-export const Select = styled.select``;
-// .attrs(props => ({
-//   // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있습니다.
-//   role: 'dialog',
-// }))`
-//   justify-content: center;
-//   text-align: center;
-//   box
-// `;
+export const TextWrap = styled.div`
+  border: 1px solid black;
+  margin: 30px 3px;
+`;
 
-export const Label = styled.label``;
+export const TextP = styled.div``;
+export const Span = styled.span`
+  color: ${props => props.color};
+`;
+
+export const Label = styled.label`
+  font-size: 20px;
+`;
+
+export const Submitwrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+`;
