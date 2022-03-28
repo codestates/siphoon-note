@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Searchbar() {
   const [userInput, setUserInput] = useState(undefined);
   const handleSearch = event => {
+    console.log(event.target.value);
     // 서버에 event.target.value 요청 보내기
     event.target.value = '';
   };
