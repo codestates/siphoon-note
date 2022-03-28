@@ -38,7 +38,7 @@ export default function Timer({ minute, timerOn }) {
   return (
     <>
       <span>
-        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+        {minutes}분 {seconds < 10 ? `0${seconds}` : seconds}초
       </span>
       {/* <Wrapper>
         <span className="arrow-up">
@@ -51,13 +51,3 @@ export default function Timer({ minute, timerOn }) {
     </>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
-  cursor: pointer;
-  > span {
-    display: flex;
-  }
-`;

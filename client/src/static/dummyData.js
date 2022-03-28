@@ -9,7 +9,8 @@ const dummy = [
   {
     id: 2,
     username: 'parkhacker',
-    content: '솜이야 솜이야 솜이야 솜이야!!!!',
+    content:
+      '솜이야 솜이야 솜이야 솜이야!!!! 솜이를 나는 너를 아주 많이 사랑해.',
     createdAt: '2019-02-25T16:17:47.000Z',
   },
   {
@@ -66,25 +67,28 @@ const dummy = [
   {
     id: 6,
     username: 'cris',
-    content: 'ㅋㅋㅋㅋㅋ',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 7,
     username: 'cris',
-    content: '육',
+    content:
+      '…neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 8,
     username: 'cris',
-    content: '육',
+    content: '코드가 엉망 진창이지만 어쨌든... 다이나믹하긴 하넼ㅋㅋㅋ',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 9,
     username: 'cris',
-    content: '육',
+    content:
+      '오늘은 햇볕이 무척 좋았다. 그래서 해가 드리운 길을 따라서 한참을 걸어다녔다.',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
@@ -96,25 +100,28 @@ const dummy = [
   {
     id: 11,
     username: 'cris',
-    content: '육',
+    content:
+      '오늘은 햇볕이 무척 좋았다. 그래서 해가 드리운 길을 따라서 한참을 걸어다녔다.',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 12,
     username: 'cris',
-    content: '육',
+    content: 'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ엉망진창 코드 ㅠㅠ',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 13,
     username: 'cris',
-    content: '육',
+    content:
+      'ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
     id: 14,
     username: 'cris',
-    content: '육',
+    content:
+      '유동적이긴 하다. 하지만 맵핑을 세번이나 돌렸다.. 똑똑하게 코딩을 하고 있지 않다...휴....',
     createdAt: '2019-02-28T16:17:47.000Z',
   },
   {
@@ -131,6 +138,69 @@ const dummy = [
   },
   {
     id: 17,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 18,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 19,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 20,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 21,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 22,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 23,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 24,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 25,
+    username: '박준',
+    content:
+      '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',
+    createdAt: '2019-02-28T16:17:47.000Z',
+  },
+  {
+    id: 26,
     username: '박준',
     content:
       '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다. ',

@@ -20,7 +20,10 @@ import {
   ButtonWrapper,
   ButtonWrapper2,
   Button,
-  Card,
+  CardContainer,
+  Wrapper1,
+  Wrapper2,
+  Wrapper3,
   ColorPalette,
   Title,
   Content,
@@ -56,6 +59,7 @@ export default function Diary() {
     setInput(e.target.value);
     setTimerOn(true);
   };
+
   // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
@@ -120,16 +124,32 @@ export default function Diary() {
           />
           <Searchbar />
         </SideBar>
+        {/* 메인 구간 */}
         <Main>
           {pageNum === 0 ? (
-            diaryList.map((diary, index) => {
-              return (
-                <Card key={index}>
-                  <Title>{diary.id}번째 글쓰기</Title>
-                  <Content>{diary.content}</Content>
-                </Card>
-              );
-            })
+            <>
+              <Wrapper1>
+                {diaryList.map((diary, index) => {
+                  return index % 3 === 0 ? (
+                    <Card key={index} diary={diary}></Card>
+                  ) : null;
+                })}
+              </Wrapper1>
+              <Wrapper2>
+                {diaryList.map((diary, index) => {
+                  return index % 3 === 1 ? (
+                    <Card key={index} diary={diary}></Card>
+                  ) : null;
+                })}
+              </Wrapper2>
+              <Wrapper3>
+                {diaryList.map((diary, index) => {
+                  return index % 3 === 2 ? (
+                    <Card key={index} diary={diary}></Card>
+                  ) : null;
+                })}
+              </Wrapper3>
+            </>
           ) : (
             <Analysis />
           )}
@@ -147,3 +167,12 @@ export default function Diary() {
     </>
   );
 }
+
+export const Card = ({ diary }) => {
+  return (
+    <CardContainer>
+      <Title>{diary.id}번째 글쓰기</Title>
+      <Content>{diary.content}</Content>
+    </CardContainer>
+  );
+};
