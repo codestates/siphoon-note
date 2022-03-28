@@ -4,8 +4,8 @@ export default function Analysis() {
   // 분석 데이터 3종
   const analysisData = [
     { title: '가장 생산성이 높은 시간', data: '저녁 7시' },
-    { title: '연속 에세이 작성 일수', data: '5일' },
-    { title: '이번달 에세이 작성수', data: '36개' },
+    { title: '에세이 연속 작성 일수', data: '5일' },
+    { title: '이달 에세이 작성 수', data: '36개' },
   ];
 
   return (
@@ -46,16 +46,12 @@ const CalendarWrapper = styled.div`
 `;
 
 const AnalysisWrapper = styled.div`
-  // border: 3px solid black;
+  border: 3px solid black;
   flex: 1 1 0;
   display: flex;
   gap: 30px;
   padding: 2rem;
   background: rgb(211, 211, 211, 0.2);
-
-  &:hover {
-    background: rgb(211, 211, 211, 0.3);
-  }
 `;
 
 const Box = styled.div`
@@ -68,6 +64,9 @@ const Box = styled.div`
   padding: 2rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   > span {
     font-weight: bold;
@@ -77,7 +76,8 @@ const Box = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    padding-top: 16%;
+    justify-content: center;
+    padding-top: 7%;
     text-decoration: underline;
   }
 `;

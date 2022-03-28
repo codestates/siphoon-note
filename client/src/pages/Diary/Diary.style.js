@@ -17,8 +17,9 @@ export const SideBar = styled.div`
   justify-content: space-end;
   padding: 0.25rem;
   width: 32rem;
+  top: 34px;
   margin-top: 34px;
-  left: 20px;
+  left: 18px;
   flex: 2 1 0;
 `;
 
@@ -48,7 +49,7 @@ export const TimerWrapper = styled.div`
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 90%;
   height: 45%;
   display: flex;
@@ -64,7 +65,7 @@ export const InputWrapper = styled.div`
 export const Input = styled.textarea.attrs({
   placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
 })`
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 94%;
   height: 100%;
   border-radius: 20px;
@@ -167,7 +168,7 @@ export const Main = styled.div`
   border-radius: 10px;
   padding: 1rem;
   padding-top: 105px;
-  gap: 30px;
+  gap: 1.9rem;
   flex: 3.5 1 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -176,7 +177,7 @@ export const Main = styled.div`
 export const Wrapper1 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.8rem;
 `;
 export const Wrapper2 = styled(Wrapper1)``;
 export const Wrapper3 = styled(Wrapper1)``;
@@ -190,7 +191,7 @@ export const CardContainer = styled.div`
   overflow: hidden;
   flex-wrap: wrap;
   font-size: 1.2rem;
-  padding: 0.9rem;
+  padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 `;
 
