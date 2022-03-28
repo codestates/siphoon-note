@@ -186,7 +186,7 @@ export default function Signup() {
           )}
 
           <Label>
-            성별<Span color="orange">**</Span>
+            성별<Span>**</Span>
           </Label>
           <Selectbox2
             options={genderOptions}
@@ -196,7 +196,7 @@ export default function Signup() {
 
           <br />
           <Label>
-            지역<Span color="orange">**</Span>
+            지역<Span>**</Span>
           </Label>
           <Selectbox
             options={regionOptions}
@@ -206,7 +206,7 @@ export default function Signup() {
 
           <br />
           <Label>
-            생년월일<Span color="orange">**</Span>
+            생년월일<Span>**</Span>
           </Label>
           <br />
           <Input
@@ -237,7 +237,7 @@ export default function Signup() {
           </Submitwrap>
         </form>
       </Section>
-      <Footer />
+      {/* <Footer /> */}
       {show ? (
         <SignupModal content="가입이 완료되었습니다." setShow={setShow} />
       ) : null}

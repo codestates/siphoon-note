@@ -32,8 +32,9 @@ export const TextWrap = styled.div`
 `;
 
 export const TextP = styled.div``;
+
 export const Span = styled.span`
-  color: ${props => props.color};
+  color: ${props => props.color || 'orange'};
 `;
 
 export const Label = styled.label`
