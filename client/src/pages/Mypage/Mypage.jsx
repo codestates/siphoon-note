@@ -3,14 +3,17 @@ import {
   TextInputWrapper,
   ButtonsWrapper,
   Label,
+  Span,
+  Input,
   ModalWrapper,
   Modal,
+  ErrMesWrapper,
 } from './Mypage.style';
 
 import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
-import { useState, useEffect } from 'react';
-import { setoption, setgender } from './select';
+import { regionOptions, genderOptions } from './select';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Mypage() {
   const [name, setName] = useState('');
@@ -21,24 +24,51 @@ export default function Mypage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [show, setShow] = useState(false);
-  // 수정하기 Modal
-  // 입력창을 모두 입력해주세요.
-  // 수정이 완료되었습니다.
+  const [errorMsg, setErrorMsg] = useState('');
+  // const [age, setAge] = useState('');
 
-  // 회원탈퇴 Modal
-  // 정말 탈퇴 하시겠습니까? -> 회원탈퇴가 완료되었습니다.
+  const birth = useRef();
+  console.log(birth);
+  const handleInputValue = key => e => {
+    const value = birth.current.value.replace(/\D+/g, '');
+    const numberLength = 8;
+
+    let result;
+    result = '';
+
+    for (let i = 0; i < value.length && i < numberLength; i++) {
+      switch (i) {
+        case 4:
+          result += '-';
+          break;
+        case 6:
+          result += '-';
+          break;
+
+        default:
+          break;
+      }
+
+      result += value[i];
+    }
+
+    birth.current.value = result;
+
+    // setAge질문
+    // setAge({ ...age, [key]: e.target.value });
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
   };
 
   const onUpdateBtn = e => {
-    setTitle('회원 수정📝');
-
-    // 회원정보가 올바르지 않거나, 누락될때
-    // 에러 안내메시지 모달을 띄운다
-
-    setContent('회원정보 수정이 완료되었습니다😀');
-    setShow(true);
+    if (handleSignup()) {
+      setErrorMsg('');
+      setTitle('회원 수정📝');
+      setContent('회원정보 수정이 완료되었습니다😀');
+      setShow(true);
+    }
   };
   const onDeleteBtn = e => {
     setTitle('회원 탈퇴🥲');
@@ -46,6 +76,39 @@ export default function Mypage() {
     setShow(true);
   };
 
+  // 유효성 검사
+  const strongPassword = str => {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+      str
+    );
+  };
+
+  const handleSignup = () => {
+    let booleanArray = [];
+    if (!password || !passwordCheck || !name) {
+      setErrorMsg('필수항목을 모두 입력해주세요.');
+    } else {
+      booleanArray.push(true);
+    }
+
+    if (!strongPassword(password)) {
+      setErrorMsg(
+        '비밀번호를 최소 8자 이상, 알파벳과 숫자 및 특수문자는 하나 이상 포함하세요.'
+      );
+    } else {
+      booleanArray.push(true);
+    }
+
+    if (password !== passwordCheck) {
+      setErrorMsg('비밀번호가 일치하지 않습니다.');
+    } else {
+      booleanArray.push(true);
+    }
+
+    return 3 === booleanArray.length;
+  };
+
+  // TextInput 정보
   const textInputList = [
     {
       title: '변경할 패스워드',
@@ -76,6 +139,9 @@ export default function Mypage() {
     },
   ];
 
+  console.log(gender);
+  console.log(selecteOption);
+
   return (
     <div>
       {show && <Popup setShow={setShow} content={content} title={title} />}
@@ -96,28 +162,46 @@ export default function Mypage() {
                 index
               ) => {
                 return (
-                  <TextInput
-                    key={index}
-                    title={title}
-                    type={type}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    minLength={minLength}
-                    maxLength={maxLength}
-                    onBlur={onBlur}
-                  />
+                  <>
+                    <TextInput
+                      key={index}
+                      title={title}
+                      type={type}
+                      placeholder={placeholder}
+                      autoComplete={autoComplete}
+                      minLength={minLength}
+                      maxLength={maxLength}
+                      onBlur={onBlur}
+                    />
+                  </>
                 );
               }
             )}
 
-            <Label>지역 </Label>
+            <Label>성별</Label>
+            <Selectbox2
+              options={genderOptions}
+              gender={gender}
+              setGender={setGender}
+            />
+            <br />
+            <Label>지역</Label>
             <Selectbox
-              options={setoption}
+              options={regionOptions}
               select={selecteOption}
               setSelect={setSelecteOption}
             />
+            <br />
+            <Label>생년월일 수정</Label>
+            <Input
+              type="text"
+              name="year"
+              ref={birth}
+              placeholder="0000-00-00 형태로 적어주세요."
+              onChange={handleInputValue('year')}
+            />
           </form>
-
+          {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
           <ButtonsWrapper>
             <SubmitBtn
               click={onDeleteBtn}
@@ -131,7 +215,6 @@ export default function Mypage() {
             />
           </ButtonsWrapper>
         </TextInputWrapper>
-
         <Footer />
       </MypageWrapper>
     </div>

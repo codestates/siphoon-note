@@ -1,4 +1,4 @@
-import { InputWrap, Input, Label } from './TextInput.style';
+import { Span, InputWrap, Input, Label } from './TextInput.style';
 
 export default function TextInput({
   title,
@@ -11,7 +11,12 @@ export default function TextInput({
 }) {
   return (
     <InputWrap>
-      {title && <Label htmlFor={title}>{title}</Label>}
+      {title && (
+        <Label htmlFor={title}>
+          {title}
+          <Span>*</Span>
+        </Label>
+      )}
       <Input
         id={title}
         type={type}

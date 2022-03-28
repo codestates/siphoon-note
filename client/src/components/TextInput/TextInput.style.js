@@ -9,6 +9,10 @@ export const Label = styled.label`
   font-size: 20px;
 `;
 
+export const Span = styled.label`
+  color: red;
+`;
+
 export const Input = styled.input`
   width: 100%;
   height: 50px;
