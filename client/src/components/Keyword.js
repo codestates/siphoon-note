@@ -4,13 +4,14 @@ import colorTheme from '../colorTheme';
 export default function Keyword({ themeIndex, handleKeyword }) {
   return (
     <ModalBackdrop onClick={handleKeyword}>
+      {/* <img src="img/party.svg"></img> */}
       <ModalView themeIndex={themeIndex} onClick={e => e.stopPropagation()}>
         <div onClick={handleKeyword} className="close-btn">
           &times;
         </div>
         <div className="title">KEYWORD</div>
         <span>영감 가나다라 마바사 아자차</span>
-        <div className="desc">아침</div>
+        <div className="desc">지금</div>
       </ModalView>
     </ModalBackdrop>
   );
@@ -23,9 +24,20 @@ const ModalBackdrop = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   display: grid;
   place-items: center;
+
+  > img {
+    width: 60%;
+    height: 60%;
+    opacity: 100%;
+    position: fixed;
+    left: 19%;
+    top: 10%;
+
+    transition: all 1s ease-in-out;
+  }
 `;
 
 const ModalView = styled.div.attrs(props => ({
