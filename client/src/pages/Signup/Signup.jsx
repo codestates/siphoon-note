@@ -2,9 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Main,
-  WrapInput,
-  InputWrap,
-  InputWrap2,
   TextWrap,
   TextP,
   Span,
@@ -115,25 +112,25 @@ export default function Signup() {
 
   const textInputList = [
     {
-      title: '이메일*',
+      title: '이메일',
       type: 'text',
       placeholder: 'OOO@OOOO.OOO 형식으로 작성해주세요',
       onBlur: setEmail,
     },
     {
-      title: '비밀번호*',
+      title: '비밀번호',
       type: 'password',
       placeholder: '비밀번호를 입력하세요',
       onBlur: setPassword,
     },
     {
-      title: '비밀번호 확인*',
+      title: '비밀번호 확인',
       type: 'password',
       placeholder: '동일한 비밀번호를 입력하세요',
       onBlur: setConfirm,
     },
     {
-      title: '닉네임*',
+      title: '닉네임',
       type: 'text',
       placeholder: '닉네임을 입력하세요',
       onBlur: setName,
@@ -152,100 +149,95 @@ export default function Signup() {
           <br />
 
           <br />
-          <WrapInput>
-            <InputWrap>
-              <span className="dd">
-                <h1>Sign Up</h1>
-              </span>
-              {textInputList.map(
-                (
-                  {
-                    title,
-                    type,
-                    value,
-                    ref,
-                    placeholder,
-                    autoComplete,
-                    minLength,
-                    maxLength,
-                    onBlur,
-                  },
-                  index
-                ) => {
-                  return (
-                    <TextInput
-                      key={index}
-                      title={title}
-                      type={type}
-                      value={value}
-                      ref={ref}
-                      placeholder={placeholder}
-                      autoComplete={autoComplete}
-                      minLength={minLength}
-                      maxLength={maxLength}
-                      onBlur={onBlur}
-                    />
-                  );
-                }
-              )}
-            </InputWrap>
-            <InputWrap2>
-              <Label>
-                성별<Span color="orange">**</Span>
-              </Label>
-              <Selectbox2
-                options={genderOptions}
-                gender={gender}
-                setGender={setGender}
-              />
 
-              <br />
-              <Label>
-                지역<Span color="orange">**</Span>
-              </Label>
-              <Selectbox
-                options={regionOptions}
-                select={selecteOption}
-                setSelect={setSelecteOption}
-              />
+          <span className="dd">
+            <h1>Sign Up</h1>
+          </span>
+          {textInputList.map(
+            (
+              {
+                title,
+                type,
+                value,
+                ref,
+                placeholder,
+                autoComplete,
+                minLength,
+                maxLength,
+                onBlur,
+              },
+              index
+            ) => {
+              return (
+                <TextInput
+                  key={index}
+                  title={title}
+                  type={type}
+                  value={value}
+                  ref={ref}
+                  placeholder={placeholder}
+                  autoComplete={autoComplete}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  onBlur={onBlur}
+                />
+              );
+            }
+          )}
 
+          <Label>
+            성별<Span>**</Span>
+          </Label>
+          <Selectbox2
+            options={genderOptions}
+            gender={gender}
+            setGender={setGender}
+          />
+
+          <br />
+          <Label>
+            지역<Span>**</Span>
+          </Label>
+          <Selectbox
+            options={regionOptions}
+            select={selecteOption}
+            setSelect={setSelecteOption}
+          />
+
+          <br />
+          <Label>
+            생년월일<Span>**</Span>
+          </Label>
+          <br />
+          <Input
+            type="text"
+            name="year"
+            ref={birth}
+            placeholder="0000-00-00 형태로 적어주세요."
+            onChange={handleInputValue('year')}
+          />
+          <br />
+          <TextWrap>
+            <TextP>
+              <Span color="red">*</Span>로 적혀있는 곳은 필수로 입력해주세요.
+            </TextP>
+            <TextP>
+              <Span color="orange">**</Span>로 적혀있는 곳은 선택사항입니다.
               <br />
-              <Label>
-                생년월일<Span color="orange">**</Span>
-              </Label>
-              <br />
-              <Input
-                type="text"
-                name="year"
-                ref={birth}
-                placeholder="0000-00-00 형태로 적어주세요."
-                onChange={handleInputValue('year')}
-              />
-              <br />
-              <TextWrap>
-                <TextP>
-                  <Span color="red">*</Span>로 적혀있는 곳은 필수로
-                  입력해주세요.
-                </TextP>
-                <TextP>
-                  <Span color="orange">**</Span>로 적혀있는 곳은 선택사항입니다.
-                  <br />
-                  선택사항은 사용자의 글쓰기 분석에 도움을 주기 위해 수집하는
-                  것입니다. <br />
-                  도움을 받고 싶으시다면 선택해주세요!!
-                </TextP>
-              </TextWrap>
-              <br />
-              <Span>{errorMsg}</Span>
-              <br />
-              <Submitwrap>
-                <SubmitBtn type="submit" value={textInputBtn.value} />
-              </Submitwrap>
-            </InputWrap2>
-          </WrapInput>
+              선택사항은 사용자의 글쓰기 분석에 도움을 주기 위해 수집하는
+              것입니다. <br />
+              도움을 받고 싶으시다면 선택해주세요!!
+            </TextP>
+          </TextWrap>
+          <br />
+          <Span>{errorMsg}</Span>
+          <br />
+          <Submitwrap>
+            <SubmitBtn type="submit" value={textInputBtn.value} />
+          </Submitwrap>
         </form>
       </Section>
-      <Footer />
+      {/* <Footer /> */}
       {show ? (
         <SignupModal content="가입이 완료되었습니다." setShow={setShow} />
       ) : null}

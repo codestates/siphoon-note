@@ -21,7 +21,6 @@ export const View = styled.div.attrs(props => ({
   height: 150px;
   border-radius: 1rem;
   position: relative;
-
   > .talk {
     position: absolute;
     text-align: center;
@@ -34,7 +33,6 @@ export const View = styled.div.attrs(props => ({
     padding: 2px;
     background-color: lightgray;
   }
-
   > .bb {
     position: absolute;
     width: 70px;
@@ -65,8 +63,6 @@ export const SignupModal = ({ content, setShow }) => {
           </button>
         </View>
       </ModalBack>
-
-      {/* TODO : 조건부 렌더링을 활용해서 Modal이 열린 상태(isOpen이 true인 상태)일 때만 모달창과 배경이 뜰 수 있게 구현해야 합니다. */}
     </>
   );
 };
