@@ -56,7 +56,7 @@ export const TagsInput = styled.div`
   width: 64%;
   margin: 0.3rem;
   margin-left: 10px;
-  border: 2px solid black;
+  border: 2.5px solid black;
   border-radius: 11px;
 
   > ul {

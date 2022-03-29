@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react';
-import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
-
-import styled from 'styled-components';
 
 export default function Timer({ minute, timerOn }) {
-  console.log('minute', minute);
   const [minutes, setMinutes] = useState(minute);
   const [seconds, setSeconds] = useState(0);
-
-  useEffect(() => {
-    setMinutes(minute);
-  }, []);
+  // const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     const countdown = setInterval(() => {
+      // if (minutes === 0 && seconds === 0) {
+      //   setTooltip(true);
+      // }
       if (seconds > 0) {
         setSeconds(prevSec => prevSec - 1);
       }
@@ -37,17 +33,10 @@ export default function Timer({ minute, timerOn }) {
 
   return (
     <>
+      {/* {showTooltip && <span>툴팁의자리다!</span>} */}
       <span>
-        {minutes}분 {seconds < 10 ? `0${seconds}` : seconds}초
+        {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
       </span>
-      {/* <Wrapper>
-        <span className="arrow-up">
-          <RiArrowUpSFill></RiArrowUpSFill>
-        </span>
-        <span>
-          <RiArrowDownSFill></RiArrowDownSFill>
-        </span>
-      </Wrapper> */}
     </>
   );
 }
