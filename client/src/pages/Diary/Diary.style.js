@@ -52,7 +52,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
   &:focus-within {
     height: 66%;
     transition: all 0.5s ease-in-out;
@@ -67,7 +66,6 @@ export const Input = styled.textarea.attrs({
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
-
   &:focus {
     outline: none;
   }
@@ -91,7 +89,6 @@ export const ButtonWrapper = styled.div`
     margin-right: 12px;
     font-size: 1.3rem;
     opacity: 0.9;
-
     &:hover {
       // background: yellow;
       border-radius: 30px;
@@ -209,7 +206,6 @@ export const IconWrapper = styled.span`
   bottom: 43%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -228,7 +224,6 @@ export const IconWrapper2 = styled.span`
   bottom: 43%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -239,60 +234,3 @@ export const IconWrapper2 = styled.span`
     }
   }
 `;
-
-export const IconWrapper = styled.span`
-  position: absolute;
-  color: black;
-  right: 12px;
-  bottom: 43%;
-  font-size: 2.1rem;
-  cursor: pointer;
-
-  animation: left-right 0.6s infinite ease-in-out alternate;
-  @keyframes left-right {
-    from {
-      transform: translateX(5px);
-    }
-    to {
-      transform: translateX(0px);
-    }
-  }
-`;
-
-export const IconWrapper2 = styled.span`
-  position: absolute;
-  color: black;
-  left: 501px;
-  bottom: 43%;
-  font-size: 2.1rem;
-  cursor: pointer;
-
-  animation: left-right 0.6s infinite ease-in-out alternate;
-  @keyframes left-right {
-    from {
-      transform: translateX(3px);
-    }
-    to {
-      transform: translateX(0px);
-    }
-  }
-`;
-
-// export const ContentBox = styled.div`
-//   display: flex;
-//   gap: 0.3rem;
-//   align-items: center;
-//   justify-content: center;
-// `;
-
-// export const Content1 = styled.div`
-//   padding: 0.25rem;
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 10px;
-//   background: url(${props => props.imgUrl}) no-repeat;
-//   background-size: cover;
-//   opacity: 80%;
-//   font-size: 1.3rem;
-//   font-weight: bold;
-// `;
