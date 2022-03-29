@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
   background: ${props => props.color};
   width: 100%;
-  height: 300vh;
+  height: 100%;
+  display: grid;
+  // grid-template-columns: 1fr 1fr;
 `;
 
 export const SideBar = styled.div`
@@ -14,8 +15,8 @@ export const SideBar = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.25rem;
-  width: 500px;
-  top: 36px;
+  width: 32rem;
+  top: 33px;
   left: 20px;
 `;
 
@@ -31,34 +32,41 @@ export const Image = styled.div`
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
   text-align: center;
   color: black;
   margin: 3px;
   height: 60px;
   width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
   border: 2.5px solid black;
   width: 90%;
   height: 45%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease-in-out;
 
+  &:focus-within {
+    height: 66%;
+    transition: all 0.5s ease-in-out;
+  }
 `;
 export const Input = styled.textarea.attrs({
-  placeholder: 'Hello :)',
+  placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
 })`
   border: 2.5px solid black;
-  margin-top: 3px;
   width: 94%;
   height: 100%;
   border-radius: 20px;
   padding: 20px;
+  overflow: hidden;
 
   &:focus {
     outline: none;
@@ -67,12 +75,29 @@ export const Input = styled.textarea.attrs({
 
 export const ButtonWrapper = styled.div`
   position: relative;
-  left: 5px;
+  left: 7px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin-top: 2px;
+  > div {
+    display: flex;
+    align-items: center;
+  }
+  > span {
+    display: flex;
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 1.3rem;
+    opacity: 0.9;
+
+    &:hover {
+      // background: yellow;
+      border-radius: 30px;
+      opacity: 1;
+    }
+  }
 `;
 
 export const ButtonWrapper2 = styled(ButtonWrapper)`
@@ -106,7 +131,7 @@ export const Button = styled.button`
   background: white;
   font-size: 0.85rem;
   margin: 0.3rem;
-  padding: 0.55rem;
+  padding: 0.5rem;
   border-radius: 10px;
   &:hover {
     box-shadow: 2px 1px black;
@@ -138,45 +163,32 @@ export const Main = styled.div`
   margin-right: 40px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 110px;
+  padding-top: 105px;
+  gap: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  flex-wrap: wrap;
-  gap: 26px;
 `;
 
-export const Card = styled.div`
+export const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const Wrapper2 = styled(Wrapper1)``;
+export const Wrapper3 = styled(Wrapper1)``;
+
+export const CardContainer = styled.div`
   border: 2.5px solid black;
   background: white;
-  border-radius: 30px;
-  height: 230px;
+  border-radius: 20px;
+  max-height: 281px;
+  gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
   font-size: 1.1rem;
   padding: 0.9rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-  animation: ${props =>
-    props.animation
-      ? 'tilt-in-fwd-tl 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      : null};
-
-  @keyframes tilt-in-fwd-tl {
-    0% {
-      -webkit-transform: rotateY(-20deg) rotateX(35deg)
-        translate(-300px, -300px) skew(35deg, -10deg);
-      transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px)
-        skew(35deg, -10deg);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
-        skew(0deg, 0deg);
-      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
-      opacity: 1;
-    }
-  }
 `;
-
 
 export const Title = styled.span`
   display: inline-block;
@@ -188,6 +200,44 @@ export const Title = styled.span`
 
 export const Content = styled.div`
   backbround-size: cover;
+`;
+
+export const IconWrapper = styled.span`
+  position: absolute;
+  color: black;
+  right: 12px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(5px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
+`;
+
+export const IconWrapper2 = styled.span`
+  position: absolute;
+  color: black;
+  left: 501px;
+  bottom: 43%;
+  font-size: 2.1rem;
+  cursor: pointer;
+
+  animation: left-right 0.6s infinite ease-in-out alternate;
+  @keyframes left-right {
+    from {
+      transform: translateX(3px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
 
 export const IconWrapper = styled.span`

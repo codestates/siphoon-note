@@ -19,7 +19,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  background-color: ${props => props.BackgroundColor};
+  background-color: ${props => props.BackgroundColor || 'green'};
   opacity: 0.9;
   color: ${props => props.color || 'white'};
 

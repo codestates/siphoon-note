@@ -5,7 +5,7 @@ export const SigninWrapper = styled.div`
   min-height: 79vh;
 `;
 
-export const UpdateTextInput = styled.div``;
+export const TextInputListWrapper = styled.div``;
 export const ButtonsWrapper = styled.div`
   button {
     display: block;

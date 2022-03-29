@@ -3,19 +3,21 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  // background: rgb(254, 205, 133, 0.1);
   opacity: 85%;
   align-items: end;
   display: flex;
 `;
 
 export const Image = styled.div`
-  width: 100vw;
-  height: 95vh;
+  width: 85%;
+  height: 95%;
+  position: relative;
+  left: 0px;
   background: url(${props => props.imgUrl}) no-repeat;
-  background-size: full;
+  background-size: cover;
   opacity: 85%;
   align-items: end;
+  flex: 1.2 1 0;
 
   animation: up-down 1.7s infinite ease-in-out alternate;
 
@@ -32,17 +34,18 @@ export const Image = styled.div`
 export const Main = styled.span`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  margin-right: 120px;
+  justify-content: center;
+  // margin-right: 120px;
   text-align: center;
   align-items: center;
   min-height: 100vh;
+  flex: 1 1 0;
 `;
 
 export const Button = styled.button`
   color: black;
   cursor: pointer;
-  font-size: 5rem;
+  font-size: 80px;
   font-weight: bold;
   border: none;
   background: rgb(254, 205, 133, 0.02);
@@ -55,7 +58,7 @@ export const Span = styled.span`
   border-bottom: 3.5px solid #fecd85;
   border-radius: 3px;
   padding: 5px;
-  margin-top: 210px;
+  // margin-top: 210px;
   margin-bottom: 20px;
   font-size: 1.5rem;
   color: rgb(0, 0, 0, 0.9);
@@ -63,10 +66,14 @@ export const Span = styled.span`
 `;
 
 export const Icon = styled.span`
+  position: absolute;
   font-size: 3rem;
-  margin-top: 180px;
-  margin-bottom: 7px;
-  color: black;
+  // right: 200px;
+  bottom: 0px;
+
+  a:link {
+    color: black;
+  }
   a:visited {
     color: black;
   }
