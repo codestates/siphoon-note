@@ -1,3 +1,3 @@
-import Selectbox from './Select';
+import { Selectbox } from './Selectbox';
 
 export default Selectbox;

@@ -10,9 +10,9 @@ export default function Analysis() {
   const [mark, setMark] = useState([
     '11-03-2022',
     '03-03-2022',
-    '05-03-2022',
-    '06-04-2022',
-    '07-02-2022',
+    '17-03-2022',
+    '24-03-2022',
+    '31-03-2022',
     '10-02-2022',
     '11-02-2022',
   ]);
@@ -38,7 +38,7 @@ export default function Analysis() {
               return (
                 <>
                   <div className="mark">
-                    <div className="dot"></div>
+                    <img className="image" src="img/연필.svg"></img>
                   </div>
                 </>
               );
@@ -61,7 +61,6 @@ export default function Analysis() {
 }
 
 const Wrapper = styled.div`
-  // height: 100vh;
   margin-left: 55px;
   margin-right: 5px;
   border-radius: 10px;
@@ -73,28 +72,25 @@ const Wrapper = styled.div`
 `;
 
 const CalendarWrapper = styled.div`
-  flex: 3.6 1 0;
+  flex: 3 1 0;
   display: flex;
   justify-content: center;
-  z-index: 1000;
+  z-index: 300;
 `;
 
 const AnalysisWrapper = styled.div`
-  // border: 1px solid black;
   border-top: none;
   flex: 1 1 0;
   display: flex;
   gap: 30px;
   padding: 2rem;
-  // margin-top: rem;
-  // background: rgb(211, 211, 211, 0.1);
   border-radius: 10px;
 `;
 
 const Box = styled.div`
   flex: 1 1 0;
   border: 3px solid black;
-  background: white;
+  background: rgb(211, 211, 211, 1);
   border-radius: 20px;
   flex-wrap: wrap;
   font-size: 1.1rem;

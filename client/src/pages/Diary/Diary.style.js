@@ -211,7 +211,7 @@ export const IconWrapper = styled.span`
   position: absolute;
   color: black;
   right: 10px;
-  bottom: 43%;
+  bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
 
@@ -230,7 +230,7 @@ export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;
   left: 3px;
-  bottom: 45%;
+  bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
 

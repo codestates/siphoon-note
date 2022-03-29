@@ -21,7 +21,7 @@ export function Selectbox2({ gender, setGender, options }) {
   const handleSelect2 = e => {
     setGender(e.target.value);
   };
-  console.log(options[3]);
+
   return (
     <div>
       <Select value={gender} onChange={handleSelect2}>

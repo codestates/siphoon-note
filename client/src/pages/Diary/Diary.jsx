@@ -9,6 +9,7 @@ import Searchbar from '../../components/Searchbar';
 import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
+import EntireEssay from '../../components/EntireEssay';
 import { useState, useEffect } from 'react';
 import {
   Container,
