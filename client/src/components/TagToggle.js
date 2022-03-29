@@ -72,7 +72,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 0.9rem;
+  margin-top: 1.3rem;
   font-weight: 500;
   font-size: 1.05rem;
   width: 88%;

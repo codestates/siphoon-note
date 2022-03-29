@@ -1,6 +1,22 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import moment from 'moment';
+import './analysis.css';
 
 export default function Analysis() {
+  // 캘린더
+  const [value, onChange] = useState(new Date());
+  const [mark, setMark] = useState([
+    '11-03-2022',
+    '03-03-2022',
+    '05-03-2022',
+    '06-04-2022',
+    '07-02-2022',
+    '10-02-2022',
+    '11-02-2022',
+  ]);
+
   // 분석 데이터 3종
   const analysisData = [
     { title: '가장 생산성이 높은 시간', data: '저녁 7시' },
@@ -11,7 +27,24 @@ export default function Analysis() {
   return (
     <Wrapper>
       <CalendarWrapper>
-        <div>분석페이지입니다.</div>
+        <Calendar
+          onChange={onChange}
+          showNeighboringMonth={false}
+          navigationLabel={null}
+          formatDay={(locale, date) => moment(date).format('DD')}
+          value={value}
+          tileContent={({ date, view }) => {
+            if (mark.find(x => x === moment(date).format('DD-MM-YYYY'))) {
+              return (
+                <>
+                  <div className="mark">
+                    <div className="dot"></div>
+                  </div>
+                </>
+              );
+            }
+          }}
+        />
       </CalendarWrapper>
       <AnalysisWrapper>
         {analysisData.map((data, index) => {
@@ -28,30 +61,34 @@ export default function Analysis() {
 }
 
 const Wrapper = styled.div`
-  height: 101vh;
-  margin-left: 35px;
-  margin-right: 20px;
+  // height: 100vh;
+  margin-left: 55px;
+  margin-right: 5px;
   border-radius: 10px;
-  padding: 1rem;
-  padding-top: 105px;
+  padding: 0.8rem;
+  padding-top: 102px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;
-  // border: 3px solid black;
 `;
 
 const CalendarWrapper = styled.div`
-  flex: 3 1 0;
-  border: 3px solid black;
+  flex: 3.6 1 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
 `;
 
 const AnalysisWrapper = styled.div`
-  border: 3px solid black;
+  // border: 1px solid black;
+  border-top: none;
   flex: 1 1 0;
   display: flex;
   gap: 30px;
   padding: 2rem;
-  background: rgb(211, 211, 211, 0.2);
+  // margin-top: rem;
+  // background: rgb(211, 211, 211, 0.1);
+  border-radius: 10px;
 `;
 
 const Box = styled.div`

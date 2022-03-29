@@ -35,7 +35,7 @@ import {
 export default function Diary() {
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(10);
+  const [minute, setMinute] = useState(1);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
