@@ -1,40 +1,94 @@
-import { Container, Image, Main, Span, Button } from './Landing.style';
+import { useState, useEffect } from 'react';
+import {
+  Container,
+  Image,
+  Main,
+  Span,
+  Button,
+  Icon,
+  Icon2,
+} from './Landing.style';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { BsArrowDown, BsArrowUpSquare } from 'react-icons/bs';
 
 export default function Landing({ isLogin }) {
-  //---------- 서버와 연결 확인용 코드 ----------
-  axios
-    .get('http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com')
-    .then(res => {
-      console.log('Connection success', res);
-    })
-    .catch(err => {
-      console.log('Connection failed', err);
+  // 상단으로 올라가기 버튼 구현
+  const [ScrollY, setScrollY] = useState(0);
+  const [hasBtn, setHasBtn] = useState(false); // 버튼 상태
+
+  const handleScroll = () => {
+    setScrollY(window.pageYOffset);
+    if (ScrollY > 300) {
+      setHasBtn(true);
+    } else {
+      setHasBtn(false);
+    }
+  };
+
+  const handleTop = () => {
+    console.log('hi');
+    window.scrollTo({
+      top: 0,
     });
-  //---------- 서버와 연결 확인용 코드 ----------
+    setScrollY(0);
+    setHasBtn(false);
+  };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleScroll);
+    };
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
     <>
       <Container>
         <Image imgUrl="img/test5.svg"></Image>
         <Main>
-          <Span>글쓰기 습관을 기르는 10분</Span>
+          <Span>가나다 라마바 사아자 차타카</Span>
           {isLogin ? (
             <>
               <NavLink to={'/diary'}>
-                <Button>Lets Get Started!</Button>
+                <Button>
+                  Helllllllllo<br></br>Whoa!
+                </Button>
               </NavLink>
-              <Span>see more?</Span>
+              <Icon>
+                <a href="#section2">
+                  <BsArrowDown></BsArrowDown>
+                </a>
+              </Icon>
             </>
           ) : (
             <>
               <NavLink to={'/trial'}>
-                <Button>Lets Get Started!</Button>
+                <Button>
+                  Helllllllllo<br></br>Whoa!
+                </Button>
               </NavLink>
-              <Span>see more?</Span>
+              <Icon>
+                <a href="#section2">
+                  <BsArrowDown></BsArrowDown>
+                </a>
+              </Icon>
             </>
           )}
         </Main>
+      </Container>
+      {hasBtn ? (
+        <Icon2>
+          <BsArrowUpSquare onClick={handleTop}></BsArrowUpSquare>
+        </Icon2>
+      ) : null}
+      <Container id="section2">
+        <Image></Image>
+      </Container>
+      <Container>
+        <Image imgUrl="img/pattern1.svg"></Image>
       </Container>
     </>
   );
