@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export default function Timer({ minute, timerOn, handleSubmit }) {
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState(minute);
   const [seconds, setSeconds] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  console.log(showTooltip);
 
   useEffect(() => {
     const countdown = setInterval(() => {
-      if (minutes === 1 && seconds === 0) {
+      if (minutes === 0 && seconds === 59) {
         setShowTooltip(true);
       }
 
@@ -30,6 +31,7 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
     if (timerOn) {
       return () => clearInterval(countdown);
     } else {
+      setShowTooltip(false);
       setMinutes(minute);
       setSeconds(0);
       clearInterval(countdown);
@@ -39,18 +41,18 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
   return (
     <>
       <span>
-        {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
+        Timer {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
       </span>
       {showTooltip && (
         <>
           <Tooltip>
             <span className="tooltip-text">
-              훌륭해요! 목표시간이 얼마 남지 않았어요! (수정)
+              훌륭해요! 목표시간이 얼마 남지 않았어요!(예시)
             </span>
           </Tooltip>
           <Tooltip2>
             <span className="tooltip-text">
-              타이머가 종료되면, 글은 자동으로 저장됩니다.(수정)
+              타이머 종료 후 글은 자동으로 저장됩니다.
             </span>
           </Tooltip2>
         </>
@@ -61,13 +63,14 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
 
 const Tooltip = styled.div`
   position: absolute;
-  top: 0px;
+  top: -5px;
   display: inline-block;
   background: rgb(0, 0, 0, 0.4);
   font-size: 0.8rem;
   padding: 0px 6px;
-  animation: fadein 3s;
+  animation: fadein 5s;
   animation-fill-mode: forwards;
+  border-radius: 5px;
 
   @keyframes fadein {
     0% {
@@ -91,5 +94,6 @@ const Tooltip = styled.div`
 
 const Tooltip2 = styled(Tooltip)`
   opacity: 0;
-  animation-delay: 3s;
+  animation-delay: 5s;
+  animation-duration: 5s;
 `;

@@ -36,7 +36,7 @@ import {
 export default function Diary() {
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(1);
+  const [minute, setMinute] = useState(10);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
@@ -71,9 +71,11 @@ export default function Diary() {
   // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
-    setInput('');
-    setTimerOn(false);
-    setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    if (input !== '') {
+      setInput('');
+      setTimerOn(false);
+      setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    }
   };
 
   return (
