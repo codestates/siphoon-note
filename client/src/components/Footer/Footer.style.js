@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
-  /* 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 160px;
-  margin-top: 100px;
-
-  bottom: 0;
-  background: #e5e5e5;
-  font-size: 20px; 
-  */
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -22,5 +10,4 @@ export const FooterWrapper = styled.footer`
   font-size: 20px;
   background: #e5e5e5;
   width: 100vw;
-  bottom: 0;
 `;
