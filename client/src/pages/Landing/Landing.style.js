@@ -6,6 +6,13 @@ export const Container = styled.div`
   opacity: 85%;
   align-items: end;
   display: flex;
+
+  // > img {
+  //   position: fixed;
+  //   top: -20px;
+  //   left: -40px;
+  //   width: 15%;
+  // }
 `;
 
 export const Image = styled.div`

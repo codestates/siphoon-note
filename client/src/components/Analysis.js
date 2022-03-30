@@ -61,11 +61,11 @@ export default function Analysis() {
 }
 
 const Wrapper = styled.div`
-  margin-left: 55px;
-  margin-right: 5px;
+  margin-left: 27px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 0.8rem;
-  padding-top: 102px;
+  padding-top: 105px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;

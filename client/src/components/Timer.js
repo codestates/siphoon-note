@@ -41,7 +41,7 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
   return (
     <>
       <span>
-        Timer {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
+        {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
       </span>
       {showTooltip && (
         <>

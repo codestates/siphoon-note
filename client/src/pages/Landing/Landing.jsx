@@ -47,7 +47,8 @@ export default function Landing({ isLogin }) {
   return (
     <>
       <Container>
-        <Image imgUrl="img/test5.svg"></Image>
+        {/* <img src="img/logo.png"></img> */}
+        <Image imgUrl="img/landing.svg"></Image>
         <Main>
           <Span>가나다 라마바 사아자 차타카</Span>
           {isLogin ? (
