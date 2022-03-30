@@ -32,12 +32,11 @@ export default function Searchbar() {
 const Wrapper = styled.div`
   position: absolute;
   bottom: 45px;
-  left: 33px;
-  width: 86.5%;
+  width: 86%;
   height: 5.5%;
-  border: 2.5px solid black;
+  border: 3px solid black;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 
   > span {
     display: flex;
@@ -52,7 +51,7 @@ const Input = styled.input.attrs({
 })`
   border: none;
   padding: 10px;
-  width: 85%;
+  width: 100%;
   height: 100%;
   font-size: 0.8rem;
   background: rgb(255, 255, 255, 0.9);
@@ -64,7 +63,7 @@ const Input = styled.input.attrs({
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  // justify-content: center;
   padding: 0px 8px;
   font-size: 1.7rem;
   cursor: pointer;

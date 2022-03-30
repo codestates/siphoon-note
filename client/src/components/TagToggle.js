@@ -6,24 +6,7 @@ export default function TagToggle({
   isTagsDropdown,
   setIsTrashDropdown,
 }) {
-  const dummy = [
-    'tag1',
-    'tag2',
-    'tag3',
-    'tag4',
-    'tag5',
-    'tag5',
-    'tag5',
-    'tag5',
-    'tag5',
-    'tag5',
-    ,
-    'tag5',
-    'tag5',
-    'tag5',
-    'tag5',
-    'tag5',
-  ];
+  const dummy = ['tag1', 'tag2', 'tag3'];
 
   const handleDropdown = () => {
     setIsTrashDropdown(false);
@@ -59,7 +42,7 @@ export default function TagToggle({
 }
 
 const Container = styled.div`
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 88%;
   background: white;
   margin: 0px;
@@ -89,12 +72,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 0.9rem;
+  margin-top: 1.3rem;
   font-weight: 500;
   font-size: 1.05rem;
   width: 88%;
   height: 29px;
-  border: 2.5px solid black;
+  border: 3px solid black;
   display: flex;
   justify-content: space-between;
   padding: 0px 9px;

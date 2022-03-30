@@ -59,7 +59,7 @@ export default function Trash({
 }
 
 const Container = styled.ul`
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 88%;
   list-style: none;
   background: white;
@@ -92,7 +92,7 @@ const Wrapper = styled.div`
   font-size: 1.05rem;
   width: 88%;
   height: 29px;
-  border: 2.5px solid black;
+  border: 3px solid black;
   display: flex;
   justify-content: space-between;
   padding: 0px 9px;
