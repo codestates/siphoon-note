@@ -79,13 +79,18 @@ export default function Diary() {
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
+        {/* <EntireEssay></EntireEssay> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
           <TimerWrapper>
-            <Timer minute={minute} timerOn={timerOn} />
+            <Timer
+              minute={minute}
+              timerOn={timerOn}
+              handleSubmit={handleSubmit}
+            />
           </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
@@ -124,7 +129,6 @@ export default function Diary() {
           <Searchbar />
         </SideBar>
         {/* 메인 구간 */}
-
         {pageNum === 0 ? (
           <>
             <Main>

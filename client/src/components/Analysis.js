@@ -38,7 +38,7 @@ export default function Analysis() {
               return (
                 <>
                   <div className="mark">
-                    <img className="image" src="img/연필.svg"></img>
+                    <img className="image" src="img/object3.svg"></img>
                   </div>
                 </>
               );
@@ -90,7 +90,7 @@ const AnalysisWrapper = styled.div`
 const Box = styled.div`
   flex: 1 1 0;
   border: 3px solid black;
-  background: rgb(211, 211, 211, 1);
+  background: rgb(211, 211, 211, 0.9);
   border-radius: 20px;
   flex-wrap: wrap;
   font-size: 1.1rem;
