@@ -116,9 +116,8 @@ export default function Diary() {
     console.log('pageEnd Event');
     // console.log(typeof pageDummy[pageNumber]);
     // console.log(typeof diaryList);
-    {
-      pageNumber !== 0 &&
-        setDiaryList([...diaryList, ...pageDummy[pageNumber]]);
+    if (pageNumber !== 0 && pageDummy[pageNumber] !== undefined) {
+      setDiaryList([...diaryList, ...pageDummy[pageNumber]]);
     }
     setLoading(false);
     // setPageNumber(pageNumber => pageNumber + 1);
@@ -216,7 +215,7 @@ export default function Diary() {
                     <Card key={index} diary={diary}></Card>
                   ) : null;
                 })}
-                <div ref={setLastElement}>타켓지점</div>
+                <div ref={setLastElement} style={{ position: 'hidden' }}></div>
                 {loading && <p>loading...</p>}
               </Wrapper3>
               {/* <>{isLoading && <Loading />}</> */}
