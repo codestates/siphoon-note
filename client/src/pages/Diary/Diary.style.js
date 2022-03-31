@@ -30,12 +30,12 @@ export const Image = styled.div`
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: contain;
-  opacity: 25%;
+  opacity: 15%;
   align-items: end;
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 1.8rem;
+  font-size: 2em;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -56,7 +56,7 @@ export const InputWrapper = styled.div`
   align-items: center;
   transition: all 0.3s ease-in-out;
 
-  &:focus-within {
+  :focus-within {
     height: 66%;
     transition: all 0.5s ease-in-out;
   }
@@ -73,7 +73,7 @@ export const Input = styled.textarea.attrs({
   font-size: 1rem;
 
   ::placeholder {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   &:focus {
     outline: none;
@@ -100,7 +100,6 @@ export const ButtonWrapper = styled.div`
     opacity: 0.9;
 
     &:hover {
-      // background: yellow;
       border-radius: 30px;
       opacity: 1;
     }
@@ -131,39 +130,33 @@ export const Button = styled.button`
   font-weight: 500;
   display: flex;
   cursor: pointer;
+  background-color: rgb(254, 205, 133, 0.8);
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: black;
   border: 2px solid black;
   background: white;
   font-size: 0.85rem;
-  margin: 0.3rem;
-  padding: 0.5rem;
+  margin: 0.2rem;
+  padding: 0.45rem;
   border-radius: 10px;
   &:hover {
     box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
-`;
 
-export const Button1 = styled(Button)`
-  font-weight: 500;
-  display: flex;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  color: black;
-  border: solid;
-  background: white;
-  font-size: 1.05rem;
-  margin: 0.35rem;
-  padding: 0.6rem;
-  border-radius: 10px;
-  &:hover {
-    box-shadow: 4px 2px black;
-    transition: all 0.2s ease-in-out;
+  &.public {
+    background: lightgray;
   }
 `;
+
+export const Button2 = styled(Button).attrs({
+  title: '현재 글이 공개 설정으로 되어있습니다.',
+})``;
+
+export const Button3 = styled(Button).attrs({
+  title: '현재 글이 비공개 설정으로 되어있습니다.',
+})``;
 
 export const Main = styled.div`
   margin-left: 20px;
@@ -213,7 +206,7 @@ export const Content = styled.div`
 export const IconWrapper = styled.span`
   position: absolute;
   color: black;
-  right: 8px;
+  right: 7px;
   bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;

@@ -3,16 +3,29 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  opacity: 85%;
+  opacity: 90%;
   align-items: end;
   display: flex;
+`;
 
-  // > img {
-  //   position: fixed;
-  //   top: -20px;
-  //   left: -40px;
-  //   width: 15%;
-  // }
+export const Container2 = styled(Container)`
+  background-color: rgb(254, 205, 133, 0.8);
+`;
+
+export const Container3 = styled(Container)`
+  background-color: rgb(255, 135, 70, 0.8);
+`;
+
+export const Container4 = styled(Container)`
+  background-color: rgb(157, 161, 255, 0.8);
+`;
+
+export const Container5 = styled(Container)`
+  background-color: rgb(144, 214, 255, 0.8);
+`;
+
+export const Container6 = styled(Container)`
+  background-color: rgb(247, 178, 206, 0.8);
 `;
 
 export const Image = styled.div`

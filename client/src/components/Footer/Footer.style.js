@@ -13,7 +13,8 @@ export const FooterWrapper = styled.footer`
   background: #e5e5e5;
   font-size: 20px; 
   */
-  margin-top: 50px;
+  border-top: 3px solid black;
+  // margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

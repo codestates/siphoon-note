@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import {
   Container,
+  Container2,
+  Container3,
+  Container4,
+  Container5,
+  Container6,
   Image,
   Main,
   Span,
@@ -10,6 +15,7 @@ import {
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
 import { BsArrowDown, BsArrowUpSquare } from 'react-icons/bs';
+import { Footer } from '../../components';
 
 export default function Landing({ isLogin }) {
   // 상단으로 올라가기 버튼 구현
@@ -47,7 +53,6 @@ export default function Landing({ isLogin }) {
   return (
     <>
       <Container>
-        {/* <img src="img/logo.png"></img> */}
         <Image imgUrl="img/landing.svg"></Image>
         <Main>
           <Span>가나다 라마바 사아자 차타카</Span>
@@ -85,12 +90,12 @@ export default function Landing({ isLogin }) {
           <BsArrowUpSquare onClick={handleTop}></BsArrowUpSquare>
         </Icon2>
       ) : null}
-      <Container id="section2">
-        <Image></Image>
-      </Container>
-      <Container>
-        <Image imgUrl="img/pattern1.svg"></Image>
-      </Container>
+      <Container2 id="section2"></Container2>
+      <Container3></Container3>
+      <Container4></Container4>
+      <Container5></Container5>
+      <Container6></Container6>
+      <Footer></Footer>
     </>
   );
 }
