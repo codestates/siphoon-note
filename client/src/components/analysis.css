@@ -4,12 +4,12 @@
   align-items:center;
   justify-content:space-around;
   max-width: 96%;
-  height:100%;
+  height:99%;
   background:white;
   border: 3px solid black;
   line-height: 1.125em;
   font-size:1.2rem;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 24px #00000080;
   padding:0.8rem;
   border-radius:20px;
 }
