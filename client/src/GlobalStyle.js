@@ -6,12 +6,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    background:floralwhite;
+    // background:floralwhite;
     font-family: 'Noto Sans KR', sans-serif;
     scroll-behavior: smooth; 
     margin: 0;
     padding: 0;
-    font-size:16px;
+    font-size:18px;
   }
 
   `;

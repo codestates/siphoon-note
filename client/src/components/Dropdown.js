@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export default function Dropdown() {
   const dropDownArr = [
+    { title: '홈으로', to: '/', logout: false },
     {
       title: '회원정보 수정',
       to: '/mypage',
@@ -53,7 +54,7 @@ const DropdownLayout = styled.div`
     text-decoration: none;
     align-items: center;
     color: black;
-    padding: 10px 15px;
+    padding: 8px 15px;
     transition: all 0.2s;
   }
   & a:hover {
@@ -63,13 +64,14 @@ const DropdownLayout = styled.div`
 const DropdownMenu = styled.ul``;
 const MenuItems = styled.li`
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
   text-align: center;
   font-size: 1rem;
 
   a {
     &:hover {
-      opacity: 70%;
+      background: rgb(254, 203, 129, 0.5);
+      color: white;
     }
   }
 `;

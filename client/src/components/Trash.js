@@ -89,9 +89,9 @@ const Container = styled.ul`
 const Wrapper = styled.div`
   margin-top: 0.7rem;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   width: 88%;
-  height: 29px;
+  height: auto;
   border: 3px solid black;
   display: flex;
   justify-content: space-between;

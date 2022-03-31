@@ -57,7 +57,7 @@ const Container = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    max-height: 115px;
+    max-height: auto;
 
     > span {
       padding: 6px;
@@ -74,9 +74,9 @@ const Container = styled.div`
 const Wrapper = styled.div`
   margin-top: 1.3rem;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   width: 88%;
-  height: 29px;
+  height: auto;
   border: 3px solid black;
   display: flex;
   justify-content: space-between;

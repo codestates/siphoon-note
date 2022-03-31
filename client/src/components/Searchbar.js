@@ -30,9 +30,8 @@ export default function Searchbar() {
 }
 
 const Wrapper = styled.div`
-  position: absolute;
-  bottom: 45px;
-  width: 86%;
+  margin-top: 1.2rem;
+  width: 88%;
   height: 5.5%;
   border: 3px solid black;
   display: flex;
@@ -53,9 +52,12 @@ const Input = styled.input.attrs({
   padding: 10px;
   width: 100%;
   height: 100%;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   background: rgb(255, 255, 255, 0.9);
 
+  ::placeholder {
+    font-size: 0.9rem;
+  }
   &:focus {
     outline: none;
   }
@@ -63,7 +65,6 @@ const Input = styled.input.attrs({
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  // justify-content: center;
   padding: 0px 8px;
   font-size: 1.7rem;
   cursor: pointer;

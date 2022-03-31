@@ -18,7 +18,7 @@ export const SideBar = styled.div`
   padding: 0.25rem;
   width: 32rem;
   top: 34px;
-  margin-top: 34px;
+  margin-top: 42px;
   left: 18px;
   flex: 2 1 0;
 `;
@@ -35,7 +35,7 @@ export const Image = styled.div`
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -70,7 +70,11 @@ export const Input = styled.textarea.attrs({
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
+  font-size: 1rem;
 
+  ::placeholder {
+    font-size: 0.9rem;
+  }
   &:focus {
     outline: none;
   }
@@ -166,7 +170,7 @@ export const Main = styled.div`
   margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 105px;
+  padding-top: 115px;
   gap: 1.9rem;
   flex: 3.5 1 0;
   display: grid;
@@ -184,19 +188,19 @@ export const Wrapper3 = styled(Wrapper1)``;
 export const CardContainer = styled.div`
   border: 3px solid black;
   background: white;
-  border-radius: 20px;
-  max-height: 281px;
+  border-radius: 22px;
+  max-height: 337px;
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.2rem;
-  padding: 1rem;
+  font-size: 1.3rem;
+  padding: 1.15rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 `;
 
 export const Title = styled.span`
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: bold;
   height: 25px;
   text-align: center;
@@ -209,7 +213,7 @@ export const Content = styled.div`
 export const IconWrapper = styled.span`
   position: absolute;
   color: black;
-  right: 10px;
+  right: 8px;
   bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;

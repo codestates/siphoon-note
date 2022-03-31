@@ -42,7 +42,6 @@ export const Main = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // margin-right: 120px;
   text-align: center;
   align-items: center;
   min-height: 100vh;
@@ -52,7 +51,7 @@ export const Main = styled.span`
 export const Button = styled.button`
   color: black;
   cursor: pointer;
-  font-size: 80px;
+  font-size: 5.5rem;
   font-weight: bold;
   border: none;
   background: rgb(254, 205, 133, 0.02);
@@ -65,17 +64,15 @@ export const Span = styled.span`
   border-bottom: 3.5px solid #fecd85;
   border-radius: 3px;
   padding: 5px;
-  // margin-top: 210px;
   margin-bottom: 20px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: rgb(0, 0, 0, 0.9);
   font-weight: bold;
 `;
 
 export const Icon = styled.span`
   position: absolute;
-  font-size: 3rem;
-  // right: 200px;
+  font-size: 3.3rem;
   bottom: 0px;
 
   a:link {
@@ -98,7 +95,7 @@ export const Icon = styled.span`
 
 export const Icon2 = styled.div`
   position: fixed;
-  font-size: 3.2rem;
+  font-size: 3.5rem;
   cursor: pointer;
   bottom: 15px;
   right: 30px;
