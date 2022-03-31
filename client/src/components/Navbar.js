@@ -29,7 +29,7 @@ export default function Navbar({ isLogin, userInfo }) {
               <Profile>{userInfo.name}님, 안녕하세요!</Profile>
               <ImgWrapper
                 onClick={() => SetIsDropdown(!isDropdown)}
-                src="img/testava8.svg"
+                src="img/avatar/1.svg"
               ></ImgWrapper>
             </>
           ) : (
