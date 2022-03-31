@@ -1,6 +1,6 @@
 // SWAGGER API DOCUMENTATION: https://app.swaggerhub.com/apis/gomarag/Diary/1.0.2-oas3
 
-const API_HOST = 'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com';
+const API_HOST = 'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com'
 
 module.exports = {
   //------------- 1. main -------------
@@ -46,6 +46,5 @@ module.exports = {
   // PATCH /trashes/:essayId
   RESTORE_ESSAY_BY_ID: `${API_HOST}/api/v1/trashes/:essayId`,
 
-  // DELET
+  // DELETE /trashes/:essayId
   DELETE_TRASH_BY_ID: `${API_HOST}/api/v1/trashes/:essayId`,
-};

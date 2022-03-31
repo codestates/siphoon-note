@@ -8,6 +8,9 @@ export const FooterWrapper = styled.footer`
   width: 100vw;
   height: 160px;
   margin-top: 100px;
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
 
   bottom: 0;
   background: #e5e5e5;

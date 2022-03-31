@@ -56,7 +56,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
   &:focus-within {
     height: 66%;
     transition: all 0.5s ease-in-out;
@@ -71,7 +70,6 @@ export const Input = styled.textarea.attrs({
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
-
   &:focus {
     outline: none;
   }
@@ -95,7 +93,6 @@ export const ButtonWrapper = styled.div`
     margin-right: 12px;
     font-size: 1.3rem;
     opacity: 0.9;
-
     &:hover {
       // background: yellow;
       border-radius: 30px;
@@ -214,7 +211,6 @@ export const IconWrapper = styled.span`
   bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -233,7 +229,6 @@ export const IconWrapper2 = styled.span`
   bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
