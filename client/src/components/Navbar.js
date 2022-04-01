@@ -119,9 +119,9 @@ const NavBtnLink = styled(Link)`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.05rem;
+  font-size: rem;
   margin: 0.35rem;
-  padding: 0.6rem;
+  padding: 0.55rem;
   &:hover {
     box-shadow: 4px 2px black;
     transition: all 0.2s ease-in-out;

@@ -18,7 +18,7 @@ export const SideBar = styled.div`
   padding: 0.25rem;
   width: 32rem;
   top: 34px;
-  margin-top: 42px;
+  margin-top: 48px;
   left: 18px;
   flex: 2 1 0;
 `;
@@ -57,7 +57,7 @@ export const InputWrapper = styled.div`
   transition: all 0.3s ease-in-out;
 
   :focus-within {
-    height: 66%;
+    height: 68%;
     transition: all 0.5s ease-in-out;
   }
 `;
@@ -171,7 +171,7 @@ export const Main = styled.div`
   margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 115px;
+  padding-top: 120px;
   gap: 1.9rem;
   flex: 3.5 1 0;
   display: grid;

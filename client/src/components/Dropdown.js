@@ -70,8 +70,7 @@ const MenuItems = styled.li`
 
   a {
     &:hover {
-      background: rgb(254, 203, 129, 0.5);
-      color: white;
+      background: floralwhite;
     }
   }
 `;

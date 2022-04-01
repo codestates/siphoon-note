@@ -12,6 +12,10 @@
   box-shadow: 0 12px 24px #00000080;
   padding:0.8rem;
   border-radius:20px;
+  background-image :url('/public/img/clouds.svg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:95%;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -74,7 +78,6 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 0.9rem;
-  /* margin-bottom:1px; */
 
 
 }
@@ -164,8 +167,10 @@
 
 .image {
   display:inline;
-  height: 23px;
-  width: 23px;
-  border-radius: 20%;
+  height: 27px;
+  width: 27px;
+  border-radius: 15%;
   display: flex;
+  background:wheat;
+  padding:2px;
 }

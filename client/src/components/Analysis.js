@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   margin-right: 35px;
   border-radius: 10px;
   padding: 0.8rem;
-  padding-top: 115px;
+  padding-top: 120px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ const CalendarWrapper = styled.div`
 
 const AnalysisWrapper = styled.div`
   border-top: none;
-  flex: 1 1 0;
+  flex: 0.85 1 0;
   display: flex;
   gap: 30px;
   padding: 2rem;
