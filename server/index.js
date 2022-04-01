@@ -4,7 +4,7 @@ const http = require('http');
 const cors = require('cors');
 const app = express();
 
-const port = process.env.LOCAL_PORT;
+const port = process.env.PORT || 80;
 
 app.use(cors());
 
