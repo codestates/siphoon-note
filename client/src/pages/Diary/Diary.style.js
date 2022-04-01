@@ -4,20 +4,23 @@ export const Container = styled.div`
   background: ${props => props.color};
   width: 100%;
   height: 100%;
-  display: grid;
-  // grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const SideBar = styled.div`
-  position: fixed;
+  position: sticky;
   display: flex;
   height: 100vh;
   flex-direction: column;
   align-items: center;
+  justify-content: space-end;
   padding: 0.25rem;
   width: 32rem;
-  top: 33px;
-  left: 20px;
+  top: 34px;
+  margin-top: 34px;
+  left: 18px;
+  flex: 2 1 0;
 `;
 
 export const Image = styled.div`
@@ -32,7 +35,7 @@ export const Image = styled.div`
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -45,7 +48,7 @@ export const TimerWrapper = styled.div`
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 90%;
   height: 45%;
   display: flex;
@@ -61,7 +64,7 @@ export const InputWrapper = styled.div`
 export const Input = styled.textarea.attrs({
   placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
 })`
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 94%;
   height: 100%;
   border-radius: 20px;
@@ -127,7 +130,7 @@ export const Button = styled.button`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: black;
-  border: solid;
+  border: 2px solid black;
   background: white;
   font-size: 0.85rem;
   margin: 0.3rem;
@@ -159,12 +162,13 @@ export const Button1 = styled(Button)`
 `;
 
 export const Main = styled.div`
-  margin-left: 530px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
   padding-top: 105px;
-  gap: 30px;
+  gap: 1.9rem;
+  flex: 3.5 1 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 `;
@@ -172,21 +176,21 @@ export const Main = styled.div`
 export const Wrapper1 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.8rem;
 `;
 export const Wrapper2 = styled(Wrapper1)``;
 export const Wrapper3 = styled(Wrapper1)``;
 
 export const CardContainer = styled.div`
-  border: 2.5px solid black;
+  border: 3px solid black;
   background: white;
   border-radius: 20px;
   max-height: 281px;
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.1rem;
-  padding: 0.9rem;
+  font-size: 1.2rem;
+  padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 `;
 
@@ -205,8 +209,8 @@ export const Content = styled.div`
 export const IconWrapper = styled.span`
   position: absolute;
   color: black;
-  right: 12px;
-  bottom: 43%;
+  right: 10px;
+  bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
 
@@ -224,8 +228,8 @@ export const IconWrapper = styled.span`
 export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;
-  left: 501px;
-  bottom: 43%;
+  left: 3px;
+  bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
 

@@ -10,6 +10,8 @@ import Searchbar from '../../components/Searchbar';
 import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
+import EntireEssay from '../../components/EntireEssay';
+import Loading from '../../components/Loading';
 import { useState, useEffect, useRef } from 'react';
 import {
   Container,
@@ -31,10 +33,11 @@ import {
   Image,
   IconWrapper,
   IconWrapper2,
+  LoadingWrapper,
 } from './Diary.style';
 
 export default function Diary() {
-  // 타이머 버튼
+  // 타이머
   const [timerOn, setTimerOn] = useState(false);
   const [minute, setMinute] = useState(10);
 
@@ -48,29 +51,12 @@ export default function Diary() {
     setIsKeywordModal(!isKeywordModal);
   };
 
-  // trash, tags dropdown
+  // 휴지통, 태그 드롭다운
   const [isTrashDropdown, setIsTrashDropdown] = useState(false);
   const [isTagsDropdown, setIsTagsDropdown] = useState(false);
   const handleDropdown = () => {
     setIsTrashDropdown(false);
     setIsTagsDropdown(false);
-  };
-
-  // 서버에 보내기
-
-  // 사용자 인풋 받기
-  const [input, setInput] = useState('');
-  const handleInput = e => {
-    setInput(e.target.value);
-    setTimerOn(true);
-  };
-
-  // 다이어리 리스트
-  const [diaryList, setDiaryList] = useState(pageDummy[pageNumber]);
-  const handleSubmit = () => {
-    setInput('');
-    setTimerOn(false);
-    setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
   };
 
   // 페이지 전환
@@ -80,6 +66,23 @@ export default function Diary() {
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
+  };
+
+  // 사용자 에세이 인풋
+  const [input, setInput] = useState('');
+  const handleInput = e => {
+    setInput(e.target.value);
+    setTimerOn(true);
+  };
+
+  // 다이어리 리스트
+  const [diaryList, setDiaryList] = useState(pageDummy[pageNumber]);
+  const handleSubmit = () => {
+    if (input !== '') {
+      setInput('');
+      setTimerOn(false);
+      setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    }
   };
 
   // const ioCallback = (entries, io) => {
@@ -147,13 +150,18 @@ export default function Diary() {
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
+        {/* <EntireEssay></EntireEssay> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
           <TimerWrapper>
-            <Timer minute={minute} timerOn={timerOn} />
+            <Timer
+              minute={minute}
+              timerOn={timerOn}
+              handleSubmit={handleSubmit}
+            />
           </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
@@ -192,9 +200,9 @@ export default function Diary() {
           <Searchbar />
         </SideBar>
         {/* 메인 구간 */}
-        <Main>
-          {pageNum === 0 ? (
-            <>
+        {pageNum === 0 ? (
+          <>
+            <Main>
               <Wrapper1>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 0 ? (
@@ -216,23 +224,26 @@ export default function Diary() {
                   ) : null;
                 })}
                 <div ref={setLastElement} style={{ position: 'hidden' }}></div>
-                {loading && <p>loading...</p>}
               </Wrapper3>
-              {/* <>{isLoading && <Loading />}</> */}
-            </>
-          ) : (
-            <Analysis />
-          )}
-          {pageNum === 0 ? (
-            <IconWrapper>
-              <IoIosArrowForward onClick={() => setPageNum(1)} />
-            </IconWrapper>
-          ) : (
-            <IconWrapper2>
-              <IoIosArrowBack onClick={() => setPageNum(0)} />
-            </IconWrapper2>
-          )}
-        </Main>
+              {/* {loading && <Loading />}
+               */}
+              <LoadingWrapper>
+                <Loading />
+              </LoadingWrapper>
+            </Main>
+          </>
+        ) : (
+          <Analysis setPageNum={setPageNum} />
+        )}
+        {pageNum === 0 ? (
+          <IconWrapper>
+            <IoIosArrowForward onClick={() => setPageNum(1)} />
+          </IconWrapper>
+        ) : (
+          <IconWrapper2>
+            <IoIosArrowBack onClick={() => setPageNum(0)} />
+          </IconWrapper2>
+        )}
       </Container>
     </>
   );
