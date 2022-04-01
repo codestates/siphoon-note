@@ -190,6 +190,7 @@ export const CardContainer = styled.div`
   border: 3px solid black;
   background: white;
   border-radius: 22px;
+  width: 350px;
   max-height: 337px;
   gap: 20px;
   overflow: hidden;

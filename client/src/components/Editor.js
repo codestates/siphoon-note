@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
+import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
 
 export default function Editor({ isPublic, handlePublic }) {
   const handleEditor = () => {};
@@ -16,12 +16,12 @@ export default function Editor({ isPublic, handlePublic }) {
         <div className="toggle">
           <span>공개</span>
           {isPublic ? (
-            <FaToggleOff
+            <BsToggleOff
               className="public"
               onClick={handlePublic}
-            ></FaToggleOff>
+            ></BsToggleOff>
           ) : (
-            <FaToggleOn className="private" onClick={handlePublic}></FaToggleOn>
+            <BsToggleOn className="private" onClick={handlePublic}></BsToggleOn>
           )}
           <span>비공개</span>
         </div>
@@ -83,31 +83,6 @@ const ModalView = styled.div.attrs(props => ({
   padding: 1rem;
   background: floralwhite;
 
-  > span {
-    color: gray;
-  }
-
-  .toggle {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    font-size: 1rem;
-
-    .public {
-      font-size: 2rem;
-      cursor: pointer;
-      margin: 0rem 0.3rem;
-      color: black;
-    }
-
-    .private {
-      font-size: 2rem;
-      cursor: pointer;
-      margin: 0rem 0.3rem;
-      color: black;
-    }
-  }
-
   > div.close-btn {
     position: relative;
     float: right;
@@ -120,10 +95,29 @@ const ModalView = styled.div.attrs(props => ({
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  > span {
+    color: gray;
+  }
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1rem;
+
+    .public,
+    .private {
+      font-size: 2.1rem;
+      cursor: pointer;
+      margin: 0rem 0.3rem;
+      color: black;
+    }
+  }
   > .desc {
     width: 100%;
-    height: 60%;
-    margin-top: 20px;
+    height: 62%;
+    margin-top: 10px;
     font-size: 1.2rem;
     overflow: auto;
     padding: 10px;

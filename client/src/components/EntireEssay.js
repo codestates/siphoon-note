@@ -50,16 +50,7 @@ const ModalView = styled.div.attrs(props => ({
   height: 600px;
   overflow: auto;
   padding: 1rem;
-  // background: floralwhite;
-
-  > span {
-    color: gray;
-  }
-
-  > p {
-    border-top: 1.5px solid lightgray;
-    padding-top: 15px;
-  }
+  background: floralwhite;
 
   > div.close-btn {
     position: relative;
@@ -70,14 +61,20 @@ const ModalView = styled.div.attrs(props => ({
     font-size: 1.3rem;
   }
   > .title {
-    margin-top: 30px;
-    // margin-left: 15px;
+    margin: 30px 0px 5px 0px;
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  > span {
+    color: gray;
+  }
+
   > .desc {
     flex: 3 0 0;
     margin-top: 20px;
     font-size: 1.2rem;
+    border-top: 1.5px solid lightgray;
+    padding-top: 15px;
   }
 `;
