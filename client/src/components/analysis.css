@@ -3,7 +3,7 @@
   flex-direction:column;
   align-items:center;
   justify-content:space-around;
-  max-width: 94%;
+  max-width: 96%;
   height:100%;
   background:white;
   border: 3px solid black;
@@ -58,7 +58,7 @@
   background: none;
   font-weight:bold;
   background: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding-bottom:10px;
 }
 .react-calendar__navigation button:disabled {
@@ -162,16 +162,10 @@
 
 }
 
-.mark {
-  display:flex;
-  justify-content:center;
-
-}
-
 .image {
   display:inline;
-  height: 18px;
-  width: 18px;
-  /* border-radius: 50%; */
+  height: 23px;
+  width: 23px;
+  border-radius: 20%;
   display: flex;
 }

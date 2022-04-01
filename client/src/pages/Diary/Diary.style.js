@@ -45,7 +45,6 @@ export const TimerWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  // opacity: 70%;
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
@@ -160,8 +159,8 @@ export const Button1 = styled(Button)`
 `;
 
 export const Main = styled.div`
-  margin-left: 15px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
   padding-top: 105px;

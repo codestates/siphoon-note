@@ -37,8 +37,8 @@ export default function Analysis() {
             if (mark.find(x => x === moment(date).format('DD-MM-YYYY'))) {
               return (
                 <>
-                  <div className="mark">
-                    <img className="image" src="img/연필.svg"></img>
+                  <div>
+                    <img className="image" src="img/pencil.svg"></img>
                   </div>
                 </>
               );
@@ -61,11 +61,11 @@ export default function Analysis() {
 }
 
 const Wrapper = styled.div`
-  margin-left: 55px;
-  margin-right: 5px;
+  margin-left: 27px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 0.8rem;
-  padding-top: 102px;
+  padding-top: 105px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;
@@ -90,7 +90,7 @@ const AnalysisWrapper = styled.div`
 const Box = styled.div`
   flex: 1 1 0;
   border: 3px solid black;
-  background: rgb(211, 211, 211, 1);
+  background: rgb(211, 211, 211, 0.7);
   border-radius: 20px;
   flex-wrap: wrap;
   font-size: 1.1rem;
