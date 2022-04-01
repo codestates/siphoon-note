@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth; 
     margin: 0;
     padding: 0;
+    font-size:18px;
   }
 
   `;

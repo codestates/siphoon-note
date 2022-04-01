@@ -31,6 +31,8 @@ import {
   Image,
   IconWrapper,
   IconWrapper2,
+  DD,
+  Backs,
 } from './Diary.style';
 
 export default function Diary() {
@@ -131,10 +133,11 @@ export default function Diary() {
               <Wrapper1>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 0 ? (
-                    <Card key={index} diary={diary}></Card>
+                    <Card key={index} diary={diary} />
                   ) : null;
                 })}
               </Wrapper1>
+
               <Wrapper2>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 1 ? (
@@ -142,6 +145,7 @@ export default function Diary() {
                   ) : null;
                 })}
               </Wrapper2>
+
               <Wrapper3>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 2 ? (
@@ -169,10 +173,42 @@ export default function Diary() {
 }
 
 export const Card = ({ diary }) => {
+  const [hover, setHover] = useState(true);
   return (
-    <CardContainer>
-      <Title>{diary.id}번째 글쓰기</Title>
-      <Content>{diary.content}</Content>
-    </CardContainer>
+    <div>
+      {hover ? (
+        <div>
+          <CardContainer className="front">
+            <Title>{diary.id}번째 글쓰기</Title>
+            <Content>{diary.content}</Content>
+            <button className="bb" onMouseEnter={() => setHover(false)}>
+              올려
+            </button>
+          </CardContainer>
+          <Backs className="back">
+            <Title>{diary.id}번째 글쓰기</Title>
+            <Content>{diary.content}</Content>
+            <button className="bb">눌러</button>
+          </Backs>
+        </div>
+      ) : (
+        <div>
+          <CardContainer className="front" rotate="rotateY(-180deg)">
+            <Title>{diary.id}번째 글쓰기3</Title>
+            <Content>{diary.content}</Content>
+            <button className="bb">올려</button>
+          </CardContainer>
+          <Backs
+            className="back"
+            rotate="rotateY(0deg)"
+            onMouseLeave={() => setHover(true)}
+          >
+            <Title>{diary.id}번째 글쓰기2</Title>
+            <Content>{diary.content}</Content>
+            <button className="bb">눌러</button>
+          </Backs>
+        </div>
+      )}
+    </div>
   );
 };
