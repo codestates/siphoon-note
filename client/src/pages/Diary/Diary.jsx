@@ -83,6 +83,7 @@ export default function Diary() {
 
   // 공개 설정
   const [isPublic, setIsPublic] = useState(false);
+  console.log('공개설정', isPublic);
   const handlePublic = () => {
     setIsPublic(!isPublic);
   };
@@ -91,7 +92,7 @@ export default function Diary() {
     <>
       <Container color={colorTheme[themeIndex].color}>
         {/* <EntireEssay isPublic={isPublic}></EntireEssay> */}
-        <Editor isPublic={isPublic} handlePublic={handlePublic}></Editor>
+        {/* <Editor isPublic={isPublic} handlePublic={handlePublic}></Editor> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
@@ -127,15 +128,15 @@ export default function Diary() {
 
               {isPublic ? (
                 <Button2 className="public" onClick={handlePublic}>
-                  public
+                  공개
                 </Button2>
               ) : (
                 <Button3 className="private" onClick={handlePublic}>
-                  private
+                  공개
                 </Button3>
               )}
-              <Button onClick={() => setTimerOn(false)}>reset</Button>
-              <Button onClick={handleSubmit}>send</Button>
+              <Button onClick={() => setTimerOn(false)}>리셋</Button>
+              <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
           </InputWrapper>
           <TagToggle

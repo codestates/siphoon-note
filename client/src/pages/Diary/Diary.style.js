@@ -140,13 +140,21 @@ export const Button = styled.button`
   margin: 0.2rem;
   padding: 0.45rem;
   border-radius: 10px;
+
   &:hover {
     box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
 
+  &.private {
+    border: none;
+    box-shadow: none;
+  }
   &.public {
-    background: lightgray;
+    background: darkgray;
+    box-shadow: none;
+    color: white;
+    border: 1px solid gray;
   }
 `;
 
