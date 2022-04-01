@@ -4,20 +4,23 @@ export const Container = styled.div`
   background: ${props => props.color};
   width: 100%;
   height: 100%;
-  display: grid;
-  // grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const SideBar = styled.div`
-  position: fixed;
+  position: sticky;
   display: flex;
   height: 100vh;
   flex-direction: column;
   align-items: center;
+  justify-content: space-end;
   padding: 0.25rem;
   width: 32rem;
-  top: 33px;
-  left: 20px;
+  top: 34px;
+  margin-top: 34px;
+  left: 18px;
+  flex: 2 1 0;
 `;
 
 export const Image = styled.div`
@@ -32,7 +35,7 @@ export const Image = styled.div`
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -45,14 +48,13 @@ export const TimerWrapper = styled.div`
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 90%;
   height: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
   &:focus-within {
     height: 66%;
     transition: all 0.5s ease-in-out;
@@ -61,13 +63,12 @@ export const InputWrapper = styled.div`
 export const Input = styled.textarea.attrs({
   placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
 })`
-  border: 2.5px solid black;
+  border: 3px solid black;
   width: 94%;
   height: 100%;
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
-
   &:focus {
     outline: none;
   }
@@ -91,7 +92,6 @@ export const ButtonWrapper = styled.div`
     margin-right: 12px;
     font-size: 1.3rem;
     opacity: 0.9;
-
     &:hover {
       // background: yellow;
       border-radius: 30px;
@@ -127,7 +127,7 @@ export const Button = styled.button`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: black;
-  border: solid;
+  border: 2px solid black;
   background: white;
   font-size: 0.85rem;
   margin: 0.3rem;
@@ -159,78 +159,102 @@ export const Button1 = styled(Button)`
 `;
 
 export const Main = styled.div`
-  margin-left: 530px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
   padding-top: 105px;
-  gap: 30px;
+  gap: 1.9rem;
+  flex: 3.5 1 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 `;
 
 export const Wrapper1 = styled.div`
   display: flex;
-  position: static;
-  z-index: 1;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.8rem;
+  // max-width: 340px;
+  .cc {
+    position: relative;
+  }
+  .cu {
+    cursor: pointer;
+    width: 30px;
+    bottom: 100px;
+    border: 1px solid blue;
+    margin: 3px;
+  }
 `;
 export const Wrapper2 = styled(Wrapper1)``;
 export const Wrapper3 = styled(Wrapper1)``;
 
 export const CardContainer = styled.div`
+  border: 3px solid black;
   background: white;
   border-radius: 20px;
-  width: 300px;
   max-height: 281px;
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.1rem;
-  padding: 0.9rem;
+  font-size: 1.2rem;
+  padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-  position: absolute;
-  transition: 2s;
+  position: ${props => props.position || 'static'};
+  transition: 3s;
   transform: ${props => props.rotate || 'rotateY(0deg)'};
   backface-visibility: hidden;
-
   .bb {
     position: absolute;
     top: 0;
     right: 0;
+    border: 1px solid blue;
+    width: 30px;
+    height: 30px;
   }
-
   background-color: ${props => props.bg || 'white'};
 `;
 
 export const Backs = styled.div`
+  display: block;
+  border: 3px solid black;
   background: white;
   border-radius: 20px;
-  width: 300px;
   max-height: 281px;
+  // height: ${props => props.height || '0px'};
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.1rem;
-  padding: 0.9rem;
+  font-size: 1.2rem;
+  padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-  transition: 2s;
-  backface-visibility: hidden;
+  transition: 3s;
+  // backface-visibility: hidden;
+  position: ${props => props.position || 'static'};
+  // margin-bottom: 0px;
+  // position: absolute;
+  // top: 0px;
   transform: ${props => props.rotate || 'rotateY(-180deg)'};
 
-  .bb {
-    position: absolute;
-    top: 0;
-    right: 0;
+  .createdat {
+    display: block;
+    text-align: right;
   }
-
   background-color: ${props => props.bg || 'gray'};
 `;
+
 export const DD = styled.div`
   display: block;
   position: relative;
 `;
+
+// export const Titles = styled.span`
+//   display: inline-block;
+//   font-size: 1.1rem;
+//   font-weight: bold;
+//   height: 25px;
+//   text-align: center;
+// `;
 
 export const Title = styled.span`
   display: inline-block;
@@ -247,11 +271,10 @@ export const Content = styled.div`
 export const IconWrapper = styled.span`
   position: absolute;
   color: black;
-  right: 12px;
-  bottom: 43%;
+  right: 10px;
+  bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -266,11 +289,10 @@ export const IconWrapper = styled.span`
 export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;
-  left: 501px;
-  bottom: 43%;
+  left: 3px;
+  bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {

@@ -1,7 +1,8 @@
 import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { RiGift2Line } from 'react-icons/ri';
+import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
+import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -10,6 +11,7 @@ import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   Container,
@@ -33,6 +35,7 @@ import {
   IconWrapper2,
   DD,
   Backs,
+  Titles,
 } from './Diary.style';
 
 export default function Diary() {
@@ -173,42 +176,63 @@ export default function Diary() {
 }
 
 export const Card = ({ diary }) => {
+  const navigator = useNavigate();
   const [hover, setHover] = useState(true);
+  const deletehandle = () => {
+    navigator('/signin');
+  };
+  // console.log(diary);
+  // const createdAt =
+  //   diary.createdAt.slice(0, 10) + ' ' + diary.createdAt.slice(11, 19);
   return (
-    <div>
+    <DD>
       {hover ? (
         <div>
           <CardContainer className="front">
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <button className="bb" onMouseEnter={() => setHover(false)}>
-              올려
-            </button>
+            <MdOutlineFlipCameraAndroid
+              className="bb"
+              onMouseEnter={() => setHover(false)}
+            />
           </CardContainer>
-          <Backs className="back">
-            <Title>{diary.id}번째 글쓰기</Title>
-            <Content>{diary.content}</Content>
-            <button className="bb">눌러</button>
+          <Backs className="back" position="absolute">
+            <span className="createdat">{diary.createdAt}</span>
+            <span className="cus">
+              <RiPencilLine className="cu" />
+              수정
+              <RiDeleteBin6Line className="cu" onClick={deletehandle} />
+              삭제
+            </span>
           </Backs>
         </div>
       ) : (
         <div>
-          <CardContainer className="front" rotate="rotateY(-180deg)">
-            <Title>{diary.id}번째 글쓰기3</Title>
+          <CardContainer
+            className="front"
+            rotate="rotateY(-180deg)"
+            position="absolute"
+          >
+            <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <button className="bb">올려</button>
+            <MdOutlineFlipCameraAndroid className="bb" />
           </CardContainer>
           <Backs
             className="back"
             rotate="rotateY(0deg)"
+            position="static"
             onMouseLeave={() => setHover(true)}
           >
-            <Title>{diary.id}번째 글쓰기2</Title>
-            <Content>{diary.content}</Content>
-            <button className="bb">눌러</button>
+            <span className="createdat">{diary.createdAt}</span>
+            <span className="cus">
+              <RiPencilLine className="cu" />
+              수정
+              <RiDeleteBin6Line className="cu" onClick={deletehandle} />
+              삭제
+            </span>
           </Backs>
         </div>
       )}
-    </div>
+    </DD>
   );
 };
