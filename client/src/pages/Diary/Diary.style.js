@@ -178,12 +178,25 @@ export const Wrapper1 = styled.div`
   .cc {
     position: relative;
   }
-  .cu {
+  .icon {
     cursor: pointer;
-    width: 30px;
-    bottom: 100px;
-    border: 1px solid blue;
-    margin: 3px;
+    width: 35px;
+    margin: 35px 5px 0 0;
+    padding-top: 5px;
+  }
+
+  .icon1 {
+    background-color: #e0ffff;
+    border-radius: 5px;
+    border: 1px solid #4169e1;
+    padding-right: 7px;
+  }
+  .icon2 {
+    background-color: #f0ffff;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-right: 7px;
+    border: 1px solid #4169e1;
   }
 `;
 export const Wrapper2 = styled(Wrapper1)``;
@@ -201,18 +214,17 @@ export const CardContainer = styled.div`
   padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   position: ${props => props.position || 'static'};
-  transition: 3s;
+  transition: 0.5s;
   transform: ${props => props.rotate || 'rotateY(0deg)'};
   backface-visibility: hidden;
-  .bb {
+  .md {
     position: absolute;
     top: 0;
     right: 0;
-    border: 1px solid blue;
     width: 30px;
     height: 30px;
   }
-  background-color: ${props => props.bg || 'white'};
+  background-color: white;
 `;
 
 export const Backs = styled.div`
@@ -228,19 +240,25 @@ export const Backs = styled.div`
   font-size: 1.2rem;
   padding: 1rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-  transition: 3s;
-  // backface-visibility: hidden;
+  transition: ${props => props.transition || '0.5s'};
+  backface-visibility: hidden;
   position: ${props => props.position || 'static'};
   // margin-bottom: 0px;
-  // position: absolute;
+  position: ${props => props.position || 'absolute'};
   // top: 0px;
   transform: ${props => props.rotate || 'rotateY(-180deg)'};
 
   .createdat {
     display: block;
-    text-align: right;
+    width: 200px;
+    position: relative;
+    padding-right: 7px;
+    right: -120px;
+    text-align: center;
+    border: 2px solid #00ff00;
+    border-radius: 2rem;
   }
-  background-color: ${props => props.bg || 'gray'};
+  background-color: beige;
 `;
 
 export const DD = styled.div`

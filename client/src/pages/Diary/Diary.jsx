@@ -181,9 +181,10 @@ export const Card = ({ diary }) => {
   const deletehandle = () => {
     navigator('/signin');
   };
-  // console.log(diary);
-  // const createdAt =
-  //   diary.createdAt.slice(0, 10) + ' ' + diary.createdAt.slice(11, 19);
+
+  // const day = new Date();
+  // console.log(day);
+  // const createdat = day?.slice(0, 10) + ' ' + day?.slice(11, 19);
   return (
     <DD>
       {hover ? (
@@ -192,16 +193,16 @@ export const Card = ({ diary }) => {
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
             <MdOutlineFlipCameraAndroid
-              className="bb"
+              className="md"
               onMouseEnter={() => setHover(false)}
             />
           </CardContainer>
-          <Backs className="back" position="absolute">
+          <Backs className="back" transition="0s">
             <span className="createdat">{diary.createdAt}</span>
-            <span className="cus">
-              <RiPencilLine className="cu" />
+            <span className="icons">
+              <RiPencilLine className="icon" />
               수정
-              <RiDeleteBin6Line className="cu" onClick={deletehandle} />
+              <RiDeleteBin6Line className="icon" onClick={deletehandle} />
               삭제
             </span>
           </Backs>
@@ -215,7 +216,7 @@ export const Card = ({ diary }) => {
           >
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <MdOutlineFlipCameraAndroid className="bb" />
+            <MdOutlineFlipCameraAndroid className="md" />
           </CardContainer>
           <Backs
             className="back"
@@ -224,12 +225,16 @@ export const Card = ({ diary }) => {
             onMouseLeave={() => setHover(true)}
           >
             <span className="createdat">{diary.createdAt}</span>
-            <span className="cus">
-              <RiPencilLine className="cu" />
-              수정
-              <RiDeleteBin6Line className="cu" onClick={deletehandle} />
-              삭제
-            </span>
+            <div className="icons">
+              <span className="icon1">
+                <RiPencilLine className="icon" />
+                수정
+              </span>
+              <span className="icon2">
+                <RiDeleteBin6Line className="icon" onClick={deletehandle} />
+                삭제
+              </span>
+            </div>
           </Backs>
         </div>
       )}
