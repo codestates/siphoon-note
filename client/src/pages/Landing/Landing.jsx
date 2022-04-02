@@ -7,6 +7,8 @@ import {
   Container5,
   Container6,
   Image,
+  Image2,
+  Image3,
   Main,
   Span,
   Button,
@@ -14,7 +16,8 @@ import {
   Icon2,
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
-import { BsArrowDown, BsArrowUpSquare } from 'react-icons/bs';
+import { BsArrowDownCircleFill, BsArrowUpSquare } from 'react-icons/bs';
+import { FaArrowCircleDown } from 'react-icons/fa';
 import { Footer } from '../../components';
 
 export default function Landing({ isLogin }) {
@@ -53,19 +56,28 @@ export default function Landing({ isLogin }) {
   return (
     <>
       <Container>
-        <Image imgUrl="img/landing.svg"></Image>
+        <Image imgUrl="img/memo.svg"></Image>
+        <NavLink to="/diary">
+          <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
+        </NavLink>
+        <Image3 src="img/asterisk2.svg" right="30" top="10" height="3"></Image3>
+        {/* <Image4 src="img/asterisk2.svg" right="5" top="20" height="2"></Image4> */}
+        <Image3 src="img/asterisk2.svg" left="3" top="60" height="3"></Image3>
+        <Image3 src="img/asterisk2.svg" right="45" top="75" height="3"></Image3>
+        <Image3 src="img/asterisk2.svg" right="2" top="93" height="3"></Image3>
+        {/* <Image4 src="img/asterisk2.svg" right="46" top="32" height="2"></Image4> */}
         <Main>
-          <Span>가나다 라마바 사아자 차타카</Span>
+          <Span>하루에 단 10분만 글을 쓸 수 있다면? 가낟라마</Span>
           {isLogin ? (
             <>
               <NavLink to={'/diary'}>
                 <Button>
-                  Helllllllllo<br></br>Whoa!
+                  click<br></br>logoooo!
                 </Button>
               </NavLink>
               <Icon>
                 <a href="#section2">
-                  <BsArrowDown></BsArrowDown>
+                  <BsArrowDownCircleFill></BsArrowDownCircleFill>
                 </a>
               </Icon>
             </>
@@ -73,12 +85,12 @@ export default function Landing({ isLogin }) {
             <>
               <NavLink to={'/trial'}>
                 <Button>
-                  Helllllllllo<br></br>Whoa!
+                  click<br></br>logoooo!
                 </Button>
               </NavLink>
               <Icon>
                 <a href="#section2">
-                  <BsArrowDown></BsArrowDown>
+                  <FaArrowCircleDown></FaArrowCircleDown>
                 </a>
               </Icon>
             </>

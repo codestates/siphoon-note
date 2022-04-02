@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    background:floralwhite;
+    background:ghostwhite;
     font-family: 'Noto Sans KR', sans-serif;
     scroll-behavior: smooth; 
     margin: 0;

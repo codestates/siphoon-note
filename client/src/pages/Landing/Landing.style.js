@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  opacity: 90%;
+  opacity: 95%;
   align-items: end;
   display: flex;
+  // justify-content: center;
 `;
 
 export const Container2 = styled(Container)`
@@ -29,26 +30,81 @@ export const Container6 = styled(Container)`
 `;
 
 export const Image = styled.div`
-  width: 85%;
-  height: 95%;
+  height: 84%;
   position: relative;
-  left: 0px;
+  left: 2%;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: cover;
-  opacity: 85%;
   align-items: end;
-  flex: 1.2 1 0;
+  flex: 1 1 0;
+`;
 
-  animation: up-down 1.7s infinite ease-in-out alternate;
+export const Image2 = styled.img`
+  position: absolute;
+  height: ${props => props.height}%;
+  left: ${props => props.left}%;
+  right: ${props => props.right}%;
+  bottom: ${props => props.bottom}%;
+  top: ${props => props.top}%;
+  object-fit: cover;
+
+  &:hover {
+    animation: spin 2s infinite linear;
+  }
+
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-ms-keyframes spin {
+    100% {
+      -ms-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+export const Image3 = styled(Image2)`
+  &:hover {
+    animation: none;
+  }
+
+  opacity: 80%;
+
+  animation: up-down 1.5s infinite ease-in-out alternate;
 
   @keyframes up-down {
     from {
       transform: translatey(0px);
     }
     to {
-      transform: translatey(-5px);
+      transform: translatey(-0.5px);
     }
   }
+`;
+
+export const Image4 = styled(Image3)`
+  animation: none;
+  // left-right 0.5s infinite ease-in-out alternate;
+
+  // @keyframes left-right {
+  //   from {
+  //     transform: translatex(0px);
+  //   }
+  //   to {
+  //     transform: translatex(1px);
+  //   }
+  // }
 `;
 
 export const Main = styled.span`
@@ -64,7 +120,7 @@ export const Main = styled.span`
 export const Button = styled.button`
   color: black;
   cursor: pointer;
-  font-size: 5.5rem;
+  font-size: 6.5rem;
   font-weight: bold;
   border: none;
   background: rgb(254, 205, 133, 0.02);
@@ -74,18 +130,18 @@ export const Button = styled.button`
 `;
 
 export const Span = styled.span`
-  border-bottom: 3.5px solid #fecd85;
+  border-bottom: 5px solid #fecd85;
   border-radius: 3px;
   padding: 5px;
   margin-bottom: 20px;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: rgb(0, 0, 0, 0.9);
   font-weight: bold;
 `;
 
 export const Icon = styled.span`
   position: absolute;
-  font-size: 3.3rem;
+  font-size: 2.8rem;
   bottom: 0px;
 
   a:link {
