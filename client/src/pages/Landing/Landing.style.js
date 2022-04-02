@@ -4,38 +4,43 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   opacity: 95%;
-  align-items: end;
   display: flex;
-  // justify-content: center;
+  align-items: end;
+  justify-content: center;
+  // border-bottom: 3px solid black;
 `;
 
 export const Container2 = styled(Container)`
+  background-color: floralwhite;
+  border: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+`;
+
+export const Container3 = styled(Container2)`
   background-color: rgb(254, 205, 133, 0.8);
 `;
 
-export const Container3 = styled(Container)`
+export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 0.8);
 `;
 
-export const Container4 = styled(Container)`
+export const Container5 = styled(Container2)`
   background-color: rgb(157, 161, 255, 0.8);
 `;
 
-export const Container5 = styled(Container)`
+export const Container6 = styled(Container2)`
   background-color: rgb(144, 214, 255, 0.8);
 `;
 
-export const Container6 = styled(Container)`
-  background-color: rgb(247, 178, 206, 0.8);
-`;
-
 export const Image = styled.div`
-  height: 84%;
+  height: 85%;
   position: relative;
   left: 2%;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: cover;
-  align-items: end;
   flex: 1 1 0;
 `;
 
@@ -79,7 +84,7 @@ export const Image3 = styled(Image2)`
     animation: none;
   }
 
-  opacity: 80%;
+  opacity: 90%;
 
   animation: up-down 1.5s infinite ease-in-out alternate;
 
@@ -88,23 +93,13 @@ export const Image3 = styled(Image2)`
       transform: translatey(0px);
     }
     to {
-      transform: translatey(-0.5px);
+      transform: translatey(1px);
     }
   }
 `;
 
 export const Image4 = styled(Image3)`
-  animation: none;
-  // left-right 0.5s infinite ease-in-out alternate;
-
-  // @keyframes left-right {
-  //   from {
-  //     transform: translatex(0px);
-  //   }
-  //   to {
-  //     transform: translatex(1px);
-  //   }
-  // }
+  animation: up-down 1.9s 2s infinite ease-in-out alternate;
 `;
 
 export const Main = styled.span`
@@ -141,7 +136,7 @@ export const Span = styled.span`
 
 export const Icon = styled.span`
   position: absolute;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   bottom: 0px;
 
   a:link {
@@ -164,9 +159,21 @@ export const Icon = styled.span`
 
 export const Icon2 = styled.div`
   position: fixed;
-  font-size: 3.5rem;
+  font-size: 2rem;
   cursor: pointer;
-  bottom: 15px;
-  right: 30px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 25px;
+  right: 25px;
   z-index: 500;
+  border: 3px solid black;
+  background: white;
+
+  &:hover {
+    box-shadow: 4px 2px black;
+    transition: all 0.2s ease-in-out;
+  }
 `;

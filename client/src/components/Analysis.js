@@ -83,7 +83,7 @@ const AnalysisWrapper = styled.div`
   flex: 0.85 1 0;
   display: flex;
   gap: 30px;
-  padding: 2rem;
+  padding: 2rem 1.2rem;
   border-radius: 10px;
   margin-bottom: 5px;
 `;
