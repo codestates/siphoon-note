@@ -24,8 +24,7 @@ export default function PublicEssays() {
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content:
-        ' 글이 들어갑니다.글이 들어갑니다.글이 들어갑니다.글이 들어갑니다. ',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! ',
     },
   ];
 
