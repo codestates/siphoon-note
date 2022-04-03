@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
   padding: 5rem;
 `;
 
@@ -57,19 +57,20 @@ const CardContainer = styled.div`
   background: white;
   flex-wrap: wrap;
   border-radius: 22px;
-  min-width: 370px;
+  width: 380px;
   min-height: 500px;
   font-size: 1.2rem;
   font-weight: 400;
   padding: 1.2rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   background: floralwhite;
+  margin: 0;
 
   .thumbnail {
-    width: 50%;
+    width: 45%;
     border: 2px solid black;
     padding: 1.5rem;
-    margin: 1.5rem;
+    margin: 1.4rem;
     border-radius: 10px;
     background: white;
   }

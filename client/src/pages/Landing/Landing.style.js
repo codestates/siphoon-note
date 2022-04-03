@@ -38,10 +38,21 @@ export const Container6 = styled(Container2)`
 export const Image = styled.div`
   height: 85%;
   position: relative;
-  left: 2%;
+  left: 1.5%;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: cover;
   flex: 1 1 0;
+
+  // animation: up-down 1.5s infinite ease-in-out alternate;
+
+  // @keyframes up-down {
+  //   from {
+  //     transform: translatey(0px);
+  //   }
+  //   to {
+  //     transform: translatey(1px);
+  //   }
+  // }
 `;
 
 export const Image2 = styled.img`
@@ -84,9 +95,7 @@ export const Image3 = styled(Image2)`
     animation: none;
   }
 
-  opacity: 90%;
-
-  animation: up-down 1.5s infinite ease-in-out alternate;
+  animation: up-down 0.8s 10 infinite ease-in-out alternate;
 
   @keyframes up-down {
     from {
@@ -96,10 +105,11 @@ export const Image3 = styled(Image2)`
       transform: translatey(1px);
     }
   }
+  opacity: 80%;
 `;
 
 export const Image4 = styled(Image3)`
-  animation: up-down 1.9s 2s infinite ease-in-out alternate;
+  animation: up-down 1s 10 infinite ease-in-out alternate;
 `;
 
 export const Main = styled.span`
@@ -136,7 +146,7 @@ export const Span = styled.span`
 
 export const Icon = styled.span`
   position: absolute;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   bottom: 0px;
 
   a:link {

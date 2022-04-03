@@ -17,8 +17,8 @@ import {
   Icon2,
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
-import { FaArrowCircleDown } from 'react-icons/fa';
-import { HiArrowUp } from 'react-icons/hi';
+import { TiArrowDownOutline } from 'react-icons/ti';
+import { HiArrowUp, HiArrowDown } from 'react-icons/hi';
 import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
@@ -64,12 +64,12 @@ export default function Landing({ isLogin }) {
         <NavLink to="/diary">
           <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
         </NavLink>
-        <Image3 src="img/asterisk2.svg" right="30" top="10" height="3"></Image3>
-        <Image3 src="img/asterisk2.svg" left="3" top="60" height="3"></Image3>
-        <Image4 src="img/asterisk2.svg" right="45" top="75" height="3"></Image4>
-        <Image4 src="img/asterisk2.svg" right="2" top="93" height="3"></Image4>
+        <Image3 src="img/rhombus.svg" right="8" top="29" height="4"></Image3>
+        <Image4 src="img/rhombus.svg" right="5.5" top="31" height="6"></Image4>
+        <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>
+        <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
-          <Span>하루에 단 10분만 글을 쓸 수 있다면?</Span>
+          <Span>하루에 십분만 코딩을 해요?ㅎㅎㅎ</Span>
           {isLogin ? (
             <>
               <NavLink to={'/diary'}>
@@ -79,7 +79,7 @@ export default function Landing({ isLogin }) {
               </NavLink>
               <Icon>
                 <a href="#section2">
-                  <FaArrowCircleDown></FaArrowCircleDown>
+                  <HiArrowDown></HiArrowDown>
                 </a>
               </Icon>
             </>
@@ -92,7 +92,7 @@ export default function Landing({ isLogin }) {
               </NavLink>
               <Icon>
                 <a href="#section2">
-                  <FaArrowCircleDown></FaArrowCircleDown>
+                  <HiArrowDown></HiArrowDown>
                 </a>
               </Icon>
             </>
@@ -107,7 +107,7 @@ export default function Landing({ isLogin }) {
       <Container2 id="section2">
         <br></br>
         <h1>
-          안녕하세요, <br></br>10bun diary의 기능들을 만나보세요!
+          안녕하세요, <br></br>10bun diary의 기능들 블라블라!
         </h1>
       </Container2>
       <Container3>
@@ -117,7 +117,10 @@ export default function Landing({ isLogin }) {
       <Container4>
         <h1>유저랭킹과 글보기</h1>
       </Container4>
-      <Container5>{/* <Ranking></Ranking> */}</Container5>
+
+      <Container5>
+        <h1>랭킹 구상</h1>
+      </Container5>
       <Container6>
         <h2>다른 유저의 공개글 보기</h2>
         <PublicEssays></PublicEssays>

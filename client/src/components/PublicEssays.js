@@ -1,22 +1,41 @@
 import styled from 'styled-components';
 
 export default function PublicEssays() {
-  const data = [{}];
+  const data = [
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: '글이 들어갑니다. ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: '글이 들어갑니다. ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: '글이 들어갑니다. ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content:
+        ' 글이 들어갑니다.글이 들어갑니다.글이 들어갑니다.글이 들어갑니다. ',
+    },
+  ];
 
   return (
     <Wrapper>
-      <CardContainer>
-        <span className="username">이수리</span>
-        <span className="created-at">2022-03-22</span>
-        <p className="content">
-          글이 들어갑니다. 이스! 뭐 그럴수도 있고 아닐 수도 있
-          {/* 아닐 수도 있고!그럴수도 있고 아닐 수도 있고!그럴수도 있고 아닐 수도
-          있고! */}
-        </p>
-      </CardContainer>
-      <CardContainer></CardContainer>
-      <CardContainer></CardContainer>
-      <CardContainer></CardContainer>
+      {data.map((essay, index) => {
+        return (
+          <CardContainer key={index}>
+            <span className="username">{essay.username}</span>
+            <span className="created-at">{essay.createdAt}</span>
+            <p className="content">{essay.content}</p>
+          </CardContainer>
+        );
+      })}
     </Wrapper>
   );
 }
@@ -25,7 +44,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
   padding: 5rem;
 `;
 
@@ -36,10 +55,9 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background: white;
   flex-wrap: wrap;
   border-radius: 22px;
-  min-width: 370px;
+  width: 380px;
   min-height: 500px;
   font-size: 1.3rem;
   padding: 1.3rem;
