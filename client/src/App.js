@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   // 로그인 관련 전역 상태 변수
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   const [userInfo, setUserInfo] = useState({ email: '', name: 'suri' });
 

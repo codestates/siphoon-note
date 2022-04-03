@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function EntireEssay() {
+export default function EntireEssay({ isPublic }) {
   const handleEntireEssay = () => {};
   return (
     <ModalBackdrop onClick={handleEntireEssay}>
@@ -9,8 +9,8 @@ export default function EntireEssay() {
           &times;
         </div>
         <div className="title">3번째 글쓰기</div>
-        <span>2022년 3월 25일</span>
-        {/* <div>2022년 3월 26일 최종수정</div> */}
+        <span>2022년 3월 25일 | </span>
+        <span>{isPublic ? '공개' : '비공개'}</span>
         <p className="desc">
           영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
           마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
@@ -20,17 +20,7 @@ export default function EntireEssay() {
           아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
           가바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
           아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라 마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라 마바사 아자차영감 가영감 가나다라 마바사 아자영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라 마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라 마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가영감 가나다라 마바사 아자영감
-          가나다라 마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사
+          가나다라
         </p>
       </ModalView>
     </ModalBackdrop>
@@ -56,12 +46,11 @@ const ModalView = styled.div.attrs(props => ({
   border-radius: 10px;
   border: 3px solid black;
   background-color: #ffffff;
-  // background-image: url(img/cat4.svg);
-  // background-size: 90%;
   width: 800px;
   height: 600px;
   overflow: auto;
   padding: 1rem;
+  background: floralwhite;
 
   > div.close-btn {
     position: relative;
@@ -72,14 +61,20 @@ const ModalView = styled.div.attrs(props => ({
     font-size: 1.3rem;
   }
   > .title {
-    margin-top: 30px;
-    // margin-left: 15px;
+    margin: 30px 0px 5px 0px;
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  > span {
+    color: gray;
+  }
+
   > .desc {
     flex: 3 0 0;
     margin-top: 20px;
     font-size: 1.2rem;
+    border-top: 1.5px solid lightgray;
+    padding-top: 15px;
   }
 `;
