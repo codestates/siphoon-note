@@ -10,6 +10,7 @@ import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
+import Editor from '../../components/Editor';
 import { useState, useEffect } from 'react';
 import {
   Container,
@@ -21,6 +22,8 @@ import {
   ButtonWrapper,
   ButtonWrapper2,
   Button,
+  Button2,
+  Button3,
   CardContainer,
   Wrapper1,
   Wrapper2,
@@ -36,7 +39,7 @@ import {
 export default function Diary() {
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(10);
+  const [minute, setMinute] = useState(1);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
@@ -78,10 +81,18 @@ export default function Diary() {
     }
   };
 
+  // 공개 설정
+  const [isPublic, setIsPublic] = useState(false);
+  console.log('공개설정', isPublic);
+  const handlePublic = () => {
+    setIsPublic(!isPublic);
+  };
+
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
-        {/* <EntireEssay></EntireEssay> */}
+        {/* <EntireEssay isPublic={isPublic}></EntireEssay> */}
+        {/* <Editor isPublic={isPublic} handlePublic={handlePublic}></Editor> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
@@ -114,6 +125,16 @@ export default function Diary() {
             <Input value={input} onChange={handleInput} />
             <ButtonWrapper2>
               <Tag />
+
+              {isPublic ? (
+                <Button2 className="public" onClick={handlePublic}>
+                  공개
+                </Button2>
+              ) : (
+                <Button3 className="private" onClick={handlePublic}>
+                  공개
+                </Button3>
+              )}
               <Button onClick={() => setTimerOn(false)}>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
