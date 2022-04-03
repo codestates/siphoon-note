@@ -77,7 +77,7 @@ const Nav = styled.nav`
   right: 0;
   display: flex;
   justify-content: flex-end;
-  z-index: 1000;
+  z-index: 500;
 `;
 
 const NavMenu = styled.div`
@@ -98,7 +98,7 @@ const NavBtnLink = styled(Link)`
   background: white;
   font-size: 1.15rem;
   margin: 0.45rem;
-  padding: 0.55rem 0.7rem;
+  padding: 0.65rem;
   &:hover {
     box-shadow: 4px 2px black;
     transition: all 0.2s ease-in-out;

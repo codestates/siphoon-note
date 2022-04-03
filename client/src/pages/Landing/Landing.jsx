@@ -105,24 +105,20 @@ export default function Landing({ isLogin }) {
         </Icon2>
       ) : null}
       <Container2 id="section2">
-        <br></br>
-        <h1>
-          안녕하세요, <br></br>10bun diary의 기능들 블라블라!
-        </h1>
+        <h1>Hello, This is 10bun-diary</h1>
       </Container2>
       <Container3>
-        {/* <h2>서비스 기능</h2> */}
+        {/* <h2>서비스 소개</h2> */}
         <Description></Description>
       </Container3>
       <Container4>
-        <h1>유저랭킹과 글보기</h1>
+        <h1>10bun diary COMMUNITY</h1>
       </Container4>
-
-      <Container5>
-        <h1>랭킹 구상</h1>
+      <Container5 id="ranking">
+        <Ranking></Ranking>
       </Container5>
-      <Container6>
-        <h2>다른 유저의 공개글 보기</h2>
+      <Container6 id="public">
+        <h2>공개된 글 가나다라 마바사</h2>
         <PublicEssays></PublicEssays>
       </Container6>
       <Footer></Footer>

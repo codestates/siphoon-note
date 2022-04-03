@@ -22,6 +22,5 @@ export const FooterWrapper = styled.footer`
 
   font-size: 20px;
   background-color: rgb(247, 178, 206, 0.8);
-  width: 100vw;
   bottom: 0;
 `;

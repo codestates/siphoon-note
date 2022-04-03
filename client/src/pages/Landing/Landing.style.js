@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100vw;
+  // width: 100vw;
   height: 100vh;
   opacity: 95%;
   display: flex;
   align-items: end;
   justify-content: center;
-  // border-bottom: 3px solid black;
+  margin: 0;
+  padding: 0;
 `;
 
 export const Container2 = styled(Container)`
@@ -17,22 +18,32 @@ export const Container2 = styled(Container)`
   align-items: center;
   justify-content: center;
   color: black;
+  height: 80vh;
+  // border-radius: 40%;
 `;
 
 export const Container3 = styled(Container2)`
-  background-color: rgb(254, 205, 133, 0.8);
+  background-color: rgb(254, 205, 133, 0.9);
+  height: 120vh;
+  border-radius: 0%;
 `;
 
 export const Container4 = styled(Container2)`
-  background-color: rgb(255, 135, 70, 0.8);
+  background-color: rgb(255, 135, 70, 0.9);
+  border-radius: 50%;
+  height: 80vh;
 `;
 
 export const Container5 = styled(Container2)`
-  background-color: rgb(157, 161, 255, 0.8);
+  background-color: rgb(157, 161, 255, 0.9);
+  height: 140vh;
+  border-radius: 0%;
 `;
 
 export const Container6 = styled(Container2)`
-  background-color: rgb(144, 214, 255, 0.8);
+  background-color: rgb(144, 214, 255, 0.9);
+  height: 120vh;
+  border-radius: 0%;
 `;
 
 export const Image = styled.div`

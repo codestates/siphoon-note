@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size:3rem;
+    font-size:2.5rem;
     margin:0px;
   }
 
