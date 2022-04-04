@@ -1,8 +1,8 @@
 import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
+import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -11,8 +11,9 @@ import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
-import { useNavigate } from 'react-router-dom';
+import Editor from '../../components/Editor';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Main,
@@ -23,6 +24,8 @@ import {
   ButtonWrapper,
   ButtonWrapper2,
   Button,
+  Button2,
+  Button3,
   CardContainer,
   Wrapper1,
   Wrapper2,
@@ -35,7 +38,8 @@ import {
   IconWrapper2,
   DD,
   Backs,
-  Titles,
+  Hashtag,
+  Icon,
 } from './Diary.style';
 
 export default function Diary() {
@@ -76,21 +80,36 @@ export default function Diary() {
   // 다이어리 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const handleSubmit = () => {
-    setInput('');
-    setTimerOn(false);
-    setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    if (input !== '') {
+      setInput('');
+      setTimerOn(false);
+      setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    }
+  };
+
+  // 공개 설정
+  const [isPublic, setIsPublic] = useState(false);
+  console.log('공개설정', isPublic);
+  const handlePublic = () => {
+    setIsPublic(!isPublic);
   };
 
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
+        {/* <EntireEssay isPublic={isPublic}></EntireEssay> */}
+        {/* <Editor isPublic={isPublic} handlePublic={handlePublic}></Editor> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
           <TimerWrapper>
-            <Timer minute={minute} timerOn={timerOn} />
+            <Timer
+              minute={minute}
+              timerOn={timerOn}
+              handleSubmit={handleSubmit}
+            />
           </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
@@ -112,6 +131,16 @@ export default function Diary() {
             <Input value={input} onChange={handleInput} />
             <ButtonWrapper2>
               <Tag />
+
+              {isPublic ? (
+                <Button2 className="public" onClick={handlePublic}>
+                  공개
+                </Button2>
+              ) : (
+                <Button3 className="private" onClick={handlePublic}>
+                  공개
+                </Button3>
+              )}
               <Button onClick={() => setTimerOn(false)}>리셋</Button>
               <Button onClick={handleSubmit}>남기기</Button>
             </ButtonWrapper2>
@@ -129,18 +158,16 @@ export default function Diary() {
           <Searchbar />
         </SideBar>
         {/* 메인 구간 */}
-
         {pageNum === 0 ? (
           <>
             <Main>
               <Wrapper1>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 0 ? (
-                    <Card key={index} diary={diary} />
+                    <Card key={index} diary={diary}></Card>
                   ) : null;
                 })}
               </Wrapper1>
-
               <Wrapper2>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 1 ? (
@@ -148,7 +175,6 @@ export default function Diary() {
                   ) : null;
                 })}
               </Wrapper2>
-
               <Wrapper3>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 2 ? (
@@ -179,12 +205,36 @@ export const Card = ({ diary }) => {
   const navigator = useNavigate();
   const [hover, setHover] = useState(true);
   const deletehandle = () => {
+    // const { id } = diary;
+    // axios
+    //   .patch(`${API_HOST}/api/v1/userinfo`,
+    //     {
+    //       id,
+    //     },
+    //     { headers: { 'Content-Type': 'application/json' } }
+    //   )
+    //   .then(respond => {
+    //     if (
+    //       respond.data.message === 'Successfully moved the essay to the trash!'
+    //     ) {
+    //       navigator('/diary');
+    //     } else if (
+    //       respond.data.message ===
+    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
+    //     ) {
+    //       alert('삭제 안됨');
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
     navigator('/signin');
   };
 
+  // console.log(tags);
   // const day = new Date();
   // console.log(day);
   // const createdat = day?.slice(0, 10) + ' ' + day?.slice(11, 19);
+
+  const modifiedhandle = () => {};
   return (
     <DD>
       {hover ? (
@@ -197,15 +247,7 @@ export const Card = ({ diary }) => {
               onMouseEnter={() => setHover(false)}
             />
           </CardContainer>
-          <Backs className="back" transition="0s">
-            <span className="createdat">{diary.createdAt}</span>
-            <span className="icons">
-              <RiPencilLine className="icon" />
-              수정
-              <RiDeleteBin6Line className="icon" onClick={deletehandle} />
-              삭제
-            </span>
-          </Backs>
+          <Backs className="back" transition="0s" />
         </div>
       ) : (
         <div>
@@ -225,15 +267,22 @@ export const Card = ({ diary }) => {
             onMouseLeave={() => setHover(true)}
           >
             <span className="createdat">{diary.createdAt}</span>
-            <div className="icons">
-              <span className="icon1">
-                <RiPencilLine className="icon" />
-                수정
-              </span>
-              <span className="icon2">
-                <RiDeleteBin6Line className="icon" onClick={deletehandle} />
-                삭제
-              </span>
+            <div>
+              <div className="tags">
+                <Hashtag>#어렵구만</Hashtag>
+                <Hashtag>#CSS</Hashtag>
+                <Hashtag>#힘들어</Hashtag>
+              </div>
+              <div className="icons">
+                <Icon onClick={modifiedhandle}>
+                  <RiPencilLine className="icon" />
+                  수정
+                </Icon>
+                <Icon className="icon2">
+                  <RiDeleteBin6Line className="icon" onClick={deletehandle} />
+                  삭제
+                </Icon>
+              </div>
             </div>
           </Backs>
         </div>

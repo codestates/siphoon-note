@@ -18,23 +18,23 @@ import { SignupModal } from './SignupModal';
 export default function Signup() {
   const [errorMsg, setErrorMsg] = useState('');
 
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [email, setEmail] = useState('');
-  const [age, setAge] = useState('');
+  const [birthday, setBirthday] = useState('');
 
-  const [selecteOption, setSelecteOption] = useState('');
+  const [region, setRegion] = useState('');
   const [gender, setGender] = useState('');
 
   const [show, setShow] = useState(false);
   console.log(email);
-  console.log(name);
+  console.log(username);
   console.log(password);
   console.log(confirm);
-  console.log(age);
+  console.log(birthday);
   console.log(gender);
-  console.log(selecteOption);
+  console.log(region);
 
   const birth = useRef();
 
@@ -62,7 +62,7 @@ export default function Signup() {
     }
 
     birth.current.value = result;
-    setAge({ ...age, [key]: e.target.value });
+    setBirthday({ ...birthday, [key]: e.target.value });
   };
 
   const strongPassword = str => {
@@ -81,17 +81,13 @@ export default function Signup() {
   //   handleSignup();
   // });
 
-  const handleSignup = () => {
+  const handleSignup = event => {
     event.preventDefault();
 
-    // if (!validateForm([email, password, confirm, name])) {
-    //   return;
-    // }
-
-    if (!email || !password || !confirm || !name) {
+    if (!email || !password || !confirm || !username) {
       setErrorMsg('필수항목을 모두 입력해주세요.');
     }
-    if (email && password && confirm && name) {
+    if (email && password && confirm && username) {
       setErrorMsg('');
       setShow(true);
     }
@@ -108,6 +104,32 @@ export default function Signup() {
     if (password !== confirm) {
       setErrorMsg('비밀번호가 일치하지 않습니다.');
     }
+
+    // axios
+    //   .post(`${API_HOST}/api/v1/signup`,
+    //     {
+    //       email,
+    //       password,
+    //       username,
+    //       gender,
+    //       birthday,
+    //       region,
+    //     },
+    //     { headers: { 'Content-Type': 'application/json' } }
+    //   )
+    //   .then(respond => {
+    //     if (respond.data.message === 'Successfully Created New User!') {
+    //       setShow(true);
+    //       navigator('/signin');
+    //       console.log(respond);
+    //     } else if (
+    //       respond.data.message ===
+    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
+    //     ) {
+    //       setErrorMsg('이미 가입된 이메일입니다.');
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
   };
 
   const textInputList = [
@@ -133,7 +155,7 @@ export default function Signup() {
       title: '닉네임',
       type: 'text',
       placeholder: '닉네임을 입력하세요',
-      onBlur: setName,
+      onBlur: setUserName,
     },
   ];
 
@@ -200,8 +222,8 @@ export default function Signup() {
           </Label>
           <Selectbox
             options={regionOptions}
-            select={selecteOption}
-            setSelect={setSelecteOption}
+            select={region}
+            setSelect={setRegion}
           />
 
           <br />
