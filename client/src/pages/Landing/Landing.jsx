@@ -17,12 +17,13 @@ import {
   Icon2,
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
-import { TiArrowDownOutline } from 'react-icons/ti';
 import { HiArrowUp, HiArrowDown } from 'react-icons/hi';
 import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
 import PublicEssays from '../../components/PublicEssays';
+import { gsap, Power3 } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Landing({ isLogin }) {
   // 상단으로 올라가기 버튼 구현
@@ -57,6 +58,37 @@ export default function Landing({ isLogin }) {
     };
   });
 
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to('.introduction-title', {
+    scrollTrigger: {
+      trigger: '.introduction-title',
+      start: 'top center',
+      end: 'bottom bottom',
+      // markers: true,
+      toggleActions: 'play pause reverse restart',
+      scrub: true,
+
+      // pin: true,
+    },
+    duration: 12,
+    y: 320,
+    ease: Power3.easeOut,
+  });
+
+  gsap.to('.community-title', {
+    scrollTrigger: {
+      trigger: '.community-title',
+      start: 'top bottom',
+      // end: '80% bottom',
+      toggleActions: 'play none none restart',
+      scrub: true,
+      // markers: true,
+    },
+    duration: 1,
+    rotate: 360,
+  });
+
   return (
     <>
       <Container>
@@ -70,33 +102,26 @@ export default function Landing({ isLogin }) {
         <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
           <Span>하루에 십분만 코딩을 해요?ㅎㅎㅎ</Span>
-          {isLogin ? (
-            <>
-              <NavLink to={'/diary'}>
+          <>
+            {isLogin ? (
+              <NavLink to="/diary">
                 <Button>
                   click<br></br>logoooo!
                 </Button>
               </NavLink>
-              <Icon>
-                <a href="#section2">
-                  <HiArrowDown></HiArrowDown>
-                </a>
-              </Icon>
-            </>
-          ) : (
-            <>
-              <NavLink to={'/trial'}>
+            ) : (
+              <NavLink to="/trial">
                 <Button>
                   click<br></br>logoooo!
                 </Button>
               </NavLink>
-              <Icon>
-                <a href="#section2">
-                  <HiArrowDown></HiArrowDown>
-                </a>
-              </Icon>
-            </>
-          )}
+            )}
+            <Icon>
+              <a href="#introduction">
+                <HiArrowDown></HiArrowDown>
+              </a>
+            </Icon>
+          </>
         </Main>
       </Container>
       {hasBtn ? (
@@ -104,15 +129,18 @@ export default function Landing({ isLogin }) {
           <HiArrowUp onClick={handleTop}></HiArrowUp>
         </Icon2>
       ) : null}
-      <Container2 id="section2">
-        <h1>Hello, This is 10bun-diary</h1>
+      <Container2 className="container" id="introduction">
+        <h1 className="introduction-title">
+          Hello, This is 10bun diary :) 📝️
+        </h1>
       </Container2>
-      <Container3>
-        {/* <h2>서비스 소개</h2> */}
+      <Container3 className="description" id="container">
         <Description></Description>
       </Container3>
-      <Container4>
-        <h1>10bun diary COMMUNITY</h1>
+      <Container4 className="community" id="container">
+        <h1 className="community-title">
+          10bun <br></br> Community
+        </h1>
       </Container4>
       <Container5 id="ranking">
         <Ranking></Ranking>
