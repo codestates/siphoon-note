@@ -98,7 +98,6 @@ export const ButtonWrapper = styled.div`
     margin-right: 12px;
     font-size: 1.3rem;
     opacity: 0.9;
-
     &:hover {
       border-radius: 30px;
       opacity: 1;
@@ -219,7 +218,6 @@ export const IconWrapper = styled.span`
   bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -238,7 +236,6 @@ export const IconWrapper2 = styled.span`
   bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
