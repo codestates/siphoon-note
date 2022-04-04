@@ -3,49 +3,107 @@ import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
+import { useState } from 'react';
+import EntireEssay from './EntireEssay';
 
 export default function PublicEssays() {
-  const data = [
+  // 전체 보기
+  const [isEntireEssay, setIsEntireEssay] = useState(false);
+  const handleLandingEntireEssay = () => {
+    setIsEntireEssay(!isEntireEssay);
+  };
+  const publicData = [
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content: '글이 들어갑니다. ',
+      content: '1 ',
     },
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content: '글이 들어갑니다. ',
+      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!2 ',
     },
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content: '글이 들어갑니다. ',
+      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!3 ',
     },
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! ',
+      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 4 ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!5',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!6',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 7 ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!8 ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!9 ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!10 ',
+    },
+    {
+      username: '이수리',
+      createdAt: '2022-03-22',
+      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 ',
     },
   ];
+
+  const length = publicData.length;
+
+  const [current, setCurrent] = useState(0);
+
+  const nextSlide = () => {
+    setCurrent(current + 4 >= length ? 0 : current + 4);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - (length % 4) : current - 4);
+  };
 
   return (
     <>
       <Wrapper>
-        {data.map((essay, index) => {
-          return (
-            <CardContainer key={index}>
-              <span className="username">{essay.username}</span>
-              <span className="created-at">{essay.createdAt}</span>
-              <p className="content">{essay.content}</p>
-            </CardContainer>
-          );
+        {publicData.map((essay, index) => {
+          if (index >= current && index <= current + 3)
+            return (
+              <CardContainer key={index} onClick={handleLandingEntireEssay}>
+                <span className="username">{essay.username}</span>
+                <span className="created-at">{essay.createdAt}</span>
+                <p className="content">{essay.content}</p>
+              </CardContainer>
+            );
         })}
       </Wrapper>
+      {isEntireEssay && (
+        <EntireEssay handleLandingEntireEssay={handleLandingEntireEssay} />
+      )}
       <Carousel>
-        <MdOutlineKeyboardArrowRight></MdOutlineKeyboardArrowRight>
+        <MdOutlineKeyboardArrowRight onClick={nextSlide} />
       </Carousel>
       <Carousel2>
-        <MdOutlineKeyboardArrowLeft></MdOutlineKeyboardArrowLeft>
+        <MdOutlineKeyboardArrowLeft onClick={prevSlide} />
       </Carousel2>
     </>
   );
@@ -63,6 +121,7 @@ const Carousel = styled.div`
   border: 3px solid black;
   border-radius: 100%;
   font-size: 4rem;
+  cursor: pointer;
 `;
 
 const Carousel2 = styled(Carousel)`
@@ -86,12 +145,17 @@ const CardContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   border-radius: 22px;
-  min-width: 360px;
+  width: 380px;
   min-height: 500px;
   font-size: 1.3rem;
   padding: 1.3rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   background: floralwhite;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 
   .username {
     font-size: 1.3rem;

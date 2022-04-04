@@ -37,12 +37,21 @@ export const Container3 = styled(Container2)`
 export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 1);
   border-radius: 50%;
-  height: 80vh;
+  height: 90vh;
+
+  > h1 {
+    background: floralwhite;
+    text-align: center;
+    padding: 1rem;
+    color: black;
+    border: 3px solid black;
+    border-radius: 10px;
+  }
 `;
 
 export const Container5 = styled(Container2)`
   background-color: rgb(157, 161, 255, 1);
-  height: 120vh;
+  height: 130vh;
   border-radius: 0%;
 `;
 

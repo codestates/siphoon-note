@@ -9,7 +9,7 @@ export default function Ranking() {
     scrollTrigger: {
       trigger: '.wrapper',
       start: 'top 70%',
-      end: '20% bottom',
+      end: '15% bottom',
       // markers: true,
       toggleActions: 'play pause reverse restart',
       scrub: true,

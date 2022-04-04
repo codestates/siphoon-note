@@ -6,11 +6,48 @@ export default function Description() {
   // gsap.registerPlugin(ScrollTrigger);
 
   // mapping을 위한 안에 콘텐츠 데이터 (추후리팩토링)
-  const data = [{}];
+  const DescriptionData = [
+    {
+      title: '1. 타이머',
+      image: 'clock',
+      detail: ['10분 타이머', '타이머 종료 후 자동저장', '설명3'],
+    },
+    {
+      title: '2. 습관분석',
+      image: 'calendar',
+
+      detail: ['10분 타이머', '타이머 종료 후 자동저장', '설명3'],
+    },
+    {
+      title: '3. 랭킹',
+      image: 'medal',
+
+      detail: ['10분 타이머', '타이머 종료 후 자동저장', '설명3'],
+    },
+    {
+      title: '4. 글공유',
+      image: 'star',
+
+      detail: ['10분 타이머', '타이머 종료 후 자동저장', '설명3'],
+    },
+  ];
 
   return (
     <Wrapper>
-      <CardContainer>
+      {DescriptionData.map((data, index) => {
+        return (
+          <CardContainer key={index}>
+            <img className="thumbnail" src={`img/${data.image}.svg`}></img>
+            <span className="title">{data.title}</span>
+            <div className="description">
+              <span>{data.detail[0]}</span>
+              <span>{data.detail[1]}</span>
+              <span>{data.detail[2]}</span>
+            </div>
+          </CardContainer>
+        );
+      })}
+      {/* <CardContainer>
         <img className="thumbnail" src="img/clock.svg"></img>
         <span className="title">1. 타이머</span>
         <div className="description">
@@ -45,7 +82,7 @@ export default function Description() {
           <span> 글 공개하고 공유</span>
           <a href="#public">공유보러 바로가기</a>
         </div>
-      </CardContainer>
+      </CardContainer> */}
     </Wrapper>
   );
 }

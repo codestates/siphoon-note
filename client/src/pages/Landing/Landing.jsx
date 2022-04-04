@@ -22,7 +22,7 @@ import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
 import PublicEssays from '../../components/PublicEssays';
-import { gsap } from 'gsap';
+import { gsap, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Landing({ isLogin }) {
@@ -68,12 +68,12 @@ export default function Landing({ isLogin }) {
       // markers: true,
       toggleActions: 'play pause reverse restart',
       scrub: true,
+
       // pin: true,
     },
-    duration: 2,
-    opacity: 1,
+    duration: 12,
     y: 320,
-    // ease: 'Power1.easeOut',
+    ease: Power3.easeOut,
   });
 
   gsap.to('.community-title', {
@@ -81,7 +81,7 @@ export default function Landing({ isLogin }) {
       trigger: '.community-title',
       start: 'top bottom',
       // end: '80% bottom',
-      toggleActions: 'play none reverse none',
+      toggleActions: 'play none none restart',
       scrub: true,
       // markers: true,
     },
@@ -138,7 +138,9 @@ export default function Landing({ isLogin }) {
         <Description></Description>
       </Container3>
       <Container4 className="community" id="container">
-        <h1 className="community-title">10bun Community</h1>
+        <h1 className="community-title">
+          10bun <br></br> Community
+        </h1>
       </Container4>
       <Container5 id="ranking">
         <Ranking></Ranking>

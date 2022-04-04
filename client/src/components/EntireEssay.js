@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-export default function EntireEssay({ isPublic }) {
-  const handleEntireEssay = () => {};
+export default function EntireEssay({ isPublic, handleLandingEntireEssay }) {
+  const handleEntireEssay = () => {
+    handleLandingEntireEssay();
+  };
   return (
     <ModalBackdrop onClick={handleEntireEssay}>
       <ModalView onClick={e => e.stopPropagation()}>

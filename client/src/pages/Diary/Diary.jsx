@@ -83,7 +83,6 @@ export default function Diary() {
 
   // 공개 설정
   const [isPublic, setIsPublic] = useState(false);
-  console.log('공개설정', isPublic);
   const handlePublic = () => {
     setIsPublic(!isPublic);
   };
