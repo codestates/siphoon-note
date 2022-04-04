@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
+// export const FullContainer = styled.div``;
+
+// export const MediumContainer = styled.div``;
+
 export const Container = styled.div`
-  // width: 100vw;
   height: 100vh;
   opacity: 95%;
   display: flex;
@@ -18,30 +21,42 @@ export const Container2 = styled(Container)`
   align-items: center;
   justify-content: center;
   color: black;
-  height: 80vh;
-  // border-radius: 40%;
+  height: 88vh;
+
+  .introduction-title {
+    // opacity: 0.5;
+  }
 `;
 
 export const Container3 = styled(Container2)`
-  background-color: rgb(254, 205, 133, 0.9);
-  height: 120vh;
+  background-color: rgb(254, 205, 133, 1);
+  height: 110vh;
   border-radius: 0%;
 `;
 
 export const Container4 = styled(Container2)`
-  background-color: rgb(255, 135, 70, 0.9);
+  background-color: rgb(255, 135, 70, 1);
   border-radius: 50%;
-  height: 80vh;
+  height: 90vh;
+
+  > h1 {
+    background: floralwhite;
+    text-align: center;
+    padding: 1rem;
+    color: black;
+    border: 3px solid black;
+    border-radius: 10px;
+  }
 `;
 
 export const Container5 = styled(Container2)`
-  background-color: rgb(157, 161, 255, 0.9);
-  height: 140vh;
+  background-color: rgb(157, 161, 255, 1);
+  height: 130vh;
   border-radius: 0%;
 `;
 
 export const Container6 = styled(Container2)`
-  background-color: rgb(144, 214, 255, 0.9);
+  background-color: rgb(144, 214, 255, 1);
   height: 120vh;
   border-radius: 0%;
 `;
@@ -53,17 +68,6 @@ export const Image = styled.div`
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: cover;
   flex: 1 1 0;
-
-  // animation: up-down 1.5s infinite ease-in-out alternate;
-
-  // @keyframes up-down {
-  //   from {
-  //     transform: translatey(0px);
-  //   }
-  //   to {
-  //     transform: translatey(1px);
-  //   }
-  // }
 `;
 
 export const Image2 = styled.img`
@@ -116,7 +120,7 @@ export const Image3 = styled(Image2)`
       transform: translatey(1px);
     }
   }
-  opacity: 80%;
+  opacity: 90%;
 `;
 
 export const Image4 = styled(Image3)`
