@@ -55,7 +55,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
   :focus-within {
     height: 68%;
     transition: all 0.5s ease-in-out;
@@ -71,7 +70,6 @@ export const Input = styled.textarea.attrs({
   padding: 20px;
   overflow: hidden;
   font-size: 1rem;
-
   ::placeholder {
     font-size: 0.8rem;
   }
@@ -139,12 +137,10 @@ export const Button = styled.button`
   margin: 0.2rem;
   padding: 0.45rem;
   border-radius: 10px;
-
   &:hover {
     box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
-
   &.private {
     border: none;
     box-shadow: none;
@@ -197,6 +193,94 @@ export const CardContainer = styled.div`
   font-size: 1.3rem;
   padding: 1.15rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  position: ${props => props.position || 'static'};
+  transition: 0.5s;
+  transform: ${props => props.rotate || 'rotateY(0deg)'};
+  backface-visibility: hidden;
+  .md {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+export const Backs = styled.div`
+  display: block;
+  border: 3px solid black;
+  border-radius: 22px;
+  max-height: 337px;
+  gap: 20px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  padding: 1.15rem;
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  transition: ${props => props.transition || '0.5s'};
+  backface-visibility: hidden;
+  position: ${props => props.position || 'static'};
+  // margin-bottom: 0px;
+  position: ${props => props.position || 'absolute'};
+  // top: 0px;
+  transform: ${props => props.rotate || 'rotateY(-180deg)'};
+  .tags {
+    margin: 5px 0px;
+    color: mediumslateblue;
+  }
+  .icons {
+    height: 35px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+  .icon {
+    display: flex;
+    width: 35px;
+    height: 30px;
+    color: white;
+    padding-top: 5px;
+    margin-right: 3px;
+    cursor: pointer;
+  }
+  .icon2 {
+    margin-left: 20%;
+    cursor: default;
+  }
+  .createdat {
+    display: block;
+    width: 205px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-right: 7px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+    text-align: center;
+    border: 1px solid mistyrose;
+    border-radius: 1rem;
+    background-color: peachpuff;
+  }
+
+  background-color: cornsilk;
+`;
+
+export const Hashtag = styled.span`
+  margin: 0px 5px;
+`;
+export const Icon = styled.span`
+  display: flex;
+  background-color: lightsteelblue;
+  border-radius: 15px;
+  border: 1px solid aliceblue;
+  width: 100px;
+  margin-left: 17%;
+  cursor: pointer;
+`;
+
+export const DD = styled.div`
+  display: block;
+  position: relative;
 `;
 
 export const Title = styled.span`

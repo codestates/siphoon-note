@@ -1,7 +1,8 @@
 import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { RiGift2Line } from 'react-icons/ri';
+import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
+import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -12,6 +13,7 @@ import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
 import Editor from '../../components/Editor';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Main,
@@ -34,6 +36,10 @@ import {
   Image,
   IconWrapper,
   IconWrapper2,
+  DD,
+  Backs,
+  Hashtag,
+  Icon,
 } from './Diary.style';
 
 export default function Diary() {
@@ -196,10 +202,91 @@ export default function Diary() {
 }
 
 export const Card = ({ diary }) => {
+  const navigator = useNavigate();
+  const [hover, setHover] = useState(true);
+  const deletehandle = () => {
+    // const { id } = diary;
+    // axios
+    //   .patch(`${API_HOST}/api/v1/userinfo`,
+    //     {
+    //       id,
+    //     },
+    //     { headers: { 'Content-Type': 'application/json' } }
+    //   )
+    //   .then(respond => {
+    //     if (
+    //       respond.data.message === 'Successfully moved the essay to the trash!'
+    //     ) {
+    //       navigator('/diary');
+    //     } else if (
+    //       respond.data.message ===
+    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
+    //     ) {
+    //       alert('삭제 안됨');
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
+    navigator('/signin');
+  };
+
+  // console.log(tags);
+  // const day = new Date();
+  // console.log(day);
+  // const createdat = day?.slice(0, 10) + ' ' + day?.slice(11, 19);
+
+  const modifiedhandle = () => {};
   return (
-    <CardContainer>
-      <Title>{diary.id}번째 글쓰기</Title>
-      <Content>{diary.content}</Content>
-    </CardContainer>
+    <DD>
+      {hover ? (
+        <div>
+          <CardContainer className="front">
+            <Title>{diary.id}번째 글쓰기</Title>
+            <Content>{diary.content}</Content>
+            <MdOutlineFlipCameraAndroid
+              className="md"
+              onMouseEnter={() => setHover(false)}
+            />
+          </CardContainer>
+          <Backs className="back" transition="0s" />
+        </div>
+      ) : (
+        <div>
+          <CardContainer
+            className="front"
+            rotate="rotateY(-180deg)"
+            position="absolute"
+          >
+            <Title>{diary.id}번째 글쓰기</Title>
+            <Content>{diary.content}</Content>
+            <MdOutlineFlipCameraAndroid className="md" />
+          </CardContainer>
+          <Backs
+            className="back"
+            rotate="rotateY(0deg)"
+            position="static"
+            onMouseLeave={() => setHover(true)}
+          >
+            <span className="createdat">{diary.createdAt}</span>
+            <div>
+              <div className="tags">
+                <Hashtag>#어렵구만</Hashtag>
+                <Hashtag>#CSS</Hashtag>
+                <Hashtag>#힘들어</Hashtag>
+              </div>
+              <div className="icons">
+                <Icon onClick={modifiedhandle}>
+                  <RiPencilLine className="icon" />
+                  수정
+                </Icon>
+                <Icon className="icon2">
+                  <RiDeleteBin6Line className="icon" onClick={deletehandle} />
+                  삭제
+                </Icon>
+              </div>
+            </div>
+          </Backs>
+        </div>
+      )}
+    </DD>
   );
 };
