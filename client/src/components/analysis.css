@@ -2,17 +2,20 @@
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  max-width: 88%;
-  height:100%;
+  justify-content:space-around;
+  max-width: 97%;
+  height:99%;
   background:white;
   border: 3px solid black;
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
   font-size:1.2rem;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 24px #00000080;
   padding:0.8rem;
   border-radius:20px;
+  background-image :url('/public/img/clouds.svg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:95%;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -36,11 +39,11 @@
 
 /* 날짜 */
 .react-calendar button {
-  padding:1rem;
+  padding:0.6rem;
   border: 0;
   outline: none;
   font-size: 1rem;
-  /* font-weight:bold; */
+  font-weight:bold;
 
 
 }
@@ -48,10 +51,8 @@
   cursor: pointer;
 }
 .react-calendar__navigation {
-
   display: flex;
   height: 44px;
-  margin-bottom: 2rem;
 
 }
 
@@ -60,9 +61,9 @@
   min-width: 44px;
   background: none;
   font-weight:bold;
- background: none;
- font-size: 1.4rem;
- padding-bottom:10px;
+  background: none;
+  font-size: 1.2rem;
+  padding-bottom:10px;
 }
 .react-calendar__navigation button:disabled {
   background-color: #f0f0f0;
@@ -76,8 +77,7 @@
 .react-calendar__month-view__weekdays {
   text-align: center;
   text-transform: uppercase;
-  font-size: 1rem;
-  font-weight:bold;
+  font-size: 0.9rem;
 
 
 }
@@ -122,54 +122,55 @@
   background-color: #e6e6e6;
 }
 .react-calendar__tile--now {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
   color: white;
   
 }
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
   color: white;
 
 
 }
 .react-calendar__tile--hasActive {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 }
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 
 }
 .react-calendar__tile--active {
-  background: SlateBlue;
+  background: lightgray;
   color: white;
   border-radius:10px;
 }
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 
 }
 .react-calendar--selectRange .react-calendar__tile--hover {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 }
 
-.dot {
-  height: 9px;
-  width: 9px;
-  background-color: gold;
-  border-radius: 50%;
+.image {
+  display:inline;
+  height: 30px;
+  width: 30px;
+  border-radius: 15%;
   display: flex;
-  margin-left: 1px;
+  background:wheat;
+  padding:2px;
 }

@@ -8,11 +8,11 @@ export default function Analysis() {
   // 캘린더
   const [value, onChange] = useState(new Date());
   const [mark, setMark] = useState([
-    '11-03-2022',
-    '03-03-2022',
-    '05-03-2022',
-    '06-04-2022',
-    '07-02-2022',
+    '11-04-2022',
+    '03-04-2022',
+    '17-03-2022',
+    '24-04-2022',
+    '31-03-2022',
     '10-02-2022',
     '11-02-2022',
   ]);
@@ -37,8 +37,8 @@ export default function Analysis() {
             if (mark.find(x => x === moment(date).format('DD-MM-YYYY'))) {
               return (
                 <>
-                  <div className="mark">
-                    <div className="dot"></div>
+                  <div>
+                    <img className="image" src="img/pencil.svg"></img>
                   </div>
                 </>
               );
@@ -61,40 +61,37 @@ export default function Analysis() {
 }
 
 const Wrapper = styled.div`
-  // height: 100vh;
-  margin-left: 55px;
-  margin-right: 5px;
+  margin-left: 27px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 0.8rem;
-  padding-top: 102px;
+  padding-top: 120px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;
 `;
 
 const CalendarWrapper = styled.div`
-  flex: 3.6 1 0;
+  flex: 3 1 0;
   display: flex;
   justify-content: center;
-  z-index: 1000;
+  z-index: 300;
 `;
 
 const AnalysisWrapper = styled.div`
-  // border: 1px solid black;
   border-top: none;
-  flex: 1 1 0;
+  flex: 0.85 1 0;
   display: flex;
   gap: 30px;
-  padding: 2rem;
-  // margin-top: rem;
-  // background: rgb(211, 211, 211, 0.1);
+  padding: 2rem 1.2rem;
   border-radius: 10px;
+  margin-bottom: 5px;
 `;
 
 const Box = styled.div`
   flex: 1 1 0;
   border: 3px solid black;
-  background: white;
+  background: rgb(211, 211, 211, 0.7);
   border-radius: 20px;
   flex-wrap: wrap;
   font-size: 1.1rem;

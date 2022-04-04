@@ -24,7 +24,7 @@ const ModalBackdrop = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: grid;
   place-items: center;
 
@@ -43,7 +43,6 @@ const ModalBackdrop = styled.div`
 const ModalView = styled.div.attrs(props => ({
   role: 'dialog',
 }))`
-  // display: flex;
   flex-direction: column;
   border-radius: 10px;
   border: 3px solid black;
@@ -60,8 +59,8 @@ const ModalView = styled.div.attrs(props => ({
     }
   }
 
-  width: 350px;
-  height: 225px;
+  width: 400px;
+  height: 260px;
 
   > div.close-btn {
     position: relative;

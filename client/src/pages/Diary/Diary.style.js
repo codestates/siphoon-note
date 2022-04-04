@@ -18,7 +18,7 @@ export const SideBar = styled.div`
   padding: 0.25rem;
   width: 32rem;
   top: 34px;
-  margin-top: 34px;
+  margin-top: 48px;
   left: 18px;
   flex: 2 1 0;
 `;
@@ -30,12 +30,12 @@ export const Image = styled.div`
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: contain;
-  opacity: 25%;
+  opacity: 15%;
   align-items: end;
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 1.7rem;
+  font-size: 2em;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -45,7 +45,6 @@ export const TimerWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  // opacity: 70%;
 `;
 export const InputWrapper = styled.div`
   border-radius: 20px;
@@ -56,9 +55,8 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
-  &:focus-within {
-    height: 66%;
+  :focus-within {
+    height: 68%;
     transition: all 0.5s ease-in-out;
   }
 `;
@@ -71,7 +69,10 @@ export const Input = styled.textarea.attrs({
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
-
+  font-size: 1rem;
+  ::placeholder {
+    font-size: 0.8rem;
+  }
   &:focus {
     outline: none;
   }
@@ -95,9 +96,7 @@ export const ButtonWrapper = styled.div`
     margin-right: 12px;
     font-size: 1.3rem;
     opacity: 0.9;
-
     &:hover {
-      // background: yellow;
       border-radius: 30px;
       opacity: 1;
     }
@@ -128,46 +127,46 @@ export const Button = styled.button`
   font-weight: 500;
   display: flex;
   cursor: pointer;
+  background-color: rgb(254, 205, 133, 0.8);
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: black;
   border: 2px solid black;
   background: white;
   font-size: 0.85rem;
-  margin: 0.3rem;
-  padding: 0.5rem;
+  margin: 0.2rem;
+  padding: 0.45rem;
   border-radius: 10px;
   &:hover {
     box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
-`;
-
-export const Button1 = styled(Button)`
-  font-weight: 500;
-  display: flex;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  color: black;
-  border: solid;
-  background: white;
-  font-size: 1.05rem;
-  margin: 0.35rem;
-  padding: 0.6rem;
-  border-radius: 10px;
-  &:hover {
-    box-shadow: 4px 2px black;
-    transition: all 0.2s ease-in-out;
+  &.private {
+    border: none;
+    box-shadow: none;
+  }
+  &.public {
+    background: darkgray;
+    box-shadow: none;
+    color: white;
+    border: 1px solid gray;
   }
 `;
 
+export const Button2 = styled(Button).attrs({
+  title: '현재 글이 공개 설정으로 되어있습니다.',
+})``;
+
+export const Button3 = styled(Button).attrs({
+  title: '현재 글이 비공개 설정으로 되어있습니다.',
+})``;
+
 export const Main = styled.div`
-  margin-left: 15px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 35px;
   border-radius: 10px;
   padding: 1rem;
-  padding-top: 105px;
+  padding-top: 120px;
   gap: 1.9rem;
   flex: 3.5 1 0;
   display: grid;
@@ -185,19 +184,108 @@ export const Wrapper3 = styled(Wrapper1)``;
 export const CardContainer = styled.div`
   border: 3px solid black;
   background: white;
-  border-radius: 20px;
-  max-height: 281px;
+  border-radius: 22px;
+  max-height: 337px;
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.2rem;
-  padding: 1rem;
+  word-break: break-all;
+  font-size: 1.3rem;
+  padding: 1.15rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  position: ${props => props.position || 'static'};
+  transition: 0.5s;
+  transform: ${props => props.rotate || 'rotateY(0deg)'};
+  backface-visibility: hidden;
+  .md {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+export const Backs = styled.div`
+  display: block;
+  border: 3px solid black;
+  border-radius: 22px;
+  max-height: 337px;
+  gap: 20px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  padding: 1.15rem;
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  transition: ${props => props.transition || '0.5s'};
+  backface-visibility: hidden;
+  position: ${props => props.position || 'static'};
+  // margin-bottom: 0px;
+  position: ${props => props.position || 'absolute'};
+  // top: 0px;
+  transform: ${props => props.rotate || 'rotateY(-180deg)'};
+  .tags {
+    margin: 5px 0px;
+    color: mediumslateblue;
+  }
+  .icons {
+    height: 35px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+  .icon {
+    display: flex;
+    width: 35px;
+    height: 30px;
+    color: white;
+    padding-top: 5px;
+    margin-right: 3px;
+    cursor: pointer;
+  }
+  .icon2 {
+    margin-left: 20%;
+    cursor: default;
+  }
+  .createdat {
+    display: block;
+    width: 205px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-right: 7px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+    text-align: center;
+    border: 1px solid mistyrose;
+    border-radius: 1rem;
+    background-color: peachpuff;
+  }
+
+  background-color: cornsilk;
+`;
+
+export const Hashtag = styled.span`
+  margin: 0px 5px;
+`;
+export const Icon = styled.span`
+  display: flex;
+  background-color: lightsteelblue;
+  border-radius: 15px;
+  border: 1px solid aliceblue;
+  width: 100px;
+  margin-left: 17%;
+  cursor: pointer;
+`;
+
+export const DD = styled.div`
+  display: block;
+  position: relative;
 `;
 
 export const Title = styled.span`
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: bold;
   height: 25px;
   text-align: center;
@@ -210,11 +298,10 @@ export const Content = styled.div`
 export const IconWrapper = styled.span`
   position: absolute;
   color: black;
-  right: 10px;
-  bottom: 43%;
+  right: 7px;
+  bottom: 45%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {
@@ -230,10 +317,9 @@ export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;
   left: 3px;
-  bottom: 45%;
+  bottom: 47%;
   font-size: 2.1rem;
   cursor: pointer;
-
   animation: left-right 0.6s infinite ease-in-out alternate;
   @keyframes left-right {
     from {

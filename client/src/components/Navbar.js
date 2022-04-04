@@ -29,7 +29,7 @@ export default function Navbar({ isLogin, userInfo }) {
               <Profile>{userInfo.name}님, 안녕하세요!</Profile>
               <ImgWrapper
                 onClick={() => SetIsDropdown(!isDropdown)}
-                src="img/testava8.svg"
+                src="img/avatar/plant2.svg"
               ></ImgWrapper>
             </>
           ) : (
@@ -50,44 +50,22 @@ export default function Navbar({ isLogin, userInfo }) {
 
 const Profile = styled.div`
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-align: center;
-  line-height: 71px;
-
+  line-height: 65px;
   text-transform: uppercase;
 `;
 
 const ImgWrapper = styled.img`
   font-weight: bold;
   cursor: pointer;
-  width: 4rem;
-
-  margin: 0px 5px;
-
-  &:hover {
-    animation: spin 1.5s infinite linear;
-  }
-
-  @-webkit-keyframes spin {
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  @-moz-keyframes spin {
-    100% {
-      -moz-transform: rotate(360deg);
-    }
-  }
-  @-ms-keyframes spin {
-    100% {
-      -ms-transform: rotate(360deg);
-    }
-  }
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  width: 3.8rem;
+  height: auto;
+  margin: 0px 7px;
+  border: 1.9px solid black;
+  border-radius: 100%;
+  background: white;
+  padding: 0.2rem;
 `;
 
 const Nav = styled.nav`
@@ -99,15 +77,14 @@ const Nav = styled.nav`
   right: 0;
   display: flex;
   justify-content: flex-end;
-  z-index: 1000;
+  z-index: 500;
 `;
 
 const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 10px;
-
-  margin-top: 13px;
+  margin-right: 13px;
+  margin-top: 17px;
 `;
 
 const NavBtnLink = styled(Link)`
@@ -119,9 +96,9 @@ const NavBtnLink = styled(Link)`
   color: black;
   border: solid;
   background: white;
-  font-size: 1.05rem;
-  margin: 0.35rem;
-  padding: 0.6rem;
+  font-size: 1.15rem;
+  margin: 0.45rem;
+  padding: 0.65rem;
   &:hover {
     box-shadow: 4px 2px black;
     transition: all 0.2s ease-in-out;
