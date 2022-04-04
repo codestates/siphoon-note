@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Description() {
+  // gsap.registerPlugin(ScrollTrigger);
+
   // mapping을 위한 안에 콘텐츠 데이터 (추후리팩토링)
   const data = [{}];
 
@@ -8,7 +12,7 @@ export default function Description() {
     <Wrapper>
       <CardContainer>
         <img className="thumbnail" src="img/clock.svg"></img>
-        <span className="title">타이머</span>
+        <span className="title">1. 타이머</span>
         <div className="description">
           <span>10분 타이머</span>
           <span>타이머 종료 후 자동저장</span>
@@ -17,7 +21,7 @@ export default function Description() {
       </CardContainer>
       <CardContainer>
         <img className="thumbnail" src="img/calendar.svg"></img>
-        <span className="title">습관분석</span>
+        <span className="title">2. 습관분석</span>
         <div className="description">
           <span>달력 가나다라</span>
           <span>글쓰기 습관 트레킹</span>
@@ -26,16 +30,15 @@ export default function Description() {
       </CardContainer>
       <CardContainer>
         <img className="thumbnail" src="img/medal.svg"></img>
-        <span className="title">랭킹</span>
+        <span className="title">3. 랭킹</span>
         <div className="description">
           <span>글쓰기 상위랭킹 4명 선정</span>
           <a href="#ranking">랭킹으로 바로가기</a>
-          {/* <span> 글 공개하고 공유</span> */}
         </div>
       </CardContainer>
       <CardContainer>
         <img className="thumbnail" src="img/star.svg"></img>
-        <span className="title">글 공유</span>
+        <span className="title">4. 글 공유</span>
         <div className="description">
           <span>영감아앙아</span>
           <span>매일 글감 키워드 전달</span>
@@ -73,14 +76,13 @@ const CardContainer = styled.div`
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 
   .thumbnail {
-    width: 44%;
+    width: 50%;
     border: 2px solid black;
     padding: 1.5rem;
     margin: 1.5rem 2rem 0.7rem 2rem;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
     border-radius: 10px;
     background: white;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   .title {
@@ -96,8 +98,8 @@ const CardContainer = styled.div`
     }
 
     > a {
-      // text-decoration: none;
-      // color: black;
+      text-decoration: none;
+      color: black;
     }
   }
 `;

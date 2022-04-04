@@ -1,14 +1,37 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Ranking() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to('.wrapper', {
+    scrollTrigger: {
+      trigger: '.wrapper',
+      start: 'top 70%',
+      end: '20% bottom',
+      // markers: true,
+      toggleActions: 'play pause reverse restart',
+      scrub: true,
+    },
+    duration: 3,
+    opacity: 1,
+  });
+
+  const rankingData = [
+    { image: '0', nickname: '이수리', data: '38' },
+    { image: '1', nickname: '이소리', data: '35' },
+    { image: '2', nickname: '이쇼리', data: '33' },
+    { image: '3', nickname: '이슈리', data: '32' },
+  ];
   return (
-    <Wrapper>
+    <Wrapper className="wrapper">
       <Description>
         <RankingCard className="first">
-          <img src="img/avatar/0.svg"></img>
+          <img src={`img/avatar/${rankingData[0].image}.svg`}></img>
           <div className="content">
-            <div className="name">1등 이수리</div>
-            <div>38건</div>
+            <div className="name">1등 {rankingData[0].nickname}</div>
+            <div>{rankingData[0].data}일</div>
           </div>
         </RankingCard>
         <div className="second">
@@ -16,27 +39,19 @@ export default function Ranking() {
         </div>
       </Description>
       <Content>
-        <RankingCard>
-          <img src="img/avatar/1.svg"></img>
-          <div className="content">
-            <div className="name">2등 이수리</div>
-            <div>38건</div>
-          </div>
-        </RankingCard>
-        <RankingCard>
-          <img src="img/avatar/12.svg"></img>
-          <div className="content">
-            <div className="name">3등 이수리</div>
-            <div>38건</div>
-          </div>
-        </RankingCard>
-        <RankingCard>
-          <img src="img/avatar/3.svg"></img>
-          <div className="content">
-            <div className="name">4등 이수리</div>
-            <div>38일</div>
-          </div>
-        </RankingCard>
+        {rankingData.map((data, index) => {
+          if (index >= 1) {
+            return (
+              <RankingCard key={index}>
+                <img src={`img/avatar/${data.image}.svg`}></img>
+                <div className="content">
+                  <div className="name">2등 {data.nickname}</div>
+                  <div>{data.data}일</div>
+                </div>
+              </RankingCard>
+            );
+          }
+        })}
       </Content>
     </Wrapper>
   );
@@ -47,6 +62,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 88vw;
   padding: 1rem;
+  opacity: 0.7;
 `;
 
 const Description = styled.div`
@@ -103,7 +119,7 @@ const RankingCard = styled.div`
   }
 
   .content {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
