@@ -5,24 +5,36 @@ import {
   SigninWrapper,
   ButtonsWrapper,
   OauthButtonsWrapper,
+  ErrMesWrapper,
 } from './Signin.style';
 import { Footer, SubmitBtn, TextInput } from '../../components';
 
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [errorMsg, setErrorMsg] = useState('');
   const handleSubmit = event => {
     event.preventDefault();
-
-    console.log(email);
-    console.log(password);
   };
 
-  // useEffect(() => {
-  //   // 첫 렌더링시
-  //   console.log(email);
-  // }, [email]);
+  const onLoginBtn = e => {
+    if (handleLogin()) {
+      setErrorMsg('');
+    }
+  };
+  const handleLogin = () => {
+    let booleanArray = [];
+    if (!email && !password) {
+      setErrorMsg('아이디와 비밀번호를 입력해주세요');
+    } else if (!email) {
+      setErrorMsg('아이디를 입력해주세요');
+    } else if (!password) {
+      setErrorMsg('비밀번호를 입력해주세요');
+    } // else if (서버에서 로그인 실패응답을 받을때){
+    setErrorMsg('아이디 또는 비밀번호가 일치하지 않습니다');
+    //   booleanArray.push(true);
+    // }
+  };
 
   const textInputList = [
     {
@@ -33,15 +45,6 @@ export default function Signin() {
       minLength: 10,
       maxLength: 32,
       onBlur: setEmail,
-    },
-    {
-      title: '패스워드',
-      type: 'password',
-      placeholder: '패스워드을 입력하세요',
-      autoComplete: 'on',
-      minLength: 8,
-      maxLength: 32,
-      onBlur: setPassword,
     },
     {
       title: '패스워드',
@@ -85,9 +88,11 @@ export default function Signin() {
                 );
               }
             )}
+            {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
 
             <ButtonsWrapper>
               <SubmitBtn
+                onClick={onLoginBtn}
                 value="로그인"
                 BackgroundColor="green"
                 // type={'submit'}
