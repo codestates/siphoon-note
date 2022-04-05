@@ -225,9 +225,10 @@ export default function Diary() {
                 })}
                 <div ref={setLastElement} style={{ position: 'hidden' }}></div>
               </Wrapper3>
-              {/* {loading && <Loading />}
-               */}
+
+              <div />
               <LoadingWrapper>
+                {/* {loading && <Loading />} */}
                 <Loading />
               </LoadingWrapper>
             </Main>

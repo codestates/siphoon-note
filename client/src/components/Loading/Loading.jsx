@@ -1,4 +1,8 @@
-import { LoadingWrapper } from './Loading.style';
+import { LoadingWrapper, LoadingIndicate } from './Loading.style';
 export default function Loading() {
-  return <LoadingWrapper></LoadingWrapper>;
+  return (
+    <LoadingWrapper>
+      <LoadingIndicate />
+    </LoadingWrapper>
+  );
 }

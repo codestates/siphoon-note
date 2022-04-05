@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Loading from '../../components/Loading';
+import axios from 'axios';
 
 import {
   TextInputListWrapper,
@@ -12,11 +14,8 @@ export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
-    console.log(email);
-    console.log(password);
   };
 
   // useEffect(() => {
@@ -33,15 +32,6 @@ export default function Signin() {
       minLength: 10,
       maxLength: 32,
       onBlur: setEmail,
-    },
-    {
-      title: '패스워드',
-      type: 'password',
-      placeholder: '패스워드을 입력하세요',
-      autoComplete: 'on',
-      minLength: 8,
-      maxLength: 32,
-      onBlur: setPassword,
     },
     {
       title: '패스워드',
