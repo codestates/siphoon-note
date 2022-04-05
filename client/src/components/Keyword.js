@@ -4,7 +4,6 @@ import colorTheme from '../colorTheme';
 export default function Keyword({ themeIndex, handleKeyword }) {
   return (
     <ModalBackdrop onClick={handleKeyword}>
-      {/* <img src="img/party.svg"></img> */}
       <ModalView themeIndex={themeIndex} onClick={e => e.stopPropagation()}>
         <div onClick={handleKeyword} className="close-btn">
           &times;

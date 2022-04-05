@@ -41,8 +41,80 @@ import {
   Hashtag,
   Icon,
 } from './Diary.style';
+import axios from 'axios';
+const API_HOST = 'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com';
 
 export default function Diary() {
+  //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
+  //* 글 수정하기, 글 삭제하기
+  //* 휴지통 영구 삭제하기, 복원하기
+  //* 태그 불러오기
+  //* 휴지통에 글 불러오기 (조건부로 렌더링하기)
+  //* 태그별/검색기능별 필터링하기 (여기는 무한 스크롤X)
+
+  // 유저정보 업데이트
+
+  // 다이어리 전체 리스트
+  const [diaryList, setDiaryList] = useState(dummy);
+
+  // 다이어리 deleted 필터링하기 => 굳이? 그냥 mapping 할 때 조건을 걸어줘도 상관 없을 것 같다.
+  // const [deletedDiaryList, setDeletedDiaryList] = useState(null);
+  // const filtered = diaryList.filter(diary => {
+  //   return diary.isPublic === true;
+  // });
+  // setDeletedDiaryList(filtered);
+
+  // 달력 마크 & 기록 분석
+  const [markList, setMarkList] = useState(null);
+  const [recordList, setRecordList] = useState(null);
+
+  // 태그
+  const defaultTags = ['오늘아침'];
+  const [tags, setTags] = useState(defaultTags);
+
+  // 사용자 에세이 인풋
+  const [input, setInput] = useState('');
+  const handleInput = e => {
+    setInput(e.target.value);
+    setTimerOn(true);
+  };
+
+  // 공개 설정
+  const [isPublic, setIsPublic] = useState(false);
+  const handlePublic = () => {
+    setIsPublic(!isPublic);
+  };
+
+  //* 서버에 요청 보내기 (액세스 토큰이 필요하다)
+  const handleSubmit = () => {
+    if (input !== '') {
+      setInput('');
+      setTimerOn(false);
+
+      axios
+        .post(
+          `${API_HOST}/api/v1/essays`,
+          {
+            content: input,
+            tags: [
+              { id: 0, tagName: tags[0] },
+              { id: 1, tagName: tags[1] },
+              { id: 2, tagName: tags[2] },
+            ],
+            isPublic,
+          },
+          { headers: { authorization: { 'Content-Type': 'application/json' } } }
+        )
+        .then(res => {
+          if (res.status === 201) {
+            // 성공적으로 메세지가 올라가면 다시 메세지를 조회한다. readHandler?
+          }
+        })
+        .catch(error => console.log(err));
+      // setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    }
+  };
+
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
   const [minute, setMinute] = useState(1);
@@ -64,33 +136,10 @@ export default function Diary() {
   // 페이지 전환
   const [pageNum, setPageNum] = useState(0);
 
-  // 테마 인덱스 (뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.)
+  // 테마 인덱스
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
-  };
-
-  // 사용자 에세이 인풋
-  const [input, setInput] = useState('');
-  const handleInput = e => {
-    setInput(e.target.value);
-    setTimerOn(true);
-  };
-
-  // 다이어리 리스트
-  const [diaryList, setDiaryList] = useState(dummy);
-  const handleSubmit = () => {
-    if (input !== '') {
-      setInput('');
-      setTimerOn(false);
-      setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
-    }
-  };
-
-  // 공개 설정
-  const [isPublic, setIsPublic] = useState(false);
-  const handlePublic = () => {
-    setIsPublic(!isPublic);
   };
 
   return (
@@ -129,8 +178,7 @@ export default function Diary() {
             </ButtonWrapper>
             <Input value={input} onChange={handleInput} />
             <ButtonWrapper2>
-              <Tag />
-
+              <Tag tags={tags} setTags={setTags} />
               {isPublic ? (
                 <Button2 className="public" onClick={handlePublic}>
                   공개
@@ -184,7 +232,11 @@ export default function Diary() {
             </Main>
           </>
         ) : (
-          <Analysis setPageNum={setPageNum} />
+          <Analysis
+            markList={markList}
+            recordList={recordList}
+            setPageNum={setPageNum}
+          />
         )}
         {pageNum === 0 ? (
           <IconWrapper>

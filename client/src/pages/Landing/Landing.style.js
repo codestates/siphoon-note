@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-// export const FullContainer = styled.div``;
-
-// export const MediumContainer = styled.div``;
-
 export const Container = styled.div`
   height: 100vh;
   opacity: 95%;
@@ -22,10 +18,6 @@ export const Container2 = styled(Container)`
   justify-content: center;
   color: black;
   height: 88vh;
-
-  .introduction-title {
-    // opacity: 0.5;
-  }
 `;
 
 export const Container3 = styled(Container2)`
@@ -37,9 +29,10 @@ export const Container3 = styled(Container2)`
 export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 1);
   border-radius: 50%;
-  height: 90vh;
+  height: 80vh;
+  margin: 2% 2%;
 
-  > h1 {
+  > h2 {
     background: floralwhite;
     text-align: center;
     padding: 1rem;
@@ -144,6 +137,7 @@ export const Button = styled.button`
   font-weight: bold;
   border: none;
   background: rgb(254, 205, 133, 0.02);
+  // font-family: 'Syncopate', sans-serif;
   &:hover {
     opacity: 90%;
   }

@@ -8,6 +8,7 @@ export default function Trash({
   setIsTrashDropdown,
   setIsTagsDropdown,
 }) {
+  // 클릭한 메세지의 아이디를 서버 쪽으로 보내준다. 복원과 삭제 이후에 휴지통에 있는 내역을 다시 불러와야 한다.
   const dummy = [
     { id: 1, content: 'deleted message 0' },
     { id: 2, content: 'delted message 1' },

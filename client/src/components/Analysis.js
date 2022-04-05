@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import './analysis.css';
 
-export default function Analysis() {
+export default function Analysis({ markList, recordList }) {
   // 캘린더
   const [value, onChange] = useState(new Date());
   const [mark, setMark] = useState([

@@ -171,6 +171,7 @@ export const Main = styled.div`
   flex: 3.5 1 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 3rem;
 `;
 
 export const Wrapper1 = styled.div`
@@ -192,6 +193,7 @@ export const CardContainer = styled.div`
   word-break: break-all;
   font-size: 1.3rem;
   padding: 1.15rem;
+  margin-bottom: -2.5rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   position: ${props => props.position || 'static'};
   transition: 0.5s;
@@ -221,7 +223,7 @@ export const Backs = styled.div`
   backface-visibility: hidden;
   position: ${props => props.position || 'static'};
   // margin-bottom: 0px;
-  position: ${props => props.position || 'absolute'};
+  // position: ${props => props.position || 'absolute'};
   // top: 0px;
   transform: ${props => props.rotate || 'rotateY(-180deg)'};
   .tags {

@@ -111,7 +111,6 @@ const CardContainer = styled.div`
   font-weight: 400;
   padding: 1.3rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
-
   .thumbnail {
     width: 50%;
     border: 2px solid black;
@@ -121,19 +120,16 @@ const CardContainer = styled.div`
     background: white;
     opacity: 0.9;
   }
-
   .title {
     font-weight: bold;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
   }
-
   .description {
     > span {
       display: block;
       margin: 5px 0px;
     }
-
     > a {
       text-decoration: none;
       color: black;

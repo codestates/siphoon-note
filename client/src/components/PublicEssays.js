@@ -12,6 +12,8 @@ export default function PublicEssays() {
   const handleLandingEntireEssay = () => {
     setIsEntireEssay(!isEntireEssay);
   };
+
+  // 들어가는 데이터 : 유저 이름이 아니라 이메일, 내용, 태그(태그도 들어오나?), 작성한 날짜!
   const publicData = [
     {
       username: '이수리',
@@ -66,7 +68,8 @@ export default function PublicEssays() {
     {
       username: '이수리',
       createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 ',
+      content:
+        ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다.글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11',
     },
   ];
 
@@ -145,13 +148,15 @@ const CardContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   border-radius: 22px;
-  width: 380px;
-  min-height: 500px;
+  width: 375px;
+  height: 514px;
   font-size: 1.3rem;
   padding: 1.3rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   background: floralwhite;
   cursor: pointer;
+  overflow: hidden;
+  display: block;
 
   &:hover {
     transform: scale(1.03);
@@ -160,13 +165,17 @@ const CardContainer = styled.div`
   .username {
     font-size: 1.3rem;
     font-weight: bold;
+    display: block;
   }
 
   .created-at {
     font-size: 1.1rem;
     color: gray;
+    display: block;
   }
   .content {
     font-size: 1.1rem;
+    display: block;
+    margin: 0.5rem 0rem;
   }
 `;
