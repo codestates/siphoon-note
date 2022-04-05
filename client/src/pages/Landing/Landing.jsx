@@ -1,3 +1,4 @@
+import dummy from '../../static/landingDummy';
 import { useState, useEffect } from 'react';
 import {
   Container,
@@ -18,6 +19,7 @@ import {
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
 import { HiArrowUp, HiArrowDown } from 'react-icons/hi';
+import { BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
@@ -25,17 +27,22 @@ import PublicEssays from '../../components/PublicEssays';
 import { gsap, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
+import * as config from '../../config/config';
 
 export default function Landing({ isLogin }) {
   // 서버에서 유저 랭킹과 공개글 리스트 받기
-  const [topUser, setTopUser] = useState(null);
-  const [publicEssay, setPublicEssay] = useState(null);
+  const dummyData = [
+    { profileImage: { imageUrls: '0' }, username: '이규리', usageDates: '38' },
+    { profileImage: { imageUrls: '1' }, username: '이소리', usageDates: '35' },
+    { profileImage: { imageUrls: '2' }, username: '이쇼리', usageDates: '33' },
+    { profileImage: { imageUrls: '3' }, username: '이슈리', usageDates: '32' },
+  ];
+  const [topUser, setTopUser] = useState(dummyData);
+  const [publicEssay, setPublicEssay] = useState(dummy);
 
-  const API_HOST =
-    'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com';
-
+  //! 랜딩 페이지 서버 요청 (1차 작업)
   axios
-    .get(`${API_HOST}/api/v1/`, {
+    .get(config.LOAD_LANDING, {
       headers: {
         authorization: { 'Content-Type': 'application/json' },
       },
@@ -158,7 +165,9 @@ export default function Landing({ isLogin }) {
       </Container3>
       <Container4>
         <h2 className="community-title">
-          10bun <br></br> Community
+          notice board
+          <br></br>
+          <BsFillArrowDownCircleFill className="community-icon"></BsFillArrowDownCircleFill>
         </h2>
       </Container4>
       <Container5 id="ranking">

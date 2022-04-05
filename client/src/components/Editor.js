@@ -1,17 +1,26 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
+import axios from 'axios';
+import * as config from '../config/config';
 
-export default function Editor({ isPublic, handlePublic }) {
-  const handleEditor = () => {};
-  const handleSubmit = () => {};
+export default function Editor({
+  isPublic,
+  handlePublic,
+  handleEditor,
+  diary,
+  number,
+}) {
+  const handleSubmit = () => {
+    // 서버에 수정 요청 보내기 (액세스 토큰 필요)
+    axios.put(config.UPDATE_ESSAY_BY_ID + '/' + diary.essayId, {});
+  };
   return (
     <ModalBackdrop onClick={handleEditor}>
       <ModalView onClick={e => e.stopPropagation()}>
         <div onClick={handleEditor} className="close-btn">
           &times;
         </div>
-        <div className="title">3번째 글쓰기</div>
+        <div className="title">{number}번째 글쓰기</div>
         <span>2022년 3월 25일</span>
         <div className="toggle">
           <span>공개</span>
@@ -25,12 +34,7 @@ export default function Editor({ isPublic, handlePublic }) {
           )}
           <span>비공개</span>
         </div>
-        <textarea className="desc">
-          영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가영감 가나 아자차영감 가나다라 마바사v 가나다라
-        </textarea>
+        <textarea className="desc">{diary.content}</textarea>
         <Button onClick={handleSubmit}>SUBMIT</Button>
       </ModalView>
     </ModalBackdrop>

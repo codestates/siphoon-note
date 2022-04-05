@@ -4,76 +4,16 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 import { useState } from 'react';
-import EntireEssay from './EntireEssay';
+import PublicEntireEssay from './PublicEntireEssay';
 
-export default function PublicEssays() {
+export default function PublicEssays({ publicEssay }) {
   // 전체 보기
   const [isEntireEssay, setIsEntireEssay] = useState(false);
-  const handleLandingEntireEssay = () => {
+  const handleEntireEssay = () => {
     setIsEntireEssay(!isEntireEssay);
   };
 
-  // 들어가는 데이터 : 유저 이름이 아니라 이메일, 내용, 태그(태그도 들어오나?), 작성한 날짜!
-  const publicData = [
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '1 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!2 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!3 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 4 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!5',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!6',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 7 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!8 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!9 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!10 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content:
-        ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다.글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11',
-    },
-  ];
-
-  const length = publicData.length;
+  const length = publicEssay.length;
 
   const [current, setCurrent] = useState(0);
 
@@ -88,11 +28,11 @@ export default function PublicEssays() {
   return (
     <>
       <Wrapper>
-        {publicData.map((essay, index) => {
+        {publicEssay.map((essay, index) => {
           if (index >= current && index <= current + 3)
             return (
-              <CardContainer key={index} onClick={handleLandingEntireEssay}>
-                <span className="username">{essay.username}</span>
+              <CardContainer key={index} onClick={handleEntireEssay}>
+                <span className="username">{essay.writer}</span>
                 <span className="created-at">{essay.createdAt}</span>
                 <p className="content">{essay.content}</p>
               </CardContainer>
@@ -100,7 +40,7 @@ export default function PublicEssays() {
         })}
       </Wrapper>
       {isEntireEssay && (
-        <EntireEssay handleLandingEntireEssay={handleLandingEntireEssay} />
+        <PublicEntireEssay handleEntireEssay={handleEntireEssay} />
       )}
       <Carousel>
         <MdOutlineKeyboardArrowRight onClick={nextSlide} />

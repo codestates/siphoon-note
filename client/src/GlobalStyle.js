@@ -19,7 +19,7 @@ import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;5
     margin:0px;
   }
   h2 {
-    font-size:3rem;
+    font-size:2.5rem;
     margin:0px;
   }
   `;

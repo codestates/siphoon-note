@@ -26,11 +26,11 @@ export const SideBar = styled.div`
 export const Image = styled.div`
   position: fixed;
   right: 0px;
-  left: 85px;
+  left: 5%;
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
   background-size: contain;
-  opacity: 15%;
+  opacity: 10%;
   align-items: end;
 `;
 
@@ -199,11 +199,12 @@ export const CardContainer = styled.div`
   transition: 0.5s;
   transform: ${props => props.rotate || 'rotateY(0deg)'};
   backface-visibility: hidden;
+  cursor: pointer;
   .flip-icon {
     position: absolute;
     top: 0;
     margin: 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     right: 0;
   }
 `;
@@ -236,18 +237,23 @@ export const Backs = styled.div`
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: darkgray;
     font-weight: 500;
   }
 
-  // background-color: rgb(211, 211, 211, 0.9);
   background-color: floralwhite;
 `;
 
 export const Hashtag = styled.span`
   color: black;
-  // text-decoration: underline;
+  // background-color: white;
+  text-decoration: underline;
+  // border: 1px solid black;
+  // border-radius: 5px;
+  // padding: 0.2rem 0.8rem;
+  margin: 0.1rem;
+  font-size: 1.2rem;
 `;
 export const Icon = styled.span`
   display: flex;
@@ -258,14 +264,14 @@ export const Icon = styled.span`
     display: flex;
     border-radius: 5px;
     padding: 0.7rem;
-    margin: 0.5rem 0.8rem;
+    margin: 0.5rem 0.5rem;
     color: black;
     font-size: 3.5rem;
-    border: 2px solid black;
+    border: 1px solid black;
     cursor: pointer;
 
     &:hover {
-      transform: scale(1.05);
+      border: 2px solid black;
     }
   }
 `;

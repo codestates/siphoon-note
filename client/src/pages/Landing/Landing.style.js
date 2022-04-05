@@ -30,15 +30,19 @@ export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 1);
   border-radius: 50%;
   height: 80vh;
-  margin: 2% 2%;
+  margin: 0% 30%;
 
   > h2 {
     background: floralwhite;
     text-align: center;
-    padding: 1rem;
+    padding: 0.7rem;
     color: black;
     border: 3px solid black;
     border-radius: 10px;
+  }
+
+  .community-icon {
+    margin: -0.2rem;
   }
 `;
 
