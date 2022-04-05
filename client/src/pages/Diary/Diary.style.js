@@ -25,12 +25,14 @@ export const SideBar = styled.div`
 
 export const Image = styled.div`
   position: fixed;
-  right: 0px;
-  left: 5%;
+  width: 55%;
+  right: 0%;
+  top: 2%;
+  left: 37%;
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
-  background-size: contain;
-  opacity: 10%;
+  background-size: cover;
+  opacity: 60%;
   align-items: end;
 `;
 

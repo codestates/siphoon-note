@@ -8,13 +8,19 @@ export default function TagToggle({
 }) {
   const dummy = ['tag1', 'tag2', 'tag3'];
 
+  //! 서버에 태그 목록 요청하는 로직
+  const handleTagList = () => {
+    if (isTagsDropdown === false) {
+    }
+  };
+
   const handleDropdown = () => {
     setIsTrashDropdown(false);
     setIsTagsDropdown(!isTagsDropdown);
   };
   return (
     <>
-      <Wrapper>
+      <Wrapper onClick={handleTagList}>
         <div>Tags</div>
         <span onClick={handleDropdown}>
           <TiArrowSortedDown></TiArrowSortedDown>

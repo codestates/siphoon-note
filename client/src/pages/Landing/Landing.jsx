@@ -89,13 +89,13 @@ export default function Landing({ isLogin }) {
 
   // 스크롤 트리거 구현
   gsap.registerPlugin(ScrollTrigger);
+
   gsap.to('.introduction-title', {
     scrollTrigger: {
       trigger: '.introduction-title',
       start: 'top center',
       end: 'bottom bottom',
       // markers: true,
-      // pin: true,
       toggleActions: 'play pause reverse restart',
       scrub: true,
     },
@@ -118,7 +118,7 @@ export default function Landing({ isLogin }) {
   return (
     <>
       <Container>
-        <Image imgUrl="img/avatar/tree.svg"></Image>
+        <Image imgUrl="img/background/tree.svg"></Image>
         <NavLink to="/diary">
           <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
         </NavLink>
