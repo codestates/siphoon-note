@@ -2,7 +2,7 @@ import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
-import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
+import { VscCircleOutline } from 'react-icons/vsc';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -293,8 +293,8 @@ export const Card = ({ diary }) => {
           <CardContainer className="front">
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <MdOutlineFlipCameraAndroid
-              className="md"
+            <VscCircleOutline
+              className="flip-icon"
               onMouseEnter={() => setHover(false)}
             />
           </CardContainer>
@@ -309,7 +309,7 @@ export const Card = ({ diary }) => {
           >
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <MdOutlineFlipCameraAndroid className="md" />
+            <VscCircleOutline className="flip-icon" />
           </CardContainer>
           <Backs
             className="back"
@@ -317,23 +317,15 @@ export const Card = ({ diary }) => {
             position="static"
             onMouseLeave={() => setHover(true)}
           >
-            <span className="createdat">{diary.createdAt}</span>
-            <div>
-              <div className="tags">
-                <Hashtag>#어렵구만</Hashtag>
-                <Hashtag>#CSS</Hashtag>
-                <Hashtag>#힘들어</Hashtag>
-              </div>
-              <div className="icons">
-                <Icon onClick={modifiedhandle}>
-                  <RiPencilLine className="icon" />
-                  수정
-                </Icon>
-                <Icon className="icon2">
-                  <RiDeleteBin6Line className="icon" onClick={deletehandle} />
-                  삭제
-                </Icon>
-              </div>
+            <Icon>
+              <RiPencilLine onClick={modifiedhandle} className="back" />
+              <RiDeleteBin6Line className="back" onClick={deletehandle} />
+            </Icon>
+            <span className="createdat">2022. 04. 09</span>
+            <div className="tags">
+              <Hashtag>#다섯자태그</Hashtag>
+              <Hashtag>#다섯자태규</Hashtag>
+              {/* <Hashtag>#다섯자태게</Hashtag> */}
             </div>
           </Backs>
         </div>
