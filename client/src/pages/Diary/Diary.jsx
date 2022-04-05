@@ -42,7 +42,7 @@ import {
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-const API_HOST = 'http://ec2-3-38-168-114.ap-northeast-2.compute.amazonaws.com';
+import * as config from '../../config/config';
 
 export default function Diary() {
   //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
@@ -57,9 +57,23 @@ export default function Diary() {
   // 다이어리 전체 리스트
   const [diaryList, setDiaryList] = useState(dummy);
 
-  // 달력 마크 & 기록 분석
-  const [markList, setMarkList] = useState(null);
-  const [recordList, setRecordList] = useState(null);
+  //! 달력 마크 & 기록 분석 (서버에서 데이터 받아와서 갱신만 하면 되는 상태)
+  const [markList, setMarkList] = useState([
+    '11-04-2022',
+    '03-04-2022',
+    '24-04-2022',
+    '17-03-2022',
+    '31-03-2022',
+    '10-05-2022',
+    '11-05-2022',
+  ]);
+
+  const [recordList, setRecordList] = useState({
+    totalEssay: 128,
+    currentStreaks: 12,
+    longestStreaks: 25,
+    usageDate: 30,
+  });
 
   // 태그
   const defaultTags = ['윤슬'];
@@ -105,7 +119,7 @@ export default function Diary() {
     setThemeIndex(index);
   };
 
-  //* 서버에 요청 보내기 (액세스 토큰이 필요하다)
+  //! 서버에 글 작성 요청 보내기 (토큰필요, 1차 작업)
   const handleSubmit = () => {
     if (input !== '') {
       setInput('');
@@ -113,7 +127,7 @@ export default function Diary() {
 
       axios
         .post(
-          `${API_HOST}/api/v1/essays`,
+          config.WRITE_ESSAY,
           {
             content: input,
             isPublic,
