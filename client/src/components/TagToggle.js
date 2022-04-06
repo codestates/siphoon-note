@@ -20,6 +20,9 @@ export default function TagToggle({
     '다섯자태그',
     '다섯자태그',
     '다섯자태그',
+    '다섯자태그',
+    '다섯자태그',
+    '다섯자태그',
   ]);
 
   //! 서버에 태그 목록 조회하는 로직 (토큰 필요, 1차 작업)
@@ -81,12 +84,13 @@ export default function TagToggle({
         <Container>
           <div>
             {tagList.map((tag, index) => {
-              if (index >= current && index <= current + 18)
+              if (index >= current && index <= current + 18) {
                 return (
                   <span key={index} onClick={event => filterByTag(event)}>
                     {tag}
                   </span>
                 );
+              }
             })}
           </div>
           <span className="carousel">
