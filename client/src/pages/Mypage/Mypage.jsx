@@ -13,7 +13,7 @@ import {
 import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Mypage() {
   const [name, setName] = useState('');
@@ -28,7 +28,7 @@ export default function Mypage() {
   // const [age, setAge] = useState('');
 
   const birth = useRef();
-  console.log(birth);
+
   const handleInputValue = key => e => {
     const value = birth.current.value.replace(/\D+/g, '');
     const numberLength = 8;
@@ -139,9 +139,6 @@ export default function Mypage() {
     },
   ];
 
-  console.log(gender);
-  console.log(selecteOption);
-
   return (
     <div>
       {show && <Popup setShow={setShow} content={content} title={title} />}
@@ -162,18 +159,16 @@ export default function Mypage() {
                 index
               ) => {
                 return (
-                  <>
-                    <TextInput
-                      key={index}
-                      title={title}
-                      type={type}
-                      placeholder={placeholder}
-                      autoComplete={autoComplete}
-                      minLength={minLength}
-                      maxLength={maxLength}
-                      onBlur={onBlur}
-                    />
-                  </>
+                  <TextInput
+                    key={index}
+                    title={title}
+                    type={type}
+                    placeholder={placeholder}
+                    autoComplete={autoComplete}
+                    minLength={minLength}
+                    maxLength={maxLength}
+                    onBlur={onBlur}
+                  />
                 );
               }
             )}

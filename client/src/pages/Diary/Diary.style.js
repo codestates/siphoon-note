@@ -225,6 +225,8 @@ export const IconWrapper = styled.span`
   }
 `;
 
+export const LoadingWrapper = styled.div``;
+
 export const IconWrapper2 = styled.span`
   position: absolute;
   color: black;

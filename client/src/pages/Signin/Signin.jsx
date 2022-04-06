@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Loading from '../../components/Loading';
+import axios from 'axios';
 
 import {
   TextInputListWrapper,
@@ -13,7 +15,8 @@ export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const handleSubmit = event => {
+
+  const handleSubmit = async event => {
     event.preventDefault();
   };
 

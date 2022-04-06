@@ -5,7 +5,7 @@ export function Selectbox({ options, select, setSelect }) {
   const handleSelect = e => {
     setSelect(e.target.value);
   };
-  console.log(options);
+
   return (
     <Select value={select} onChange={handleSelect}>
       {options.map(option => (
