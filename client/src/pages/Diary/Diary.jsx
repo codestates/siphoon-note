@@ -135,7 +135,7 @@ export default function Diary() {
             // 성공적으로 글이 작성되면 다시 메세지를 조회한다. readHandler?
           }
         })
-        .catch(error => console.log(err));
+        .catch(error => console.log(error));
       // setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
     }
   };
