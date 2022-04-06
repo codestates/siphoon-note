@@ -8,10 +8,12 @@ const {
   updateUserInfo,
 } = require('../controllers/users');
 
-// ! /routes/index.js에서 user.CRUD 경로가 설정되어 있어서
-// 이대로 사용하면 경로 중복 예외가 생김
-// 수정 예정
+const { login, logout } = require('../controllers/auth');
+
+// index.js에서 컨트롤러 메소드로 바로 매칭했기 때문에 현재 이 모듈은 사용되지 않음
 router.post('/signup', createUserAccount);
+router.post('/signin', login);
+router.post('/signout', logout);
 router.get('/userinfo', getUserUserInfo);
 router.patch('/userinfo', updateUserInfo);
 router.delete('/userinfo', deleteUserAccount);
