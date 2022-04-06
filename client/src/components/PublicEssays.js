@@ -4,73 +4,16 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 import { useState } from 'react';
-import EntireEssay from './EntireEssay';
+import PublicEntireEssay from './PublicEntireEssay';
 
-export default function PublicEssays() {
+export default function PublicEssays({ publicEssay }) {
   // 전체 보기
   const [isEntireEssay, setIsEntireEssay] = useState(false);
-  const handleLandingEntireEssay = () => {
+  const handleEntireEssay = () => {
     setIsEntireEssay(!isEntireEssay);
   };
-  const publicData = [
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '1 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!2 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!3 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: '글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 4 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!5',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!6',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트! 7 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!8 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!9 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!10 ',
-    },
-    {
-      username: '이수리',
-      createdAt: '2022-03-22',
-      content: ' 글이 들어갑니다. 글 줄 테스트! 글 줄 테스트! 글 줄 테스트!11 ',
-    },
-  ];
 
-  const length = publicData.length;
+  const length = publicEssay.length;
 
   const [current, setCurrent] = useState(0);
 
@@ -85,11 +28,11 @@ export default function PublicEssays() {
   return (
     <>
       <Wrapper>
-        {publicData.map((essay, index) => {
+        {publicEssay.map((essay, index) => {
           if (index >= current && index <= current + 3)
             return (
-              <CardContainer key={index} onClick={handleLandingEntireEssay}>
-                <span className="username">{essay.username}</span>
+              <CardContainer key={index} onClick={handleEntireEssay}>
+                <span className="username">{essay.writer}</span>
                 <span className="created-at">{essay.createdAt}</span>
                 <p className="content">{essay.content}</p>
               </CardContainer>
@@ -97,7 +40,7 @@ export default function PublicEssays() {
         })}
       </Wrapper>
       {isEntireEssay && (
-        <EntireEssay handleLandingEntireEssay={handleLandingEntireEssay} />
+        <PublicEntireEssay handleEntireEssay={handleEntireEssay} />
       )}
       <Carousel>
         <MdOutlineKeyboardArrowRight onClick={nextSlide} />
@@ -145,13 +88,15 @@ const CardContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   border-radius: 22px;
-  width: 380px;
-  min-height: 500px;
+  width: 375px;
+  height: 514px;
   font-size: 1.3rem;
   padding: 1.3rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   background: floralwhite;
   cursor: pointer;
+  overflow: hidden;
+  display: block;
 
   &:hover {
     transform: scale(1.03);
@@ -160,13 +105,17 @@ const CardContainer = styled.div`
   .username {
     font-size: 1.3rem;
     font-weight: bold;
+    display: block;
   }
 
   .created-at {
     font-size: 1.1rem;
     color: gray;
+    display: block;
   }
   .content {
     font-size: 1.1rem;
+    display: block;
+    margin: 0.5rem 0rem;
   }
 `;
