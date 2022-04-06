@@ -1,9 +1,11 @@
 const { getRefreshToken } = require('./getRefreshToken');
-const { isValidToken } = require('./isValidToken');
-const { returnRegisterToken } = require('./returnRegisterToken');
+const { signup } = require('./signup');
+const { signin } = require('./signin');
 
+// 인증, 인가에 필요한 비지니스 로직
+// 토큰 관련 모듈을 utils로 분리하는 것으로 고려한다면, controller에서는 어떤 내용이 필요할지
 module.exports = {
   getRefreshToken,
-  isValidToken,
-  returnRegisterToken,
+  signup,
+  signin,
 };
