@@ -20,8 +20,19 @@ router.use((err, req, res, next) => {
   });
 });
 
-router.use('/', require('./main'));
-router.use('/users', require('./users'));
-router.use('/essays', require('./essays'));
+// ! user 관련 경로가 /users로 시작되지 않는데 하나씩 설정해야 하는지?
+
+const BASE_URI = '/api/v1';
+
+router.use(BASE_URI, require('./main'));
+
+router.use(`${BASE_URI}/signup`, require('./users'));
+router.use(`${BASE_URI}/signin`, require('./users'));
+router.use(`${BASE_URI}/signout`, require('./users'));
+router.use(`${BASE_URI}/userinfo`, require('./users'));
+
+router.use(`${BASE_URI}/essays`, require('./essays'));
+router.use(`${BASE_URI}/trashes`, require('./essays'));
+router.use(`${BASE_URI}/tags`, require('./essays'));
 
 module.exports = router;
