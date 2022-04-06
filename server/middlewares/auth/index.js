@@ -1,6 +1,6 @@
 const { createAccessToken } = require('./createAccessToken');
 const { createRefreshToken } = require('./createRefreshToken');
-const { getUserIdFromToken } = require('./getUserIdFromToken');
+const { getUserIdFromToken } = require('../user/getUserIdFromToken');
 const { tokenValidator } = require('./tokenValidator');
 const { hasTokenInCookies } = require('./hasTokenInCookies');
 
