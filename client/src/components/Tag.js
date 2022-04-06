@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 
-export default function Tag() {
-  const defaultTags = ['오늘아침'];
-  const [tags, setTags] = useState(defaultTags);
+export default function Tag({ tags, setTags }) {
   const removeTag = selected => {
     const filtered = tags.filter((_, index) => {
       return index !== selected;

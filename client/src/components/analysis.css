@@ -3,15 +3,19 @@
   flex-direction:column;
   align-items:center;
   justify-content:space-around;
-  max-width: 96%;
-  height:100%;
+  max-width: 97%;
+  height:99%;
   background:white;
   border: 3px solid black;
   line-height: 1.125em;
   font-size:1.2rem;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 24px #00000080;
   padding:0.8rem;
   border-radius:20px;
+  background-image :url('/public/img/clouds.svg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:95%;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -38,7 +42,7 @@
   padding:0.6rem;
   border: 0;
   outline: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight:bold;
 
 
@@ -74,7 +78,6 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 0.9rem;
-  /* margin-bottom:1px; */
 
 
 }
@@ -119,53 +122,55 @@
   background-color: #e6e6e6;
 }
 .react-calendar__tile--now {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
   color: white;
   
 }
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
   color: white;
 
 
 }
 .react-calendar__tile--hasActive {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 }
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 
 }
 .react-calendar__tile--active {
-  background: SlateBlue;
+  background: lightgray;
   color: white;
   border-radius:10px;
 }
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 
 }
 .react-calendar--selectRange .react-calendar__tile--hover {
-  background: SlateBlue;
+  background: lightgray;
   border-radius:10px;
 
 }
 
 .image {
   display:inline;
-  height: 23px;
-  width: 23px;
-  border-radius: 20%;
+  height: 30px;
+  width: 30px;
+  border-radius: 15%;
   display: flex;
+  background:wheat;
+  padding:2px;
 }

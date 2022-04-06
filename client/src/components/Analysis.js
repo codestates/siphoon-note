@@ -4,24 +4,17 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import './analysis.css';
 
-export default function Analysis() {
+export default function Analysis({ markList, recordList }) {
   // 캘린더
   const [value, onChange] = useState(new Date());
-  const [mark, setMark] = useState([
-    '11-03-2022',
-    '03-03-2022',
-    '17-03-2022',
-    '24-03-2022',
-    '31-03-2022',
-    '10-02-2022',
-    '11-02-2022',
-  ]);
 
+  const { totalEssay, currentStreaks, longestStreaks, usageDate } = recordList;
+  console.log(currentStreaks);
   // 분석 데이터 3종
   const analysisData = [
-    { title: '가장 생산성이 높은 시간', data: '저녁 7시' },
-    { title: '에세이 연속 작성 일수', data: '5일' },
-    { title: '이달 에세이 작성 수', data: '36개' },
+    { title: 'usageDate?', data: usageDate },
+    { title: '에세이 연속 작성 일수', data: currentStreaks },
+    { title: '최장 연속 작성 일수', data: longestStreaks },
   ];
 
   return (
@@ -34,7 +27,7 @@ export default function Analysis() {
           formatDay={(locale, date) => moment(date).format('DD')}
           value={value}
           tileContent={({ date, view }) => {
-            if (mark.find(x => x === moment(date).format('DD-MM-YYYY'))) {
+            if (markList.find(x => x === moment(date).format('DD-MM-YYYY'))) {
               return (
                 <>
                   <div>
@@ -65,7 +58,7 @@ const Wrapper = styled.div`
   margin-right: 35px;
   border-radius: 10px;
   padding: 0.8rem;
-  padding-top: 105px;
+  padding-top: 120px;
   flex: 3.5 1 0;
   display: flex;
   flex-direction: column;
@@ -80,11 +73,12 @@ const CalendarWrapper = styled.div`
 
 const AnalysisWrapper = styled.div`
   border-top: none;
-  flex: 1 1 0;
+  flex: 0.85 1 0;
   display: flex;
   gap: 30px;
-  padding: 2rem;
+  padding: 2rem 1.2rem;
   border-radius: 10px;
+  margin-bottom: 5px;
 `;
 
 const Box = styled.div`

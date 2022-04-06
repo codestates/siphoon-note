@@ -47,14 +47,19 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
         <>
           <Tooltip>
             <span className="tooltip-text">
-              훌륭해요! 목표시간이 얼마 남지 않았어요!(예시)
+              훌륭해요! 목표시간까지 얼마 남지 않았어요!
             </span>
           </Tooltip>
           <Tooltip2>
             <span className="tooltip-text">
-              타이머 종료 후 글은 자동으로 저장됩니다.
+              타이머 종료 후 글은 자동으로 저장됩니다
             </span>
           </Tooltip2>
+          <Tooltip3>
+            <span className="tooltip-text">
+              잠시 후 글이 자동으로 저장됩니다
+            </span>
+          </Tooltip3>
         </>
       )}
     </>
@@ -63,12 +68,12 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
 
 const Tooltip = styled.div`
   position: absolute;
-  top: -5px;
+  top: -10px;
   display: inline-block;
   background: rgb(0, 0, 0, 0.4);
   font-size: 0.8rem;
-  padding: 0px 6px;
-  animation: fadein 5s;
+  padding: 2px 8px;
+  animation: fadein ease-in-out 5s;
   animation-fill-mode: forwards;
   border-radius: 5px;
 
@@ -95,5 +100,11 @@ const Tooltip = styled.div`
 const Tooltip2 = styled(Tooltip)`
   opacity: 0;
   animation-delay: 5s;
+  animation-duration: 5s;
+`;
+
+const Tooltip3 = styled(Tooltip)`
+  opacity: 0;
+  animation-delay: 53s;
   animation-duration: 5s;
 `;

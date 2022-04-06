@@ -4,7 +4,6 @@ import colorTheme from '../colorTheme';
 export default function Keyword({ themeIndex, handleKeyword }) {
   return (
     <ModalBackdrop onClick={handleKeyword}>
-      {/* <img src="img/party.svg"></img> */}
       <ModalView themeIndex={themeIndex} onClick={e => e.stopPropagation()}>
         <div onClick={handleKeyword} className="close-btn">
           &times;
@@ -43,7 +42,6 @@ const ModalBackdrop = styled.div`
 const ModalView = styled.div.attrs(props => ({
   role: 'dialog',
 }))`
-  // display: flex;
   flex-direction: column;
   border-radius: 10px;
   border: 3px solid black;
@@ -60,8 +58,8 @@ const ModalView = styled.div.attrs(props => ({
     }
   }
 
-  width: 350px;
-  height: 225px;
+  width: 400px;
+  height: 260px;
 
   > div.close-btn {
     position: relative;
