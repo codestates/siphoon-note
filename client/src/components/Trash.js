@@ -33,13 +33,10 @@ export default function Trash({
   const [trashList, setTrashList] = useState(dummy);
 
   const length = trashList.length;
-
   const [current, setCurrent] = useState(0);
-
   const nextSlide = () => {
     setCurrent(current + 5 >= length ? 0 : current + 5);
   };
-
   const prevSlide = () => {
     setCurrent(current === 0 ? length - (length % 5) : current - 5);
   };

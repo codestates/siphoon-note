@@ -61,13 +61,10 @@ export default function TagToggle({
   };
 
   const length = tagList.length;
-
   const [current, setCurrent] = useState(0);
-
   const nextSlide = () => {
     setCurrent(current + 18 >= length ? 0 : current + 18);
   };
-
   const prevSlide = () => {
     setCurrent(current === 0 ? length - (length % 18) : current - 18);
   };
