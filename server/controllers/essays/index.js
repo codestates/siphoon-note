@@ -4,6 +4,7 @@ const { deleteEssay } = require('./deleteEssay');
 const { getEssayList } = require('./getEssayList');
 const { getEssayListByFilter } = require('./getEssayListByFilter');
 const { getPublicEssayList } = require('./getPublicEssayList');
+const { getTagList } = require('./getTagList');
 
 module.exports = {
   createEssay,
@@ -14,4 +15,5 @@ module.exports = {
   deleteEssay,
   getEssayListByFilter,
   getPublicEssayList,
+  getTagList,
 };
