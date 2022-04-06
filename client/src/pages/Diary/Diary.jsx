@@ -45,7 +45,7 @@ import {
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-import * as config from '../../config/config';
+import config from '../../config/config.js';
 
 export default function Diary() {
   //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
