@@ -2,16 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  createUser,
-  getUser,
-  deleteUser,
-  updateUser,
+  createUserAccount,
+  deleteUserAccount,
+  getUserUserInfo,
+  updateUserInfo,
 } = require('../controllers/users');
 
-router.post('/signup', createUser);
-// !회원정보 조회 요청이 따로 있었는지 확인
-router.get('/userinfo', getUser);
-router.patch('/userinfo', updateUser);
-router.delete('/userinfo', deleteUser);
+// ! /routes/index.js에서 user.CRUD 경로가 설정되어 있어서
+// 이대로 사용하면 경로 중복 예외가 생김
+// 수정 예정
+router.post('/signup', createUserAccount);
+router.get('/userinfo', getUserUserInfo);
+router.patch('/userinfo', updateUserInfo);
+router.delete('/userinfo', deleteUserAccount);
 
 module.exports = router;
