@@ -1,8 +1,8 @@
 import { ButtonWrap, Button } from './SubmitBtn.style';
 
-export default function SubmitBtn({ value, BackgroundColor, color, click }) {
+export default function SubmitBtn({ value, BackgroundColor, color, onClick }) {
   return (
-    <Button BackgroundColor={BackgroundColor} onClick={click} color={color}>
+    <Button BackgroundColor={BackgroundColor} onClick={onClick} color={color}>
       {value}
     </Button>
   );
