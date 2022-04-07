@@ -1,17 +1,45 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
+import { useState } from 'react';
+import axios from 'axios';
+import * as config from '../config/config';
 
-export default function Editor({ isPublic, handlePublic }) {
-  const handleEditor = () => {};
-  const handleSubmit = () => {};
+export default function Editor({
+  isPublic,
+  handlePublic,
+  handleEditor,
+  diary,
+  number,
+}) {
+  const [input, setInput] = useState(diary.content);
+  const handleChange = e => {
+    setInput(e.target.value);
+  };
+  const handleSubmit = () => {
+    //! 서버에 수정 요청 보내기 (토큰 필요, 1차 작업 완료)
+    axios
+      .put(
+        config.UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
+        {
+          content: input,
+          isPublic,
+        },
+        { headers: { authorization: { 'Content-Type': 'application/json' } } }
+      )
+      .then(res => {
+        if (res.status === 200) {
+          // 성공적으로 글이 업데이트 되면 다시 메세지를 조회한다. readHandler?
+        }
+      })
+      .catch(error => console.log(err));
+  };
   return (
     <ModalBackdrop onClick={handleEditor}>
       <ModalView onClick={e => e.stopPropagation()}>
         <div onClick={handleEditor} className="close-btn">
           &times;
         </div>
-        <div className="title">3번째 글쓰기</div>
+        <div className="title">{number}번째 글쓰기</div>
         <span>2022년 3월 25일</span>
         <div className="toggle">
           <span>공개</span>
@@ -25,11 +53,8 @@ export default function Editor({ isPublic, handlePublic }) {
           )}
           <span>비공개</span>
         </div>
-        <textarea className="desc">
-          영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가영감 가나 아자차영감 가나다라 마바사v 가나다라
+        <textarea value={input} onChange={handleChange} className="desc">
+          {diary.content}
         </textarea>
         <Button onClick={handleSubmit}>SUBMIT</Button>
       </ModalView>

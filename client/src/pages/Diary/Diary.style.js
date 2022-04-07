@@ -25,12 +25,14 @@ export const SideBar = styled.div`
 
 export const Image = styled.div`
   position: fixed;
-  right: 0px;
-  left: 85px;
+  width: 55%;
+  right: 0%;
+  top: 2%;
+  left: 37%;
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat;
-  background-size: contain;
-  opacity: 15%;
+  background-size: cover;
+  opacity: 60%;
   align-items: end;
 `;
 
@@ -55,7 +57,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease-in-out;
-
   :focus-within {
     height: 68%;
     transition: all 0.5s ease-in-out;
@@ -71,7 +72,6 @@ export const Input = styled.textarea.attrs({
   padding: 20px;
   overflow: hidden;
   font-size: 1rem;
-
   ::placeholder {
     font-size: 0.8rem;
   }
@@ -139,12 +139,10 @@ export const Button = styled.button`
   margin: 0.2rem;
   padding: 0.45rem;
   border-radius: 10px;
-
   &:hover {
     box-shadow: 2px 1px black;
     transition: all 0.2s ease-in-out;
   }
-
   &.private {
     border: none;
     box-shadow: none;
@@ -175,6 +173,7 @@ export const Main = styled.div`
   flex: 3.5 1 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 3rem;
 `;
 
 export const Wrapper1 = styled.div`
@@ -189,14 +188,99 @@ export const CardContainer = styled.div`
   border: 3px solid black;
   background: white;
   border-radius: 22px;
-  max-height: 337px;
+  max-height: 339px;
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
   word-break: break-all;
   font-size: 1.3rem;
   padding: 1.15rem;
+  margin-bottom: -2.5rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  position: ${props => props.position || 'static'};
+  transition: 0.5s;
+  transform: ${props => props.rotate || 'rotateY(0deg)'};
+  backface-visibility: hidden;
+  cursor: pointer;
+  .flip-icon {
+    position: absolute;
+    top: 0;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    right: 0;
+  }
+`;
+
+export const Backs = styled.div`
+  display: block;
+  border: 3px solid black;
+  border-radius: 22px;
+  max-height: 337px;
+  gap: 20px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  padding: 1.2rem;
+  box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
+  transition: ${props => props.transition || '0.5s'};
+  backface-visibility: hidden;
+  position: ${props => props.position || 'static'};
+  transform: ${props => props.rotate || 'rotateY(-180deg)'};
+
+  .tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+
+  .createdat {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3rem;
+    color: darkgray;
+    font-weight: 500;
+  }
+
+  background-color: floralwhite;
+`;
+
+export const Hashtag = styled.span`
+  color: black;
+  // background-color: white;
+  text-decoration: underline;
+  // border: 1px solid black;
+  // border-radius: 5px;
+  // padding: 0.2rem 0.8rem;
+  margin: 0.1rem;
+  font-size: 1.2rem;
+`;
+export const Icon = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .back {
+    display: flex;
+    border-radius: 5px;
+    padding: 0.7rem;
+    margin: 0.5rem 0.5rem;
+    color: black;
+    font-size: 3.5rem;
+    border: 1px solid black;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid black;
+    }
+  }
+`;
+
+export const DD = styled.div`
+  display: block;
+  position: relative;
 `;
 
 export const Title = styled.span`

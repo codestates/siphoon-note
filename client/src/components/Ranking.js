@@ -1,14 +1,33 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function Ranking() {
+export default function Ranking({ topUser }) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to('.wrapper', {
+    scrollTrigger: {
+      trigger: '.wrapper',
+      start: 'top 85%',
+      end: '15% bottom',
+      // markers: true,
+      toggleActions: 'play pause reverse restart',
+      scrub: true,
+    },
+    duration: 3,
+    opacity: 1,
+  });
+
   return (
-    <Wrapper>
+    <Wrapper className="wrapper">
       <Description>
         <RankingCard className="first">
-          <img src="img/avatar/0.svg"></img>
+          <img
+            src={`img/avatar/${topUser[0].profileImage.imageUrls}.svg`}
+          ></img>
           <div className="content">
-            <div className="name">1등 이수리</div>
-            <div>38건</div>
+            <div className="name">1등 {topUser[0].username}</div>
+            <div>{topUser[0].usageDates}일</div>
           </div>
         </RankingCard>
         <div className="second">
@@ -16,27 +35,21 @@ export default function Ranking() {
         </div>
       </Description>
       <Content>
-        <RankingCard>
-          <img src="img/avatar/1.svg"></img>
-          <div className="content">
-            <div className="name">2등 이수리</div>
-            <div>38건</div>
-          </div>
-        </RankingCard>
-        <RankingCard>
-          <img src="img/avatar/12.svg"></img>
-          <div className="content">
-            <div className="name">3등 이수리</div>
-            <div>38건</div>
-          </div>
-        </RankingCard>
-        <RankingCard>
-          <img src="img/avatar/3.svg"></img>
-          <div className="content">
-            <div className="name">4등 이수리</div>
-            <div>38일</div>
-          </div>
-        </RankingCard>
+        {topUser.map((user, index) => {
+          if (index >= 1) {
+            return (
+              <RankingCard key={index}>
+                <img
+                  src={`img/avatar/${user.profileImage.imageUrls}.svg`}
+                ></img>
+                <div className="content">
+                  <div className="name">2등 {user.username}</div>
+                  <div>{user.usageDates}일</div>
+                </div>
+              </RankingCard>
+            );
+          }
+        })}
       </Content>
     </Wrapper>
   );
@@ -47,6 +60,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 88vw;
   padding: 1rem;
+  opacity: 0.7;
 `;
 
 const Description = styled.div`
@@ -103,7 +117,7 @@ const RankingCard = styled.div`
   }
 
   .content {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

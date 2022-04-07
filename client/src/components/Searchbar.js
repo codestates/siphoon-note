@@ -1,13 +1,29 @@
 import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Searchbar() {
   const [userInput, setUserInput] = useState(undefined);
+
+  //! 서버에 필터by검색어 조회하는 로직(토큰 필요, 1차 작업)
   const handleSearch = event => {
-    console.log(event.target.value);
-    // 서버에 event.target.value 요청 보내기
-    event.target.value = '';
+    return console.log('hi?');
+    axios
+      .get(`${API_HOST}/api/v1/essays/${userInput}`, {
+        headers: { authorization: { 'Content-Type': 'application/json' } },
+      })
+      .then(res => {
+        if (res.status === 200) {
+          // 성공 응답이 오면 diary.jsx에서 diaryList를 업데이트 한다.
+        }
+      })
+      .catch(error => console.log(error));
+    setUserInput('');
+  };
+
+  const handleInput = event => {
+    setUserInput(event.target.value);
   };
 
   const handleDelete = () => {
@@ -23,6 +39,7 @@ export default function Searchbar() {
       <Input
         onKeyUp={event => (event.key === 'Enter' ? handleSearch(event) : null)}
         value={userInput}
+        onChange={handleInput}
       ></Input>
       <span onClick={handleDelete}>&times;</span>
     </Wrapper>

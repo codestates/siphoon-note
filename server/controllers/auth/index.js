@@ -1,9 +1,11 @@
 const { getRefreshToken } = require('./getRefreshToken');
-const { isValidToken } = require('./isValidToken');
-const { returnRegisterToken } = require('./returnRegisterToken');
+const { signin } = require('./signin');
+const { signout } = require('./signout');
+const { signup } = require('./signup');
 
 module.exports = {
   getRefreshToken,
-  isValidToken,
-  returnRegisterToken,
+  signin,
+  signout,
+  signup,
 };

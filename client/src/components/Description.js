@@ -1,48 +1,66 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Description() {
+  // gsap.registerPlugin(ScrollTrigger);
+
   // mapping을 위한 안에 콘텐츠 데이터 (추후리팩토링)
-  const data = [{}];
+  const DescriptionData = [
+    {
+      title: '타이머',
+      image: 'clock',
+      detail: [
+        '글쓰기 몰입을 돕는 타이머 기능',
+        '타이머 종료 후 자동 저장 기능',
+      ],
+    },
+    {
+      title: '습관분석',
+      image: 'calendar',
+
+      detail: [
+        '작성일자를 달력에 스탬프로 기록',
+        '유저의 글쓰기 데이터를 분석',
+      ],
+    },
+    {
+      title: '랭킹',
+      image: 'medal',
+      detail: ['상위 랭킹 기록 유저 4명 선정', '결과는 매주 업데이트'],
+    },
+    {
+      title: '영감',
+      image: 'star',
+      detail: [
+        '다른 유저와 나의 글 공유',
+        '매일 새로운 글감 키워드 전달',
+        '글감을 관리하는 태그 기능 제공',
+      ],
+    },
+  ];
 
   return (
     <Wrapper>
-      <CardContainer>
-        <img className="thumbnail" src="img/clock.svg"></img>
-        <span className="title">타이머</span>
-        <div className="description">
-          <span>10분 타이머</span>
-          <span>타이머 종료 후 자동저장</span>
-          <span>설명3</span>
-        </div>
-      </CardContainer>
-      <CardContainer>
-        <img className="thumbnail" src="img/calendar.svg"></img>
-        <span className="title">습관분석</span>
-        <div className="description">
-          <span>달력 가나다라</span>
-          <span>글쓰기 습관 트레킹</span>
-          <span>설명4</span>
-        </div>
-      </CardContainer>
-      <CardContainer>
-        <img className="thumbnail" src="img/medal.svg"></img>
-        <span className="title">랭킹</span>
-        <div className="description">
-          <span>글쓰기 상위랭킹 4명 선정</span>
-          <a href="#ranking">랭킹으로 바로가기</a>
-          {/* <span> 글 공개하고 공유</span> */}
-        </div>
-      </CardContainer>
-      <CardContainer>
-        <img className="thumbnail" src="img/star.svg"></img>
-        <span className="title">글 공유</span>
-        <div className="description">
-          <span>영감아앙아</span>
-          <span>매일 글감 키워드 전달</span>
-          <span> 글 공개하고 공유</span>
-          <a href="#public">공유보러 바로가기</a>
-        </div>
-      </CardContainer>
+      {DescriptionData.map((data, index) => {
+        return (
+          <CardContainer key={index}>
+            <img className="thumbnail" src={`img/${data.image}.svg`}></img>
+            {index === 3 ? (
+              <a href="#public">
+                <span className="title">{data.title}</span>
+              </a>
+            ) : (
+              <span className="title">{data.title}</span>
+            )}
+            <div className="description">
+              <span>{data.detail[0]}</span>
+              <span>{data.detail[1]}</span>
+              <span>{data.detail[2]}</span>
+            </div>
+          </CardContainer>
+        );
+      })}
     </Wrapper>
   );
 }
@@ -69,35 +87,37 @@ const CardContainer = styled.div`
   min-height: 500px;
   font-size: 1.2rem;
   font-weight: 400;
-  padding: 1.3rem;
+  padding: 1.2rem;
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
 
+  > a {
+    color: black;
+    margin-bottom: 1.3rem;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
   .thumbnail {
-    width: 44%;
+    width: 50%;
     border: 2px solid black;
     padding: 1.5rem;
     margin: 1.5rem 2rem 0.7rem 2rem;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
     border-radius: 10px;
     background: white;
-    opacity: 0.8;
+    opacity: 0.9;
   }
-
   .title {
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.3rem;
     font-size: 1.2rem;
   }
-
   .description {
     > span {
       display: block;
-      margin: 5px 0px;
-    }
-
-    > a {
-      // text-decoration: none;
-      // color: black;
+      padding: 0.35rem;
+      word-break: normal;
+      word-wrap: break-word;
     }
   }
 `;
