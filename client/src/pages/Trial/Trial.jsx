@@ -43,6 +43,8 @@ import {
 } from './Trial.style';
 
 export default function Trial() {
+  // dummy[0].content = 'nice to meet you?';
+  // console.log(dummy[0].content);
   // 오늘 날짜 구하기
   const getTodayDate = () => {
     const today = new Date();
@@ -85,7 +87,12 @@ export default function Trial() {
   const notDeletedList = entireList.filter(diary => {
     return diary.isDeleted === false;
   });
+
   const [diaryList, setDiaryList] = useState(notDeletedList);
+
+  useEffect(() => {
+    setDiaryList(notDeletedList);
+  }, [entireList]);
 
   // 키워드
   const keywordArr = [
@@ -261,6 +268,8 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
+                      diaryList={diaryList}
+                      setDiaryList={setDiaryList}
                     ></Card>
                   ) : null;
                 })}
@@ -275,6 +284,8 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
+                      diaryList={diaryList}
+                      setDiaryList={setDiaryList}
                     ></Card>
                   ) : null;
                 })}
@@ -289,6 +300,8 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
+                      diaryList={diaryList}
+                      setDiaryList={setDiaryList}
                     ></Card>
                   ) : null;
                 })}
@@ -316,7 +329,15 @@ export default function Trial() {
   );
 }
 
-export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
+export const Card = ({
+  length,
+  diary,
+  index,
+  isPublic,
+  handlePublic,
+  diaryList,
+  setDiaryList,
+}) => {
   const [isFlipIcon, setIsFlipIcon] = useState(false);
   const navigator = useNavigate();
   const [hover, setHover] = useState(true);
@@ -335,29 +356,13 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
 
   const number = length - index;
 
-  const deletehandle = () => {
-    // const { id } = diary;
-    // axios
-    //   .patch(`${API_HOST}/api/v1/userinfo`,
-    //     {
-    //       id,
-    //     },
-    //     { headers: { 'Content-Type': 'application/json' } }
-    //   )
-    //   .then(respond => {
-    //     if (
-    //       respond.data.message === 'Successfully moved the essay to the trash!'
-    //     ) {
-    //       navigator('/diary');
-    //     } else if (
-    //       respond.data.message ===
-    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
-    //     ) {
-    //       alert('삭제 안됨');
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
-    navigator('/signin');
+  const deletehandle = diary => {
+    diary.isDeleted = true;
+    const filtered = diaryList.filter(essay => {
+      return essay.essayId !== diary.essayId;
+    });
+    console.log(filtered);
+    setDiaryList(filtered);
   };
 
   return (
@@ -417,7 +422,10 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           >
             <Icon>
               <RiPencilLine onClick={handleEditor} className="back" />
-              <RiDeleteBin6Line className="back" onClick={deletehandle} />
+              <RiDeleteBin6Line
+                className="back"
+                onClick={() => deletehandle(diary)}
+              />
             </Icon>
             <span className="createdat">{diary.createdAt}</span>
             <div className="tags">

@@ -1,6 +1,6 @@
 const dummy = [
   {
-    essayId: 0,
+    essayId: 12,
     tag: ['체험', '테스트'],
     content:
       '체험용 페이지에 오신걸 환영합니다! :) 체험용 페이지에 남기시는 글을 저장되지 않습니다.',
@@ -9,7 +9,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 0,
+    essayId: 11,
     tag: ['체험', '테스트'],
     content: '휴지통 기능은 로그인 뒤 가능합니다!',
     createdAt: '2022-04-06',
@@ -17,7 +17,7 @@ const dummy = [
     isDeleted: true,
   },
   {
-    essayId: 0,
+    essayId: 10,
     tag: ['체험', '테스트'],
     content:
       '체험용 페이지에 오신걸 환영합니다! :) 체험용 페이지에 남기시는 글을 저장되지 않습니다.',
@@ -26,7 +26,7 @@ const dummy = [
     isDeleted: true,
   },
   {
-    essayId: 4,
+    essayId: 9,
     tag: ['김제형', '연극처럼', '음악'],
     content: `카메라가 아닌
     우리 모두의 시선으로부터
@@ -41,7 +41,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 2,
+    essayId: 8,
     tag: ['그래', '반갑다', '정말'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -51,7 +51,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 3,
+    essayId: 7,
     tag: ['하히', '휴휴효', '먀묘무'],
     content: '솜이야, 솜이야, 솜이야! 나는 너를 아주 많이 사랑해.',
     createdAt: '2022-04-1',
@@ -61,7 +61,7 @@ const dummy = [
   },
 
   {
-    essayId: 5,
+    essayId: 6,
     tag: ['이영훈', '돌아가자', '노래'],
     content: `나는 당신 생각하다 하루가
     다 지나가는 줄도 모르고
@@ -88,7 +88,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 6,
+    essayId: 5,
     tag: ['날씨', '봄', '햇살'],
     content: '오늘은 날씨가 좋아서, 햇빛이 드리운 길을 따라 한참을 걸어다녔다.',
     createdAt: '2022-03-22',
@@ -97,7 +97,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 7,
+    essayId: 4,
     tag: ['박준', '삶', '죽음'],
     content:
       '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다.',
@@ -107,7 +107,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 8,
+    essayId: 3,
     tag: ['그래', '반갑다', '정말'],
 
     content:
@@ -118,7 +118,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 9,
+    essayId: 2,
     tag: ['그래', '반갑다', '정말'],
 
     content:
@@ -129,7 +129,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 9,
+    essayId: 1,
     tag: ['그래', '반갑다', '정말'],
     content:
       '테스트로 적어보는 글이에요. 테스트! 아 테스트! 어떤 메모를 적을지는 모르겠습니다.',
@@ -139,7 +139,7 @@ const dummy = [
     isDeleted: false,
   },
   {
-    essayId: 9,
+    essayId: 0,
     tag: ['그래', '반갑다', '정말'],
     content:
       '사랑은 언제나 내 마음대로 되지 않았고 또 마음은 말처럼 늘 쉽지 않았던 시절 나는 가끔씩 이를테면 계절 같은 것에 취해 나를 속이며 순간의 진심 같은 말로 사랑한다고 널 사랑한다고 나는 너를',
