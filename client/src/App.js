@@ -11,14 +11,19 @@ import Navbar from './components/Navbar';
 
 function App() {
   // 로그인 관련 전역 상태 변수
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
   const [userInfo, setUserInfo] = useState({ email: '', name: 'suri' });
 
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Navbar isLogin={isLogin} userInfo={userInfo} />
+      <Navbar
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}
+        userInfo={userInfo}
+        accessToken={accessToken}
+      />
       <Routes>
         <Route exact path="/" element={<Landing isLogin={isLogin} />} />
         <Route path="/diary" element={<Diary />} />

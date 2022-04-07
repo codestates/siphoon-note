@@ -14,6 +14,8 @@ import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
+// import { UPDATE_USER_INFO, DELETE_ACCOUNT } from '../../config/config';
+// console.log(UPDATE_USER_INFO);
 
 export default function Mypage() {
   const [name, setName] = useState('');
@@ -64,6 +66,19 @@ export default function Mypage() {
 
   const onUpdateBtn = e => {
     if (handleSignup()) {
+      // axios
+      //   .patch(
+      //    UPDATE_USER_INFO,
+      //     {password, username, gender, region, birthday},
+      //     { headers: { 'Content-Type': 'application/json',authorization: `Bearer ${accessToken}` } }
+      //   )
+      //   .then(respond => {
+      //     if (respond.status === 200) {
+      //       setShow(true);
+      //       navigator('/mypage');
+      //     }
+      //   })
+      //   .catch(error => console.log(error));
       setErrorMsg('');
       setTitle('회원 수정📝');
       setContent('회원정보 수정이 완료되었습니다😀');
@@ -71,6 +86,18 @@ export default function Mypage() {
     }
   };
   const onDeleteBtn = e => {
+    // axios
+    //   .delete(
+    //     DELETE_ACCOUNT,
+    //     { headers: { 'Content-Type': 'application/json', authorization: `Bearer ${accessToken}`} }
+    //   )
+    //   .then(respond => {
+    //     if (respond.status === 200) {
+    //       setShow(true);
+    //       navigator('/');
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
     setTitle('회원 탈퇴🥲');
     setContent('정말로 탈퇴하시겠습니까🥲');
     setShow(true);

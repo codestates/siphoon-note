@@ -289,28 +289,23 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
   const number = length - index;
 
   const deletehandle = () => {
-    // const { id } = diary;
     // axios
-    //   .patch(`${API_HOST}/api/v1/userinfo`,
-    //     {
-    //       id,
-    //     },
-    //     { headers: { 'Content-Type': 'application/json' } }
+    //   .patch(DELETE_ESSAY_BY_ID,
+    //     { headers: { 'Content-Type': 'application/json', authorization: `Bearer ${accessToken}` } }
     //   )
     //   .then(respond => {
     //     if (
-    //       respond.data.message === 'Successfully moved the essay to the trash!'
+    //       respond.status === 200
     //     ) {
     //       navigator('/diary');
     //     } else if (
-    //       respond.data.message ===
-    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
+    //       respond.status === 400
     //     ) {
     //       alert('삭제 안됨');
     //     }
     //   })
     //   .catch(error => console.log(error));
-    navigator('/signin');
+    navigator('/diary');
   };
 
   return (
@@ -365,7 +360,6 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           <Backs
             className="back"
             rotate="rotateY(0deg)"
-            position="static"
             onMouseLeave={() => setHover(true)}
           >
             <Icon>

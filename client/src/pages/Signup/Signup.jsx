@@ -14,6 +14,7 @@ import { TextInput, SubmitBtn, Footer } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { SignupModal } from './SignupModal';
+import { SIGN_UP } from '../../config/config.js';
 
 export default function Signup() {
   const [errorMsg, setErrorMsg] = useState('');
@@ -106,7 +107,8 @@ export default function Signup() {
     }
 
     // axios
-    //   .post(`${API_HOST}/api/v1/signup`,
+    //   .post(
+    //     SIGN_UP,
     //     {
     //       email,
     //       password,
@@ -118,14 +120,11 @@ export default function Signup() {
     //     { headers: { 'Content-Type': 'application/json' } }
     //   )
     //   .then(respond => {
-    //     if (respond.data.message === 'Successfully Created New User!') {
+    //     if (respond.status === 200) {
     //       setShow(true);
     //       navigator('/signin');
     //       console.log(respond);
-    //     } else if (
-    //       respond.data.message ===
-    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
-    //     ) {
+    //     } else if (respond.status === 400) {
     //       setErrorMsg('이미 가입된 이메일입니다.');
     //     }
     //   })

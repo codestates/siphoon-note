@@ -5,7 +5,7 @@ import Dropdown from './Dropdown';
 import styled from 'styled-components';
 
 // 로그인 상태에 따른 조건부 렌더링 구현
-export default function Navbar({ isLogin, userInfo }) {
+export default function Navbar({ isLogin, userInfo, setIsLogin, accessToken }) {
   const [isDropdown, SetIsDropdown] = useState(false);
 
   const menuArr = [
@@ -29,7 +29,7 @@ export default function Navbar({ isLogin, userInfo }) {
               <Profile>{userInfo.name}님, 안녕하세요!</Profile>
               <ImgWrapper
                 onClick={() => SetIsDropdown(!isDropdown)}
-                src="img/avatar/plant2.svg"
+                src="img/avatar/0.svg"
               ></ImgWrapper>
             </>
           ) : (
@@ -42,7 +42,15 @@ export default function Navbar({ isLogin, userInfo }) {
             })
           )}
         </NavMenu>
-        {isDropdown ? <Dropdown></Dropdown> : null}
+        {isDropdown ? (
+          <Dropdown
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+            accessToken={accessToken}
+            drop={isDropdown}
+            setDrop={SetIsDropdown}
+          ></Dropdown>
+        ) : null}
       </Nav>
     </>
   );

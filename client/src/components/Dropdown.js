@@ -1,8 +1,16 @@
 // import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+// import * as config from '../config/config';
+import Navbar from './Navbar';
 
-export default function Dropdown() {
+export default function Dropdown({
+  isLogin,
+  setIsLogin,
+  accessToken,
+  drop,
+  setDrop,
+}) {
   const dropDownArr = [
     { title: '홈으로', to: '/', logout: false },
     {
@@ -17,18 +25,46 @@ export default function Dropdown() {
     },
   ];
 
+  const handleLogout = () => {
+    // axios
+    //   .delete(SIGN_OUT, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       authorization: `Bearer ${accessToken}`,
+    //     },
+    //   })
+    //   .then(respond => {
+    //     if (respond.status === 200) {
+    //       setIsLogin(false);
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
+    setIsLogin(false);
+  };
+
+  const handle = () => {
+    setDrop(false);
+  };
   // 로그아웃 요청 보내기
 
   return (
-    <DropdownLayout>
+    <DropdownLayout onClick={handle}>
       <DropdownMenu>
-        {dropDownArr.map(({ title, to, logout }, index) => {
-          return (
-            <MenuItems key={index}>
-              <NavLink to={to}>{title}</NavLink>
-            </MenuItems>
-          );
-        })}
+        {isLogin &&
+          drop &&
+          dropDownArr.map(({ title, to, logout }, index) => {
+            return logout ? (
+              <MenuItems key={index}>
+                <NavLink to={to} onClick={handleLogout}>
+                  {title}
+                </NavLink>
+              </MenuItems>
+            ) : (
+              <MenuItems key={index}>
+                <NavLink to={to}>{title}</NavLink>
+              </MenuItems>
+            );
+          })}
       </DropdownMenu>
     </DropdownLayout>
   );
