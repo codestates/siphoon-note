@@ -7,40 +7,12 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 
-export default function TagToggle({
+export default function TrialTagToggle({
+  tagList,
   setIsTagsDropdown,
   isTagsDropdown,
   setIsTrashDropdown,
 }) {
-  const [tagList, setTagList] = useState([
-    '10bun-diary',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-  ]);
-
-  //! 서버에 태그 목록 조회하는 로직 (토큰 필요, 1차 작업)
-  const handleTagList = () => {
-    if (isTagsDropdown === false) {
-      axios
-        .get(`${API_HOST}/api/v1/tags`, {
-          headers: { authorization: { 'Content-Type': 'application/json' } },
-        })
-        .then(res => {
-          if (res.status === 200) {
-            // 성공 응답이 오면 setTagList 상태 갱신 함수 업데이트 한다.
-          }
-        })
-        .catch(error => console.log(error));
-    }
-  };
-
   //! 서버에 필터by태그 조회하는 로직 (토큰 필요, 1차 작업)
   const filterByTag = event => {
     axios
@@ -71,7 +43,7 @@ export default function TagToggle({
 
   return (
     <>
-      <Wrapper onClick={handleTagList}>
+      <Wrapper>
         <div>Tags</div>
         <span onClick={handleDropdown}>
           <TiArrowSortedDown></TiArrowSortedDown>

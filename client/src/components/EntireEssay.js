@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-export default function EntireEssay({
-  isPublic,
-  handleEntireEssay,
-  diary,
-  number,
-}) {
+export default function EntireEssay({ handleEntireEssay, diary, number }) {
   return (
     <ModalBackdrop onClick={handleEntireEssay}>
       <ModalView onClick={e => e.stopPropagation()}>
@@ -13,8 +8,8 @@ export default function EntireEssay({
           &times;
         </div>
         <div className="title">{number}번째 글쓰기</div>
-        <span>2022년 3월 25일 | </span>
-        <span>{isPublic ? '공개' : '비공개'}</span>
+        <span>{diary.createdAt} | </span>
+        <span>{diary.isPublic ? '공개' : '비공개'}</span>
         <p className="desc">{diary.content}</p>
       </ModalView>
     </ModalBackdrop>

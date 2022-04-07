@@ -4,16 +4,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import * as config from '../config/config';
 
-export default function Editor({
-  isPublic,
-  handlePublic,
-  handleEditor,
-  diary,
-  number,
-}) {
+export default function Editor({ handleEditor, diary, number }) {
   const [input, setInput] = useState(diary.content);
   const handleChange = e => {
     setInput(e.target.value);
+  };
+
+  const [isPublic, setIsPublic] = useState(diary.isPublic);
+  const handlePublic = () => {
+    setIsPublic(!isPublic);
   };
   const handleSubmit = () => {
     //! 서버에 수정 요청 보내기 (토큰 필요, 1차 작업 완료)
@@ -40,7 +39,7 @@ export default function Editor({
           &times;
         </div>
         <div className="title">{number}번째 글쓰기</div>
-        <span>2022년 3월 25일</span>
+        <span>{diary.createdAt}</span>
         <div className="toggle">
           <span>공개</span>
           {isPublic ? (

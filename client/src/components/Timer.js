@@ -5,7 +5,6 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
   const [minutes, setMinutes] = useState(minute);
   const [seconds, setSeconds] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
-  console.log(showTooltip);
 
   useEffect(() => {
     const countdown = setInterval(() => {

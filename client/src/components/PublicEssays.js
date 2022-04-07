@@ -7,41 +7,25 @@ import { useState } from 'react';
 import PublicEntireEssay from './PublicEntireEssay';
 
 export default function PublicEssays({ publicEssay }) {
-  // 전체 보기
-  const [isEntireEssay, setIsEntireEssay] = useState(false);
-  const handleEntireEssay = () => {
-    setIsEntireEssay(!isEntireEssay);
-  };
-
   const length = publicEssay.length;
-
   const [current, setCurrent] = useState(0);
-
+  console.log(current);
   const nextSlide = () => {
-    setCurrent(current + 4 >= length ? 0 : current + 4);
+    setCurrent(current + 4 >= length - 1 ? 0 : current + 4);
   };
-
   const prevSlide = () => {
-    setCurrent(current === 0 ? length - (length % 4) : current - 4);
+    setCurrent(current === 0 ? length - 4 : current - 4);
   };
 
   return (
     <>
       <Wrapper>
         {publicEssay.map((essay, index) => {
-          if (index >= current && index <= current + 3)
-            return (
-              <CardContainer key={index} onClick={handleEntireEssay}>
-                <span className="username">{essay.writer}</span>
-                <span className="created-at">{essay.createdAt}</span>
-                <p className="content">{essay.content}</p>
-              </CardContainer>
-            );
+          if (index >= current && index <= current + 3) {
+            return <PublicCard essay={essay} key={index}></PublicCard>;
+          }
         })}
       </Wrapper>
-      {isEntireEssay && (
-        <PublicEntireEssay handleEntireEssay={handleEntireEssay} />
-      )}
       <Carousel>
         <MdOutlineKeyboardArrowRight onClick={nextSlide} />
       </Carousel>
@@ -51,6 +35,28 @@ export default function PublicEssays({ publicEssay }) {
     </>
   );
 }
+
+export const PublicCard = ({ essay }) => {
+  // 전체 보기
+  const [isEntireEssay, setIsEntireEssay] = useState(false);
+  console.log(isEntireEssay);
+  const handleEntireEssay = () => {
+    setIsEntireEssay(!isEntireEssay);
+  };
+  return (
+    <CardContainer onClick={handleEntireEssay}>
+      <span className="username">{essay.writer}</span>
+      <span className="created-at">{essay.createdAt}</span>
+      <p className="content">{essay.content}</p>
+      {isEntireEssay && (
+        <PublicEntireEssay
+          essay={essay}
+          handleEntireEssay={handleEntireEssay}
+        />
+      )}
+    </CardContainer>
+  );
+};
 
 const Carousel = styled.div`
   position: absolute;

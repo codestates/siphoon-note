@@ -1,26 +1,15 @@
 import styled from 'styled-components';
 
-export default function PublicEntireEssay({ isPublic, handleEntireEssay }) {
+export default function PublicEntireEssay({ handleEntireEssay, essay }) {
   return (
     <ModalBackdrop onClick={handleEntireEssay}>
       <ModalView onClick={e => e.stopPropagation()}>
         <div onClick={handleEntireEssay} className="close-btn">
           &times;
         </div>
-        <div className="title">3번째 글쓰기</div>
-        <span>2022년 3월 25일 | </span>
-        <span>{isPublic ? '공개' : '비공개'}</span>
-        <p className="desc">
-          영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라
-        </p>
+        <div className="title">{essay.writer}님의 Siphoon Note</div>
+        <span>{essay.createdAt}</span>
+        <p className="desc">{essay.content}</p>
       </ModalView>
     </ModalBackdrop>
   );
@@ -45,8 +34,8 @@ const ModalView = styled.div.attrs(props => ({
   border-radius: 10px;
   border: 3px solid black;
   background-color: #ffffff;
-  width: 800px;
-  height: 600px;
+  width: 825px;
+  height: 620px;
   overflow: auto;
   padding: 1rem;
   background: floralwhite;

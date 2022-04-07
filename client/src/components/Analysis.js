@@ -12,7 +12,7 @@ export default function Analysis({ markList, recordList }) {
   console.log(currentStreaks);
   // 분석 데이터 3종
   const analysisData = [
-    { title: 'usageDate?', data: usageDate },
+    { title: '서비스 사용 일수', data: usageDate },
     { title: '에세이 연속 작성 일수', data: currentStreaks },
     { title: '최장 연속 작성 일수', data: longestStreaks },
   ];
@@ -27,7 +27,7 @@ export default function Analysis({ markList, recordList }) {
           formatDay={(locale, date) => moment(date).format('DD')}
           value={value}
           tileContent={({ date, view }) => {
-            if (markList.find(x => x === moment(date).format('DD-MM-YYYY'))) {
+            if (markList.find(x => x === moment(date).format('YYYY-MM-DD'))) {
               return (
                 <>
                   <div>
@@ -84,7 +84,7 @@ const AnalysisWrapper = styled.div`
 const Box = styled.div`
   flex: 1 1 0;
   border: 3px solid black;
-  background: rgb(211, 211, 211, 0.7);
+  background: rgb(211, 211, 211, 0.9);
   border-radius: 20px;
   flex-wrap: wrap;
   font-size: 1.1rem;
@@ -94,6 +94,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 300;
 
   > span {
     font-weight: bold;

@@ -18,7 +18,7 @@ export const SideBar = styled.div`
   padding: 0.25rem;
   width: 32rem;
   top: 34px;
-  margin-top: 48px;
+  margin-top: 37px;
   left: 18px;
   flex: 2 1 0;
 `;
@@ -37,11 +37,12 @@ export const Image = styled.div`
 `;
 
 export const TimerWrapper = styled.div`
-  font-size: 2em;
+  font-size: 2.7rem;
+  font-family: 'Londrina Outline', cursive;
   font-weight: bold;
   text-align: center;
   color: black;
-  margin: 3px;
+  margin: 10px;
   height: 60px;
   width: 400px;
   display: flex;
@@ -88,6 +89,7 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 2px;
+
   > div {
     display: flex;
     align-items: center;
@@ -95,12 +97,11 @@ export const ButtonWrapper = styled.div`
   > span {
     display: flex;
     cursor: pointer;
-    margin-right: 12px;
+    margin-right: 13px;
     font-size: 1.3rem;
     opacity: 0.9;
     &:hover {
-      border-radius: 30px;
-      opacity: 1;
+      transform: scale(1.05);
     }
   }
 `;

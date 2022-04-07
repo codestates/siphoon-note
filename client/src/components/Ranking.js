@@ -27,11 +27,11 @@ export default function Ranking({ topUser }) {
           ></img>
           <div className="content">
             <div className="name">1등 {topUser[0].username}</div>
-            <div>{topUser[0].usageDates}일</div>
+            <div>{topUser[0].usageDates}개</div>
           </div>
         </RankingCard>
         <div className="second">
-          <h2>연속작성일수 TOP4</h2>
+          <h3>가장 많은 Siphoon Note를 작성한 유저</h3>
         </div>
       </Description>
       <Content>
@@ -43,8 +43,10 @@ export default function Ranking({ topUser }) {
                   src={`img/avatar/${user.profileImage.imageUrls}.svg`}
                 ></img>
                 <div className="content">
-                  <div className="name">2등 {user.username}</div>
-                  <div>{user.usageDates}일</div>
+                  <div className="name">
+                    {index + 1}등 {user.username}
+                  </div>
+                  <div>{user.usageDates}개</div>
                 </div>
               </RankingCard>
             );

@@ -29,7 +29,7 @@ export default function Navbar({ isLogin, userInfo }) {
               <Profile>{userInfo.name}님, 안녕하세요!</Profile>
               <ImgWrapper
                 onClick={() => SetIsDropdown(!isDropdown)}
-                src="img/avatar/plant2.svg"
+                src="img/avatar/0.svg"
               ></ImgWrapper>
             </>
           ) : (
@@ -62,10 +62,6 @@ const ImgWrapper = styled.img`
   width: 3.8rem;
   height: auto;
   margin: 0px 7px;
-  border: 1.9px solid black;
-  border-radius: 100%;
-  background: white;
-  padding: 0.2rem;
 `;
 
 const Nav = styled.nav`

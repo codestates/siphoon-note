@@ -22,13 +22,13 @@ export default function Searchbar() {
     setUserInput('');
   };
 
-  const handleInput = event => {
-    setUserInput(event.target.value);
+  //! 서버에 다시 get 요청 보내기 (작업 필요)
+  const handleDelete = () => {
+    setUserInput('');
   };
 
-  const handleDelete = () => {
-    // 서버에 다시 get 요청 보내기
-    setUserInput('');
+  const handleInput = event => {
+    setUserInput(event.target.value);
   };
 
   return (
