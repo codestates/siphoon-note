@@ -1,4 +1,4 @@
-# 10bun-diary
+# SIPHOON NOTE
 
 로고 이미지 제작 후 이미지 추가예정
 <br><br>
