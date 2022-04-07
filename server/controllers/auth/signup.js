@@ -7,9 +7,3 @@
 // accessToken은 응답 쿠키에 담아서 반환
 
 // 본인의 /essay 페이지로 리디렉션
-import {
-  checkEmailUnique,
-  encrypt,
-  generateUUID,
-} from '../../middlewares/utils';
-import { createAccessToken, createAccessToken } from '../../middlewares/auth';

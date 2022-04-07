@@ -9,10 +9,9 @@ const mysql = require('mysql2');
 const config = require('./config/config');
 const env = process.env.NODE_ENV;
 
-console.log(`Running in ${env} mode`);
+console.log(`🚀 Running in ${env} mode`);
 
 const connection = mysql.createConnection(config[env]);
-console.log(config[env]);
 
 connection.connect(err => {
   if (err) {

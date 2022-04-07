@@ -28,7 +28,7 @@ router.use((err, req, res, next) => {
 const BASE_URI = '/api/v1';
 
 // main: 1
-router.use(BASE_URI, require('./main'));
+router.use(BASE_URI, require('./landing'));
 
 // essay: 5
 router.use(`${BASE_URI}/essays`, require('./essays'));

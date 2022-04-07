@@ -1,7 +1,7 @@
 // [+ Refactor로 Diary 컴포넌트 렌더링에 필요한 서버 컴포넌트를 만들어 볼 것]
 
 // 1. userId 구하기
-const { getUserIdFromToken } = require('../utils/token');
+const { getUserIdFromToken } = require('../../middlewares/user');
 
 // 2. userId로 userInfo 객체 만들기
 const { getUserInfo } = require('../users'); // 클라이언트 "컴포넌드" 별로 만들었다면 다른 컨트롤러 모듈을 가져오지 않아도 되겠다는 생각이 들었음
