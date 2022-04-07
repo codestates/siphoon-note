@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { MdSettingsBackupRestore } from 'react-icons/md';
@@ -13,13 +13,24 @@ export default function TrialTrash({
   isTrashDropdown,
   setIsTrashDropdown,
   setIsTagsDropdown,
+  diaryList,
+  entireList,
+  setEntireList,
+  setDiaryList,
 }) {
+  useEffect(() => {
+    setList(trashList);
+  }, [trashList]);
+
+  const [list, setList] = useState(trashList);
+  console.log(trashList.length);
+  console.log(list.length);
   const handleDropdown = () => {
     setIsTagsDropdown(false);
     setIsTrashDropdown(!isTrashDropdown);
   };
 
-  const length = trashList.length;
+  const length = list.length;
   const [current, setCurrent] = useState(0);
   const nextSlide = () => {
     setCurrent(current + 5 >= length ? 0 : current + 5);
@@ -28,13 +39,22 @@ export default function TrialTrash({
     setCurrent(current === 0 ? length - (length % 5) : current - 5);
   };
 
-  const handleDelete = index => {
-    // 삭제
-    // trashList[index].essayId
+  const handleDelete = selected => {
+    // 트래쉬리스트에서 삭제한다.
+    const filtered = list.filter(trash => {
+      return selected.essayId !== trash.essayId;
+    });
+    setList(filtered);
   };
 
-  const handleRestore = index => {
-    // 수정
+  const handleRestore = selected => {
+    console.log(selected);
+    selected.isDeleted = false;
+    const filtered = list.filter(trash => {
+      return selected.essayId !== trash.essayId;
+    });
+    setList(filtered);
+    setEntireList([selected, ...entireList]);
   };
 
   return (
@@ -47,17 +67,17 @@ export default function TrialTrash({
       </Wrapper>
       {isTrashDropdown && (
         <Container>
-          {trashList.map((trash, index) => {
+          {list.map((trash, index) => {
             if (index >= current && index <= current + 5) {
               return (
                 <div key={index}>
                   <span className="title">
-                    {trash.createdAt} {trash.content.slice(0, 23)}
+                    {trash.createdAt} {trash.content.slice(0, 20)}
                   </span>
-                  <span onClick={() => handleRestore(index)}>
+                  <span onClick={() => handleRestore(trash)}>
                     <MdSettingsBackupRestore></MdSettingsBackupRestore>
                   </span>
-                  <span onClick={() => handleDelete(index)}>
+                  <span onClick={() => handleDelete(trash)}>
                     <FiTrash2></FiTrash2>
                   </span>
                 </div>

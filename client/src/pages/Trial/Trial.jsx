@@ -78,17 +78,18 @@ export default function Trial() {
     }
   });
 
-  // 휴지통 리스트
-  const trashList = entireList.filter(diary => {
-    return diary.isDeleted === true;
-  });
-
   // 출력 리스트
   const notDeletedList = entireList.filter(diary => {
     return diary.isDeleted === false;
   });
 
   const [diaryList, setDiaryList] = useState(notDeletedList);
+
+  const filtered = entireList.filter(diary => {
+    return diary.isDeleted === true;
+  });
+  // 휴지통 리스트
+  const [trashList, setTrashList] = useState(filtered);
 
   useEffect(() => {
     setDiaryList(notDeletedList);
@@ -243,6 +244,10 @@ export default function Trial() {
             notDeletedList={notDeletedList}
           />
           <TrialTrash
+            diaryList={diaryList}
+            setDiaryList={setDiaryList}
+            entireList={entireList}
+            setEntireList={setEntireList}
             trashList={trashList}
             isTrashDropdown={isTrashDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
@@ -269,7 +274,9 @@ export default function Trial() {
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                       diaryList={diaryList}
-                      setDiaryList={setDiaryList}
+                      setEntireList={setEntireList}
+                      trashList={trashList}
+                      setTrashList={setTrashList}
                     ></Card>
                   ) : null;
                 })}
@@ -285,7 +292,9 @@ export default function Trial() {
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                       diaryList={diaryList}
-                      setDiaryList={setDiaryList}
+                      setEntireList={setEntireList}
+                      trashList={trashList}
+                      setTrashList={setTrashList}
                     ></Card>
                   ) : null;
                 })}
@@ -301,7 +310,9 @@ export default function Trial() {
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                       diaryList={diaryList}
-                      setDiaryList={setDiaryList}
+                      setEntireList={setEntireList}
+                      trashList={trashList}
+                      setTrashList={setTrashList}
                     ></Card>
                   ) : null;
                 })}
@@ -336,7 +347,9 @@ export const Card = ({
   isPublic,
   handlePublic,
   diaryList,
-  setDiaryList,
+  setEntireList,
+  trashList,
+  setTrashList,
 }) => {
   const [isFlipIcon, setIsFlipIcon] = useState(false);
   const navigator = useNavigate();
@@ -361,8 +374,8 @@ export const Card = ({
     const filtered = diaryList.filter(essay => {
       return essay.essayId !== diary.essayId;
     });
-    console.log(filtered);
-    setDiaryList(filtered);
+    setTrashList([diary, ...trashList]);
+    setEntireList(filtered);
   };
 
   return (
