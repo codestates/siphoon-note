@@ -1,5 +1,5 @@
-const { getUserIdFromToken } = require('../../utils/token');
-const { findUserById } = require('../../utils/db');
+const { getUserIdFromToken } = require('../../middlewares/user');
+const { findUserById } = require('../../middlewares/user');
 
 // accessToken 만료 시 refreshToken 얻기
 const getRefreshToken = async (req, res) => {
