@@ -11,7 +11,7 @@ import TrialTagToggle from './TrialTagToggle';
 import TrialTrash from './TrialTrash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
-import Editor from '../../components/Editor';
+import TrialEditor from './TrialEditor';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -389,13 +389,13 @@ export const Card = ({
         ></EntireEssay>
       )}
       {isEditor && (
-        <Editor
+        <TrialEditor
           handleEditor={handleEditor}
           isPublic={isPublic}
           handlePublic={handlePublic}
           diary={diary}
           number={number}
-        ></Editor>
+        ></TrialEditor>
       )}
       {hover ? (
         <div>
