@@ -13,8 +13,12 @@ export default function TrialTagToggle({
   setIsTrashDropdown,
   entireList,
   setDiaryList,
+  notDeletedList,
 }) {
   const filterByTag = event => {
+    if (event.target.textContent === '전체보기🔎️') {
+      return setDiaryList(notDeletedList);
+    }
     const filtered = entireList.filter(essay => {
       return !essay.isDeleted && essay.tag.includes(event.target.textContent);
     });
@@ -46,6 +50,7 @@ export default function TrialTagToggle({
       {isTagsDropdown && (
         <Container>
           <div>
+            <span onClick={event => filterByTag(event)}>전체보기🔎️</span>
             {tagList.map((tag, index) => {
               if (index >= current && index <= current + 18) {
                 return (

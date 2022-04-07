@@ -233,6 +233,7 @@ export default function Trial() {
             setIsTrashDropdown={setIsTrashDropdown}
             setDiaryList={setDiaryList}
             entireList={entireList}
+            notDeletedList={notDeletedList}
           />
           <TrialTrash
             trashList={trashList}
