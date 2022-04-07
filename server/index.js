@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const https = require('https');
 const cors = require('cors');
 const path = require('path');
@@ -28,6 +29,7 @@ const port = process.env.HTTPS_PORT || 5500;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(
   cors({

@@ -43,8 +43,8 @@ router.patch(`${BASE_URI}/userinfo`, userCtrl.updateUserInfo);
 
 // trash: 3
 router.get(`${BASE_URI}/trashes`, essayCtrl.getTrashList);
-router.patch(`${BASE_URI}/trashes/:essayId`, essayCtrl.updateEssay); // 휴지통의 글 복구
-router.delete(`${BASE_URI}/trashes/:essayId`, essayCtrl.deleteEssay); // 휴지통의 글 영구 삭제
+router.patch(`${BASE_URI}/trashes/:essayId`, essayCtrl.updateEssay);
+router.delete(`${BASE_URI}/trashes/:essayId`, essayCtrl.deleteEssay);
 
 // tag: 1
 router.get(`${BASE_URI}/tags`, essayCtrl.getTagList);

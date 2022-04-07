@@ -8,13 +8,12 @@ const {
   getEssayListByfilter,
 } = require('../controllers/essays');
 
-const getSpace = require('../controllers/space/getSpace');
+const { spaceCtrl } = require('../controllers/space');
 
-router.get('/', getSpace);
+router.get('/', spaceCtrl.getSpace);
 
 router.post('/', createEssay);
 router.get('/:filter', getEssayListByfilter);
-router.put('/:essayId', updateEssay);
-router.patch('/:essayId', deleteEssay);
+router.patch('/:essayId', updateEssay);
 
 module.exports = router;
