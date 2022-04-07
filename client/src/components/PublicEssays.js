@@ -7,9 +7,9 @@ import { useState } from 'react';
 import PublicEntireEssay from './PublicEntireEssay';
 
 export default function PublicEssays({ publicEssay }) {
+  console.log('rendenred?');
   const length = publicEssay.length;
   const [current, setCurrent] = useState(0);
-  console.log(current);
   const nextSlide = () => {
     setCurrent(current + 4 >= length - 1 ? 0 : current + 4);
   };
@@ -39,22 +39,23 @@ export default function PublicEssays({ publicEssay }) {
 export const PublicCard = ({ essay }) => {
   // 전체 보기
   const [isEntireEssay, setIsEntireEssay] = useState(false);
-  console.log(isEntireEssay);
   const handleEntireEssay = () => {
     setIsEntireEssay(!isEntireEssay);
   };
   return (
-    <CardContainer onClick={handleEntireEssay}>
-      <span className="username">{essay.writer}</span>
-      <span className="created-at">{essay.createdAt}</span>
-      <p className="content">{essay.content}</p>
+    <>
       {isEntireEssay && (
         <PublicEntireEssay
           essay={essay}
           handleEntireEssay={handleEntireEssay}
         />
       )}
-    </CardContainer>
+      <CardContainer onClick={handleEntireEssay}>
+        <span className="username">{essay.writer}</span>
+        <span className="created-at">{essay.createdAt}</span>
+        <p className="content">{essay.content}</p>
+      </CardContainer>
+    </>
   );
 };
 
