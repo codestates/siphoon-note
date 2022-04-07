@@ -1,10 +1,11 @@
 const { getRefreshToken } = require('./getRefreshToken');
-const { login } = require('./login');
-const { logout } = require('./logout');
+const { signin } = require('./signin');
+const { signout } = require('./signout');
+const { signup } = require('./signup');
 
-// 인증, 인가에 필요한 비지니스 로직
 module.exports = {
   getRefreshToken,
-  login,
-  logout,
+  signin,
+  signout,
+  signup,
 };
