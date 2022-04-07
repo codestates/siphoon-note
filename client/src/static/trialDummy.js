@@ -3,7 +3,7 @@ const dummy = [
     essayId: 12,
     tag: ['체험', '테스트'],
     content:
-      '체험용 페이지에 오신걸 환영합니다! :) 체험용 페이지에 남기시는 글을 저장되지 않습니다.',
+      '체험용 페이지에 오신걸 환영합니다! :) 체험용 페이지에 남기시는 글은 저장되지 않습니다. 데이터 분석 기능을 사용할 수 없습니다.',
     createdAt: '2022-04-06',
     isPublic: false,
     isDeleted: false,
@@ -11,7 +11,8 @@ const dummy = [
   {
     essayId: 11,
     tag: ['체험', '테스트'],
-    content: '휴지통 기능은 로그인 뒤 가능합니다!',
+    content:
+      '이건 삭제된 메세지예요. 다시 보시고 싶다면 복원 버튼을 눌러볼래요?',
     createdAt: '2022-04-06',
     isPublic: false,
     isDeleted: true,
@@ -48,13 +49,13 @@ const dummy = [
     createdAt: '2022-04-04',
 
     isPublic: false,
-    isDeleted: false,
+    isDeleted: true,
   },
   {
     essayId: 7,
     tag: ['하히', '휴휴효', '먀묘무'],
     content: '솜이야, 솜이야, 솜이야! 나는 너를 아주 많이 사랑해.',
-    createdAt: '2022-04-1',
+    createdAt: '2022-04-01',
 
     isPublic: false,
     isDeleted: false,

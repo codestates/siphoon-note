@@ -91,9 +91,16 @@ export default function Trial() {
   // 휴지통 리스트
   const [trashList, setTrashList] = useState(filtered);
 
+  // useEffect(() => {
+  //   console.log('filtered', filtered);
+  //   setTrashList([...filtered]);
+  // }, [entireList]);
+
   useEffect(() => {
     setDiaryList(notDeletedList);
   }, [entireList]);
+
+  useEffect(() => {}, [entireList]);
 
   // 키워드
   const keywordArr = [
@@ -146,7 +153,7 @@ export default function Trial() {
   };
 
   // 휴지통, 태그 드롭다운
-  const [isTrashDropdown, setIsTrashDropdown] = useState(false);
+  const [isTrashDropdown, setIsTrashDropdown] = useState(true);
   const [isTagsDropdown, setIsTagsDropdown] = useState(false);
   const handleDropdown = () => {
     setIsTrashDropdown(false);
@@ -181,6 +188,10 @@ export default function Trial() {
       ]);
     }
   };
+
+  const sorted = diaryList.sort(function (a, b) {
+    return b.essayId - a.essayId;
+  });
 
   return (
     <>
@@ -249,6 +260,7 @@ export default function Trial() {
             entireList={entireList}
             setEntireList={setEntireList}
             trashList={trashList}
+            setTrashList={setTrashList}
             isTrashDropdown={isTrashDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
@@ -264,7 +276,7 @@ export default function Trial() {
           <>
             <Main>
               <Wrapper1>
-                {diaryList.map((diary, index) => {
+                {sorted.map((diary, index) => {
                   return index % 3 === 0 ? (
                     <Card
                       key={index}
@@ -277,12 +289,13 @@ export default function Trial() {
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
+                      entireList={entireList}
                     ></Card>
                   ) : null;
                 })}
               </Wrapper1>
               <Wrapper2>
-                {diaryList.map((diary, index) => {
+                {sorted.map((diary, index) => {
                   return index % 3 === 1 ? (
                     <Card
                       key={index}
@@ -295,12 +308,13 @@ export default function Trial() {
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
+                      entireList={entireList}
                     ></Card>
                   ) : null;
                 })}
               </Wrapper2>
               <Wrapper3>
-                {diaryList.map((diary, index) => {
+                {sorted.map((diary, index) => {
                   return index % 3 === 2 ? (
                     <Card
                       key={index}
@@ -313,6 +327,7 @@ export default function Trial() {
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
+                      entireList={entireList}
                     ></Card>
                   ) : null;
                 })}
@@ -348,6 +363,7 @@ export const Card = ({
   handlePublic,
   diaryList,
   setEntireList,
+  entireList,
   trashList,
   setTrashList,
 }) => {
@@ -371,7 +387,7 @@ export const Card = ({
 
   const deletehandle = diary => {
     diary.isDeleted = true;
-    const filtered = diaryList.filter(essay => {
+    const filtered = entireList.filter(essay => {
       return essay.essayId !== diary.essayId;
     });
     setTrashList([diary, ...trashList]);

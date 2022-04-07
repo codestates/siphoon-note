@@ -10,6 +10,7 @@ import {
 
 export default function TrialTrash({
   trashList,
+  setTrashList,
   isTrashDropdown,
   setIsTrashDropdown,
   setIsTagsDropdown,
@@ -18,19 +19,18 @@ export default function TrialTrash({
   setEntireList,
   setDiaryList,
 }) {
-  useEffect(() => {
-    setList(trashList);
-  }, [trashList]);
-
-  const [list, setList] = useState(trashList);
-  console.log(trashList.length);
-  console.log(list.length);
+  // const [list, setList] = useState(trashList);
+  // useEffect(() => {
+  // setList(trashList);
+  // }, [trashList]);
+  // console.log(trashList.length);
+  // console.log(list.length);
   const handleDropdown = () => {
     setIsTagsDropdown(false);
     setIsTrashDropdown(!isTrashDropdown);
   };
 
-  const length = list.length;
+  const length = trashList.length;
   const [current, setCurrent] = useState(0);
   const nextSlide = () => {
     setCurrent(current + 5 >= length ? 0 : current + 5);
@@ -41,20 +41,20 @@ export default function TrialTrash({
 
   const handleDelete = selected => {
     // 트래쉬리스트에서 삭제한다.
-    const filtered = list.filter(trash => {
+    const filtered = trashList.filter(trash => {
       return selected.essayId !== trash.essayId;
     });
-    setList(filtered);
+    setTrashList(filtered);
   };
 
   const handleRestore = selected => {
     console.log(selected);
     selected.isDeleted = false;
-    const filtered = list.filter(trash => {
+    const filtered = trashList.filter(trash => {
       return selected.essayId !== trash.essayId;
     });
-    setList(filtered);
-    setEntireList([selected, ...entireList]);
+    setTrashList(filtered);
+    setEntireList([selected, ...diaryList]);
   };
 
   return (
@@ -67,7 +67,7 @@ export default function TrialTrash({
       </Wrapper>
       {isTrashDropdown && (
         <Container>
-          {list.map((trash, index) => {
+          {trashList.map((trash, index) => {
             if (index >= current && index <= current + 5) {
               return (
                 <div key={index}>
