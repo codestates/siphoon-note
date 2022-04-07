@@ -6,7 +6,7 @@ import { GrCircleInformation } from 'react-icons/gr';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
-import Searchbar from '../../components/Searchbar';
+import TrialSearchbar from './TrialSearchbar';
 import TrialTagToggle from './TrialTagToggle';
 import TrialTrash from './TrialTrash';
 import Timer from '../../components/Timer';
@@ -71,7 +71,9 @@ export default function Trial() {
   // 태그리스트
   const tagList = [];
   entireList.map(diary => {
-    tagList.push(...diary.tag);
+    if (tagList.indexOf(...diary.tag) === -1) {
+      tagList.push(...diary.tag);
+    }
   });
 
   // 휴지통 리스트
@@ -80,9 +82,10 @@ export default function Trial() {
   });
 
   // 출력 리스트
-  const diaryList = entireList.filter(diary => {
+  const notDeletedList = entireList.filter(diary => {
     return diary.isDeleted === false;
   });
+  const [diaryList, setDiaryList] = useState(notDeletedList);
 
   // 키워드
   const keywordArr = [
@@ -114,10 +117,9 @@ export default function Trial() {
   }, []);
 
   const [keyword, setKeyword] = useState('다섯자태그');
-  console.log(keyword);
+
   // 태그
   const [tags, setTags] = useState([keyword]);
-  console.log(tags);
 
   // 공개 설정
   const [isPublic, setIsPublic] = useState(false);
@@ -229,6 +231,8 @@ export default function Trial() {
             isTagsDropdown={isTagsDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
+            setDiaryList={setDiaryList}
+            entireList={entireList}
           />
           <TrialTrash
             trashList={trashList}
@@ -236,7 +240,11 @@ export default function Trial() {
             setIsTrashDropdown={setIsTrashDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
           />
-          <Searchbar />
+          <TrialSearchbar
+            notDeletedList={notDeletedList}
+            setDiaryList={setDiaryList}
+            entireList={entireList}
+          />
         </SideBar>
         {/* 메인 구간 */}
         {pageNum === 0 ? (

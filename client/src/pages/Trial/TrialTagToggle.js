@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
-import axios from 'axios';
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
@@ -12,19 +11,14 @@ export default function TrialTagToggle({
   setIsTagsDropdown,
   isTagsDropdown,
   setIsTrashDropdown,
+  entireList,
+  setDiaryList,
 }) {
-  //! 서버에 필터by태그 조회하는 로직 (토큰 필요, 1차 작업)
   const filterByTag = event => {
-    axios
-      .get(`${API_HOST}/api/v1/essays/${event.target.textContent}`, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
-      })
-      .then(res => {
-        if (res.status === 200) {
-          // 성공 응답이 오면 diary.jsx에서 diaryList를 업데이트 한다.
-        }
-      })
-      .catch(error => console.log(error));
+    const filtered = entireList.filter(essay => {
+      return !essay.isDeleted && essay.tag.includes(event.target.textContent);
+    });
+    setDiaryList(filtered);
   };
 
   const handleDropdown = () => {
