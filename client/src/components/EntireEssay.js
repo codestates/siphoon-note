@@ -1,29 +1,21 @@
 import styled from 'styled-components';
 
-export default function EntireEssay({ isPublic, handleLandingEntireEssay }) {
-  const handleEntireEssay = () => {
-    handleLandingEntireEssay();
-  };
+export default function EntireEssay({
+  isPublic,
+  handleEntireEssay,
+  diary,
+  number,
+}) {
   return (
     <ModalBackdrop onClick={handleEntireEssay}>
       <ModalView onClick={e => e.stopPropagation()}>
         <div onClick={handleEntireEssay} className="close-btn">
           &times;
         </div>
-        <div className="title">3번째 글쓰기</div>
+        <div className="title">{number}번째 글쓰기</div>
         <span>2022년 3월 25일 | </span>
         <span>{isPublic ? '공개' : '비공개'}</span>
-        <p className="desc">
-          영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가영감 가나다라 마바사 아자영감 가나다라 마바사 아자차영감 가나다라
-          마바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가바사 아자차영감 가나다라 마바사 아자차영감 가나다라 마바사
-          아자차영감 가나다라 마바사 아자차영감 가나다라 마바사 아자차영감
-          가나다라
-        </p>
+        <p className="desc">{diary.content}</p>
       </ModalView>
     </ModalBackdrop>
   );

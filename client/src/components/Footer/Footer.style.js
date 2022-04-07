@@ -8,9 +8,9 @@ export const FooterWrapper = styled.footer`
   width: 100vw;
   height: 160px;
   margin-top: 100px;
-  position: absolute;
-  bottom: 0;
-  font-size: 20px;
+  // position: absolute;
+  // bottom: 0;
+  // font-size: 20px;
 
   bottom: 0;
   background: #e5e5e5;
@@ -24,6 +24,6 @@ export const FooterWrapper = styled.footer`
   height: 160px;
 
   font-size: 20px;
-  background: #e5e5e5;
-  width: 100vw;
+  background-color: rgb(247, 178, 206, 0.8);
+  // width: 100vw;
 `;

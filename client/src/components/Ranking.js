@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function Ranking() {
+export default function Ranking({ topUser }) {
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('.wrapper', {
     scrollTrigger: {
       trigger: '.wrapper',
-      start: 'top 70%',
+      start: 'top 85%',
       end: '15% bottom',
       // markers: true,
       toggleActions: 'play pause reverse restart',
@@ -18,20 +18,16 @@ export default function Ranking() {
     opacity: 1,
   });
 
-  const rankingData = [
-    { image: '0', nickname: '이수리', data: '38' },
-    { image: '1', nickname: '이소리', data: '35' },
-    { image: '2', nickname: '이쇼리', data: '33' },
-    { image: '3', nickname: '이슈리', data: '32' },
-  ];
   return (
     <Wrapper className="wrapper">
       <Description>
         <RankingCard className="first">
-          <img src={`img/avatar/${rankingData[0].image}.svg`}></img>
+          <img
+            src={`img/avatar/${topUser[0].profileImage.imageUrls}.svg`}
+          ></img>
           <div className="content">
-            <div className="name">1등 {rankingData[0].nickname}</div>
-            <div>{rankingData[0].data}일</div>
+            <div className="name">1등 {topUser[0].username}</div>
+            <div>{topUser[0].usageDates}일</div>
           </div>
         </RankingCard>
         <div className="second">
@@ -39,14 +35,16 @@ export default function Ranking() {
         </div>
       </Description>
       <Content>
-        {rankingData.map((data, index) => {
+        {topUser.map((user, index) => {
           if (index >= 1) {
             return (
               <RankingCard key={index}>
-                <img src={`img/avatar/${data.image}.svg`}></img>
+                <img
+                  src={`img/avatar/${user.profileImage.imageUrls}.svg`}
+                ></img>
                 <div className="content">
-                  <div className="name">2등 {data.nickname}</div>
-                  <div>{data.data}일</div>
+                  <div className="name">2등 {user.username}</div>
+                  <div>{user.usageDates}일</div>
                 </div>
               </RankingCard>
             );

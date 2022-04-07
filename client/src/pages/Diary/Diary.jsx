@@ -2,7 +2,7 @@ import dummy from '../../static/dummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
-import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
+import { GrCircleInformation } from 'react-icons/gr';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -41,8 +41,52 @@ import {
   Hashtag,
   Icon,
 } from './Diary.style';
+import axios from 'axios';
+import * as config from '../../config/config';
 
 export default function Diary() {
+  //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
+
+  // 유저정보 업데이트
+
+  // 다이어리 전체 리스트
+  const [diaryList, setDiaryList] = useState(dummy);
+
+  //! 달력 마크 & 기록 분석 (서버에서 데이터 받아와서 갱신만 하면 되는 상태)
+  const [markList, setMarkList] = useState([
+    '11-04-2022',
+    '03-04-2022',
+    '24-04-2022',
+    '17-03-2022',
+    '31-03-2022',
+    '10-05-2022',
+    '11-05-2022',
+  ]);
+
+  const [recordList, setRecordList] = useState({
+    totalEssay: 128,
+    currentStreaks: 12,
+    longestStreaks: 25,
+    usageDate: 30,
+  });
+
+  // 태그
+  const defaultTags = ['윤슬'];
+  const [tags, setTags] = useState(defaultTags);
+
+  // 사용자 에세이 인풋
+  const [input, setInput] = useState('');
+  const handleInput = e => {
+    setInput(e.target.value);
+    setTimerOn(true);
+  };
+
+  // 공개 설정
+  const [isPublic, setIsPublic] = useState(false);
+  const handlePublic = () => {
+    setIsPublic(!isPublic);
+  };
+
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
   const [minute, setMinute] = useState(1);
@@ -64,40 +108,41 @@ export default function Diary() {
   // 페이지 전환
   const [pageNum, setPageNum] = useState(0);
 
-  // 테마 인덱스 (뒤로가기 버튼을 눌러도 달라지지 않으려면, 전역에서 관리가 필요하다.)
+  // 테마 인덱스
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
   };
 
-  // 사용자 에세이 인풋
-  const [input, setInput] = useState('');
-  const handleInput = e => {
-    setInput(e.target.value);
-    setTimerOn(true);
-  };
-
-  // 다이어리 리스트
-  const [diaryList, setDiaryList] = useState(dummy);
+  //! 서버에 글 작성 요청 보내기 (토큰필요, 1차 작업)
   const handleSubmit = () => {
     if (input !== '') {
       setInput('');
       setTimerOn(false);
-      setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
-    }
-  };
 
-  // 공개 설정
-  const [isPublic, setIsPublic] = useState(false);
-  const handlePublic = () => {
-    setIsPublic(!isPublic);
+      axios
+        .post(
+          config.WRITE_ESSAY,
+          {
+            content: input,
+            isPublic,
+            tags,
+          },
+          { headers: { authorization: { 'Content-Type': 'application/json' } } }
+        )
+        .then(res => {
+          if (res.status === 201) {
+            // 성공적으로 글이 작성되면 다시 메세지를 조회한다. readHandler?
+          }
+        })
+        .catch(error => console.log(error));
+      // setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
+    }
   };
 
   return (
     <>
       <Container color={colorTheme[themeIndex].color}>
-        {/* <EntireEssay isPublic={isPublic}></EntireEssay> */}
-        {/* <Editor isPublic={isPublic} handlePublic={handlePublic}></Editor> */}
         {isKeywordModal ? (
           <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
         ) : null}
@@ -129,8 +174,7 @@ export default function Diary() {
             </ButtonWrapper>
             <Input value={input} onChange={handleInput} />
             <ButtonWrapper2>
-              <Tag />
-
+              <Tag tags={tags} setTags={setTags} />
               {isPublic ? (
                 <Button2 className="public" onClick={handlePublic}>
                   공개
@@ -163,28 +207,53 @@ export default function Diary() {
               <Wrapper1>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 0 ? (
-                    <Card key={index} diary={diary}></Card>
+                    <Card
+                      key={index}
+                      diary={diary}
+                      index={index}
+                      length={diaryList.length}
+                      isPublic={isPublic}
+                      handlePublic={handlePublic}
+                    ></Card>
                   ) : null;
                 })}
               </Wrapper1>
               <Wrapper2>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 1 ? (
-                    <Card key={index} diary={diary}></Card>
+                    <Card
+                      key={index}
+                      diary={diary}
+                      index={index}
+                      length={diaryList.length}
+                      isPublic={isPublic}
+                      handlePublic={handlePublic}
+                    ></Card>
                   ) : null;
                 })}
               </Wrapper2>
               <Wrapper3>
                 {diaryList.map((diary, index) => {
                   return index % 3 === 2 ? (
-                    <Card key={index} diary={diary}></Card>
+                    <Card
+                      key={index}
+                      diary={diary}
+                      index={index}
+                      length={diaryList.length}
+                      isPublic={isPublic}
+                      handlePublic={handlePublic}
+                    ></Card>
                   ) : null;
                 })}
               </Wrapper3>
             </Main>
           </>
         ) : (
-          <Analysis setPageNum={setPageNum} />
+          <Analysis
+            markList={markList}
+            recordList={recordList}
+            setPageNum={setPageNum}
+          />
         )}
         {pageNum === 0 ? (
           <IconWrapper>
@@ -200,9 +269,25 @@ export default function Diary() {
   );
 }
 
-export const Card = ({ diary }) => {
+export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
+  const [isFlipIcon, setIsFlipIcon] = useState(false);
   const navigator = useNavigate();
   const [hover, setHover] = useState(true);
+
+  // 에디터 모달
+  const [isEditor, SetIsEditor] = useState(false);
+  const handleEditor = () => {
+    SetIsEditor(!isEditor);
+  };
+
+  // 전체 메세지 모달
+  const [isEntireEssay, SetIsEntireEssay] = useState(false);
+  const handleEntireEssay = () => {
+    SetIsEntireEssay(!isEntireEssay);
+  };
+
+  const number = length - index;
+
   const deletehandle = () => {
     // const { id } = diary;
     // axios
@@ -228,23 +313,41 @@ export const Card = ({ diary }) => {
     navigator('/signin');
   };
 
-  // console.log(tags);
-  // const day = new Date();
-  // console.log(day);
-  // const createdat = day?.slice(0, 10) + ' ' + day?.slice(11, 19);
-
-  const modifiedhandle = () => {};
   return (
     <DD>
+      {isEntireEssay && (
+        <EntireEssay
+          handleEntireEssay={handleEntireEssay}
+          isPublic={isPublic}
+          diary={diary}
+          number={number}
+        ></EntireEssay>
+      )}
+      {isEditor && (
+        <Editor
+          handleEditor={handleEditor}
+          isPublic={isPublic}
+          handlePublic={handlePublic}
+          diary={diary}
+          number={number}
+        ></Editor>
+      )}
       {hover ? (
         <div>
-          <CardContainer className="front">
-            <Title>{diary.id}번째 글쓰기</Title>
+          <CardContainer
+            onClick={handleEntireEssay}
+            onMouseOver={() => setIsFlipIcon(true)}
+            onMouseOut={() => setIsFlipIcon(false)}
+            className="front"
+          >
+            <Title>{number}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <MdOutlineFlipCameraAndroid
-              className="md"
-              onMouseEnter={() => setHover(false)}
-            />
+            {isFlipIcon && (
+              <GrCircleInformation
+                className="flip-icon"
+                onMouseEnter={() => setHover(false)}
+              />
+            )}
           </CardContainer>
           <Backs className="back" transition="0s" />
         </div>
@@ -257,7 +360,7 @@ export const Card = ({ diary }) => {
           >
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <MdOutlineFlipCameraAndroid className="md" />
+            <GrCircleInformation className="flip-icon" />
           </CardContainer>
           <Backs
             className="back"
@@ -265,23 +368,15 @@ export const Card = ({ diary }) => {
             position="static"
             onMouseLeave={() => setHover(true)}
           >
-            <span className="createdat">{diary.createdAt}</span>
-            <div>
-              <div className="tags">
-                <Hashtag>#어렵구만</Hashtag>
-                <Hashtag>#CSS</Hashtag>
-                <Hashtag>#힘들어</Hashtag>
-              </div>
-              <div className="icons">
-                <Icon onClick={modifiedhandle}>
-                  <RiPencilLine className="icon" />
-                  수정
-                </Icon>
-                <Icon className="icon2">
-                  <RiDeleteBin6Line className="icon" onClick={deletehandle} />
-                  삭제
-                </Icon>
-              </div>
+            <Icon>
+              <RiPencilLine onClick={handleEditor} className="back" />
+              <RiDeleteBin6Line className="back" onClick={deletehandle} />
+            </Icon>
+            <span className="createdat">2022. 04. 09</span>
+            <div className="tags">
+              {diary.tag.map((tag, index) => {
+                return <Hashtag key={index}># {tag}</Hashtag>;
+              })}
             </div>
           </Backs>
         </div>
