@@ -30,3 +30,7 @@ export const OauthButtonsWrapper = styled.div`
     margin-top: 15px;
   }
 `;
+export const ErrMesWrapper = styled.div`
+  margin-top: 20px;
+  color: red;
+`;

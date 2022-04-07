@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
 import { useState } from 'react';
 import axios from 'axios';
-import * as config from '../config/config';
+import config from '../config/config.js';
 
 export default function Editor({
   isPublic,
