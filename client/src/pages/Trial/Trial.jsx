@@ -153,7 +153,7 @@ export default function Trial() {
   };
 
   // 휴지통, 태그 드롭다운
-  const [isTrashDropdown, setIsTrashDropdown] = useState(true);
+  const [isTrashDropdown, setIsTrashDropdown] = useState(false);
   const [isTagsDropdown, setIsTagsDropdown] = useState(false);
   const handleDropdown = () => {
     setIsTrashDropdown(false);

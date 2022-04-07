@@ -127,9 +127,15 @@ export default function Landing({ isLogin }) {
     <>
       <Container>
         <Image imgUrl="img/background/tree.svg"></Image>
-        <NavLink to="/diary">
-          <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
-        </NavLink>
+        {isLogin ? (
+          <NavLink to="/diary">
+            <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
+          </NavLink>
+        ) : (
+          <NavLink to="/trial">
+            <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
+          </NavLink>
+        )}
         <Image3 src="img/rhombus.svg" right="8" top="29" height="4"></Image3>
         <Image4 src="img/rhombus.svg" right="5.5" top="31" height="6"></Image4>
         <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>

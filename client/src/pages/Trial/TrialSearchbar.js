@@ -19,7 +19,11 @@ export default function TrialSearchbar({
 
   const handleDelete = () => {
     setDiaryList(notDeletedList);
-    // setUserInput('');
+    setUserInput('');
+  };
+
+  const handleDeleteBackSpace = () => {
+    setDiaryList(notDeletedList);
   };
 
   const handleInput = event => {
@@ -36,7 +40,7 @@ export default function TrialSearchbar({
           event.key === 'Enter'
             ? handleSearch(event)
             : event.key === 'Backspace'
-            ? handleDelete(event)
+            ? handleDeleteBackSpace(event)
             : null
         }
         onChange={handleInput}
