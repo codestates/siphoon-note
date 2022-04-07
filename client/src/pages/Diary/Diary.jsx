@@ -1,4 +1,5 @@
 import dummy from '../../static/dummyData';
+import pageDummy from '../../static/pageDummyData';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
@@ -11,8 +12,9 @@ import TagToggle from '../../components/TagToggle';
 import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
+import Loading from '../../components/Loading';
+import { useState, useEffect, useRef } from 'react';
 import Editor from '../../components/Editor';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -36,13 +38,14 @@ import {
   Image,
   IconWrapper,
   IconWrapper2,
+  LoadingWrapper,
   DD,
   Backs,
   Hashtag,
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-import * as config from '../../config/config';
+import config from '../../config/config.js';
 
 export default function Diary() {
   //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
@@ -90,6 +93,10 @@ export default function Diary() {
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
   const [minute, setMinute] = useState(1);
+
+  const [loading, setLoading] = useState(true);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [lastElement, setLastElement] = useState(null);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
@@ -139,6 +146,68 @@ export default function Diary() {
       // setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
     }
   };
+
+  // const ioCallback = (entries, io) => {
+  // 화면 안에 요소가 들어왔는지 체크
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  // 기존 관찰하던 요소는 더 이상 관찰하지 않음
+  //       io.unobserve(entry.target);
+
+  // TODO: 새로운 컨텐츠 추가
+  // TODO: 새로운 컨텐츠의 마지막 요소를 관찰 시작
+
+  //       loadingStart();
+  //       setTimeout(() => {
+  //         addNewContent();
+  //         loadingFinish();
+  //         observeLastItem(io, document.querySelectorAll('.card'));
+  //       }, 2000);
+  //     }
+  //   });
+  // };
+
+  const observer = useRef(
+    new IntersectionObserver(entries => {
+      const first = entries[0];
+      if (first.isIntersecting) {
+        setPageNumber(no => no + 1);
+      }
+    })
+  );
+
+  const onEvent = () => {
+    setLoading(true);
+    console.log('pageEnd Event');
+    // console.log(typeof pageDummy[pageNumber]);
+    // console.log(typeof diaryList);
+    if (pageNumber !== 0 && pageDummy[pageNumber] !== undefined) {
+      setDiaryList([...diaryList, ...pageDummy[pageNumber]]);
+    }
+    setLoading(false);
+    // setPageNumber(pageNumber => pageNumber + 1);
+  };
+
+  useEffect(() => {
+    onEvent();
+  }, [pageNumber]);
+
+  useEffect(() => {
+    const currentElement = lastElement;
+    const currentObserver = observer.current;
+
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [lastElement]);
+
+  const pageEnd = useRef(null);
 
   return (
     <>
@@ -245,7 +314,14 @@ export default function Diary() {
                     ></Card>
                   ) : null;
                 })}
+                <div ref={setLastElement} style={{ position: 'hidden' }}></div>
               </Wrapper3>
+
+              <div />
+              <LoadingWrapper>
+                {/* {loading && <Loading />} */}
+                <Loading />
+              </LoadingWrapper>
             </Main>
           </>
         ) : (
