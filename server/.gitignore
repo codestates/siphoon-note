@@ -3,6 +3,8 @@
 *.pem
 /uploads
 
+*.sql
+
 # Logs
 logs
 *.log
