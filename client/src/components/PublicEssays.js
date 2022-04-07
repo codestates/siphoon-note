@@ -81,8 +81,8 @@ const Carousel2 = styled(Carousel)`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
+  justify-content: space-around;
+  gap: 3.3rem;
   padding: 5rem;
 `;
 
@@ -95,7 +95,7 @@ const CardContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   border-radius: 22px;
-  width: 375px;
+  min-width: 320px;
   height: 514px;
   font-size: 1.3rem;
   padding: 1.3rem;

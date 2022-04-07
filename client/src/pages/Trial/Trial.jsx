@@ -2,7 +2,7 @@ import dummy from '../../static/trialDummy';
 import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
-import { GrCircleInformation } from 'react-icons/gr';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -144,7 +144,7 @@ export default function Trial() {
 
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(1);
+  const [minute, setMinute] = useState(10);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
@@ -242,7 +242,7 @@ export default function Trial() {
                 </Button3>
               )}
               <Button onClick={() => setTimerOn(false)}>리셋</Button>
-              <Button onClick={handleSubmit}>남기기</Button>
+              <Button onClick={handleSubmit}>전송</Button>
             </ButtonWrapper2>
           </InputWrapper>
           <TrialTagToggle
@@ -424,7 +424,7 @@ export const Card = ({
             <Title>{number}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
             {isFlipIcon && (
-              <GrCircleInformation
+              <AiOutlineInfoCircle
                 className="flip-icon"
                 onMouseEnter={() => setHover(false)}
               />
@@ -441,7 +441,7 @@ export const Card = ({
           >
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <GrCircleInformation className="flip-icon" />
+            <AiOutlineInfoCircle className="flip-icon" />
           </CardContainer>
           <Backs
             className="back"

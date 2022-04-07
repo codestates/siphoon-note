@@ -19,7 +19,10 @@ import {
 } from './Landing.style';
 import { NavLink } from 'react-router-dom';
 import { HiArrowUp, HiArrowDown } from 'react-icons/hi';
-import { BsFillArrowDownCircleFill } from 'react-icons/bs';
+import {
+  BsFillArrowDownCircleFill,
+  BsArrowDownCircleFill,
+} from 'react-icons/bs';
 import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
@@ -95,22 +98,21 @@ export default function Landing({ isLogin }) {
     };
   });
 
-  // 스크롤 트리거 구현
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to('.introduction-title', {
-    scrollTrigger: {
-      trigger: '.introduction-title',
-      start: 'top center',
-      end: 'bottom bottom',
-      // markers: true,
-      toggleActions: 'play pause reverse restart',
-      scrub: true,
-    },
-    duration: 12,
-    y: 320,
-    ease: Power3.easeOut,
-  });
+  // gsap.to('.introduction-title', {
+  //   scrollTrigger: {
+  //     trigger: '.introduction-title',
+  //     start: 'top center',
+  //     end: 'bottom bottom',
+  //     // markers: true,
+  //     toggleActions: 'play pause reverse restart',
+  //     scrub: true,
+  //   },
+  //   duration: 12,
+  //   y: 320,
+  //   ease: Power3.easeOut,
+  // });
 
   gsap.to('.community-title', {
     scrollTrigger: {
@@ -143,18 +145,18 @@ export default function Landing({ isLogin }) {
         <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>
         <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
-          <Span>글쓰기 습관을 기르는 10분</Span>
+          <Span>글 쓰기 습관을 기르는 10분 노트</Span>
           <>
             {isLogin ? (
               <NavLink to="/diary">
                 <Button>
-                  SIPHOON<br></br>NOTE
+                  SIPBOON<br></br>NOTE
                 </Button>
               </NavLink>
             ) : (
               <NavLink to="/trial">
                 <Button>
-                  SIPHOON<br></br>NOTE
+                  SIPBOON<br></br>NOTE
                 </Button>
               </NavLink>
             )}
@@ -172,22 +174,24 @@ export default function Landing({ isLogin }) {
         </Icon2>
       ) : null}
       <Container2 id="introduction">
-        <h1 className="introduction-title">Siphoon-Note를 소개합니다! 📝️</h1>
+        <h1 className="introduction-title">
+          안녕하세요, SIPBOON NOTE 입니다. 📝️
+        </h1>
       </Container2>
       <Container3>
         <Description></Description>
       </Container3>
       <Container4>
-        <h2 className="community-title">
-          Siphoon 게시판<br></br>
+        <h3 className="community-title">
+          Sipboon 게시판<br></br>
           <BsFillArrowDownCircleFill className="community-icon"></BsFillArrowDownCircleFill>
-        </h2>
+        </h3>
       </Container4>
       <Container5 id="ranking">
         <Ranking topUser={topUser}></Ranking>
       </Container5>
       <Container6 id="public">
-        <h2>다른 유저의 Siphoon Note를 공유해요!</h2>
+        <h2>다른 유저들은 Sipboon Note를 이렇게 작성했어요!</h2>
         <PublicEssays publicEssay={publicEssay}></PublicEssays>
       </Container6>
       <Footer></Footer>
