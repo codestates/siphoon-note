@@ -13,6 +13,7 @@ export default function Description() {
       detail: [
         '글쓰기 몰입을 돕는 타이머 기능',
         '타이머 종료 후 자동 저장 기능',
+        '설명3',
       ],
     },
     {
@@ -22,12 +23,13 @@ export default function Description() {
       detail: [
         '작성일자를 달력에 스탬프로 기록',
         '유저의 글쓰기 데이터를 분석',
+        '설명3',
       ],
     },
     {
       title: '랭킹',
       image: 'medal',
-      detail: ['상위 랭킹 기록 유저 4명 선정', '결과는 매주 업데이트'],
+      detail: ['상위 랭킹 기록 유저 4명 선정', '결과는 매주 업데이트', '설명3'],
     },
     {
       title: '영감',
@@ -99,7 +101,7 @@ const CardContainer = styled.div`
     transform: scale(1.02);
   }
   .thumbnail {
-    width: 50%;
+    width: 48%;
     border: 2px solid black;
     padding: 1.5rem;
     margin: 1.5rem 2rem 0.7rem 2rem;

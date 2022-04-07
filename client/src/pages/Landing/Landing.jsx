@@ -32,10 +32,18 @@ import config from '../../config/config.js';
 export default function Landing({ isLogin }) {
   // 서버에서 유저 랭킹과 공개글 리스트 받기
   const dummyData = [
-    { profileImage: { imageUrls: '0' }, username: '이규리', usageDates: '38' },
-    { profileImage: { imageUrls: '1' }, username: '이소리', usageDates: '35' },
-    { profileImage: { imageUrls: '2' }, username: '이쇼리', usageDates: '33' },
-    { profileImage: { imageUrls: '3' }, username: '이슈리', usageDates: '32' },
+    {
+      profileImage: { imageUrls: '0' },
+      username: '안가람',
+      usageDates: '1284',
+    },
+    {
+      profileImage: { imageUrls: '1' },
+      username: '이종열',
+      usageDates: '99',
+    },
+    { profileImage: { imageUrls: '2' }, username: '전준형', usageDates: '98' },
+    { profileImage: { imageUrls: '3' }, username: '이수리', usageDates: '75' },
   ];
   const [topUser, setTopUser] = useState(dummyData);
   const [publicEssay, setPublicEssay] = useState(dummy);
@@ -121,26 +129,32 @@ export default function Landing({ isLogin }) {
     <>
       <Container>
         <Image imgUrl="img/background/tree.svg"></Image>
-        <NavLink to="/diary">
-          <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
-        </NavLink>
+        {isLogin ? (
+          <NavLink to="/diary">
+            <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
+          </NavLink>
+        ) : (
+          <NavLink to="/trial">
+            <Image2 src="img/clock.svg" top="2" left="1" height="20"></Image2>
+          </NavLink>
+        )}
         <Image3 src="img/rhombus.svg" right="8" top="29" height="4"></Image3>
         <Image4 src="img/rhombus.svg" right="5.5" top="31" height="6"></Image4>
         <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>
         <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
-          <Span>하루에 십분만 코딩을 해요?ㅎㅎㅎ</Span>
+          <Span>글쓰기 습관을 기르는 10분</Span>
           <>
             {isLogin ? (
               <NavLink to="/diary">
                 <Button>
-                  click<br></br>logoooo!
+                  SIPHOON<br></br>NOTE
                 </Button>
               </NavLink>
             ) : (
               <NavLink to="/trial">
                 <Button>
-                  clickkk<br></br>logoooo!
+                  SIPHOON<br></br>NOTE
                 </Button>
               </NavLink>
             )}
@@ -158,17 +172,14 @@ export default function Landing({ isLogin }) {
         </Icon2>
       ) : null}
       <Container2 id="introduction">
-        <h1 className="introduction-title">
-          Hello, This is 10bun diary :) 📝️
-        </h1>
+        <h1 className="introduction-title">Siphoon-Note를 소개합니다! 📝️</h1>
       </Container2>
       <Container3>
         <Description></Description>
       </Container3>
       <Container4>
         <h2 className="community-title">
-          notice board
-          <br></br>
+          Siphoon 게시판<br></br>
           <BsFillArrowDownCircleFill className="community-icon"></BsFillArrowDownCircleFill>
         </h2>
       </Container4>
@@ -176,7 +187,7 @@ export default function Landing({ isLogin }) {
         <Ranking topUser={topUser}></Ranking>
       </Container5>
       <Container6 id="public">
-        <h2>공개된 글 가나다라 마바사</h2>
+        <h2>다른 유저의 Siphoon Note를 공유해요!</h2>
         <PublicEssays publicEssay={publicEssay}></PublicEssays>
       </Container6>
       <Footer></Footer>

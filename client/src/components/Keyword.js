@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colorTheme from '../colorTheme';
 
-export default function Keyword({ themeIndex, handleKeyword }) {
+export default function Keyword({ themeIndex, handleKeyword, keyword }) {
   return (
     <ModalBackdrop onClick={handleKeyword}>
       <ModalView themeIndex={themeIndex} onClick={e => e.stopPropagation()}>
@@ -9,8 +9,8 @@ export default function Keyword({ themeIndex, handleKeyword }) {
           &times;
         </div>
         <div className="title">KEYWORD</div>
-        <span>영감 가나다라 마바사 아자차</span>
-        <div className="desc">지금</div>
+        <span>오늘 당신에게 영감을 줄 키워드</span>
+        <div className="desc">{keyword}</div>
       </ModalView>
     </ModalBackdrop>
   );
@@ -48,6 +48,7 @@ const ModalView = styled.div.attrs(props => ({
   background-color: #ffffff;
   text-align: center;
   animation: fadeInText 0.7s linear forwards;
+  font-size: 1.1rem;
 
   @keyframes fadeInText {
     0% {
@@ -63,7 +64,6 @@ const ModalView = styled.div.attrs(props => ({
 
   > div.close-btn {
     position: relative;
-    // align-items: end;
     flex: 1 0 0;
     margin: 7px 7px 0 0;
     float: right;

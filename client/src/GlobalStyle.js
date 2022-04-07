@@ -15,11 +15,16 @@ import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;5
     font-size:18px;
   }
   h1 {
-    font-size:3.5rem;
+    font-size:3rem;
     margin:0px;
   }
   h2 {
     font-size:2.5rem;
+    margin:0px;
+  }
+
+  h3 {
+    font-size : 2.1rem;
     margin:0px;
   }
   `;

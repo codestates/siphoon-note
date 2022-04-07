@@ -63,7 +63,7 @@ export const TagsInput = styled.div`
     padding: 0;
 
     > .tag {
-      width: 85px;
+      width: 100px;
       height: 27px;
       display: flex;
       align-items: center;
@@ -72,7 +72,7 @@ export const TagsInput = styled.div`
       font-size: 0.8rem;
       list-style: none;
       border-radius: 6px;
-      margin: 0.2rem;
+      margin: 0.2rem 0.3rem;
       background: white;
       border: 2px solid black;
       > .tag-close-icon {

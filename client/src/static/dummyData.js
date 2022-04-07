@@ -3,7 +3,7 @@ const dummy = [
     essayId: 0,
     tag: ['아침', '점심', '저녁'],
     content: 'hellooooo',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
     isPublic: false,
     isDeleted: false,
   },
@@ -12,7 +12,8 @@ const dummy = [
     tag: ['가나다', '라마바', '사아자'],
     content:
       '시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다.',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: false,
     isDeleted: false,
   },
@@ -21,7 +22,8 @@ const dummy = [
     tag: ['그래', '반갑다', '정말'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: false,
     isDeleted: false,
   },
@@ -31,7 +33,8 @@ const dummy = [
 
     content:
       '…neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: false,
     isDeleted: false,
   },
@@ -49,7 +52,8 @@ const dummy = [
     흩어지는 박수 소리에도
     객석에 모두가 사라져도
     계속 그대로일 것 같은 만남들`,
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: false,
     isDeleted: false,
   },
@@ -76,7 +80,7 @@ const dummy = [
     나는 또 누군가에게 반하고 또 그렇게
     아무 일 없다는 듯이
     내게서 다 사라져 버리면 어쩌나`,
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
     isPublic: false,
     isDeleted: false,
   },
@@ -85,7 +89,8 @@ const dummy = [
     tag: ['하히', '휴휴효', '먀묘무'],
     content:
       '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다.',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: true,
     isDeleted: false,
   },
@@ -94,7 +99,8 @@ const dummy = [
     tag: ['하히', '휴휴효', '먀묘무'],
     content:
       '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다.',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: false,
     isDeleted: false,
   },
@@ -104,7 +110,8 @@ const dummy = [
 
     content:
       '나도 당신처럼 한번 아름다워보자고 시작한 일이 이렇게 나 멀리 흘렀다. 내가 살아있어서 만날 수 없는 당신이 저 세상에 살고 있다. 물론 이 세상에도 두엇쯤 당신이 있다. 만나면 몇 번이고 미안하다고 말하고 싶다.',
-    createdAt: '2019-02-28T16:17:47.000Z',
+    createdAt: '2022-04-22',
+
     isPublic: true,
     isDeleted: false,
   },

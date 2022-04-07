@@ -57,13 +57,13 @@ export default function Diary() {
 
   //! 달력 마크 & 기록 분석 (서버에서 데이터 받아와서 갱신만 하면 되는 상태)
   const [markList, setMarkList] = useState([
-    '11-04-2022',
-    '03-04-2022',
-    '24-04-2022',
-    '17-03-2022',
-    '31-03-2022',
-    '10-05-2022',
-    '11-05-2022',
+    '2022-04-11',
+    '2022-04-03',
+    '2022-04-02',
+    '2022-04-01',
+    '2022-03-31',
+    '2022-03-30',
+    '2022-03-28',
   ]);
 
   const [recordList, setRecordList] = useState({
@@ -73,9 +73,11 @@ export default function Diary() {
     usageDate: 30,
   });
 
+  // 오늘의 영감
+  const [keyword, setKeyword] = useState('윤슬');
+
   // 태그
-  const defaultTags = ['윤슬'];
-  const [tags, setTags] = useState(defaultTags);
+  const [tags, setTags] = useState([keyword]);
 
   // 사용자 에세이 인풋
   const [input, setInput] = useState('');
@@ -126,6 +128,7 @@ export default function Diary() {
     if (input !== '') {
       setInput('');
       setTimerOn(false);
+      setTags([keyword]);
 
       axios
         .post(
@@ -143,7 +146,6 @@ export default function Diary() {
           }
         })
         .catch(error => console.log(error));
-      // setDiaryList([{ id: diaryList.length, content: input }, ...diaryList]);
     }
   };
 
@@ -213,7 +215,11 @@ export default function Diary() {
     <>
       <Container color={colorTheme[themeIndex].color}>
         {isKeywordModal ? (
-          <Keyword themeIndex={themeIndex} handleKeyword={handleKeyword} />
+          <Keyword
+            keyword={keyword}
+            themeIndex={themeIndex}
+            handleKeyword={handleKeyword}
+          />
         ) : null}
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
@@ -448,7 +454,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
               <RiPencilLine onClick={handleEditor} className="back" />
               <RiDeleteBin6Line className="back" onClick={deletehandle} />
             </Icon>
-            <span className="createdat">2022. 04. 09</span>
+            <span className="createdat">{diary.createdAt}</span>
             <div className="tags">
               {diary.tag.map((tag, index) => {
                 return <Hashtag key={index}># {tag}</Hashtag>;
