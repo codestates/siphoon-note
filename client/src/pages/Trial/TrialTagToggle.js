@@ -1,58 +1,28 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
-import axios from 'axios';
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 
-export default function TagToggle({
+export default function TrialTagToggle({
+  tagList,
   setIsTagsDropdown,
   isTagsDropdown,
   setIsTrashDropdown,
+  entireList,
+  setDiaryList,
+  notDeletedList,
 }) {
-  const [tagList, setTagList] = useState([
-    '10bun-diary',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-  ]);
-
-  //! 서버에 태그 목록 조회하는 로직 (토큰 필요, 1차 작업)
-  const handleTagList = () => {
-    if (isTagsDropdown === false) {
-      axios
-        .get(`${API_HOST}/api/v1/tags`, {
-          headers: { authorization: { 'Content-Type': 'application/json' } },
-        })
-        .then(res => {
-          if (res.status === 200) {
-            // 성공 응답이 오면 setTagList 상태 갱신 함수 업데이트 한다.
-          }
-        })
-        .catch(error => console.log(error));
-    }
-  };
-
-  //! 서버에 필터by태그 조회하는 로직 (토큰 필요, 1차 작업)
   const filterByTag = event => {
-    axios
-      .get(`${API_HOST}/api/v1/essays/${event.target.textContent}`, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
-      })
-      .then(res => {
-        if (res.status === 200) {
-          // 성공 응답이 오면 diary.jsx에서 diaryList를 업데이트 한다.
-        }
-      })
-      .catch(error => console.log(error));
+    if (event.target.textContent === '전체보기🔎️') {
+      return setDiaryList(notDeletedList);
+    }
+    const filtered = entireList.filter(essay => {
+      return !essay.isDeleted && essay.tag.includes(event.target.textContent);
+    });
+    setDiaryList(filtered);
   };
 
   const handleDropdown = () => {
@@ -71,7 +41,7 @@ export default function TagToggle({
 
   return (
     <>
-      <Wrapper onClick={handleTagList}>
+      <Wrapper>
         <div>Tags</div>
         <span onClick={handleDropdown}>
           <TiArrowSortedDown></TiArrowSortedDown>
@@ -80,6 +50,7 @@ export default function TagToggle({
       {isTagsDropdown && (
         <Container>
           <div>
+            <span onClick={event => filterByTag(event)}>전체보기🔎️</span>
             {tagList.map((tag, index) => {
               if (index >= current && index <= current + 18) {
                 return (

@@ -1,36 +1,34 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { MdSettingsBackupRestore } from 'react-icons/md';
-import axios from 'axios';
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 
-export default function Trash({
+export default function TrialTrash({
+  trashList,
+  setTrashList,
   isTrashDropdown,
   setIsTrashDropdown,
   setIsTagsDropdown,
+  diaryList,
+  entireList,
+  setEntireList,
+  setDiaryList,
 }) {
-  // 클릭한 메세지의 아이디를 서버 쪽으로 보내준다. 복원과 삭제 이후에 휴지통에 있는 내역을 다시 불러와야 한다.
-  const dummy = [
-    { essayId: 0, title: 'deleted message 0' },
-    { essayId: 1, title: 'deleted message 1' },
-    { essayId: 2, title: 'deleted message 2' },
-    { essayId: 3, title: 'deleted message 3' },
-    { essayId: 4, title: 'deleted message 4' },
-    { essayId: 4, title: 'deleted message 5' },
-    { essayId: 4, title: 'deleted message 6' },
-  ];
-
+  // const [list, setList] = useState(trashList);
+  // useEffect(() => {
+  // setList(trashList);
+  // }, [trashList]);
+  // console.log(trashList.length);
+  // console.log(list.length);
   const handleDropdown = () => {
     setIsTagsDropdown(false);
     setIsTrashDropdown(!isTrashDropdown);
   };
-
-  const [trashList, setTrashList] = useState(dummy);
 
   const length = trashList.length;
   const [current, setCurrent] = useState(0);
@@ -41,52 +39,27 @@ export default function Trash({
     setCurrent(current === 0 ? length - (length % 5) : current - 5);
   };
 
-  //! 서버에 휴지통 목록 조회하는 로직 (토큰 필요, 1차 작업)
-  const handleTrashList = () => {
-    if (isTrashDropdown === false) {
-      axios
-        .get(`${API_HOST}/api/v1/trash`, {
-          headers: { authorization: { 'Content-Type': 'application/json' } },
-        })
-        .then(res => {
-          if (res.status === 200) {
-            // 성공 응답이 오면 trashList 상태 갱신 함수 업데이트 한다.
-          }
-        })
-        .catch(error => console.log(error));
-    }
+  const handleDelete = selected => {
+    // 트래쉬리스트에서 삭제한다.
+    const filtered = trashList.filter(trash => {
+      return selected.essayId !== trash.essayId;
+    });
+    setTrashList(filtered);
   };
 
-  //! 서버에 휴지통 목록 복원/삭제 요청하는 로직 (토큰 필요, 1차 작업)
-  const handleDelete = index => {
-    axios
-      .delete(`${API_HOST}/api/v1/trash/${trashList[index].essayId}`, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
-      })
-      .then(res => {
-        if (res.status === 200) {
-          // 성공 응답이 오면 휴지통 목록에서 사라져야 한다. 다시 휴지통 목록 조회를 할까?
-        }
-      })
-      .catch(error => console.log(error));
-  };
-
-  const handleRestore = index => {
-    axios
-      .patch(`${API_HOST}/api/v1/trash/${trashList[index].essayId}`, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
-      })
-      .then(res => {
-        if (res.status === 200) {
-          // 성공 응답이 오면 휴지통 목록에서 사라지고 오른쪽 화면에 보여져야 한다. (고민)
-        }
-      })
-      .catch(error => console.log(error));
+  const handleRestore = selected => {
+    console.log(selected);
+    selected.isDeleted = false;
+    const filtered = trashList.filter(trash => {
+      return selected.essayId !== trash.essayId;
+    });
+    setTrashList(filtered);
+    setEntireList([selected, ...diaryList]);
   };
 
   return (
     <>
-      <Wrapper onClick={handleTrashList}>
+      <Wrapper>
         <div>Trash</div>
         <span onClick={handleDropdown}>
           <TiArrowSortedDown></TiArrowSortedDown>
@@ -98,11 +71,13 @@ export default function Trash({
             if (index >= current && index <= current + 5) {
               return (
                 <div key={index}>
-                  <span className="title">{trash.title}</span>
-                  <span onClick={() => handleRestore(index)}>
+                  <span className="title">
+                    {trash.createdAt} {trash.content.slice(0, 20)}
+                  </span>
+                  <span onClick={() => handleRestore(trash)}>
                     <MdSettingsBackupRestore></MdSettingsBackupRestore>
                   </span>
-                  <span onClick={() => handleDelete(index)}>
+                  <span onClick={() => handleDelete(trash)}>
                     <FiTrash2></FiTrash2>
                   </span>
                 </div>

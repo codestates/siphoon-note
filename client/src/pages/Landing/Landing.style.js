@@ -28,17 +28,18 @@ export const Container3 = styled(Container2)`
 
 export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 1);
-  border-radius: 50%;
   height: 80vh;
-  margin: 0% 30%;
+  // border-radius: 50%;
+  // margin: 0% 30%;
 
   > h2 {
     background: floralwhite;
     text-align: center;
-    padding: 0.7rem;
+    padding: 0.8rem;
     color: black;
     border: 3px solid black;
     border-radius: 10px;
+    font-size: 3rem;
   }
 
   .community-icon {
@@ -107,7 +108,7 @@ export const Image3 = styled(Image2)`
     animation: none;
   }
 
-  animation: up-down 0.8s 10 infinite ease-in-out alternate;
+  animation: up-down 0.8s infinite ease-in-out alternate;
 
   @keyframes up-down {
     from {
@@ -117,11 +118,12 @@ export const Image3 = styled(Image2)`
       transform: translatey(1px);
     }
   }
-  opacity: 90%;
+
+  opacity: 95%;
 `;
 
 export const Image4 = styled(Image3)`
-  animation: up-down 1s 10 infinite ease-in-out alternate;
+  animation: up-down 1s infinite ease-in-out alternate;
 `;
 
 export const Main = styled.span`
@@ -138,10 +140,27 @@ export const Button = styled.button`
   color: black;
   cursor: pointer;
   font-size: 6.5rem;
-  font-weight: bold;
+  // font-weight: 500;
   border: none;
   background: rgb(254, 205, 133, 0.02);
+  // font-family: 'Audiowide', cursive;
+  font-family: 'Bungee', cursive;
+  font-family: 'Bungee Shade', cursive;
+  // font-family: 'Cabin Sketch', cursive;
+  // font-family: 'Coiny', cursive;
+  font-family: 'Coming Soon', cursive;
+  // font-family: 'Finger Paint', cursive;
+  // font-family: 'Fredoka One', cursive;
+  // font-family: 'Gugi', cursive;
+  // font-family: 'Luckiest Guy', cursive;
+  // font-family: 'Megrim', cursive;
+  // font-family: 'Monoton', cursive;
+  // font-family: 'Palette Mosaic', cursive;
+  // font-family: 'Rock 3D', cursive;
+  // font-family: 'Russo One', sans-serif;
   // font-family: 'Syncopate', sans-serif;
+  // font-family: 'Ultra', serif;
+  //159, 154, 151, 149, 146, 147, 145
   &:hover {
     opacity: 90%;
   }

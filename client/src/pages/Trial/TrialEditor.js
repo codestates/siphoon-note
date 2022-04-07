@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
 import { useState } from 'react';
-import axios from 'axios';
-import config from '../config/config.js';
 
-export default function Editor({ handleEditor, diary, number }) {
+export default function TrialEditor({ handleEditor, diary, number }) {
   const [input, setInput] = useState(diary.content);
+  console.log(input);
   const handleChange = e => {
     setInput(e.target.value);
   };
@@ -15,22 +14,9 @@ export default function Editor({ handleEditor, diary, number }) {
     setIsPublic(!isPublic);
   };
   const handleSubmit = () => {
-    //! 서버에 수정 요청 보내기 (토큰 필요, 1차 작업 완료)
-    axios
-      .put(
-        config.UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
-        {
-          content: input,
-          isPublic,
-        },
-        { headers: { authorization: { 'Content-Type': 'application/json' } } }
-      )
-      .then(res => {
-        if (res.status === 200) {
-          // 성공적으로 글이 업데이트 되면 다시 메세지를 조회한다. readHandler?
-        }
-      })
-      .catch(error => console.log(err));
+    diary.content = input;
+    diary.isPublic = isPublic;
+    handleEditor();
   };
   return (
     <ModalBackdrop onClick={handleEditor}>
