@@ -77,3 +77,4 @@ const signup = async (req, res) => {
 //여기에서 res.redirect('/essays')로 넘어감
 
 module.exports = { signup };
+// module.exports = signup;

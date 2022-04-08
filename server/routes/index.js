@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const authCtrl = require('../controllers/auth');
-console.log('========================authCtrl: ', authCtrl);
-// const { essayCtrl } = require('../controllers/essays');
-// const { userCtrl } = require('../controllers/users');
+const { essayCtrl } = require('../controllers/essays');
+const { userCtrl } = require('../controllers/users');
 
 router.get('/', (req, res) => {
   res.status(200).send('Hello From SSL Server!😀');
@@ -29,25 +28,25 @@ router.use((err, req, res, next) => {
 const BASE_URI = '/api/v1';
 
 // main: 1
-// router.use(BASE_URI, require('./landing'));
+router.use(BASE_URI, require('./landing'));
 
 // essay: 5
-// router.use(`${BASE_URI}/essays`, require('./essays'));
+router.use(`${BASE_URI}/essays`, require('./essays'));
 
 //user: 6
 router.post(`${BASE_URI}/signup`, authCtrl.signup);
-// router.post(`${BASE_URI}/signin`, authCtrl.signin);
-// router.delete(`${BASE_URI}/signout`, authCtrl.signout);
-// router.get(`${BASE_URI}/userinfo`, userCtrl.getUserInfo);
-// router.delete(`${BASE_URI}/userinfo`, userCtrl.deleteUserAccount);
-// router.patch(`${BASE_URI}/userinfo`, userCtrl.updateUserInfo);
+router.post(`${BASE_URI}/signin`, authCtrl.signin);
+router.delete(`${BASE_URI}/signout`, authCtrl.signout);
+router.get(`${BASE_URI}/userinfo`, userCtrl.getUserInfo);
+router.delete(`${BASE_URI}/userinfo`, userCtrl.deleteUserAccount);
+router.patch(`${BASE_URI}/userinfo`, userCtrl.updateUserInfo);
 
-// // trash: 3
-// router.get(`${BASE_URI}/trashes`, essayCtrl.getTrashList);
-// router.patch(`${BASE_URI}/trashes/:essayId`, essayCtrl.updateEssay);
-// router.delete(`${BASE_URI}/trashes/:essayId`, essayCtrl.deleteEssay);
+// trash: 3
+router.get(`${BASE_URI}/trashes`, essayCtrl.getTrashList);
+router.patch(`${BASE_URI}/trashes/:essayId`, essayCtrl.updateEssay);
+router.delete(`${BASE_URI}/trashes/:essayId`, essayCtrl.deleteEssay);
 
-// // tag: 1
-// router.get(`${BASE_URI}/tags`, essayCtrl.getTagList);
+// tag: 1
+router.get(`${BASE_URI}/tags`, essayCtrl.getTagList);
 
 module.exports = router;
