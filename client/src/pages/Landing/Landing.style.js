@@ -18,6 +18,10 @@ export const Container2 = styled(Container)`
   justify-content: center;
   color: black;
   height: 88vh;
+
+  h1 {
+    font-family: 'Coming Soon', cursive;
+  }
 `;
 
 export const Container3 = styled(Container2)`
@@ -28,18 +32,17 @@ export const Container3 = styled(Container2)`
 
 export const Container4 = styled(Container2)`
   background-color: rgb(255, 135, 70, 1);
-  height: 80vh;
-  // border-radius: 50%;
-  // margin: 0% 30%;
+  height: 70vh;
 
-  > h2 {
+  > h3 {
     background: floralwhite;
     text-align: center;
-    padding: 0.8rem;
+    padding: 0.6rem 1.2rem;
     color: black;
     border: 3px solid black;
     border-radius: 10px;
     font-size: 3rem;
+    font-family: 'Coming Soon', cursive;
   }
 
   .community-icon {
@@ -49,7 +52,7 @@ export const Container4 = styled(Container2)`
 
 export const Container5 = styled(Container2)`
   background-color: rgb(157, 161, 255, 1);
-  height: 130vh;
+  height: 125vh;
   border-radius: 0%;
 `;
 
@@ -140,29 +143,11 @@ export const Button = styled.button`
   color: black;
   cursor: pointer;
   font-size: 6.5rem;
-  // font-weight: 500;
   border: none;
   background: rgb(254, 205, 133, 0.02);
-  // font-family: 'Audiowide', cursive;
-  font-family: 'Bungee', cursive;
-  font-family: 'Bungee Shade', cursive;
-  // font-family: 'Cabin Sketch', cursive;
-  // font-family: 'Coiny', cursive;
   font-family: 'Coming Soon', cursive;
-  // font-family: 'Finger Paint', cursive;
-  // font-family: 'Fredoka One', cursive;
-  // font-family: 'Gugi', cursive;
-  // font-family: 'Luckiest Guy', cursive;
-  // font-family: 'Megrim', cursive;
-  // font-family: 'Monoton', cursive;
-  // font-family: 'Palette Mosaic', cursive;
-  // font-family: 'Rock 3D', cursive;
-  // font-family: 'Russo One', sans-serif;
-  // font-family: 'Syncopate', sans-serif;
-  // font-family: 'Ultra', serif;
-  //159, 154, 151, 149, 146, 147, 145
   &:hover {
-    opacity: 90%;
+    transform: scale(1.05);
   }
 `;
 

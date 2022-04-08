@@ -64,7 +64,7 @@ export const InputWrapper = styled.div`
   }
 `;
 export const Input = styled.textarea.attrs({
-  placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다. :)',
+  placeholder: '글을 쓰기 시작하면, 타이머가 작동됩니다.',
 })`
   border: 3px solid black;
   width: 94%;

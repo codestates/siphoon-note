@@ -70,6 +70,8 @@ function App() {
           path="/mypage"
           element={<Mypage user={userInfo} isLogin={isLogin} />}
         />
+        <Route path="/diary" element={<Diary accessToken={accessToken} />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/trial" element={<Trial />} />

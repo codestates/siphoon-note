@@ -1,55 +1,56 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
-import axios from 'axios';
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 
+import styled from 'styled-components';
+import axios from 'axios';
+import apiUris from '../config/config';
+import { useState } from 'react';
+
 export default function TagToggle({
   setIsTagsDropdown,
   isTagsDropdown,
   setIsTrashDropdown,
+  readHandler,
 }) {
-  const [tagList, setTagList] = useState([
-    '10bun-diary',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-    '다섯자태그',
-  ]);
+  const [tagList, setTagList] = useState(['SipboonDiary', '다섯자태그']);
 
-  //! 서버에 태그 목록 조회하는 로직 (토큰 필요, 1차 작업)
+  //! 서버에 태그 목록 조회하는 로직 (토큰 필요)
   const handleTagList = () => {
     if (isTagsDropdown === false) {
       axios
-        .get(`${API_HOST}/api/v1/tags`, {
-          headers: { authorization: { 'Content-Type': 'application/json' } },
-        })
+        .get(
+          apiUris.READ_TAG_LIST /
+            {
+              headers: {
+                authorization: { 'Content-Type': 'application/json' },
+              },
+            }
+        )
         .then(res => {
           if (res.status === 200) {
-            // 성공 응답이 오면 setTagList 상태 갱신 함수 업데이트 한다.
+            // data 객체에 담겨 오는 게 맞나?
+            setTagList(res.data);
           }
         })
         .catch(error => console.log(error));
     }
   };
 
-  //! 서버에 필터by태그 조회하는 로직 (토큰 필요, 1차 작업)
+  //! 서버에 필터by태그 조회하는 로직 (토큰 필요, 전체 보기 작업에 대한 고민)
   const filterByTag = event => {
+    if (event.target.textContent === '전체보기🔎️') {
+      return readHandler();
+    }
     axios
-      .get(`${API_HOST}/api/v1/essays/${event.target.textContent}`, {
+      .get(apiUris.READ_ESSAY_LIST_BY_WORD + '/' + event.target.textContent, {
         headers: { authorization: { 'Content-Type': 'application/json' } },
       })
       .then(res => {
         if (res.status === 200) {
-          // 성공 응답이 오면 diary.jsx에서 diaryList를 업데이트 한다.
+          setDiaryList(res.data);
         }
       })
       .catch(error => console.log(error));
@@ -80,6 +81,7 @@ export default function TagToggle({
       {isTagsDropdown && (
         <Container>
           <div>
+            <span onClick={filterByTag}>전체보기🔎️</span>
             {tagList.map((tag, index) => {
               if (index >= current && index <= current + 18) {
                 return (

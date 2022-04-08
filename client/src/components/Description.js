@@ -13,7 +13,7 @@ export default function Description() {
       detail: [
         '글쓰기 몰입을 돕는 타이머 기능',
         '타이머 종료 후 자동 저장 기능',
-        '설명3',
+        '타이머 리셋 기능',
       ],
     },
     {
@@ -21,23 +21,23 @@ export default function Description() {
       image: 'calendar',
 
       detail: [
-        '작성일자를 달력에 스탬프로 기록',
+        '달력에 스탬프로 작성일자 기록',
         '유저의 글쓰기 데이터를 분석',
         '설명3',
       ],
     },
     {
-      title: '랭킹',
+      title: '🖇️랭킹',
       image: 'medal',
       detail: ['상위 랭킹 기록 유저 4명 선정', '결과는 매주 업데이트', '설명3'],
     },
     {
-      title: '영감',
+      title: '🖇️영감',
       image: 'star',
       detail: [
-        '다른 유저와 나의 글 공유',
-        '매일 새로운 글감 키워드 전달',
-        '글감을 관리하는 태그 기능 제공',
+        '다른 유저에게 나의 글 공개',
+        '매일 새로운 글감 키워드 제공',
+        '글의 주제를 관리하는 태그 기능',
       ],
     },
   ];
@@ -52,13 +52,17 @@ export default function Description() {
               <a href="#public">
                 <span className="title">{data.title}</span>
               </a>
+            ) : index === 2 ? (
+              <a href="#ranking">
+                <span className="title">{data.title}</span>
+              </a>
             ) : (
               <span className="title">{data.title}</span>
             )}
             <div className="description">
-              <span>{data.detail[0]}</span>
-              <span>{data.detail[1]}</span>
-              <span>{data.detail[2]}</span>
+              <span>🔸️{data.detail[0]}</span>
+              <span>🔸️{data.detail[1]}</span>
+              <span>🔸️{data.detail[2]}</span>
             </div>
           </CardContainer>
         );
@@ -71,7 +75,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3.5rem;
   padding: 5rem;
 `;
 
@@ -80,12 +84,12 @@ const CardContainer = styled.div`
   border: 3px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background: floralwhite;
   flex-wrap: wrap;
   border-radius: 22px;
-  min-width: 360px;
+  min-width: 320px;
   min-height: 500px;
   font-size: 1.2rem;
   font-weight: 400;
@@ -104,7 +108,7 @@ const CardContainer = styled.div`
     width: 48%;
     border: 2px solid black;
     padding: 1.5rem;
-    margin: 1.5rem 2rem 0.7rem 2rem;
+    margin: 0rem 2rem 0.7rem 2rem;
     border-radius: 10px;
     background: white;
     opacity: 0.9;

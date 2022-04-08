@@ -15,16 +15,8 @@ export default function TrialTrash({
   setIsTrashDropdown,
   setIsTagsDropdown,
   diaryList,
-  entireList,
   setEntireList,
-  setDiaryList,
 }) {
-  // const [list, setList] = useState(trashList);
-  // useEffect(() => {
-  // setList(trashList);
-  // }, [trashList]);
-  // console.log(trashList.length);
-  // console.log(list.length);
   const handleDropdown = () => {
     setIsTagsDropdown(false);
     setIsTrashDropdown(!isTrashDropdown);
@@ -40,7 +32,6 @@ export default function TrialTrash({
   };
 
   const handleDelete = selected => {
-    // 트래쉬리스트에서 삭제한다.
     const filtered = trashList.filter(trash => {
       return selected.essayId !== trash.essayId;
     });

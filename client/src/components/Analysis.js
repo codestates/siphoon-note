@@ -4,11 +4,11 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import './analysis.css';
 
-export default function Analysis({ markList, recordList }) {
+export default function Analysis({ markList, record }) {
   // 캘린더
   const [value, onChange] = useState(new Date());
 
-  const { totalEssay, currentStreaks, longestStreaks, usageDate } = recordList;
+  const { totalEssay, currentStreaks, longestStreaks, usageDate } = record;
   console.log(currentStreaks);
   // 분석 데이터 3종
   const analysisData = [
