@@ -1,1 +1,13 @@
-// 토큰 유효성 검사: 만료, 해독 후 해당 계정이 유효한지
+const jwt = require('jsonwebtoken');
+
+const tokenValidator = token => {
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+
+  if (decodedToken.exp < Date.now() / 1000) {
+    return false;
+  }
+
+  return true;
+};
+
+module.exports = tokenValidator;
