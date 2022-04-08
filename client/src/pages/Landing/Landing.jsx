@@ -127,7 +127,7 @@ export default function Landing({ isLogin }) {
         <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>
         <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
-          <Span>글 쓰기 습관을 기르는 10분 노트 쓰기</Span>
+          <Span>글 쓰기 습관을 기르는 10분 노트</Span>
           <>
             {isLogin ? (
               <NavLink to="/diary">

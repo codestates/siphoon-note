@@ -15,6 +15,7 @@
   background-image :url('/public/img/clouds.svg');
   background-repeat:no-repeat;
   background-size:cover;
+  opacity:0.95;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -39,10 +40,10 @@
 /* 날짜 */
 .react-calendar button {
   padding:0.6rem;
-  border: 0;
-  outline: none;
+  border:none;
   font-size: 1.2rem;
   font-weight:bold;
+  height:75px;
 
 
 }
@@ -165,8 +166,8 @@
 
 .image {
   display:inline;
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 15%;
   display: flex;
   background:wheat;

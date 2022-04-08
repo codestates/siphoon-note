@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h3 {
-    font-size : 2.1rem;
+    font-size : 1.9rem;
     margin:0px;
     font-family: 'Coming Soon', cursive;
 
