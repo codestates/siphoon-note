@@ -39,13 +39,13 @@ import {
   IconWrapper,
   IconWrapper2,
   LoadingWrapper,
-  DD,
+  Divs,
   Backs,
   Hashtag,
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-import config from '../../config/config.js';
+import apiUris from '../../config/config';
 
 export default function Diary() {
   //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
@@ -132,7 +132,7 @@ export default function Diary() {
 
       axios
         .post(
-          config.WRITE_ESSAY,
+          apiUris.WRITE_ESSAY,
           {
             content: input,
             isPublic,
@@ -371,32 +371,26 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
   const number = length - index;
 
   const deletehandle = () => {
-    // const { id } = diary;
-    // axios
-    //   .patch(`${API_HOST}/api/v1/userinfo`,
-    //     {
-    //       id,
-    //     },
-    //     { headers: { 'Content-Type': 'application/json' } }
-    //   )
-    //   .then(respond => {
-    //     if (
-    //       respond.data.message === 'Successfully moved the essay to the trash!'
-    //     ) {
-    //       navigator('/diary');
-    //     } else if (
-    //       respond.data.message ===
-    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
-    //     ) {
-    //       alert('삭제 안됨');
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
-    navigator('/signin');
+    axios
+      .patch(apiUris.DELETE_ESSAY_BY_ID, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          navigator('/diary');
+        } else if (respond.status === 400) {
+          alert('삭제 안됨');
+        }
+      })
+      .catch(error => console.log(error));
+    navigator('/diary');
   };
 
   return (
-    <DD>
+    <Divs>
       {isEntireEssay && (
         <EntireEssay
           handleEntireEssay={handleEntireEssay}
@@ -447,7 +441,6 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           <Backs
             className="back"
             rotate="rotateY(0deg)"
-            position="static"
             onMouseLeave={() => setHover(true)}
           >
             <Icon>
@@ -463,6 +456,6 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           </Backs>
         </div>
       )}
-    </DD>
+    </Divs>
   );
 };

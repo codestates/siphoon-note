@@ -225,7 +225,6 @@ export const Backs = styled.div`
   box-shadow: 8px 8px 5px rgb(0, 0, 0, 0.2);
   transition: ${props => props.transition || '0.5s'};
   backface-visibility: hidden;
-  position: ${props => props.position || 'static'};
   transform: ${props => props.rotate || 'rotateY(-180deg)'};
 
   .tags {
@@ -279,7 +278,7 @@ export const Icon = styled.span`
   }
 `;
 
-export const DD = styled.div`
+export const Divs = styled.div`
   display: block;
   position: relative;
 `;

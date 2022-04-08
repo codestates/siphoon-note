@@ -7,6 +7,9 @@ export default function TextInput({
   autoComplete,
   minLength,
   maxLength,
+  user,
+  isLogin,
+  defaultValue,
   onBlur,
 }) {
   return (
@@ -17,15 +20,28 @@ export default function TextInput({
           <Span>*</Span>
         </Label>
       )}
-      <Input
-        id={title}
-        type={type}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        minLength={minLength}
-        maxLength={maxLength}
-        onBlur={event => onBlur(event.target.value)}
-      ></Input>
+      {isLogin ? (
+        <Input
+          id={title}
+          type={type}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          minLength={minLength}
+          maxLength={maxLength}
+          defaultValue={defaultValue}
+          onBlur={event => onBlur(event.target.value)}
+        ></Input>
+      ) : (
+        <Input
+          id={title}
+          type={type}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          minLength={minLength}
+          maxLength={maxLength}
+          onBlur={event => onBlur(event.target.value)}
+        ></Input>
+      )}
     </InputWrap>
   );
 }
