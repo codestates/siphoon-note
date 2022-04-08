@@ -1,15 +1,15 @@
 const { createAccessToken } = require('./createAccessToken');
 const { createRefreshToken } = require('./createRefreshToken');
+const { decodeToken } = require('./decodeToken');
 const { destroyToken } = require('./destroyToken');
-const { isTokenInCookies } = require('./hasTokenInCookies');
-const { setTokenToCookies } = require('./setTokenToCookies');
+const { getRefreshToken } = require('./getRefreshToken');
 const { tokenValidator } = require('./tokenValidator');
 
 module.exports = {
   createAccessToken,
   createRefreshToken,
+  decodeToken,
   destroyToken,
-  isTokenInCookies,
-  setTokenToCookies,
+  getRefreshToken,
   tokenValidator,
 };

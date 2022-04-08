@@ -1,13 +1,13 @@
 const { getCurrentStreaks } = require('./getCurrentStreaks');
-const { getHighestRecordUserList } = require('./getHighestRecordUserList');
+const { getHighestTotalUserList } = require('./getHighestTotalUserList');
 const { getLongestStreaks } = require('./getLongestStreaks');
-const { getMarkList } = require('./getMarkList');
+const { getTotalEssay } = require('.getTotalEssay');
 const { getUsageDate } = require('./getUsageDate');
 
 module.exports = {
   getCurrentStreaks,
-  getHighestRecordUserList,
+  getHighestTotalUserList,
   getLongestStreaks,
-  getMarkList,
+  getTotalEssay,
   getUsageDate,
 };
