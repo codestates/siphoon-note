@@ -3,14 +3,12 @@ const router = express.Router();
 
 const {
   createEssay,
-  deleteEssay,
   updateEssay,
   getEssayListByfilter,
 } = require('../controllers/essays');
+const spaceCtrl = require('../controllers/space');
 
-const { spaceCtrl } = require('../controllers/space');
-
-router.get('/', spaceCtrl.getSpace);
+router.get('/', spaceCtrl.getMySpace);
 
 router.post('/', createEssay);
 router.get('/:filter', getEssayListByfilter);
