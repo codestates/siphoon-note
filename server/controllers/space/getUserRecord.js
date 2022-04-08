@@ -1,3 +1,10 @@
+// record: {
+//   totalEssay: 0,
+//   currentStreaks: 0,
+//   longestStreaks: 0,
+//   usageDate: 0,
+// },
+
 const {
   getCurrentStreaks,
   getLongestStreaks,
