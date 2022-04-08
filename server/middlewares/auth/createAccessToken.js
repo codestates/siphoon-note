@@ -2,10 +2,8 @@ const jwt = require('jsonwebtoken');
 const secretKey = process.env.TOKEN_SECRET;
 const expiresIn = process.env.ACC_EXPIRED_IN;
 
-// user는 객체로 회원의 정보를 담는 객체
-// ! user의 유효성 검사가 필요함
-const accessToken = (user = {}) => {
-  const { email, username, profileImage /*uuid,*/ } = user;
+const accessToken = (accountInfoForToken = {}) => {
+  const { email, username, profileImage /*uuid,*/ } = accountInfoForToken;
   const payload = {
     email,
     username,

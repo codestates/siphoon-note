@@ -1,6 +1,5 @@
 const crypto = require('crypto');
 
-// 문자열을 암호화
 const secret = process.env.TOKEN_SECRET;
 const algorithm = 'aes-256-cbc'; //32 bytes
 const key = crypto.scryptSync(secret, 'salt', 32);
