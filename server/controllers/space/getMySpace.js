@@ -68,12 +68,23 @@ const getMySpace = async (req, res) => {
   // birthday datetime
   // region varchar(45)
   // profile_image int
+  const {
+    id,
+    email,
+    name,
+    profileImage,
+    gender,
+    birthday,
+    region,
+    created_at,
+  } = userInfo;
 
   const { essayList, todaysWord, record, markList } = await Promise.all([
-    getEssayList(email, req.query.limit, req.query.offset), // 반복적으로 어떻게 수행?
+    // 반복적으로 어떻게 수행?
+    getEssayList(id, limit, offset),
     getTodaysWord(new Date().getDate()),
-    getUserRecord(email),
-    getMarkList(email),
+    getUserRecord(id),
+    getMarkList(id),
   ]);
 
   if (!essayList || !todaysWord || !record || !markList) {

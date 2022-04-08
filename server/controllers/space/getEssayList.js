@@ -1,5 +1,16 @@
 // [+ Refactor로 Diary 컴포넌트 렌더링에 필요한 서버 컴포넌트를 만들어 볼 것]
 
+// essayList: [
+//   {
+//     essayId: 0,
+//     content: 'string',
+//     tags: ['string'],
+//     isDeleted: false,
+//     isPublic: false,
+//     createdAt: '2022-04-01',
+//     updatedAt: '2022-04-01',
+//   },
+
 // 1. userId 구하기
 const { getUserIdFromToken } = require('../../middlewares/user');
 
@@ -18,3 +29,5 @@ const { getUserInfo } = require('../users'); // 클라이언트 "컴포넌드" �
 // 7. markList 가져오기
 
 // 8. 1 ~ 7를 취합한 데이터를 응답 객체로 반환
+
+module.exports = { getEssayList };
