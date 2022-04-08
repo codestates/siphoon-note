@@ -1,7 +1,7 @@
 // import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-// import * as config from '../config/config';
+import config from '../config/config';
 import Navbar from './Navbar';
 
 export default function Dropdown({
@@ -27,7 +27,7 @@ export default function Dropdown({
 
   const handleLogout = () => {
     // axios
-    //   .delete(SIGN_OUT, {
+    //   .delete(config.apiUris.SIGN_OUT, {
     //     headers: {
     //       'Content-Type': 'application/json',
     //       authorization: `Bearer ${accessToken}`,

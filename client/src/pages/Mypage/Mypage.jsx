@@ -14,10 +14,9 @@ import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
-// import { UPDATE_USER_INFO, DELETE_ACCOUNT } from '../../config/config';
-// console.log(UPDATE_USER_INFO);
+import config from '../../config/config';
 
-export default function Mypage() {
+export default function Mypage({ user, isLogin }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setpasswordCheck] = useState('');
@@ -30,7 +29,7 @@ export default function Mypage() {
   // const [age, setAge] = useState('');
 
   const birth = useRef();
-  console.log(birth);
+  // console.log(birth);
   const handleInputValue = key => e => {
     const value = birth.current.value.replace(/\D+/g, '');
     const numberLength = 8;
@@ -68,12 +67,19 @@ export default function Mypage() {
     if (handleSignup()) {
       // axios
       //   .patch(
-      //    UPDATE_USER_INFO,
-      //     {password, username, gender, region, birthday},
-      //     { headers: { 'Content-Type': 'application/json',authorization: `Bearer ${accessToken}` } }
+      //     config.apiUris.UPDATE_USER_INFO,
+      //     { password, username, gender, region, birthday },
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         authorization: `Bearer ${accessToken}`,
+      //       },
+      //     }
       //   )
       //   .then(respond => {
       //     if (respond.status === 200) {
+      //       setTitle('회원 수정📝');
+      //       setContent('회원정보 수정이 완료되었습니다😀');
       //       setShow(true);
       //       navigator('/mypage');
       //     }
@@ -87,12 +93,16 @@ export default function Mypage() {
   };
   const onDeleteBtn = e => {
     // axios
-    //   .delete(
-    //     DELETE_ACCOUNT,
-    //     { headers: { 'Content-Type': 'application/json', authorization: `Bearer ${accessToken}`} }
-    //   )
+    //   .delete(config.apiUris.DELETE_ACCOUNT, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       authorization: `Bearer ${accessToken}`,
+    //     },
+    //   })
     //   .then(respond => {
     //     if (respond.status === 200) {
+    //       setTitle('회원 탈퇴🥲');
+    //       setContent('정말로 탈퇴하시겠습니까🥲');
     //       setShow(true);
     //       navigator('/');
     //     }
@@ -160,15 +170,17 @@ export default function Mypage() {
       type: 'name',
       placeholder: '변경할 닉네임을 입력하세요',
       autoComplete: 'on',
+      defaultValue: user.username,
       minLength: 12,
       maxLength: 32,
       onBlur: setName,
     },
   ];
 
-  console.log(gender);
-  console.log(selecteOption);
-
+  // console.log(gender);
+  // console.log(selecteOption);
+  // console.log(user);
+  const genhandle = () => {};
   return (
     <div>
       {show && <Popup setShow={setShow} content={content} title={title} />}
@@ -182,6 +194,7 @@ export default function Mypage() {
                   type,
                   placeholder,
                   autoComplete,
+                  defaultValue,
                   minLength,
                   maxLength,
                   onBlur,
@@ -189,27 +202,28 @@ export default function Mypage() {
                 index
               ) => {
                 return (
-                  <>
-                    <TextInput
-                      key={index}
-                      title={title}
-                      type={type}
-                      placeholder={placeholder}
-                      autoComplete={autoComplete}
-                      minLength={minLength}
-                      maxLength={maxLength}
-                      onBlur={onBlur}
-                    />
-                  </>
+                  <TextInput
+                    key={index}
+                    title={title}
+                    type={type}
+                    placeholder={placeholder}
+                    autoComplete={autoComplete}
+                    minLength={minLength}
+                    maxLength={maxLength}
+                    defaultValue={defaultValue}
+                    isLogin={isLogin}
+                    onBlur={onBlur}
+                  />
                 );
               }
             )}
-
             <Label>성별</Label>
             <Selectbox2
               options={genderOptions}
               gender={gender}
               setGender={setGender}
+              user={user}
+              isLogin={isLogin}
             />
             <br />
             <Label>지역</Label>
@@ -217,6 +231,8 @@ export default function Mypage() {
               options={regionOptions}
               select={selecteOption}
               setSelect={setSelecteOption}
+              user={user}
+              isLogin={isLogin}
             />
             <br />
             <Label>생년월일 수정</Label>
@@ -224,6 +240,7 @@ export default function Mypage() {
               type="text"
               name="year"
               ref={birth}
+              defaultValue={user.birthday}
               placeholder="0000-00-00 형태로 적어주세요."
               onChange={handleInputValue('year')}
             />

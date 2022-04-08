@@ -36,13 +36,13 @@ import {
   Image,
   IconWrapper,
   IconWrapper2,
-  DD,
+  Divs,
   Backs,
   Hashtag,
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-import * as config from '../../config/config';
+import config from '../../config/config';
 
 export default function Diary() {
   //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
@@ -122,7 +122,7 @@ export default function Diary() {
 
       axios
         .post(
-          config.WRITE_ESSAY,
+          WRITE_ESSAY,
           {
             content: input,
             isPublic,
@@ -290,7 +290,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
 
   const deletehandle = () => {
     // axios
-    //   .patch(DELETE_ESSAY_BY_ID,
+    //   .patch(config.apiUris.DELETE_ESSAY_BY_ID,
     //     { headers: { 'Content-Type': 'application/json', authorization: `Bearer ${accessToken}` } }
     //   )
     //   .then(respond => {
@@ -309,7 +309,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
   };
 
   return (
-    <DD>
+    <Divs>
       {isEntireEssay && (
         <EntireEssay
           handleEntireEssay={handleEntireEssay}
@@ -375,6 +375,6 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           </Backs>
         </div>
       )}
-    </DD>
+    </Divs>
   );
 };

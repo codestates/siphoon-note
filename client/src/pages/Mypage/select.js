@@ -22,7 +22,7 @@ export const regionOptions = [
 
 export const genderOptions = [
   '선택하세요',
-  '남자',
+  '남',
   '여',
   '공개 안함',
   '사용자 지정',

@@ -27,7 +27,7 @@ import PublicEssays from '../../components/PublicEssays';
 import { gsap, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
-import * as config from '../../config/config';
+import apiUris from '../../config/config';
 
 export default function Landing({ isLogin }) {
   // 서버에서 유저 랭킹과 공개글 리스트 받기
@@ -42,7 +42,7 @@ export default function Landing({ isLogin }) {
 
   //! 랜딩 페이지 서버 요청 (1차 작업)
   axios
-    .get(config.LOAD_LANDING, {
+    .get(apiUris.LOAD_LANDING, {
       headers: {
         authorization: { 'Content-Type': 'application/json' },
       },

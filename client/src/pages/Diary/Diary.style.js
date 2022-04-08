@@ -277,7 +277,7 @@ export const Icon = styled.span`
   }
 `;
 
-export const DD = styled.div`
+export const Divs = styled.div`
   display: block;
   position: relative;
 `;

@@ -19,7 +19,7 @@ export default function Editor({
     //! 서버에 수정 요청 보내기 (토큰 필요, 1차 작업 완료)
     axios
       .put(
-        config.UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
+        UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
         {
           content: input,
           isPublic,

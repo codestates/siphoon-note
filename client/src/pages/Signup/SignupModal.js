@@ -50,7 +50,7 @@ export const SignupModal = ({ content, setShow }) => {
   const navigator = useNavigate();
   const showhandle = () => {
     setShow(false);
-    navigator('/signin');
+    // navigator('/diary');
   };
   return (
     <>
