@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
 import { useState } from 'react';
 import axios from 'axios';
-import config from '../config/config.js';
+import apiUris from '../config/config';
 
 export default function Editor({ handleEditor, diary, number }) {
+  console.log(diary);
   const [input, setInput] = useState(diary.content);
   const handleChange = e => {
     setInput(e.target.value);
@@ -18,7 +19,7 @@ export default function Editor({ handleEditor, diary, number }) {
     //! 서버에 수정 요청 보내기 (토큰 필요, 1차 작업 완료)
     axios
       .put(
-        config.UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
+        apiUris.UPDATE_ESSAY_BY_ID + '/' + diary.essayId,
         {
           content: input,
           isPublic,
@@ -27,10 +28,15 @@ export default function Editor({ handleEditor, diary, number }) {
       )
       .then(res => {
         if (res.status === 200) {
-          // 성공적으로 글이 업데이트 되면 다시 메세지를 조회한다. readHandler?
+          // 1. 모달창 끄기
+          handleEditor();
+          // Case1 서버로 get 요청 보내기
+          // Case2 클라사이드에서 수정사항 반영해서 임시로 보여주기
+          // res.data 에서 받은 객체를 diary에 복사하기
+          // Object.assign(diary, res.data);
         }
       })
-      .catch(error => console.log(err));
+      .catch(error => console.log(error));
   };
   return (
     <ModalBackdrop onClick={handleEditor}>

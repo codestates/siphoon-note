@@ -1,8 +1,8 @@
-import dummy from '../../static/trialDummy';
-import colorTheme from '../../colorTheme';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import colorTheme from '../../colorTheme';
+import dummy from '../../static/trialDummy';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -43,8 +43,6 @@ import {
 } from './Trial.style';
 
 export default function Trial() {
-  // dummy[0].content = 'nice to meet you?';
-  // console.log(dummy[0].content);
   // 오늘 날짜 구하기
   const getTodayDate = () => {
     const today = new Date();
@@ -91,16 +89,9 @@ export default function Trial() {
   // 휴지통 리스트
   const [trashList, setTrashList] = useState(filtered);
 
-  // useEffect(() => {
-  //   console.log('filtered', filtered);
-  //   setTrashList([...filtered]);
-  // }, [entireList]);
-
   useEffect(() => {
     setDiaryList(notDeletedList);
   }, [entireList]);
-
-  useEffect(() => {}, [entireList]);
 
   // 키워드
   const keywordArr = [
@@ -144,7 +135,6 @@ export default function Trial() {
 
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(10);
 
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
@@ -175,7 +165,7 @@ export default function Trial() {
       setTimerOn(false);
       setTags([keyword]);
 
-      setEntireList([
+      setEntireList(prev => [
         {
           essayId: entireList.length,
           tag: tags,
@@ -184,7 +174,7 @@ export default function Trial() {
           isPublic,
           isDeleted: false,
         },
-        ...entireList,
+        ...prev,
       ]);
     }
   };
@@ -206,11 +196,7 @@ export default function Trial() {
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
           <TimerWrapper>
-            <Timer
-              minute={minute}
-              timerOn={timerOn}
-              handleSubmit={handleSubmit}
-            />
+            <Timer timerOn={timerOn} handleSubmit={handleSubmit} />
           </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
@@ -285,7 +271,6 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
-                      diaryList={diaryList}
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
@@ -304,7 +289,6 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
-                      diaryList={diaryList}
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
@@ -323,7 +307,6 @@ export default function Trial() {
                       length={diaryList.length}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
-                      diaryList={diaryList}
                       setEntireList={setEntireList}
                       trashList={trashList}
                       setTrashList={setTrashList}
@@ -361,7 +344,6 @@ export const Card = ({
   index,
   isPublic,
   handlePublic,
-  diaryList,
   setEntireList,
   entireList,
   trashList,

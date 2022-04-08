@@ -81,4 +81,4 @@ const apiUris = {
   READ_TAG_LIST: `${SERVER_HOST}/api/v1/tags`,
 };
 
-export default { apiUris };
+export default apiUris;

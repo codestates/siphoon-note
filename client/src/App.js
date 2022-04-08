@@ -21,7 +21,7 @@ function App() {
       <Navbar isLogin={isLogin} userInfo={userInfo} />
       <Routes>
         <Route exact path="/" element={<Landing isLogin={isLogin} />} />
-        <Route path="/diary" element={<Diary />} />
+        <Route path="/diary" element={<Diary accessToken={accessToken} />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
