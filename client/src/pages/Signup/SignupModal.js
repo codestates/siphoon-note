@@ -9,9 +9,7 @@ export const ModalBack = styled.div`
   z-index: 1;
 `;
 
-export const View = styled.div.attrs(props => ({
-  role: 'dialog',
-}))`
+export const View = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +19,7 @@ export const View = styled.div.attrs(props => ({
   height: 150px;
   border-radius: 1rem;
   position: relative;
-  > .talk {
+  .talk {
     position: absolute;
     text-align: center;
     width: 50px;
@@ -33,7 +31,7 @@ export const View = styled.div.attrs(props => ({
     padding: 2px;
     background-color: lightgray;
   }
-  > .bb {
+  .bb {
     position: absolute;
     width: 70px;
     height: 30px;
@@ -50,7 +48,7 @@ export const SignupModal = ({ content, setShow }) => {
   const navigator = useNavigate();
   const showhandle = () => {
     setShow(false);
-    navigator('/signin');
+    navigator('/diary');
   };
   return (
     <>

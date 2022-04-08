@@ -14,6 +14,7 @@ import { TextInput, SubmitBtn, Footer } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { SignupModal } from './SignupModal';
+import apiUris from '../../config/config';
 
 export default function Signup() {
   const [errorMsg, setErrorMsg] = useState('');
@@ -28,13 +29,13 @@ export default function Signup() {
   const [gender, setGender] = useState('');
 
   const [show, setShow] = useState(false);
-  console.log(email);
-  console.log(username);
-  console.log(password);
-  console.log(confirm);
-  console.log(birthday);
-  console.log(gender);
-  console.log(region);
+  // console.log(email);
+  // console.log(username);
+  // console.log(password);
+  // console.log(confirm);
+  // console.log(birthday);
+  // console.log(gender);
+  // console.log(region);
 
   const birth = useRef();
 
@@ -106,7 +107,8 @@ export default function Signup() {
     }
 
     // axios
-    //   .post(`${API_HOST}/api/v1/signup`,
+    //   .post(apiUris.
+    //     SIGN_UP,
     //     {
     //       email,
     //       password,
@@ -118,14 +120,11 @@ export default function Signup() {
     //     { headers: { 'Content-Type': 'application/json' } }
     //   )
     //   .then(respond => {
-    //     if (respond.data.message === 'Successfully Created New User!') {
+    //     if (respond.status === 200) {
     //       setShow(true);
-    //       navigator('/signin');
+    //       navigator('/diary');
     //       console.log(respond);
-    //     } else if (
-    //       respond.data.message ===
-    //       'Pleases, check your request! Missing or Invalid Operation Parameters'
-    //     ) {
+    //     } else if (respond.status === 400) {
     //       setErrorMsg('이미 가입된 이메일입니다.');
     //     }
     //   })
@@ -180,8 +179,6 @@ export default function Signup() {
               {
                 title,
                 type,
-                value,
-                ref,
                 placeholder,
                 autoComplete,
                 minLength,
@@ -195,8 +192,6 @@ export default function Signup() {
                   key={index}
                   title={title}
                   type={type}
-                  value={value}
-                  ref={ref}
                   placeholder={placeholder}
                   autoComplete={autoComplete}
                   minLength={minLength}
@@ -258,8 +253,9 @@ export default function Signup() {
             <SubmitBtn type="submit" value={textInputBtn.value} />
           </Submitwrap>
         </form>
+        <Footer />
       </Section>
-      {/* <Footer /> */}
+
       {show ? (
         <SignupModal content="가입이 완료되었습니다." setShow={setShow} />
       ) : null}
