@@ -11,6 +11,18 @@ const {
 } = require('../../middlewares/responses/responseHandler');
 
 const getMySpace = async (req, res) => {
+  // 0. 페이지네이션을 위한 limit, offset 확인
+  const { limit, offset } = req.query; // req.query => { limit: 20, offset: 0 }
+
+  if (!limit || !offset) {
+    errorResponse({
+      res,
+      status: 400,
+      message:
+        'Please, check your request! Missing or Invalid Operation  Parameters',
+    });
+  }
+
   // 1. 쿠키의 토큰 포함 유무 확인
   const accessToken = req.cookies.Bearer;
 
