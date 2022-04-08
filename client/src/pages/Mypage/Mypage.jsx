@@ -66,52 +66,52 @@ export default function Mypage({ user, isLogin }) {
 
   const onUpdateBtn = e => {
     if (handleSignup()) {
-      // axios
-      //   .patch(
-      //     apiUris.UPDATE_USER_INFO,
-      //     { password, username, gender, region, birthday },
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //         authorization: `Bearer ${accessToken}`,
-      //       },
-      //     }
-      //   )
-      //   .then(respond => {
-      //     if (respond.status === 200) {
-      //       setTitle('회원 수정📝');
-      //       setContent('회원정보 수정이 완료되었습니다😀');
-      //       setShow(true);
-      //       navigator('/mypage');
-      //     }
-      //   })
-      //   .catch(error => console.log(error));
-      setErrorMsg('');
-      setTitle('회원 수정📝');
-      setContent('회원정보 수정이 완료되었습니다😀');
-      setShow(true);
+      axios
+        .patch(
+          apiUris.UPDATE_USER_INFO,
+          { password, username, gender, region, birthday },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then(respond => {
+          if (respond.status === 200) {
+            setTitle('회원 수정📝');
+            setContent('회원정보 수정이 완료되었습니다😀');
+            setShow(true);
+            navigator('/mypage');
+          }
+        })
+        .catch(error => console.log(error));
+      // setErrorMsg('');
+      // setTitle('회원 수정📝');
+      // setContent('회원정보 수정이 완료되었습니다😀');
+      // setShow(true);
     }
   };
   const onDeleteBtn = e => {
-    // axios
-    //   .delete(apiUris.DELETE_ACCOUNT, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   .then(respond => {
-    //     if (respond.status === 200) {
-    //       setTitle('회원 탈퇴🥲');
-    //       setContent('정말로 탈퇴하시겠습니까🥲');
-    //       setShow(true);
-    //       navigator('/');
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
-    setTitle('회원 탈퇴🥲');
-    setContent('정말로 탈퇴하시겠습니까🥲');
-    setShow(true);
+    axios
+      .delete(apiUris.DELETE_ACCOUNT, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          setTitle('회원 탈퇴🥲');
+          setContent('정말로 탈퇴하시겠습니까🥲');
+          setShow(true);
+          navigator('/');
+        }
+      })
+      .catch(error => console.log(error));
+    // setTitle('회원 탈퇴🥲');
+    // setContent('정말로 탈퇴하시겠습니까🥲');
+    // setShow(true);
   };
 
   // 유효성 검사

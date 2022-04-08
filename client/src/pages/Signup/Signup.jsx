@@ -106,29 +106,29 @@ export default function Signup() {
       setErrorMsg('비밀번호가 일치하지 않습니다.');
     }
 
-    // axios
-    //   .post(apiUris.
-    //     SIGN_UP,
-    //     {
-    //       email,
-    //       password,
-    //       username,
-    //       gender,
-    //       birthday,
-    //       region,
-    //     },
-    //     { headers: { 'Content-Type': 'application/json' } }
-    //   )
-    //   .then(respond => {
-    //     if (respond.status === 200) {
-    //       setShow(true);
-    //       navigator('/diary');
-    //       console.log(respond);
-    //     } else if (respond.status === 400) {
-    //       setErrorMsg('이미 가입된 이메일입니다.');
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
+    axios
+      .post(
+        apiUris.SIGN_UP,
+        {
+          email,
+          password,
+          username,
+          gender,
+          birthday,
+          region,
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .then(respond => {
+        if (respond.status === 200) {
+          setShow(true);
+          navigator('/diary');
+          console.log(respond);
+        } else if (respond.status === 400) {
+          setErrorMsg('이미 가입된 이메일입니다.');
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   const textInputList = [

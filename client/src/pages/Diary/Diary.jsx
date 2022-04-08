@@ -371,21 +371,21 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
   const number = length - index;
 
   const deletehandle = () => {
-    // axios
-    //   .patch(apiUris.DELETE_ESSAY_BY_ID, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   .then(respond => {
-    //     if (respond.status === 200) {
-    //       navigator('/diary');
-    //     } else if (respond.status === 400) {
-    //       alert('삭제 안됨');
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
+    axios
+      .patch(apiUris.DELETE_ESSAY_BY_ID, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          navigator('/diary');
+        } else if (respond.status === 400) {
+          alert('삭제 안됨');
+        }
+      })
+      .catch(error => console.log(error));
     navigator('/diary');
   };
 

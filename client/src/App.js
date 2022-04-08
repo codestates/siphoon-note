@@ -24,29 +24,29 @@ function App() {
     region: '서울',
   });
 
-  // const isAuthenticated = () => {
-  //   axios
-  //     .get(apiUris.READ_USER_INFO, {
-  //       headers: {
-  //         authorization: `Bearer ${accessToken}`,
-  //       },
-  //     })
-  //     .then(respond => {
-  //       if (respond.status === 200) {
-  //         const { email, username, profileImage, gender, birthday, region } =
-  //           respond.data;
-  //         setUserInfo({
-  //           email,
-  //           username,
-  //           profileImage,
-  //           gender,
-  //           birthday,
-  //           region,
-  //         });
-  //       }
-  //     })
-  //     .catch(error => console.log(error));
-  // };
+  const isAuthenticated = () => {
+    axios
+      .get(apiUris.READ_USER_INFO, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          const { email, username, profileImage, gender, birthday, region } =
+            respond.data;
+          setUserInfo({
+            email,
+            username,
+            profileImage,
+            gender,
+            birthday,
+            region,
+          });
+        }
+      })
+      .catch(error => console.log(error));
+  };
 
   // const handleResponseSuccess = accessToken => {
   //   setIsLogin(true);

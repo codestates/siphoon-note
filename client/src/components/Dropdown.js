@@ -25,20 +25,19 @@ export default function Dropdown({
   ];
 
   const handleLogout = () => {
-    // axios
-    //   .delete(apiUris.SIGN_OUT, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   .then(respond => {
-    //     if (respond.status === 200) {
-    //       setIsLogin(false);
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
-    setIsLogin(false);
+    axios
+      .delete(apiUris.SIGN_OUT, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          setIsLogin(false);
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   const handle = () => {
