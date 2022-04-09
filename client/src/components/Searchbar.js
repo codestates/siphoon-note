@@ -2,29 +2,35 @@ import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
 import { useState } from 'react';
 import axios from 'axios';
+import apiUris from '../config/config';
 
-export default function Searchbar() {
+export default function Searchbar({ readHandler }) {
   const [userInput, setUserInput] = useState(undefined);
 
-  //! 서버에 필터by검색어 조회하는 로직(토큰 필요, 1차 작업)
+  //! 서버에 필터by검색어 조회하는 로직(토큰 필요)
   const handleSearch = event => {
-    return console.log('hi?');
     axios
-      .get(`${API_HOST}/api/v1/essays/${userInput}`, {
+      .get(apiUris.READ_ESSAY_LIST_BY_WORD + '/' + userInput, {
         headers: { authorization: { 'Content-Type': 'application/json' } },
       })
       .then(res => {
         if (res.status === 200) {
-          // 성공 응답이 오면 diary.jsx에서 diaryList를 업데이트 한다.
+          setDiaryList(res.data);
         }
       })
       .catch(error => console.log(error));
+    // setUserInput('');
+  };
+
+  const handleDelete = () => {
+    //! 서버에 전체 메세지 get 요청 보내기
+    readHandler();
     setUserInput('');
   };
 
-  //! 서버에 다시 get 요청 보내기 (작업 필요)
-  const handleDelete = () => {
-    setUserInput('');
+  const handleDeleteBackSpace = () => {
+    //! 서버에 전체 메세지 get 요청 보내기
+    readHandler();
   };
 
   const handleInput = event => {
@@ -37,7 +43,13 @@ export default function Searchbar() {
         <BiSearch></BiSearch>
       </IconWrapper>
       <Input
-        onKeyUp={event => (event.key === 'Enter' ? handleSearch(event) : null)}
+        onKeyUp={event =>
+          event.key === 'Enter'
+            ? handleSearch(event)
+            : event.key === 'Backspace'
+            ? handleDeleteBackSpace(event)
+            : null
+        }
         value={userInput}
         onChange={handleInput}
       ></Input>
