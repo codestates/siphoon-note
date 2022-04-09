@@ -1,6 +1,13 @@
+const { findWord } = require('../../models');
+
 const getTodaysWord = async (today = 0) => {
-  // inspirations에서 id = today인 단어 반환
-  // return todaysWord;
+  const todaysWord = await findWord(today);
+
+  if (!todaysWord) {
+    return 'Happy';
+  } else {
+    return todaysWord;
+  }
 };
 
 module.exports = getTodaysWord;
