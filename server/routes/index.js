@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const authCtrl = require('../controllers/auth');
-const { essayCtrl } = require('../controllers/essays');
-const { userCtrl } = require('../controllers/users');
+const essayCtrl = require('../controllers/essays');
+const userCtrl = require('../controllers/users');
 
 router.get('/', (req, res) => {
   res.status(200).send('Hello From SSL Server!😀');
