@@ -34,8 +34,8 @@ router.use((err, req, res, next) => {
 router.use('/essays', require('./essays'));
 
 //user: 6
-router.post('/signup', authCtrl.signup);
-router.post('/signin', authCtrl.signin);
+router.post(`${BASE_URI}/signup`, authCtrl.signup);
+router.post(`${BASE_URI}/signin`, authCtrl.signin);
 // router.delete(`${BASE_URI}/signout`, authCtrl.signout);
 // router.get(`${BASE_URI}/userinfo`, userCtrl.getUserInfo);
 // router.delete(`${BASE_URI}/userinfo`, userCtrl.deleteUserAccount);
