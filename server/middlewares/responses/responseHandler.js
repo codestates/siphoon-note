@@ -9,7 +9,10 @@ const successResponseWithToken = ({
   status = 0,
   message = '',
 }) => {
-  res.cookie('Bearer', token);
+  res.cookie('Bearer', token, {
+    httpOnly: true,
+    secure: true,
+  });
   res.status(status).json({ status, message, data });
 };
 
