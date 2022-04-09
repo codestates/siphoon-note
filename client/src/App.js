@@ -18,7 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     email: '',
     username: '',
-    profileImage: 2,
+    profileImage: '',
     gender: '',
     birthday: '',
     region: '',
@@ -26,9 +26,7 @@ function App() {
 
   const isAuthenticated = () => {
     axios
-      .get(apiUris.READ_USER_INFO, {
-        headers: { 'Content-Type': 'application/json', withCredentials: true },
-      })
+      .get(apiUris.READ_USER_INFO)
       .then(respond => {
         if (respond.status === 200) {
           const { email, username, profileImage, gender, birthday, region } =

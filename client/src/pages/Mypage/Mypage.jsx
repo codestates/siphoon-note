@@ -27,8 +27,8 @@ export default function Mypage({ user, isLogin }) {
   const [content, setContent] = useState('');
   const [show, setShow] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  // const [age, setAge] = useState('');
-
+  const [age, setAge] = useState('');
+  // console.log(age);
   const birth = useRef();
 
   const handleInputValue = key => e => {
@@ -57,7 +57,7 @@ export default function Mypage({ user, isLogin }) {
     birth.current.value = result;
 
     // setAge질문
-    // setAge({ ...age, [key]: e.target.value });
+    setAge({ ...age, [key]: e.target.value });
   };
 
   const handleSubmit = event => {
@@ -246,7 +246,7 @@ export default function Mypage({ user, isLogin }) {
               ref={birth}
               defaultValue={user.birthday}
               placeholder="0000-00-00 형태로 적어주세요."
-              onChange={handleInputValue('year')}
+              onChange={handleInputValue('birthday')}
             />
           </form>
           {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
