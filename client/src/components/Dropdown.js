@@ -24,12 +24,14 @@ export default function Dropdown({
     },
   ];
 
+  // 로그아웃 요청 보내기
+
   const handleLogout = () => {
     axios
       .delete(apiUris.SIGN_OUT, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
+          withCredentials: true,
         },
       })
       .then(respond => {
@@ -37,13 +39,14 @@ export default function Dropdown({
           setIsLogin(false);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.status === 401) {
+          alert(error.message);
+        } else if (error.status === 500) {
+          alert(error.message);
+        }
+      });
   };
-
-  const handle = () => {
-    setDrop(false);
-  };
-  // 로그아웃 요청 보내기
 
   return (
     <DropdownLayout onClick={handle}>

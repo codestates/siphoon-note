@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import axios from 'axios';
+import apiUris from '../../config/config';
 
 import {
   TextInputListWrapper,
@@ -12,50 +13,50 @@ import {
 } from './Signin.style';
 import { Footer, SubmitBtn, TextInput } from '../../components';
 
-export default function Signin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function Signin({ userInfo, handleResponseSuccess }) {
+  const [emails, setEmail] = useState('');
+  const [passwords, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
-
+  const { email, password } = userInfo;
+  console.log(emails);
+  console.log(passwords);
   const handleSubmit = event => {
     event.preventDefault();
+
+    if (!emails && !passwords) {
+      setErrorMsg('아이디와 비밀번호를 입력해주세요');
+    } else if (!emails) {
+      setErrorMsg('아이디를 입력해주세요');
+    } else if (!passwords) {
+      setErrorMsg('비밀번호를 입력해주세요');
+    }
+
     axios
       .post(
-        config.API_USER_SIGNIN,
+        apiUris.SIGN_IN,
         {
           email: email,
           password: password,
         },
-        { headers: { authorization: { 'Content-Type': 'application/json' } } }
+        { headers: { 'Content-Type': 'application/json' } }
       )
       .then(res => {
         if (res.status === 200) {
           // 로그인 성공 시 다이어리 페이지로 리디렉션
+          handleResponseSuccess();
           navigate('/diary');
-        } else if (res.status === 400) {
-          setErrorMsg('아이디 또는 비밀번호가 일치하지 않습니다');
         }
       })
-      .catch(error => console.log(err));
-  };
-
-  const onLoginBtn = e => {
-    if (handleLogin()) {
-      setErrorMsg('');
-    }
-  };
-
-  const handleLogin = () => {
-    let booleanArray = [];
-    if (!email && !password) {
-      setErrorMsg('아이디와 비밀번호를 입력해주세요');
-    } else if (!email) {
-      setErrorMsg('아이디를 입력해주세요');
-    } else if (!password) {
-      setErrorMsg('비밀번호를 입력해주세요');
-    }
-    booleanArray.push(true);
+      .catch(error => {
+        if (error.status === 400) {
+          setErrorMsg(error.message);
+        } else if (error.status === 401) {
+          setErrorMsg(error.message);
+        } else if (error.status === 500) {
+          setErrorMsg(error.message);
+        }
+      });
   };
 
   const textInputList = [
@@ -113,11 +114,7 @@ export default function Signin() {
             )}
             {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
             <ButtonsWrapper>
-              <SubmitBtn
-                onClick={onLoginBtn}
-                value="로그인"
-                BackgroundColor="green"
-              />
+              <SubmitBtn type="submit" value="로그인" BackgroundColor="green" />
             </ButtonsWrapper>
           </form>
 

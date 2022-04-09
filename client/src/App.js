@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
@@ -13,23 +13,22 @@ import apiUris from './config/config';
 
 function App() {
   // 로그인 관련 전역 상태 변수
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   const [userInfo, setUserInfo] = useState({
-    email: 'ss@ff.com',
-    username: 'cris',
-    profileImage: 0,
-    gender: '남',
-    birthday: '2000-01-01',
-    region: '서울',
+    email: '',
+    username: '',
+    password: '',
+    profileImage: '',
+    gender: '',
+    birthday: '',
+    region: '',
   });
-
+  console.log(accessToken);
   const isAuthenticated = () => {
     axios
       .get(apiUris.READ_USER_INFO, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
+        headers: { 'Content-Type': 'application/json', withCredentials: true },
       })
       .then(respond => {
         if (respond.status === 200) {
@@ -45,14 +44,21 @@ function App() {
           });
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.status === 400) {
+          alert(error.message);
+        } else if (error.status === 401) {
+          alert(error.message);
+        } else if (error.status === 500) {
+          alert(error.message);
+        }
+      });
   };
 
-  // const handleResponseSuccess = accessToken => {
-  //   setIsLogin(true);
-  //   isAuthenticated();
-  //   setAccessToken(accessToken);
-  // };
+  const handleResponseSuccess = () => {
+    setIsLogin(true);
+    isAuthenticated();
+  };
 
   return (
     <BrowserRouter>
@@ -70,7 +76,15 @@ function App() {
           path="/mypage"
           element={<Mypage user={userInfo} isLogin={isLogin} />}
         />
-        <Route path="/signin" element={<Signin />} />
+        <Route
+          path="/signin"
+          element={
+            <Signin
+              userInfo={userInfo}
+              handleResponseSuccess={handleResponseSuccess}
+            />
+          }
+        />
         <Route path="/signup" element={<Signup />} />
         <Route path="/trial" element={<Trial />} />
       </Routes>

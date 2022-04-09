@@ -372,21 +372,26 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
 
   const deletehandle = () => {
     axios
-      .patch(apiUris.DELETE_ESSAY_BY_ID, {
+      .patch(apiUris.UPDATE_ESSAY_BY_ID, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
+          withCredentials: true,
         },
       })
       .then(respond => {
         if (respond.status === 200) {
           navigator('/diary');
-        } else if (respond.status === 400) {
-          alert('삭제 안됨');
         }
       })
-      .catch(error => console.log(error));
-    navigator('/diary');
+      .catch(error => {
+        if (error.status === 400) {
+          alert(error.message);
+        } else if (error.status === 401) {
+          alert(error.message);
+        } else if (error.status === 500) {
+          alert(error.message);
+        }
+      });
   };
 
   return (

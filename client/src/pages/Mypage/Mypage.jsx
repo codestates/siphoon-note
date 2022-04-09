@@ -18,7 +18,7 @@ import apiUris from '../../config/config';
 console.log(apiUris.UPDATE_USER_INFO);
 
 export default function Mypage({ user, isLogin }) {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setpasswordCheck] = useState('');
   const [selecteOption, setSelecteOption] = useState('');
@@ -73,7 +73,7 @@ export default function Mypage({ user, isLogin }) {
           {
             headers: {
               'Content-Type': 'application/json',
-              authorization: `Bearer ${accessToken}`,
+              withCredentials: true,
             },
           }
         )
@@ -85,11 +85,15 @@ export default function Mypage({ user, isLogin }) {
             navigator('/mypage');
           }
         })
-        .catch(error => console.log(error));
-      // setErrorMsg('');
-      // setTitle('회원 수정📝');
-      // setContent('회원정보 수정이 완료되었습니다😀');
-      // setShow(true);
+        .catch(error => {
+          if (error.status === 400) {
+            setErrorMsg(error.message);
+          } else if (error.status === 401) {
+            setErrorMsg(error.message);
+          } else if (error.status === 500) {
+            setErrorMsg(error.message);
+          }
+        });
     }
   };
   const onDeleteBtn = e => {
@@ -97,7 +101,7 @@ export default function Mypage({ user, isLogin }) {
       .delete(apiUris.DELETE_ACCOUNT, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
+          withCredentials: true,
         },
       })
       .then(respond => {
@@ -108,10 +112,15 @@ export default function Mypage({ user, isLogin }) {
           navigator('/');
         }
       })
-      .catch(error => console.log(error));
-    // setTitle('회원 탈퇴🥲');
-    // setContent('정말로 탈퇴하시겠습니까🥲');
-    // setShow(true);
+      .catch(error => {
+        if (error.status === 400) {
+          setErrorMsg(error.message);
+        } else if (error.status === 401) {
+          setErrorMsg(error.message);
+        } else if (error.status === 500) {
+          setErrorMsg(error.message);
+        }
+      });
   };
 
   // 유효성 검사
@@ -123,7 +132,7 @@ export default function Mypage({ user, isLogin }) {
 
   const handleSignup = () => {
     let booleanArray = [];
-    if (!password || !passwordCheck || !name) {
+    if (!password || !passwordCheck || !username) {
       setErrorMsg('필수항목을 모두 입력해주세요.');
     } else {
       booleanArray.push(true);
