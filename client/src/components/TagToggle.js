@@ -9,6 +9,8 @@ import axios from 'axios';
 import apiUris from '../config/config';
 import { useState } from 'react';
 
+axios.defaults.withCredentials = true;
+
 export default function TagToggle({
   setIsTagsDropdown,
   isTagsDropdown,
@@ -21,21 +23,26 @@ export default function TagToggle({
   const handleTagList = () => {
     if (isTagsDropdown === false) {
       axios
-        .get(
-          apiUris.READ_TAG_LIST /
-            {
-              headers: {
-                authorization: { 'Content-Type': 'application/json' },
-              },
-            }
-        )
+        .get(apiUris.READ_TAG_LIST, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
         .then(res => {
           if (res.status === 200) {
             // data 객체에 담겨 오는 게 맞나?
             setTagList(res.data);
           }
         })
-        .catch(error => console.log(error));
+        .catch(err => {
+          console.log(err);
+          if (err.status === 401) {
+            return alert(err.message);
+          }
+          if (err.status === 500) {
+            return alert(err.message);
+          }
+        });
     }
   };
 
@@ -46,14 +53,22 @@ export default function TagToggle({
     }
     axios
       .get(apiUris.READ_ESSAY_LIST_BY_WORD + '/' + event.target.textContent, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
+        headers: { 'Content-Type': 'application/json' },
       })
       .then(res => {
         if (res.status === 200) {
           setDiaryList(res.data);
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return alert(err.message);
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
   };
 
   const handleDropdown = () => {
