@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const https = require('https');
+const http = require('http');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
@@ -17,8 +18,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: '*',
- // origin: process.env.ORIGIN_URL,
+    origin: process.env.ORIGIN_URL,
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'OPTIONS', 'DELETE'],
   })
@@ -26,15 +26,25 @@ app.use(
 
 app.use(require('./routes'));
 
-const credentials = {
-  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-};
+const key = fs.readFileSync(path.join(__dirname, 'cert', 'key.pem'));
+const cert = fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'));
 
-const secureServer = https.createServer(credentials, app);
+let server;
 
-secureServer.listen(port, () => {
-  console.log(`Secure Server on ${port}!`);
-});
+if (key && cert) {
+  const credentials = { key, cert };
 
-module.exports = secureServer;
+  server = https.createServer(credentials, app);
+
+  server.listen(port, () => {
+    console.log(`HTTPS Server running on port ${port}`);
+  });
+} else {
+  server = http.createServer(app);
+
+  server.listen(port, () => {
+    console.log(`HTTP Server running on port ${port}`);
+  });
+}
+
+module.exports = server;
