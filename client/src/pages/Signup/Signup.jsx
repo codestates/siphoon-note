@@ -29,13 +29,6 @@ export default function Signup() {
   const [gender, setGender] = useState('');
 
   const [show, setShow] = useState(false);
-  // console.log(email);
-  // console.log(username);
-  // console.log(password);
-  // console.log(confirm);
-  // console.log(birthday);
-  // console.log(gender);
-  // console.log(region);
 
   const birth = useRef();
 

@@ -9,13 +9,13 @@ import {
   Modal,
   ErrMesWrapper,
 } from './Mypage.style';
-
+import axios from 'axios';
 import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
 import apiUris from '../../config/config';
-console.log(apiUris.UPDATE_USER_INFO);
+axios.defaults.withCredentials = true;
 
 export default function Mypage({ user, isLogin }) {
   const [username, setName] = useState('');
@@ -73,7 +73,6 @@ export default function Mypage({ user, isLogin }) {
           {
             headers: {
               'Content-Type': 'application/json',
-              withCredentials: true,
             },
           }
         )
@@ -101,7 +100,6 @@ export default function Mypage({ user, isLogin }) {
       .delete(apiUris.DELETE_ACCOUNT, {
         headers: {
           'Content-Type': 'application/json',
-          withCredentials: true,
         },
       })
       .then(respond => {

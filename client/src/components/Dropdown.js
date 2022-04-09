@@ -2,14 +2,10 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import apiUris from '../config/config';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
-export default function Dropdown({
-  isLogin,
-  setIsLogin,
-  accessToken,
-  drop,
-  setDrop,
-}) {
+export default function Dropdown({ isLogin, setIsLogin, drop, setDrop }) {
   const dropDownArr = [
     { title: '홈으로', to: '/', logout: false },
     {
@@ -31,7 +27,6 @@ export default function Dropdown({
       .delete(apiUris.SIGN_OUT, {
         headers: {
           'Content-Type': 'application/json',
-          withCredentials: true,
         },
       })
       .then(respond => {
@@ -48,8 +43,12 @@ export default function Dropdown({
       });
   };
 
+  const drophandle = () => {
+    setDrop(false);
+  };
+
   return (
-    <DropdownLayout onClick={handle}>
+    <DropdownLayout onClick={drophandle}>
       <DropdownMenu>
         {isLogin &&
           drop &&

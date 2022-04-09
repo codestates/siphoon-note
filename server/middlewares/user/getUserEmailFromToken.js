@@ -2,9 +2,9 @@
 const jwt = require('jsonwebtoken');
 const { decrypt } = require('../utils');
 
-const getUserIdFromToken = async (token = '') => {
+const getUserEmailFromToken = async (token = '') => {
   const decodeUser = jwt.verify(decrypt(token), process.env.TOKEN_SECRET);
   return decodeUser.email;
 };
 
-module.exports = { getUserEmailFromToken };
+module.exports = getUserEmailFromToken;

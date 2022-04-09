@@ -14,21 +14,19 @@ import {
 import { Footer, SubmitBtn, TextInput } from '../../components';
 
 export default function Signin({ userInfo, handleResponseSuccess }) {
-  const [emails, setEmail] = useState('');
-  const [passwords, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
-  const { email, password } = userInfo;
-  console.log(emails);
-  console.log(passwords);
+
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!emails && !passwords) {
+    if (!email && !password) {
       setErrorMsg('아이디와 비밀번호를 입력해주세요');
-    } else if (!emails) {
+    } else if (!email) {
       setErrorMsg('아이디를 입력해주세요');
-    } else if (!passwords) {
+    } else if (!password) {
       setErrorMsg('비밀번호를 입력해주세요');
     }
 
