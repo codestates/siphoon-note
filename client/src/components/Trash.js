@@ -7,7 +7,7 @@ import {
 } from 'react-icons/md';
 
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import apiUris from '../config/config';
 
@@ -36,7 +36,6 @@ export default function Trash({
   };
 
   const [trashList, setTrashList] = useState(dummy);
-
   const length = trashList.length;
   const [current, setCurrent] = useState(0);
   const nextSlide = () => {
@@ -45,6 +44,10 @@ export default function Trash({
   const prevSlide = () => {
     setCurrent(current === 0 ? length - (length % 5) : current - 5);
   };
+
+  useEffect(() => {
+    handleTrashList();
+  }, []);
 
   //! 서버에 휴지통 목록 조회하는 로직 (토큰 필요)
   const handleTrashList = () => {
@@ -130,6 +133,9 @@ export default function Trash({
       </Wrapper>
       {isTrashDropdown && (
         <Container>
+          {trashList.length === 0 && (
+            <span className="notice">휴지통이 비어있습니다.</span>
+          )}
           {trashList.map((trash, index) => {
             if (index >= current && index <= current + 5) {
               return (
@@ -202,6 +208,12 @@ const Container = styled.ul`
       cursor: pointer;
     }
   }
+
+  .notice {
+    text-align: center;
+    margin: 0.5rem 0rem;
+  }
+
   .title {
     flex: 1 1 0;
   }
