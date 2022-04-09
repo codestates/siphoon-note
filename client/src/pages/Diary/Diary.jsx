@@ -1,9 +1,9 @@
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import dummy from '../../static/dummyData';
 import pageDummy from '../../static/pageDummyData';
 import colorTheme from '../../colorTheme';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
-import { GrCircleInformation } from 'react-icons/gr';
 import Analysis from '../../components/Analysis';
 import Tag from '../../components/Tag';
 import Keyword from '../../components/Keyword';
@@ -13,8 +13,8 @@ import Trash from '../../components/Trash';
 import Timer from '../../components/Timer';
 import EntireEssay from '../../components/EntireEssay';
 import Loading from '../../components/Loading';
-import { useState, useEffect, useRef } from 'react';
 import Editor from '../../components/Editor';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -45,17 +45,11 @@ import {
   Icon,
 } from './Diary.style';
 import axios from 'axios';
-import apiUris from '../../config/config';
+import apiUris from '../../config/config.js';
 
-export default function Diary() {
-  //* 자신의 정보 조회하기 (무한 스크롤(에세이리스트), 달력마크/기록분석, 유저정보(닉네임, 사진))
-
-  // 유저정보 업데이트
-
+export default function Diary({ accessToken }) {
   // 다이어리 전체 리스트
   const [diaryList, setDiaryList] = useState(dummy);
-
-  //! 달력 마크 & 기록 분석 (서버에서 데이터 받아와서 갱신만 하면 되는 상태)
   const [markList, setMarkList] = useState([
     '2022-04-11',
     '2022-04-03',
@@ -65,47 +59,35 @@ export default function Diary() {
     '2022-03-30',
     '2022-03-28',
   ]);
-
-  const [recordList, setRecordList] = useState({
+  const [record, setRecord] = useState({
     totalEssay: 128,
     currentStreaks: 12,
     longestStreaks: 25,
     usageDate: 30,
   });
-
-  // 오늘의 영감
   const [keyword, setKeyword] = useState('윤슬');
-
-  // 태그
   const [tags, setTags] = useState([keyword]);
-
   // 사용자 에세이 인풋
   const [input, setInput] = useState('');
   const handleInput = e => {
     setInput(e.target.value);
     setTimerOn(true);
   };
-
   // 공개 설정
   const [isPublic, setIsPublic] = useState(false);
   const handlePublic = () => {
     setIsPublic(!isPublic);
   };
-
   // 타이머
   const [timerOn, setTimerOn] = useState(false);
-  const [minute, setMinute] = useState(1);
-
   const [loading, setLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
   const [lastElement, setLastElement] = useState(null);
-
   // 키워드 모달
   const [isKeywordModal, setIsKeywordModal] = useState(false);
   const handleKeyword = () => {
     setIsKeywordModal(!isKeywordModal);
   };
-
   // 휴지통, 태그 드롭다운
   const [isTrashDropdown, setIsTrashDropdown] = useState(false);
   const [isTagsDropdown, setIsTagsDropdown] = useState(false);
@@ -113,17 +95,46 @@ export default function Diary() {
     setIsTrashDropdown(false);
     setIsTagsDropdown(false);
   };
-
   // 페이지 전환
   const [pageNum, setPageNum] = useState(0);
-
   // 테마 인덱스
   const [themeIndex, setThemeIndex] = useState(0);
   const handleColorTheme = index => {
     setThemeIndex(index);
   };
 
-  //! 서버에 글 작성 요청 보내기 (토큰필요, 1차 작업)
+  //! get 요청해서 에세이 리스트만 갱신하는 핸들러
+  // 휴지통, 태그, 검색어 컴포넌트에서 전체 에세이 리스트를 다시 받아올 때 적용 (고민)
+  const readHandler = () => {
+    axios
+      .get(apiUris.READ_ESSAY_LIST)
+      .then(res => {
+        if (res.status === 200) {
+          //* 에세이 리스트 받아오는 코드
+        }
+      })
+      .catch(error => console.log(error));
+  };
+
+  //! get 요청 : 글 리스트, 분석데이터, 유저정보, 키워드(토큰필요)
+  axios
+    .get(apiUris.READ_ESSAY_LIST)
+    .then(res => {
+      if (res.status === 200) {
+        const { todaysWord, record, markList } = res.data;
+        //* 에세이 리스트
+        // 코드작성 (종열)
+        //* 유저정보
+        // 코드작성 (준형)
+        //* 키워드, 분석, 달력
+        setKeyword(todaysWord);
+        setRecord(record);
+        setMarkList(markList);
+      }
+    })
+    .catch(error => console.log(error));
+
+  //! 서버에 글 작성 요청 보내기 (토큰필요)
   const handleSubmit = () => {
     if (input !== '') {
       setInput('');
@@ -142,12 +153,16 @@ export default function Diary() {
         )
         .then(res => {
           if (res.status === 201) {
-            // 성공적으로 글이 작성되면 다시 메세지를 조회한다. readHandler?
+            // case1. 전체글을 다시 조회한다. (get 요청)
+            // case2. 클라사이드에서 임시로 보여준다. (클라사이드)
+            // setDiaryList(prev => [res.data, ...prev]);
           }
         })
         .catch(error => console.log(error));
     }
   };
+
+  //! 무한 스크롤 부분
 
   // const ioCallback = (entries, io) => {
   // 화면 안에 요소가 들어왔는지 체크
@@ -224,11 +239,7 @@ export default function Diary() {
         <Image imgUrl={colorTheme[themeIndex].picture} />
         <SideBar>
           <TimerWrapper>
-            <Timer
-              minute={minute}
-              timerOn={timerOn}
-              handleSubmit={handleSubmit}
-            />
+            <Timer timerOn={timerOn} handleSubmit={handleSubmit} />
           </TimerWrapper>
           <InputWrapper onClick={handleDropdown}>
             <ButtonWrapper>
@@ -260,20 +271,25 @@ export default function Diary() {
                 </Button3>
               )}
               <Button onClick={() => setTimerOn(false)}>리셋</Button>
-              <Button onClick={handleSubmit}>남기기</Button>
+              <Button onClick={handleSubmit}>전송</Button>
             </ButtonWrapper2>
           </InputWrapper>
           <TagToggle
+            accessToken={accessToken}
             isTagsDropdown={isTagsDropdown}
+            readHandler={readHandler}
             setIsTagsDropdown={setIsTagsDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
           />
           <Trash
+            accessToken={accessToken}
+            readHandler={readHandler}
             isTrashDropdown={isTrashDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
             setIsTagsDropdown={setIsTagsDropdown}
           />
-          <Searchbar />
+
+          <Searchbar readHandler={readHandler} />
         </SideBar>
         {/* 메인 구간 */}
         {pageNum === 0 ? (
@@ -286,7 +302,7 @@ export default function Diary() {
                       key={index}
                       diary={diary}
                       index={index}
-                      length={diaryList.length}
+                      length={record.totalEssay}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                     ></Card>
@@ -300,7 +316,7 @@ export default function Diary() {
                       key={index}
                       diary={diary}
                       index={index}
-                      length={diaryList.length}
+                      length={record.totalEssay}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                     ></Card>
@@ -314,7 +330,7 @@ export default function Diary() {
                       key={index}
                       diary={diary}
                       index={index}
-                      length={diaryList.length}
+                      length={record.totalEssay}
                       isPublic={isPublic}
                       handlePublic={handlePublic}
                     ></Card>
@@ -333,7 +349,7 @@ export default function Diary() {
         ) : (
           <Analysis
             markList={markList}
-            recordList={recordList}
+            record={record}
             setPageNum={setPageNum}
           />
         )}
@@ -419,7 +435,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
             <Title>{number}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
             {isFlipIcon && (
-              <GrCircleInformation
+              <AiOutlineInfoCircle
                 className="flip-icon"
                 onMouseEnter={() => setHover(false)}
               />
@@ -436,7 +452,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           >
             <Title>{diary.id}번째 글쓰기</Title>
             <Content>{diary.content}</Content>
-            <GrCircleInformation className="flip-icon" />
+            <AiOutlineInfoCircle className="flip-icon" />
           </CardContainer>
           <Backs
             className="back"

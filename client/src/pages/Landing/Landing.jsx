@@ -27,10 +27,9 @@ import PublicEssays from '../../components/PublicEssays';
 import { gsap, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
-import apiUris from '../../config/config.js';
+import apiUris from '../../config/config';
 
 export default function Landing({ isLogin }) {
-  // 서버에서 유저 랭킹과 공개글 리스트 받기
   const dummyData = [
     {
       profileImage: { imageUrls: '0' },
@@ -48,7 +47,7 @@ export default function Landing({ isLogin }) {
   const [topUser, setTopUser] = useState(dummyData);
   const [publicEssay, setPublicEssay] = useState(dummy);
 
-  //! 랜딩 페이지 서버 요청 (1차 작업)
+  //! 랜딩 페이지 서버 요청
   axios
     .get(apiUris.LOAD_LANDING, {
       headers: {
@@ -57,8 +56,9 @@ export default function Landing({ isLogin }) {
     })
     .then(res => {
       if (res.status === 200) {
-        setTopUser(res.data.userList);
-        setPublicEssay(res.data.publicEssayList);
+        const { userList, publicEssayList } = res.data;
+        setTopUser(userList);
+        setPublicEssay(publicEssayList);
       }
     })
     .catch(err => console.log(err));
@@ -95,23 +95,7 @@ export default function Landing({ isLogin }) {
     };
   });
 
-  // 스크롤 트리거 구현
   gsap.registerPlugin(ScrollTrigger);
-
-  gsap.to('.introduction-title', {
-    scrollTrigger: {
-      trigger: '.introduction-title',
-      start: 'top center',
-      end: 'bottom bottom',
-      // markers: true,
-      toggleActions: 'play pause reverse restart',
-      scrub: true,
-    },
-    duration: 12,
-    y: 320,
-    ease: Power3.easeOut,
-  });
-
   gsap.to('.community-title', {
     scrollTrigger: {
       trigger: '.community-title',
@@ -143,7 +127,7 @@ export default function Landing({ isLogin }) {
         <Image3 src="img/rhombus.svg" left="5" top="50" height="5"></Image3>
         <Image4 src="img/rhombus.svg" right="49" top="90" height="4"></Image4>
         <Main>
-          <Span>글쓰기 습관을 기르는 10분</Span>
+          <Span>글 쓰기 습관을 기르는 10분 노트</Span>
           <>
             {isLogin ? (
               <NavLink to="/diary">
@@ -172,22 +156,24 @@ export default function Landing({ isLogin }) {
         </Icon2>
       ) : null}
       <Container2 id="introduction">
-        <h1 className="introduction-title">Siphoon-Note를 소개합니다! 📝️</h1>
+        <h1 className="introduction-title">
+          안녕하세요, Siphoon Note 입니다. 📝️
+        </h1>
       </Container2>
       <Container3>
         <Description></Description>
       </Container3>
       <Container4>
-        <h2 className="community-title">
+        <h3 className="community-title">
           Siphoon 게시판<br></br>
           <BsFillArrowDownCircleFill className="community-icon"></BsFillArrowDownCircleFill>
-        </h2>
+        </h3>
       </Container4>
       <Container5 id="ranking">
         <Ranking topUser={topUser}></Ranking>
       </Container5>
       <Container6 id="public">
-        <h2>다른 유저의 Siphoon Note를 공유해요!</h2>
+        <h2>다른 유저들은 Siphoon Note를 이렇게 작성했어요!</h2>
         <PublicEssays publicEssay={publicEssay}></PublicEssays>
       </Container6>
       <Footer></Footer>

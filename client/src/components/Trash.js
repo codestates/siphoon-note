@@ -1,28 +1,31 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { MdSettingsBackupRestore } from 'react-icons/md';
-import axios from 'axios';
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from 'react-icons/md';
 
+import styled from 'styled-components';
+import { useState } from 'react';
+import axios from 'axios';
+import apiUris from '../config/config';
+
 export default function Trash({
   isTrashDropdown,
   setIsTrashDropdown,
   setIsTagsDropdown,
+  accessToken,
+  readHandler,
 }) {
-  // 클릭한 메세지의 아이디를 서버 쪽으로 보내준다. 복원과 삭제 이후에 휴지통에 있는 내역을 다시 불러와야 한다.
   const dummy = [
     { essayId: 0, title: 'deleted message 0' },
     { essayId: 1, title: 'deleted message 1' },
     { essayId: 2, title: 'deleted message 2' },
     { essayId: 3, title: 'deleted message 3' },
     { essayId: 4, title: 'deleted message 4' },
-    { essayId: 4, title: 'deleted message 5' },
-    { essayId: 4, title: 'deleted message 6' },
+    { essayId: 5, title: 'deleted message 5' },
+    { essayId: 6, title: 'deleted message 6' },
   ];
 
   const handleDropdown = () => {
@@ -41,31 +44,37 @@ export default function Trash({
     setCurrent(current === 0 ? length - (length % 5) : current - 5);
   };
 
-  //! 서버에 휴지통 목록 조회하는 로직 (토큰 필요, 1차 작업)
+  //! 서버에 휴지통 목록 조회하는 로직 (토큰 필요)
   const handleTrashList = () => {
     if (isTrashDropdown === false) {
       axios
-        .get(`${API_HOST}/api/v1/trash`, {
+        .get(apiUris.READ_TRASH_LIST, {
           headers: { authorization: { 'Content-Type': 'application/json' } },
         })
         .then(res => {
           if (res.status === 200) {
-            // 성공 응답이 오면 trashList 상태 갱신 함수 업데이트 한다.
+            setTrashList(res.data);
           }
         })
         .catch(error => console.log(error));
     }
   };
 
-  //! 서버에 휴지통 목록 복원/삭제 요청하는 로직 (토큰 필요, 1차 작업)
+  //! 서버에 휴지통 목록 복원/삭제 요청하는 로직 (토큰 필요)
   const handleDelete = index => {
     axios
-      .delete(`${API_HOST}/api/v1/trash/${trashList[index].essayId}`, {
+      .delete(apiUris.DELETE_TRASH_BY_ID + '/' + trashList[index].essayId, {
         headers: { authorization: { 'Content-Type': 'application/json' } },
       })
       .then(res => {
         if (res.status === 200) {
-          // 성공 응답이 오면 휴지통 목록에서 사라져야 한다. 다시 휴지통 목록 조회를 할까?
+          //* case1. 다시 휴지통 목록 조회하기
+          handleTrashList();
+          //* case2. 클라사이드에서 필터링 하기
+          // const filtered = trashList.filter(trash => {
+          //   return trash.essayId !== res.permanetlyDeletedEssayId;
+          // });
+          // setTrashList(filtered);
         }
       })
       .catch(error => console.log(error));
@@ -73,12 +82,13 @@ export default function Trash({
 
   const handleRestore = index => {
     axios
-      .patch(`${API_HOST}/api/v1/trash/${trashList[index].essayId}`, {
+      .patch(apiUris.RESTORE_ESSAY_BY_ID + '/' + trashList[index].essayId, {
         headers: { authorization: { 'Content-Type': 'application/json' } },
       })
       .then(res => {
         if (res.status === 200) {
-          // 성공 응답이 오면 휴지통 목록에서 사라지고 오른쪽 화면에 보여져야 한다. (고민)
+          // 휴지통 목록 조회하고 메세지 다시 불러오기
+          readHandler();
         }
       })
       .catch(error => console.log(error));

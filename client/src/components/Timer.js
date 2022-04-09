@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export default function Timer({ minute, timerOn, handleSubmit }) {
-  const [minutes, setMinutes] = useState(minute);
+export default function Timer({ timerOn, handleSubmit }) {
+  const [minutes, setMinutes] = useState(10);
   const [seconds, setSeconds] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -31,7 +31,7 @@ export default function Timer({ minute, timerOn, handleSubmit }) {
       return () => clearInterval(countdown);
     } else {
       setShowTooltip(false);
-      setMinutes(minute);
+      setMinutes(10);
       setSeconds(0);
       clearInterval(countdown);
     }
