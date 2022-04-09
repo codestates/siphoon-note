@@ -53,8 +53,8 @@ module.exports = {
 
   //--- 2. find email exist
   findEmail: (email = '') => {
-    const sql = `SELECT ? FROM ??`;
-    const value = [email, 'users'];
+    const sql = `SELECT ? FROM ?? WHERE ?? = ?`;
+    const value = ['email', 'users', 'email', email];
 
     connection.query(sql, value, callback);
   },
