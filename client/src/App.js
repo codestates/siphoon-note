@@ -24,6 +24,7 @@ function App() {
     birthday: '2000-01-01',
     region: '서울',
   });
+  const [keyword, setKeyword] = useState('윤슬');
 
   const isAuthenticated = () => {
     axios
@@ -65,17 +66,23 @@ function App() {
         accessToken={accessToken}
       />
       <Routes>
-        <Route exact path="/" element={<Landing isLogin={isLogin} />} />
-        <Route path="/diary" element={<Diary />} />
+        <Route
+          exact
+          path="/"
+          element={<Landing isLogin={isLogin} setKeyword={setKeyword} />}
+        />
         <Route
           path="/mypage"
           element={<Mypage user={userInfo} isLogin={isLogin} />}
         />
-        <Route path="/diary" element={<Diary accessToken={accessToken} />} />
+        <Route
+          path="/diary"
+          element={<Diary keyword={keyword} accessToken={accessToken} />}
+        />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/trial" element={<Trial />} />
+        <Route path="/trial" element={<Trial keyword={keyword} />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

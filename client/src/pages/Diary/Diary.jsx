@@ -47,7 +47,7 @@ import {
 import axios from 'axios';
 import apiUris from '../../config/config.js';
 
-export default function Diary({ accessToken }) {
+export default function Diary({ accessToken, keyword }) {
   // 다이어리 전체 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const [markList, setMarkList] = useState([
@@ -65,7 +65,7 @@ export default function Diary({ accessToken }) {
     longestStreaks: 25,
     usageDate: 30,
   });
-  const [keyword, setKeyword] = useState('윤슬');
+
   const [tags, setTags] = useState([keyword]);
   // 사용자 에세이 인풋
   const [input, setInput] = useState('');
@@ -135,8 +135,7 @@ export default function Diary({ accessToken }) {
         // 코드작성 (종열)
         //* 유저정보
         // 코드작성 (준형)
-        //* 키워드, 분석, 달력
-        setKeyword(todaysWord);
+        //* 분석, 달력
         setRecord(record);
         setMarkList(markList);
       }
