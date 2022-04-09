@@ -9,11 +9,12 @@ import Signup from './pages/Signup';
 import Trial from './pages/Trial';
 import GlobalStyle from './GlobalStyle';
 import Navbar from './components/Navbar';
+import Error from './pages/Error';
 import apiUris from './config/config';
 
 function App() {
   // 로그인 관련 전역 상태 변수
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   const [userInfo, setUserInfo] = useState({
     email: 'ss@ff.com',
@@ -75,6 +76,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/trial" element={<Trial />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
