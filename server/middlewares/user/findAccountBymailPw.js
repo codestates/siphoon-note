@@ -1,10 +1,10 @@
 const { decrypt } = require('../../middlewares/utils');
-const { findAllByEmail } = require('../../models');
+const { findAllUserInfoByEmail } = require('../../models');
 
 const findAccountBymailPw = async (email, password) => {
   try {
     // 1. email validation
-    const account = await findAllByEmail(email);
+    const account = await findAllUserInfoByEmail(email);
     if (!account) {
       return null;
     }
