@@ -12,6 +12,9 @@ const successResponseWithToken = ({
   res.cookie('Bearer', token, {
     httpOnly: true,
     secure: true,
+    sameSite: 'none',
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    // Q. 토큰 만료 시간과 일치시킬 수?
   });
   res.status(status).json({ status, message, data });
 };
