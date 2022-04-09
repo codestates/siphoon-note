@@ -1,5 +1,5 @@
 export const regionOptions = [
-  '선택하세요',
+  '선택하세요.',
   '강원도',
   '경기도',
   '경상도',
@@ -10,7 +10,7 @@ export const regionOptions = [
 ];
 
 export const genderOptions = [
-  '선택하세요',
+  '선택하세요.',
   '남',
   '여',
   '공개 안함',

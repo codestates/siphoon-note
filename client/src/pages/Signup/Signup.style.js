@@ -1,20 +1,51 @@
 import styled from 'styled-components';
 
+export const BackButton = styled.button`
+z-index:500;
+position:absolute;
+top:20px;
+left:20px;
+font-weight: 500;
+display: flex;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+text-decoration: none;
+color: black;
+border: solid;
+background: white;
+font-size: 1.15rem;
+padding: 0.65rem;
+
+&:hover {
+  box-shadow: 4px 2px black;
+  transition: all 0.2s ease-in-out;`;
+
 export const Main = styled.main`
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 70vh;
+  // justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 7rem;
+  margin-bottom: 13rem;
 `;
 
 export const Section = styled.div`
-  width: auto;
+  // width: auto;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > h2 {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 50px;
+  height: 55px;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
@@ -28,22 +59,25 @@ export const Input = styled.input`
 
 export const TextWrap = styled.div`
   border: 1px solid black;
-  margin: 30px 3px;
+  margin: 1rem 0rem;
+  // border-radius: 10px;
+  font-size: 1.1rem;
+  padding: 1rem;
 `;
 
 export const TextP = styled.div``;
 
-export const Span = styled.span`
-  color: ${props => props.color || 'orange'};
+export const Span = styled.div`
+  color: ${props => props.color || 'red'};
+  // margin-bottom: 1rem;
 `;
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 7px;
 `;
 
 export const Submitwrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
+  width: 100%;
+  transform: translateY(50px);
 `;

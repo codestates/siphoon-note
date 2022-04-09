@@ -1,8 +1,38 @@
 import styled from 'styled-components';
+
+export const BackButton = styled.button`
+z-index:500;
+position:absolute;
+top:20px;
+left:20px;
+font-weight: 500;
+display: flex;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+text-decoration: none;
+color: black;
+border: solid;
+background: white;
+font-size: 1.15rem;
+padding: 0.65rem;
+
+&:hover {
+  box-shadow: 4px 2px black;
+  transition: all 0.2s ease-in-out;`;
+
 export const SigninWrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   place-items: center;
-  min-height: 79vh;
+  height: 100vh;
+  margin-top: 25px;
+
+  > h2 {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const TextInputListWrapper = styled.div``;
@@ -11,7 +41,7 @@ export const ButtonsWrapper = styled.div`
     display: block;
     width: 400px;
   }
-  margin-top: 115px;
+  margin-top: 15px;
   margin-bottom: 60px;
   /* 
     button + button {
@@ -27,10 +57,9 @@ export const OauthButtonsWrapper = styled.div`
     width: 400px;
   }
   button + button {
-    margin-top: 15px;
+    margin-top: 30px;
   }
 `;
 export const ErrMesWrapper = styled.div`
-  margin-top: 20px;
   color: red;
 `;

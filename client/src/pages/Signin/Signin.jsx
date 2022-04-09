@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import axios from 'axios';
+import UserModal from '../../components/UserModal';
 
 import {
+  BackButton,
   TextInputListWrapper,
   SigninWrapper,
   ButtonsWrapper,
@@ -13,10 +15,15 @@ import {
 import { Footer, SubmitBtn, TextInput } from '../../components';
 
 export default function Signin() {
+  const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -49,11 +56,11 @@ export default function Signin() {
   const handleLogin = () => {
     let booleanArray = [];
     if (!email && !password) {
-      setErrorMsg('아이디와 비밀번호를 입력해주세요');
+      setErrorMsg('아이디와 비밀번호를 입력해주세요.');
     } else if (!email) {
-      setErrorMsg('아이디를 입력해주세요');
+      setErrorMsg('아이디를 입력해주세요.');
     } else if (!password) {
-      setErrorMsg('비밀번호를 입력해주세요');
+      setErrorMsg('비밀번호를 입력해주세요.');
     }
     booleanArray.push(true);
   };
@@ -62,7 +69,7 @@ export default function Signin() {
     {
       title: '이메일',
       type: 'email',
-      placeholder: '이메일을 입력하세요',
+      placeholder: '이메일을 입력하세요.',
       autoComplete: 'on',
       minLength: 10,
       maxLength: 32,
@@ -71,7 +78,7 @@ export default function Signin() {
     {
       title: '패스워드',
       type: 'password',
-      placeholder: '패스워드을 입력하세요',
+      placeholder: '패스워드를 입력하세요.',
       autoComplete: 'on',
       minLength: 8,
       maxLength: 32,
@@ -81,7 +88,16 @@ export default function Signin() {
 
   return (
     <div>
+      <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
       <SigninWrapper>
+        {showModal && (
+          <UserModal
+            title="알림"
+            content="현재 준비중에 있습니다!"
+            handleModal={handleModal}
+          ></UserModal>
+        )}
+        <h2>SIGN IN</h2>
         <TextInputListWrapper>
           <form onSubmit={event => handleSubmit(event)}>
             {textInputList.map(
@@ -111,25 +127,29 @@ export default function Signin() {
                 );
               }
             )}
-            {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
+            {errorMsg ? <ErrMesWrapper>{errorMsg}</ErrMesWrapper> : <br />}
             <ButtonsWrapper>
               <SubmitBtn
                 onClick={onLoginBtn}
                 value="로그인"
-                BackgroundColor="green"
+                BackgroundColor="white"
+                color="black"
               />
             </ButtonsWrapper>
           </form>
 
           <OauthButtonsWrapper>
             <SubmitBtn
+              onClick={handleModal}
               value="구글 계정으로 로그인"
-              BackgroundColor="#ff0000a9"
+              BackgroundColor="rgb(255, 135, 70)"
+              color="black"
             />
             <SubmitBtn
+              onClick={handleModal}
               value="카카오 계정으로 로그인"
-              BackgroundColor="#f2ff00"
-              color="#000000"
+              BackgroundColor="rgb(254, 205, 133)"
+              color="black"
             />
           </OauthButtonsWrapper>
         </TextInputListWrapper>

@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const InputWrap = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 13px;
 `;
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 1.2rem;
 `;
 
 export const Span = styled.label`
@@ -15,12 +15,12 @@ export const Span = styled.label`
 
 export const Input = styled.input`
   width: 100%;
-  height: 50px;
+  height: 55px;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
-  font-size: 20px;
-  margin-top: 5px;
+  font-size: 1.1rem;
+  margin-top: 7px;
   &:focus {
     outline: 4px solid primary-light;
     border: none;
