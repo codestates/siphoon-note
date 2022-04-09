@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: '*',
+    // origin: 'http://dev-diary-bucket.s3-website.ap-northeast-2.amazonaws.com',
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'OPTIONS', 'DELETE'],
   })
