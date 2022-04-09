@@ -25,17 +25,17 @@ router.use((err, req, res, next) => {
 });
 
 // apiTotal: 16
-// const BASE_URI = '/api/v1';
+const BASE_URI = '/api/v1';
 
 // main: 1
 // router.use(BASE_URI, require('./landing'));
 
 // essay: 5
-router.use('/essays', require('./essays'));
+router.use(`${BASE_URI}/essays`, require('./essays'));
 
 //user: 6
-router.post('/signup', authCtrl.signup);
-router.post('/signin', authCtrl.signin);
+router.post(`${BASE_URI}/signup`, authCtrl.signup);
+router.post(`${BASE_URI}/signin`, authCtrl.signin);
 // router.delete(`${BASE_URI}/signout`, authCtrl.signout);
 // router.get(`${BASE_URI}/userinfo`, userCtrl.getUserInfo);
 // router.delete(`${BASE_URI}/userinfo`, userCtrl.deleteUserAccount);
