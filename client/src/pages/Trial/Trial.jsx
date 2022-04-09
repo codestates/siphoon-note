@@ -42,7 +42,7 @@ import {
   Icon,
 } from './Trial.style';
 
-export default function Trial() {
+export default function Trial({ keyword }) {
   // 오늘 날짜 구하기
   const getTodayDate = () => {
     const today = new Date();
@@ -94,22 +94,26 @@ export default function Trial() {
   }, [entireList]);
 
   // 키워드
-  const keywordArr = [
-    '윤슬',
-    '아침',
-    '점심',
-    '친구',
-    '고양이',
-    '강아지',
-    '눈',
-    '호흡',
-    '일의슬픔',
-  ];
+  // const keywordArr = [
+  //   '윤슬',
+  //   '아침',
+  //   '점심',
+  //   '친구',
+  //   '고양이',
+  //   '강아지',
+  //   '눈',
+  //   '호흡',
+  //   '일의슬픔',
+  // ];
 
-  const getRandomKeyword = () => {
-    const randomNum = parseInt(Math.random() * (keywordArr.length - 1));
-    return keywordArr[randomNum];
-  };
+  // const getRandomKeyword = () => {
+  //   const randomNum = parseInt(Math.random() * (keywordArr.length - 1));
+  //   return keywordArr[randomNum];
+  // };
+
+  // useEffect(() => {
+  //   setKeyword(getRandomKeyword());
+  // }, []);
 
   // 사용자 에세이 인풋
   const [input, setInput] = useState('');
@@ -117,12 +121,6 @@ export default function Trial() {
     setInput(e.target.value);
     setTimerOn(true);
   };
-
-  useEffect(() => {
-    setKeyword(getRandomKeyword());
-  }, []);
-
-  const [keyword, setKeyword] = useState('다섯자태그');
 
   // 태그
   const [tags, setTags] = useState([keyword]);

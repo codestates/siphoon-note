@@ -11,6 +11,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import apiUris from '../config/config';
 
+axios.defaults.withCredentials = true;
+
 export default function Trash({
   isTrashDropdown,
   setIsTrashDropdown,
@@ -49,14 +51,22 @@ export default function Trash({
     if (isTrashDropdown === false) {
       axios
         .get(apiUris.READ_TRASH_LIST, {
-          headers: { authorization: { 'Content-Type': 'application/json' } },
+          headers: { 'Content-Type': 'application/json' },
         })
         .then(res => {
           if (res.status === 200) {
             setTrashList(res.data);
           }
         })
-        .catch(error => console.log(error));
+        .catch(err => {
+          console.log(err);
+          if (err.status === 401) {
+            return alert(err.message);
+          }
+          if (err.status === 500) {
+            return alert(err.message);
+          }
+        });
     }
   };
 
@@ -77,7 +87,15 @@ export default function Trash({
           // setTrashList(filtered);
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return alert(err.message);
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
   };
 
   const handleRestore = index => {
@@ -91,7 +109,15 @@ export default function Trash({
           readHandler();
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return alert(err.message);
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
   };
 
   return (
