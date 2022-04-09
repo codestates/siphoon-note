@@ -14,8 +14,10 @@ import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
+import apiUris from '../../config/config';
+console.log(apiUris.UPDATE_USER_INFO);
 
-export default function Mypage() {
+export default function Mypage({ user, isLogin }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setpasswordCheck] = useState('');
@@ -64,16 +66,52 @@ export default function Mypage() {
 
   const onUpdateBtn = e => {
     if (handleSignup()) {
-      setErrorMsg('');
-      setTitle('회원 수정📝');
-      setContent('회원정보 수정이 완료되었습니다😀');
-      setShow(true);
+      axios
+        .patch(
+          apiUris.UPDATE_USER_INFO,
+          { password, username, gender, region, birthday },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then(respond => {
+          if (respond.status === 200) {
+            setTitle('회원 수정📝');
+            setContent('회원정보 수정이 완료되었습니다😀');
+            setShow(true);
+            navigator('/mypage');
+          }
+        })
+        .catch(error => console.log(error));
+      // setErrorMsg('');
+      // setTitle('회원 수정📝');
+      // setContent('회원정보 수정이 완료되었습니다😀');
+      // setShow(true);
     }
   };
   const onDeleteBtn = e => {
-    setTitle('회원 탈퇴🥲');
-    setContent('정말로 탈퇴하시겠습니까🥲');
-    setShow(true);
+    axios
+      .delete(apiUris.DELETE_ACCOUNT, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(respond => {
+        if (respond.status === 200) {
+          setTitle('회원 탈퇴🥲');
+          setContent('정말로 탈퇴하시겠습니까🥲');
+          setShow(true);
+          navigator('/');
+        }
+      })
+      .catch(error => console.log(error));
+    // setTitle('회원 탈퇴🥲');
+    // setContent('정말로 탈퇴하시겠습니까🥲');
+    // setShow(true);
   };
 
   // 유효성 검사
@@ -133,6 +171,7 @@ export default function Mypage() {
       type: 'name',
       placeholder: '변경할 닉네임을 입력하세요',
       autoComplete: 'on',
+      defaultValue: user.username,
       minLength: 12,
       maxLength: 32,
       onBlur: setName,
@@ -152,6 +191,7 @@ export default function Mypage() {
                   type,
                   placeholder,
                   autoComplete,
+                  defaultValue,
                   minLength,
                   maxLength,
                   onBlur,
@@ -167,17 +207,20 @@ export default function Mypage() {
                     autoComplete={autoComplete}
                     minLength={minLength}
                     maxLength={maxLength}
+                    defaultValue={defaultValue}
+                    isLogin={isLogin}
                     onBlur={onBlur}
                   />
                 );
               }
             )}
-
             <Label>성별</Label>
             <Selectbox2
               options={genderOptions}
               gender={gender}
               setGender={setGender}
+              user={user}
+              isLogin={isLogin}
             />
             <br />
             <Label>지역</Label>
@@ -185,6 +228,8 @@ export default function Mypage() {
               options={regionOptions}
               select={selecteOption}
               setSelect={setSelecteOption}
+              user={user}
+              isLogin={isLogin}
             />
             <br />
             <Label>생년월일 수정</Label>
@@ -192,6 +237,7 @@ export default function Mypage() {
               type="text"
               name="year"
               ref={birth}
+              defaultValue={user.birthday}
               placeholder="0000-00-00 형태로 적어주세요."
               onChange={handleInputValue('year')}
             />
