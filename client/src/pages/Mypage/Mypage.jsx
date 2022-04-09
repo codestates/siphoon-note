@@ -8,6 +8,7 @@ import {
   ModalWrapper,
   Modal,
   ErrMesWrapper,
+  BackButton,
 } from './Mypage.style';
 
 import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
@@ -15,15 +16,19 @@ import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
 import apiUris from '../../config/config';
+import { useNavigate } from 'react-router-dom';
+
 console.log(apiUris.UPDATE_USER_INFO);
 
 export default function Mypage({ user, isLogin }) {
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setpasswordCheck] = useState('');
   const [selecteOption, setSelecteOption] = useState('');
   const [gender, setGender] = useState('');
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('알림');
   const [content, setContent] = useState('');
   const [show, setShow] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -180,8 +185,10 @@ export default function Mypage({ user, isLogin }) {
 
   return (
     <div>
+      <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
       {show && <Popup setShow={setShow} content={content} title={title} />}
       <MypageWrapper>
+        <h2>EDIT PROFILE</h2>
         <TextInputWrapper>
           <form onSubmit={event => handleSubmit(event)}>
             {textInputList.map(
@@ -222,7 +229,6 @@ export default function Mypage({ user, isLogin }) {
               user={user}
               isLogin={isLogin}
             />
-            <br />
             <Label>지역</Label>
             <Selectbox
               options={regionOptions}
@@ -231,33 +237,34 @@ export default function Mypage({ user, isLogin }) {
               user={user}
               isLogin={isLogin}
             />
-            <br />
-            <Label>생년월일 수정</Label>
+            <Label>생년월일</Label>
             <Input
               type="text"
               name="year"
               ref={birth}
               defaultValue={user.birthday}
-              placeholder="0000-00-00 형태로 적어주세요."
+              placeholder="YYYY-MM-DD 형식으로 적어주세요."
               onChange={handleInputValue('year')}
             />
           </form>
           {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
           <ButtonsWrapper>
             <SubmitBtn
-              click={onDeleteBtn}
+              onClick={onDeleteBtn}
               value="회원탈퇴"
-              BackgroundColor="green"
+              color="black"
+              BackgroundColor="white"
             />
             <SubmitBtn
               click={onUpdateBtn}
               value="수정하기"
-              BackgroundColor="green"
+              BackgroundColor="rgb(254, 205, 133)"
+              color="black"
             />
           </ButtonsWrapper>
         </TextInputWrapper>
-        <Footer />
       </MypageWrapper>
+      <Footer />
     </div>
   );
 }

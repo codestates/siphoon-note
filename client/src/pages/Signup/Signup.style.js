@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BackButton = styled.button`
 z-index:500;
-position:absolute;
+position:fixed;
 top:20px;
 left:20px;
 font-weight: 500;
@@ -23,7 +23,6 @@ padding: 0.65rem;
 export const Main = styled.main`
   display: flex;
   align-items: center;
-  // justify-content: center;
   flex-direction: column;
   height: 100vh;
   margin-top: 7rem;
@@ -31,7 +30,6 @@ export const Main = styled.main`
 `;
 
 export const Section = styled.div`
-  // width: auto;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -69,7 +67,6 @@ export const TextP = styled.div``;
 
 export const Span = styled.div`
   color: ${props => props.color || 'red'};
-  // margin-bottom: 1rem;
 `;
 
 export const Label = styled.label`
@@ -79,5 +76,5 @@ export const Label = styled.label`
 
 export const Submitwrap = styled.div`
   width: 100%;
-  transform: translateY(50px);
+  transform: translateY(37px);
 `;

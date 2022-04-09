@@ -25,17 +25,6 @@ const ModalBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   display: grid;
   place-items: center;
-
-  > img {
-    width: 60%;
-    height: 60%;
-    opacity: 100%;
-    position: fixed;
-    left: 19%;
-    top: 10%;
-
-    transition: all 1s ease-in-out;
-  }
 `;
 
 const ModalView = styled.div.attrs(props => ({

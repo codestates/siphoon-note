@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BackButton = styled.button`
 z-index:500;
-position:absolute;
+position:fixed;
 top:20px;
 left:20px;
 font-weight: 500;
@@ -31,7 +31,7 @@ export const SigninWrapper = styled.div`
 
   > h2 {
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -39,7 +39,7 @@ export const TextInputListWrapper = styled.div``;
 export const ButtonsWrapper = styled.div`
   button {
     display: block;
-    width: 400px;
+    width: 500px;
   }
   margin-top: 15px;
   margin-bottom: 60px;
@@ -54,7 +54,7 @@ export const ButtonsWrapper = styled.div`
 export const OauthButtonsWrapper = styled.div`
   button {
     display: block;
-    width: 400px;
+    width: 500px;
   }
   button + button {
     margin-top: 30px;

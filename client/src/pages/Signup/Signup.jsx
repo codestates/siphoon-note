@@ -173,7 +173,6 @@ export default function Signup() {
   return (
     <>
       <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
-
       <Main>
         <Section>
           <h2>SIGN UP</h2>
