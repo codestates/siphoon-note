@@ -1,24 +1,19 @@
-// record: {
-//   totalEssay: 0,
-//   currentStreaks: 0,
-//   longestStreaks: 0,
-//   usageDate: 0,
-// },
-
 const {
+  countEssayTotal,
   getCurrentStreaks,
   getLongestStreaks,
-  getUsageDate,
-  getTotalEssay,
-} = require('../record');
+  countUsageDate,
+} = require('../../models');
 
-const getUserRecord = async (email = '') => {
+const getUserRecord = async (userId = 0, createdAt = '') => {
   const [currentStreaks, longestStreaks, usageDate, totalEssay] =
     await Promise.all([
-      getCurrentStreaks(email),
-      getLongestStreaks(email),
-      getUsageDate(email),
-      getTotalEssay(email),
+      //-- sql 아닌 애플리케이션 코드가 필요할 것 같음
+      getCurrentStreaks(userId),
+      getLongestStreaks(userId),
+      //--
+      countUsageDate(userId, createdAt),
+      countEssayTotal(userId),
     ]);
 
   return {

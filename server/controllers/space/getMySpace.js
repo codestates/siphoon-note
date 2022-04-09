@@ -57,17 +57,6 @@ const getMySpace = async (req, res) => {
   }
 
   const userInfo = await findAllUserInfoByEmail(userEmail);
-  // id int AI PK
-  // refresh_token varchar(255)
-  // email varchar(255)
-  // name varchar(45)
-  // password varchar(255)
-  // created_at timestamp
-  // updated_at timestamp
-  // gender varchar(55)
-  // birthday datetime
-  // region varchar(45)
-  // profile_image int
   const {
     id,
     email,
@@ -79,11 +68,13 @@ const getMySpace = async (req, res) => {
     created_at,
   } = userInfo;
 
+  if (birthday === undefined) birthday = created_at;
+
   const { essayList, todaysWord, record, markList } = await Promise.all([
     // 반복적으로 어떻게 수행?
     getEssayList(id, limit, offset),
     getTodaysWord(new Date().getDate()),
-    getUserRecord(id),
+    getUserRecord(id, created_at),
     getMarkList(id),
   ]);
 
@@ -99,7 +90,22 @@ const getMySpace = async (req, res) => {
     successResponse({
       req,
       res,
-      data: { userInfo, essayList, todaysWord, record, markList },
+      data: {
+        userInfo: {
+          id,
+          email,
+          name,
+          profileImage,
+          gender,
+          birthday,
+          region,
+          created_at,
+        },
+        essayList,
+        todaysWord,
+        record,
+        markList,
+      },
       status: 200,
       message: "Successfully get User's Essay Page!",
     });
