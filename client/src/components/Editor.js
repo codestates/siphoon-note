@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import apiUris from '../config/config';
 
-export default function Editor({ handleEditor, diary, number }) {
+export default function Editor({ handleEditor, diary, number, readHandler }) {
   console.log(diary);
   const [input, setInput] = useState(diary.content);
   const handleChange = e => {
@@ -24,19 +24,33 @@ export default function Editor({ handleEditor, diary, number }) {
           content: input,
           isPublic,
         },
-        { headers: { authorization: { 'Content-Type': 'application/json' } } }
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            withCredentials: true,
+          },
+        }
       )
       .then(res => {
         if (res.status === 200) {
           // 1. 모달창 끄기
           handleEditor();
           // Case1 서버로 get 요청 보내기
+          readHandler();
           // Case2 클라사이드에서 수정사항 반영해서 임시로 보여주기
           // res.data 에서 받은 객체를 diary에 복사하기
           // Object.assign(diary, res.data);
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return alert(err.message);
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
   };
   return (
     <ModalBackdrop onClick={handleEditor}>

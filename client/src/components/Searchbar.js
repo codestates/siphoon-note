@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import apiUris from '../config/config';
 
+axios.defaults.withCredentials = true;
+
 export default function Searchbar({ readHandler }) {
   const [userInput, setUserInput] = useState(undefined);
 
@@ -11,14 +13,22 @@ export default function Searchbar({ readHandler }) {
   const handleSearch = event => {
     axios
       .get(apiUris.READ_ESSAY_LIST_BY_WORD + '/' + userInput, {
-        headers: { authorization: { 'Content-Type': 'application/json' } },
+        headers: { 'Content-Type': 'application/json' },
       })
       .then(res => {
         if (res.status === 200) {
           setDiaryList(res.data);
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return alert(err.message);
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
     // setUserInput('');
   };
 

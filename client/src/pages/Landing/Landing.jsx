@@ -29,7 +29,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
 import apiUris from '../../config/config';
 
-export default function Landing({ isLogin }) {
+export default function Landing({ isLogin, setKeyword }) {
   const dummyData = [
     {
       profileImage: { imageUrls: '0' },
@@ -56,9 +56,10 @@ export default function Landing({ isLogin }) {
     })
     .then(res => {
       if (res.status === 200) {
-        const { userList, publicEssayList } = res.data;
+        const { keyword, userList, publicEssayList } = res.data;
         setTopUser(userList);
         setPublicEssay(publicEssayList);
+        setKeyword(keyword);
       }
     })
     .catch(err => console.log(err));

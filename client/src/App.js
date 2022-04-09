@@ -9,12 +9,15 @@ import Signup from './pages/Signup';
 import Trial from './pages/Trial';
 import GlobalStyle from './GlobalStyle';
 import Navbar from './components/Navbar';
+import Error from './pages/Error';
 import apiUris from './config/config';
 axios.defaults.withCredentials = true;
 function App() {
   // 로그인 관련 전역 상태 변수
   const [isLogin, setIsLogin] = useState(false);
+
   // const [accessToken, setAccessToken] = useState(null);
+
   const [userInfo, setUserInfo] = useState({
     email: '',
     username: '',
@@ -23,6 +26,7 @@ function App() {
     birthday: '',
     region: '',
   });
+  const [keyword, setKeyword] = useState('윤슬');
 
   const isAuthenticated = () => {
     axios
@@ -67,6 +71,7 @@ function App() {
         // accessToken={accessToken}
       />
       <Routes>
+
         <Route exact path="/" element={<Landing isLogin={isLogin} />} />
         <Route
           path="/diary"
@@ -91,8 +96,10 @@ function App() {
             />
           }
         />
+
         <Route path="/signup" element={<Signup />} />
-        <Route path="/trial" element={<Trial />} />
+        <Route path="/trial" element={<Trial keyword={keyword} />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
