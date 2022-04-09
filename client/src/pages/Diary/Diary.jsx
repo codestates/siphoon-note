@@ -1,6 +1,6 @@
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiGift2Line, RiPencilLine, RiDeleteBin6Line } from 'react-icons/ri';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { AiOutlineInfoCircle, AiTwotoneAlert } from 'react-icons/ai';
 import dummy from '../../static/dummyData';
 import pageDummy from '../../static/pageDummyData';
 import colorTheme from '../../colorTheme';
@@ -15,7 +15,7 @@ import EntireEssay from '../../components/EntireEssay';
 import Loading from '../../components/Loading';
 import Editor from '../../components/Editor';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import {
   Container,
   Main,
@@ -113,7 +113,16 @@ export default function Diary({ accessToken }) {
           //* 에세이 리스트 받아오는 코드
         }
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          alert('로그인이 필요합니다.');
+          return navigator('/signin', { replace: true });
+        }
+        if (err.status === 500) {
+          return alert(err.message);
+        }
+      });
   };
 
   //! get 요청 : 글 리스트, 분석데이터, 유저정보, 키워드(토큰필요)
@@ -132,7 +141,16 @@ export default function Diary({ accessToken }) {
         setMarkList(markList);
       }
     })
-    .catch(error => console.log(error));
+    .catch(err => {
+      console.log(err);
+      if (err.status === 401) {
+        alert('로그인이 필요합니다.');
+        return navigator('/signin', { replace: true });
+      }
+      if (err.status === 500) {
+        return alert(err.message);
+      }
+    });
 
   //! 서버에 글 작성 요청 보내기 (토큰필요)
   const handleSubmit = () => {
@@ -154,11 +172,20 @@ export default function Diary({ accessToken }) {
         .then(res => {
           if (res.status === 201) {
             // case1. 전체글을 다시 조회한다. (get 요청)
+            readHandler();
             // case2. 클라사이드에서 임시로 보여준다. (클라사이드)
             // setDiaryList(prev => [res.data, ...prev]);
           }
         })
-        .catch(error => console.log(error));
+        .catch(err => {
+          console.log(err);
+          if (err.status === 401) {
+            return alert(err.message);
+          }
+          if (err.status === 500) {
+            return alert(err.message);
+          }
+        });
     }
   };
 
@@ -422,6 +449,7 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
           handlePublic={handlePublic}
           diary={diary}
           number={number}
+          readHandler={readHandler}
         ></Editor>
       )}
       {hover ? (
