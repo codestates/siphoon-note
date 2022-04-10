@@ -2,14 +2,10 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import apiUris from '../config/config';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
-export default function Dropdown({
-  isLogin,
-  setIsLogin,
-  accessToken,
-  drop,
-  setDrop,
-}) {
+export default function Dropdown({ isLogin, setIsLogin, drop, setDrop }) {
   const dropDownArr = [
     { title: '홈으로', to: '/', logout: false },
     {
@@ -24,12 +20,13 @@ export default function Dropdown({
     },
   ];
 
+  // 로그아웃 요청 보내기
+
   const handleLogout = () => {
     axios
       .delete(apiUris.SIGN_OUT, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
         },
       })
       .then(respond => {
@@ -37,16 +34,21 @@ export default function Dropdown({
           setIsLogin(false);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.status === 401) {
+          alert(error.message);
+        } else if (error.status === 500) {
+          alert(error.message);
+        }
+      });
   };
 
-  const handle = () => {
+  const drophandle = () => {
     setDrop(false);
   };
-  // 로그아웃 요청 보내기
 
   return (
-    <DropdownLayout onClick={handle}>
+    <DropdownLayout onClick={drophandle}>
       <DropdownMenu>
         {isLogin &&
           drop &&
@@ -77,7 +79,6 @@ const DropdownLayout = styled.div`
   overflow: hidden;
   top: calc(100% + 7px);
   right: 10px;
-
   & ul {
     padding: 0;
     margin: 0;
@@ -101,7 +102,6 @@ const MenuItems = styled.li`
   font-weight: 500;
   text-align: center;
   font-size: 1rem;
-
   a {
     &:hover {
       background: floralwhite;
