@@ -2,10 +2,10 @@ const colors = require('colors');
 
 const logger = require('tracer').colorConsole({
   format: [
-    '{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})',
+    '[{{timestamp}}] [{{title}}] {{message}} ({{path}}:{{line}})',
     {
       error:
-        '{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})\nCall Stack:\n{{stack}}',
+        '[{{timestamp}}] [{{title}}] {{message}} ({{path}}:{{line}})\nCall Stack:\n{{stack}}',
     },
   ],
   dateformat: 'HH:MM:ss.L',
@@ -13,7 +13,7 @@ const logger = require('tracer').colorConsole({
     data.title = data.title.toUpperCase();
   },
   level: 'info',
-  methods: ['info', 'log', 'debug', 'warn', 'error'],
+  methods: ['info', 'debug', 'error'],
   filters: {
     info: colors.white,
     debug: colors.blue,

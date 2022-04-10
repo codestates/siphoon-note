@@ -11,12 +11,11 @@ const connection = mysql.createConnection(config[env]);
 connection.connect(err => {
   if (err) {
     logger.error(
-      `Database:index\n`,
-      `Error connecting to database 🤢 ${err.stack} ${err.message}`
+      `Database: Error connecting to database 🤢 ${err.stack} ${err.message}`
     );
     throw err;
   }
-  logger.info(`Database: ${config[env].database}\nConnected to database 😃`);
+  logger.info(`Database: ${config[env].database} Connected to database 😃`);
 });
 
 module.exports = connection;

@@ -1,7 +1,7 @@
 const { getWeeklyUserList } = require('../controllers/users');
 const { getPublicEssayList } = require('../controllers/essays');
 
-const getDataForLanding = async (req, res) => {
+export default getLanding = async (req, res) => {
   const [userList, publicEssayList] = await Promise.all([
     getWeeklyUserList(),
     getPublicEssayList(),
@@ -23,5 +23,3 @@ const getDataForLanding = async (req, res) => {
     },
   });
 };
-
-module.exports = getDataForLanding;
