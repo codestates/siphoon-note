@@ -1,14 +1,11 @@
 const { decrypt } = require('../../middlewares/utils');
-const { users } = require('../../models/');
+const { findAllUserInfoByEmail } = require('../../models');
 const logger = require('../../middlewares/logger');
 
 const findAccountBymailPw = async (email, password) => {
   try {
-    logger.debug('Start to find account by', email, password);
     // 1. email validation
-    logger.info(users.findAccountBymailPw);
-    const account = users.findAllUserInfoByEmail(email);
-    logger.debug('account is', account);
+    const account = findAllUserInfoByEmail(email);
 
     if (!account) {
       logger.error('email is not exist');
