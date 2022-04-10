@@ -1,27 +1,18 @@
-const { findAccountBymailPw } = require('../../middlewares/user');
-const {
-  getRefreshToken,
-  decodeToken,
-  createAccessToken,
-  tokenValidator,
-} = require('../../middlewares/auth');
+const { findUserByEmail } = require('../../models/model.user');
 const logger = require('../../middlewares/logger');
-
+const { createAccessToken } = require('../../middlewares/auth');
 const {
   successResponseWithToken,
   errorResponse,
 } = require('../../middlewares/responses/responseHandler');
 
 const signin = async (req, res) => {
-  logger.info(
-    `AuthController called SIGNIN ${req.method} ${req.url}`,
-    req.body
-  );
+  logger.info(`${req.method} ${req.url}`, req.body);
 
   const { email, password } = req.body;
 
   if (!email || !password) {
-    logger.error('email or password is empty');
+    logger.debug(`email: ${email} || password: ${password}`);
     errorResponse({
       res,
       status: 400,
@@ -29,76 +20,28 @@ const signin = async (req, res) => {
         'Please, check your request! Missing or Invalid Operation Parameters',
     });
   }
+  const result = findUserByEmail(email);
 
-  try {
-    const isValidAccount = findAccountBymailPw(email, password);
+  logger.info('result', result);
 
-    if (isValidAccount === null) {
-      logger.error('email or password is invalid');
-      errorResponse({
-        res,
-        status: 401,
-        message: 'email or password is invalid',
-      });
-    }
-
-    logger.debug(isValidAccount);
-
-    if (!isValidAccount.refreshToken) {
-      logger.debug(`refreshToken is empty!\n Result is...`);
-      logger.debug(isValidAccount);
-      errorResponse({
-        res,
-        status: 401,
-        message: 'refreshToken is empty',
-      });
-    }
-
-    const isValidRefreshToken = tokenValidator(refreshToken);
-
-    if (!isValidRefreshToken) {
-      logger.error('refreshToken is invalid');
-      errorResponse({
-        res,
-        status: 401,
-        message: 'refreshToken is invalid',
-      });
-    }
-
-    const decodedUserInfo = decodeToken(refreshToken);
-
-    if (!decodedUserInfo) {
-      errorResponse({
-        res,
-        status: 500,
-        message: 'Failed to decode user info!',
-      });
-    }
-    const accessToken = createAccessToken(decodedUserInfo);
-
-    if (!accessToken) {
-      errorResponse({
-        res,
-        status: 500,
-        message: 'Failed to create access token!',
-      });
-    }
-    successResponseWithToken({
-      res,
-      token: accessToken,
-      status: 200,
-      message: 'Successfully signed in!',
-    });
-  } catch (error) {
-    logger.error('signin', error);
+  if (!result) {
     errorResponse({
       res,
-      status: 500,
-      message: 'Internal Server Error',
+      status: 400,
+      message: 'email is not exist',
+    });
+  } else {
+    const { id, email, name, profileImage } = result;
+    const accessToken = createAccessToken(id, email, name, profileImage);
+
+    successResponseWithToken({
+      res,
+      accessToken,
+      status: 200,
+      message: 'Successfully Signin',
     });
   }
 };
-
 //여기에서 res.redirect('/essays')로 넘어감
 
 module.exports = { signin };
