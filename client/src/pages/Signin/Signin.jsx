@@ -153,8 +153,8 @@ export default function Signin() {
             />
           </OauthButtonsWrapper>
         </TextInputListWrapper>
-        <Footer position={'absolute'} height={'17%'} />
       </SigninWrapper>
+      <Footer />
     </div>
   );
 }

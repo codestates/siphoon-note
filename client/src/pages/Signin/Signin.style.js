@@ -26,10 +26,11 @@ export const SigninWrapper = styled.div`
   justify-content: center;
   place-items: center;
   height: 100vh;
+  margin-top: 5rem;
 
   > h2 {
     padding: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
