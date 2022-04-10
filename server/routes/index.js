@@ -14,7 +14,7 @@ const authRouter = require('./auth');
 // router.get('/', landingRouter);
 
 // 2. auth: signin, signup, signout
-router.use(`/signup`, authRouter.signup);
+// router.use(`/signup`, authRouter.signup);
 router.use(`/signin`, authRouter.signin);
 // // router.use(`/signout`, authRouter.signout);
 

@@ -1,13 +1,5 @@
 const connection = require('../database');
 
-const callback = (error, result) => {
-  if (error) {
-    console.error(error);
-    throw error;
-  }
-  return result;
-};
-
 module.exports = {
   //--- 1. create new user
   // createAccouont: (

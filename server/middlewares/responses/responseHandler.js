@@ -2,7 +2,6 @@ const successResponse = ({ req, res, data = {}, status = 0, message = '' }) =>
   res.status(status).json({ status, message, data });
 
 const successResponseWithToken = ({
-  req,
   res,
   token = '',
   data = {},
@@ -13,8 +12,6 @@ const successResponseWithToken = ({
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    // Q. 토큰 만료 시간과 일치시킬 수?
   });
   res.status(status).json({ status, message, data });
 };
