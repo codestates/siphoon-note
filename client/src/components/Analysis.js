@@ -7,9 +7,7 @@ import './analysis.css';
 export default function Analysis({ markList, record }) {
   // 캘린더
   const [value, onChange] = useState(new Date());
-
-  const { totalEssay, currentStreaks, longestStreaks, usageDate } = record;
-  console.log(currentStreaks);
+  const { currentStreaks, longestStreaks, usageDate } = record;
   // 분석 데이터 3종
   const analysisData = [
     { title: '서비스 사용 일수', data: usageDate },

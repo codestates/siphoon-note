@@ -15,6 +15,7 @@ export default function TrialTrash({
   setIsTrashDropdown,
   setIsTagsDropdown,
   diaryList,
+  entireList,
   setEntireList,
 }) {
   const handleDropdown = () => {
@@ -39,13 +40,12 @@ export default function TrialTrash({
   };
 
   const handleRestore = selected => {
-    console.log(selected);
     selected.isDeleted = false;
     const filtered = trashList.filter(trash => {
       return selected.essayId !== trash.essayId;
     });
     setTrashList(filtered);
-    setEntireList([selected, ...diaryList]);
+    setEntireList([selected, ...entireList]);
   };
 
   return (
@@ -58,6 +58,9 @@ export default function TrialTrash({
       </Wrapper>
       {isTrashDropdown && (
         <Container>
+          {trashList.length === 0 && (
+            <span className="notice">휴지통이 비어있습니다.</span>
+          )}
           {trashList.map((trash, index) => {
             if (index >= current && index <= current + 5) {
               return (
@@ -131,6 +134,11 @@ const Container = styled.ul`
       padding: 0 1px;
       cursor: pointer;
     }
+  }
+
+  .notice {
+    text-align: center;
+    margin: 0.5rem 0rem;
   }
   .title {
     flex: 1 1 0;

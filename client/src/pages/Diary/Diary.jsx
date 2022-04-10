@@ -66,6 +66,8 @@ export default function Diary({ userInfo, setUserInfo, keyword }) {
     usageDate: 30,
   });
 
+  //! 출력되는 다이어리 개수 계산하기
+
   const [tags, setTags] = useState([keyword]);
   // 사용자 에세이 인풋
   const [input, setInput] = useState('');

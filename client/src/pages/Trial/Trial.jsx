@@ -61,7 +61,7 @@ export default function Trial({ keyword }) {
     markList.push(diary.createdAt);
   });
 
-  const [recordList, setRecordList] = useState({
+  const [record, setRecord] = useState({
     totalEssay: 11,
     currentStreaks: '로그인 필요',
     longestStreaks: '로그인 필요',
@@ -240,7 +240,6 @@ export default function Trial({ keyword }) {
           />
           <TrialTrash
             diaryList={diaryList}
-            setDiaryList={setDiaryList}
             entireList={entireList}
             setEntireList={setEntireList}
             trashList={trashList}
@@ -318,7 +317,7 @@ export default function Trial({ keyword }) {
         ) : (
           <Analysis
             markList={markList}
-            recordList={recordList}
+            record={record}
             setPageNum={setPageNum}
           />
         )}

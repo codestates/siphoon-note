@@ -1,8 +1,8 @@
 import { FooterWrapper } from './Footer.style';
 
-export default function Footer() {
+export default function Footer({ position, height }) {
   return (
-    <FooterWrapper>
+    <FooterWrapper position={position} height={height}>
       Copyright © 2022 All Rights Reserved by Siphoon-Note
     </FooterWrapper>
   );
