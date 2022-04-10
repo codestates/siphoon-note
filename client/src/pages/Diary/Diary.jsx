@@ -306,14 +306,14 @@ export default function Diary({ userInfo, setUserInfo, keyword }) {
             </ButtonWrapper2>
           </InputWrapper>
           <TagToggle
-            accessToken={accessToken}
+            // accessToken={accessToken}
             isTagsDropdown={isTagsDropdown}
             readHandler={readHandler}
             setIsTagsDropdown={setIsTagsDropdown}
             setIsTrashDropdown={setIsTrashDropdown}
           />
           <Trash
-            accessToken={accessToken}
+            // accessToken={accessToken}
             readHandler={readHandler}
             isTrashDropdown={isTrashDropdown}
             setIsTrashDropdown={setIsTrashDropdown}

@@ -46,17 +46,17 @@ export default function Timer({ timerOn, handleSubmit }) {
         <>
           <Tooltip>
             <span className="tooltip-text">
-              훌륭해요! 목표시간까지 얼마 남지 않았어요!
+              훌륭해요! 목표시간까지 1분 남았습니다!
             </span>
           </Tooltip>
           <Tooltip2>
             <span className="tooltip-text">
-              타이머 종료 후 글은 자동으로 저장됩니다
+              꼭 남기고 싶은 하나의 문장이 있나요?
             </span>
           </Tooltip2>
           <Tooltip3>
             <span className="tooltip-text">
-              잠시 후 글이 자동으로 저장됩니다
+              잠시 후 글이 자동으로 저장됩니다.
             </span>
           </Tooltip3>
         </>
