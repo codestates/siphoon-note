@@ -97,7 +97,7 @@ export default function Signin() {
             handleModal={handleModal}
           ></UserModal>
         )}
-        {/* <h2>SIGN IN</h2> */}
+        <h2>SIGN IN</h2>
         <TextInputListWrapper>
           <form onSubmit={event => handleSubmit(event)}>
             {textInputList.map(
