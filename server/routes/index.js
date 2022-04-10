@@ -2,46 +2,34 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../middlewares/logger');
 
+// # routes 폴더 내의 각 라우터 로딩
+// const landingRouter = require('./landing');
 const authRouter = require('./auth');
-const essayRouter = require('./essays');
+// const essayRouter = require('./essay');
+// const userRouter = require('./user');
+// const trashRouter = require('./trash');
+// const tagRouter = require('./tag');
 
-// const essayCtrl = require('../controllers/essays');
-// const userCtrl = require('../controllers/users');
+// 1. landing
+// router.get('/', landingRouter);
 
-router.get('/', (req, res) => {
-  logger.info(`Index Router called ${req.method} ${req.url}`);
-  res.status(200).send('Hello From SSL Server!😀');
-});
+// 2. auth: signin, signup, signout
+router.use(`/signup`, authRouter.signup);
+router.use(`/signin`, authRouter.signin);
+// // router.use(`/signout`, authRouter.signout);
 
-// apiTotal: 16
+// 3. essay
+// router.use(`/essays`, essayRouter);
 
-// main: 1
-// router.use(BASE_URI, require('./landing'));
+// // 4. trash
+// router.use(`/trashes`, trashRouter);
 
-// essay: 5
-router.use(`/essays`, essayRouter);
+// // 5. user
+// router.use(`/usersinfo`, userRouter);
 
-//user: 6
+// // 6. tag
+// router.use(`/tags`, tagRouter);
 
-router.post(`/signup`, authRouter.signup);
-router.post(`/signin`, authRouter.signin);
-// router.delete(`/signout`, authRouter.signout);
-// router.post(`/signup`, authCtrl.signup);
-// router.post(`/signin`, authCtrl.signin);
-// router.delete(`/signout`, authCtrl.signout);
-// router.get(`/userinfo`, userCtrl.getUserInfo);
-// router.delete(`/userinfo`, userCtrl.deleteUserAccount);
-// router.patch(`/userinfo`, userCtrl.updateUserInfo);
-
-// trash: 3
-// router.get(`/trashes`, essayCtrl.getTrashList);
-// router.patch(`/trashes/:essayId`, essayCtrl.updateEssay);
-// router.delete(`/trashes/:essayId`, essayCtrl.deleteEssay);
-
-// tag: 1
-// router.get(`/tags`, essayCtrl.getTagList);
-
-// 랜딩페이지 접속 에러 시 서버에서 처리
 router.use((req, res, next) => {
   const err = new Error(`😈 ${req.method} ${req.url} Router Not Found 😈`);
   logger.error(err);
