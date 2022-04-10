@@ -32,17 +32,17 @@ import apiUris from '../../config/config';
 export default function Landing({ isLogin, setKeyword }) {
   const dummyData = [
     {
-      profileImage: { imageUrls: '0' },
+      profileImage: 0,
       username: '안가람',
       usageDates: '1284',
     },
     {
-      profileImage: { imageUrls: '1' },
+      profileImage: 1,
       username: '이종열',
       usageDates: '99',
     },
-    { profileImage: { imageUrls: '2' }, username: '전준형', usageDates: '98' },
-    { profileImage: { imageUrls: '3' }, username: '이수리', usageDates: '75' },
+    { profileImage: 2, username: '전준형', usageDates: '98' },
+    { profileImage: 3, username: '이수리', usageDates: '75' },
   ];
   const [topUser, setTopUser] = useState(dummyData);
   const [publicEssay, setPublicEssay] = useState(dummy);

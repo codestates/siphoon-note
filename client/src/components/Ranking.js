@@ -22,9 +22,7 @@ export default function Ranking({ topUser }) {
     <Wrapper className="wrapper">
       <Description>
         <RankingCard className="first">
-          <img
-            src={`img/avatar/${topUser[0].profileImage.imageUrls}.svg`}
-          ></img>
+          <img src={`img/avatar/${topUser[0].profileImage}.svg`}></img>
           <div className="content">
             <div className="name">1등 {topUser[0].username}</div>
             <div>{topUser[0].usageDates}개</div>
@@ -39,9 +37,7 @@ export default function Ranking({ topUser }) {
           if (index >= 1) {
             return (
               <RankingCard key={index}>
-                <img
-                  src={`img/avatar/${user.profileImage.imageUrls}.svg`}
-                ></img>
+                <img src={`img/avatar/${user.profileImage}.svg`}></img>
                 <div className="content">
                   <div className="name">
                     {index + 1}등 {user.username}
