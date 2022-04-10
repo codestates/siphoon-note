@@ -39,7 +39,6 @@ export default function Signup() {
     setShow(!show);
   };
 
-
   const birth = useRef();
 
   const handleInputValue = key => e => {

@@ -14,7 +14,7 @@ import {
   ErrMesWrapper,
 } from './Signin.style';
 import { Footer, SubmitBtn, TextInput } from '../../components';
- 
+
 export default function Signin({ handleResponseSuccess }) {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
@@ -128,7 +128,12 @@ export default function Signin({ handleResponseSuccess }) {
             )}
             {errorMsg ? <ErrMesWrapper>{errorMsg}</ErrMesWrapper> : <br />}
             <ButtonsWrapper>
-              <SubmitBtn type="submit" value="로그인" BackgroundColor="white" color="black" />
+              <SubmitBtn
+                type="submit"
+                value="로그인"
+                BackgroundColor="white"
+                color="black"
+              />
             </ButtonsWrapper>
           </form>
 
