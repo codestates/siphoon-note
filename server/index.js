@@ -1,4 +1,5 @@
 require('dotenv').config();
+const logger = require('./middlewares/logger');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -23,7 +24,9 @@ app.use(
   })
 );
 
-app.use(require('./routes'));
+app.use('/', require('./routes'), (req, res) => {
+  logger.info(`app starts from ${req.method} ${req.url}`);
+});
 
 const credentials = {
   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
@@ -33,7 +36,7 @@ const credentials = {
 const secureServer = https.createServer(credentials, app);
 
 secureServer.listen(port, () => {
-  console.log(`Secure Server on ${port}!`);
+  logger.info(`Secure Server on ${port}!🚀`);
 });
 
 module.exports = secureServer;
