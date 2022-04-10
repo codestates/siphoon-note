@@ -24,10 +24,8 @@ export const SigninWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   place-items: center;
   height: 100vh;
-  margin-top: 25px;
 
   > h2 {
     padding: 0;
@@ -55,9 +53,11 @@ export const OauthButtonsWrapper = styled.div`
   button {
     display: block;
     width: 500px;
+    margin-bottom: 1rem;
   }
   button + button {
     margin-top: 30px;
+    margin-bottom: 7rem;
   }
 `;
 export const ErrMesWrapper = styled.div`

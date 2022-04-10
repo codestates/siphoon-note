@@ -26,7 +26,7 @@ export const Main = styled.main`
   flex-direction: column;
   height: 100vh;
   margin-top: 7rem;
-  margin-bottom: 13rem;
+  margin-bottom: 23rem;
 `;
 
 export const Section = styled.div`
