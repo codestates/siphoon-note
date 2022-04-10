@@ -1,18 +1,21 @@
 require('dotenv').config();
 const mysql = require('mysql2');
 const config = require('../config/config');
+const logger = require('../middlewares/logger');
 const env = process.env.NODE_ENV;
 
-console.log(`🚀 Running in ${env} mode`);
+logger.info(`Database:index called in ${env}`);
 
 const connection = mysql.createConnection(config[env]);
 
 connection.connect(err => {
   if (err) {
-    console.error('🚨 Mysql connection failed: ' + err.stack);
+    logger.error(
+      `Database: Error connecting to database 🤢 ${err.stack} ${err.message}`
+    );
     throw err;
   }
-  console.log('🌞 Connected!');
+  logger.info(`Database: ${config[env].database} Connected to database 😃`);
 });
 
 module.exports = connection;

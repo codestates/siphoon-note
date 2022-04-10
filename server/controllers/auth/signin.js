@@ -1,71 +1,60 @@
-const { findAccountBymailPw } = require('../../middlewares/user');
-const {
-  getRefreshToken,
-  decodeToken,
-  createAccessToken,
-  tokenValidator,
-} = require('../../middlewares/auth');
-
-const { users } = require('../../models');
+const { findAllUserInfoByEmail } = require('../../models/model.users');
 const {
   successResponseWithToken,
   errorResponse,
 } = require('../../middlewares/responses/responseHandler');
+const { createAccessToken } = require('../../middlewares/auth');
+const logger = require('../../middlewares/logger');
 
-const signin = async (req, res) => {
+const signin = (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    errorResponse({
-      res,
-      status: 400,
-      message:
-        'Please, check your request! Missing or Invalid Operation Parameters',
-    });
-  }
+  findAllUserInfoByEmail(email, (err, result) => {
+    if (err) {
+      errorResponse({ res, status: err.status, message: err.message });
+    } else {
+      logger.debug('Result is', result[0]);
 
-  const isValidAccount = findAccountBymailPw(email, password);
+      if (result[0].length === 0) {
+        errorResponse({
+          res,
+          status: 400,
+          message: '등록되지 않은 이메일입니다.',
+        });
+      }
 
-  if (!isValidAccount) {
-    errorResponse({
-      res,
-      status: 404,
-      message: 'Email or Password is incorrect!',
-    });
-  }
+      if (result[0].password !== password) {
+        errorResponse({
+          res,
+          status: 400,
+          message: '비밀번호가 일치하지 않습니다.',
+        });
+      }
 
-  const refreshToken = isValidAccount.refreshToken;
+      const accessToken = createAccessToken({
+        email: result[0].email,
+        username: result[0].name,
+        profileImage: result[0].profile_image,
+      });
 
-  const isValidRefreshToken = tokenValidator(refreshToken);
+      logger.debug('accessToken is', accessToken);
 
-  if (!isValidRefreshToken) {
-    errorResponse({
-      res,
-      status: 401,
-      message: 'Refresh Token is invalid!',
-    });
-  }
-
-  const decodedUserInfo = decodeToken(refreshToken);
-
-  if (!decodedUserInfo) {
-    errorResponse({
-      res,
-      status: 500,
-      message: 'Failed to decode user info!',
-    });
-  }
-
-  const accessToken = createAccessToken(decodedUserInfo);
-
-  successResponseWithToken({
-    res,
-    token: accessToken,
-    status: 200,
-    message: 'Successfully signed in!',
+      if (accessToken) {
+        successResponseWithToken({
+          res,
+          token: accessToken,
+          status: 200,
+          message: 'Successfully Signin',
+        });
+      } else {
+        errorResponse({
+          res,
+          status: 500,
+          message: 'Internal Server Error',
+        });
+      }
+    }
   });
 };
-
-//여기에서 res.redirect('/essays')로 넘어감
 
 module.exports = { signin };
