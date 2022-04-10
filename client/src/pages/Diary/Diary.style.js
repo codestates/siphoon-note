@@ -89,7 +89,6 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 2px;
-
   > div {
     display: flex;
     align-items: center;
@@ -226,7 +225,6 @@ export const Backs = styled.div`
   transition: ${props => props.transition || '0.5s'};
   backface-visibility: hidden;
   transform: ${props => props.rotate || 'rotateY(-180deg)'};
-
   .tags {
     display: flex;
     flex-direction: column;
@@ -234,7 +232,6 @@ export const Backs = styled.div`
     align-items: center;
     margin: 0.5rem;
   }
-
   .createdat {
     display: flex;
     justify-content: center;
@@ -243,7 +240,6 @@ export const Backs = styled.div`
     color: darkgray;
     font-weight: 500;
   }
-
   background-color: floralwhite;
 `;
 
@@ -261,7 +257,6 @@ export const Icon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-
   .back {
     display: flex;
     border-radius: 5px;
@@ -271,7 +266,6 @@ export const Icon = styled.span`
     font-size: 3.5rem;
     border: 1px solid black;
     cursor: pointer;
-
     &:hover {
       border: 2px solid black;
     }

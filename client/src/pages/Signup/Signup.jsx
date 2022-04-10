@@ -29,13 +29,6 @@ export default function Signup() {
   const [gender, setGender] = useState('');
 
   const [show, setShow] = useState(false);
-  // console.log(email);
-  // console.log(username);
-  // console.log(password);
-  // console.log(confirm);
-  // console.log(birthday);
-  // console.log(gender);
-  // console.log(region);
 
   const birth = useRef();
 
@@ -90,7 +83,6 @@ export default function Signup() {
     }
     if (email && password && confirm && username) {
       setErrorMsg('');
-      setShow(true);
     }
 
     if (!checkEmail(email)) {
@@ -120,15 +112,20 @@ export default function Signup() {
         { headers: { 'Content-Type': 'application/json' } }
       )
       .then(respond => {
-        if (respond.status === 200) {
+        if (respond.status === 201) {
           setShow(true);
           navigator('/diary');
-          console.log(respond);
-        } else if (respond.status === 400) {
-          setErrorMsg('이미 가입된 이메일입니다.');
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.status === 400) {
+          setErrorMsg(error.message);
+        } else if (error.status === 409) {
+          setErrorMsg(error.message);
+        } else if (error.status === 500) {
+          setErrorMsg(error.message);
+        }
+      });
   };
 
   const textInputList = [
