@@ -47,7 +47,7 @@ import {
 import axios from 'axios';
 import apiUris from '../../config/config.js';
 
-export default function Diary({ accessToken, keyword }) {
+export default function Diary({ userInfo, setUserInfo, keyword }) {
   // 다이어리 전체 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const [markList, setMarkList] = useState([
@@ -132,12 +132,15 @@ export default function Diary({ accessToken, keyword }) {
     .get(apiUris.READ_ESSAY_LIST)
     .then(res => {
       if (res.status === 200) {
-        const { todaysWord, record, markList } = res.data;
+        const { todaysWord, record, markList, userInfo } = res.data;
         //* 에세이 리스트
         // 코드작성 (종열)
         //* 유저정보
         // 코드작성 (준형)
-        //* 분석, 달력
+        //* 키워드, 분석, 달력
+        setUserInfo(userInfo);
+        setKeyword(todaysWord);
+
         setRecord(record);
         setMarkList(markList);
       }
@@ -416,21 +419,25 @@ export const Card = ({ length, diary, index, isPublic, handlePublic }) => {
 
   const deletehandle = () => {
     axios
-      .patch(apiUris.DELETE_ESSAY_BY_ID, {
+      .patch(apiUris.UPDATE_ESSAY_BY_ID + '/' + diary.essayId, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
         },
       })
       .then(respond => {
         if (respond.status === 200) {
           navigator('/diary');
-        } else if (respond.status === 400) {
-          alert('삭제 안됨');
         }
       })
-      .catch(error => console.log(error));
-    navigator('/diary');
+      .catch(error => {
+        if (error.status === 400) {
+          alert(error.message);
+        } else if (error.status === 401) {
+          alert(error.message);
+        } else if (error.status === 500) {
+          alert(error.message);
+        }
+      });
   };
 
   return (

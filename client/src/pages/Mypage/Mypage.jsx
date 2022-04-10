@@ -10,19 +10,16 @@ import {
   ErrMesWrapper,
   BackButton,
 } from './Mypage.style';
-
+import axios from 'axios';
 import { Footer, SubmitBtn, TextInput, Popup } from '../../components';
 import { Selectbox, Selectbox2 } from '../../components/Select/Selectbox';
 import { regionOptions, genderOptions } from './select';
 import { useState, useEffect, useRef } from 'react';
 import apiUris from '../../config/config';
+axios.defaults.withCredentials = true;
 import { useNavigate } from 'react-router-dom';
-
-console.log(apiUris.UPDATE_USER_INFO);
-
 export default function Mypage({ user, isLogin }) {
   const navigate = useNavigate();
-
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setpasswordCheck] = useState('');
@@ -32,8 +29,8 @@ export default function Mypage({ user, isLogin }) {
   const [content, setContent] = useState('');
   const [show, setShow] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  // const [age, setAge] = useState('');
-
+  const [age, setAge] = useState('');
+  // console.log(age);
   const birth = useRef();
 
   const handleInputValue = key => e => {
@@ -62,7 +59,7 @@ export default function Mypage({ user, isLogin }) {
     birth.current.value = result;
 
     // setAge질문
-    // setAge({ ...age, [key]: e.target.value });
+    setAge({ ...age, [key]: e.target.value });
   };
 
   const handleSubmit = event => {
@@ -78,7 +75,6 @@ export default function Mypage({ user, isLogin }) {
           {
             headers: {
               'Content-Type': 'application/json',
-              authorization: `Bearer ${accessToken}`,
             },
           }
         )
@@ -90,11 +86,15 @@ export default function Mypage({ user, isLogin }) {
             navigator('/mypage');
           }
         })
-        .catch(error => console.log(error));
-      // setErrorMsg('');
-      // setTitle('회원 수정📝');
-      // setContent('회원정보 수정이 완료되었습니다😀');
-      // setShow(true);
+        .catch(error => {
+          if (error.status === 400) {
+            setErrorMsg(error.message);
+          } else if (error.status === 401) {
+            setErrorMsg(error.message);
+          } else if (error.status === 500) {
+            setErrorMsg(error.message);
+          }
+        });
     }
   };
   const onDeleteBtn = e => {
@@ -102,7 +102,6 @@ export default function Mypage({ user, isLogin }) {
       .delete(apiUris.DELETE_ACCOUNT, {
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${accessToken}`,
         },
       })
       .then(respond => {
@@ -113,10 +112,15 @@ export default function Mypage({ user, isLogin }) {
           navigator('/');
         }
       })
-      .catch(error => console.log(error));
-    // setTitle('회원 탈퇴🥲');
-    // setContent('정말로 탈퇴하시겠습니까🥲');
-    // setShow(true);
+      .catch(error => {
+        if (error.status === 400) {
+          setErrorMsg(error.message);
+        } else if (error.status === 401) {
+          setErrorMsg(error.message);
+        } else if (error.status === 500) {
+          setErrorMsg(error.message);
+        }
+      });
   };
 
   // 유효성 검사
@@ -128,7 +132,7 @@ export default function Mypage({ user, isLogin }) {
 
   const handleSignup = () => {
     let booleanArray = [];
-    if (!password || !passwordCheck || !name) {
+    if (!password || !passwordCheck || !username) {
       setErrorMsg('필수항목을 모두 입력해주세요.');
     } else {
       booleanArray.push(true);
@@ -244,7 +248,7 @@ export default function Mypage({ user, isLogin }) {
               ref={birth}
               defaultValue={user.birthday}
               placeholder="YYYY-MM-DD 형식으로 적어주세요."
-              onChange={handleInputValue('year')}
+              onChange={handleInputValue('birthday')}
             />
           </form>
           {errorMsg ? <ErrMesWrapper>* {errorMsg}</ErrMesWrapper> : <br />}
