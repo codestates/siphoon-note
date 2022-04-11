@@ -1,10 +1,10 @@
 const dummy = [
   {
     essayId: 17,
-    tag: ['체험'],
+    tag: ['10분노트'],
     content:
-      '체험용 페이지에 오신걸 환영합니다! :) 체험용 페이지에 남기시는 글은 저장되지 않습니다. 데이터 분석 기능을 사용할 수 없습니다.',
-    createdAt: '2022-04-11',
+      '10분 노트에 오신 것을 환영합니다 :) 입력창에 선물 상자를 열어 오늘의 글감을 확인하고 10분간 글을 작성해보세요!',
+    createdAt: '2022-04-10',
     isPublic: false,
     isDeleted: false,
   },
@@ -12,7 +12,7 @@ const dummy = [
     essayId: 16,
     tag: ['애니메이션'],
     content: `메세지에 마우스를 올리면 나타나는 아이콘을 따라가보세요!`,
-    createdAt: '2022-04-09',
+    createdAt: '2022-04-08',
     isPublic: false,
     isDeleted: false,
   },
@@ -21,7 +21,7 @@ const dummy = [
     tag: ['술탄', '노래'],
     content:
       '사라지는 꿈을 꾸곤 해 숨을 곳을 찾아 떠날래 상처 뿐인 여길 벗어나 숨을 쉴 수 있길 바라네',
-    createdAt: '2022-04-09',
+    createdAt: '2022-04-08',
     isPublic: true,
     isDeleted: false,
   },
@@ -30,7 +30,7 @@ const dummy = [
     tag: ['의심', '김제형', '노래'],
     content:
       '의심이 많아진 사람의 마음이 있었지 그도 믿고 싶었지 싸구려 위로가 이곳저곳을 들쑤시고 다녔지 연약한 마음만 노렸지 이곳에는 함정들이 너무 많았지 완벽한 태도에도 완벽한 진심에도 더한 불행들이 너의 주변에 필요했지 네가 지닌 불행을 지울 수만 있다면야 한 사람에게 너무 냉혹했었지 그 사람을 아주 잃어버릴 만큼',
-    createdAt: '2022-04-08',
+    createdAt: '2022-04-07',
     isPublic: true,
     isDeleted: false,
   },
