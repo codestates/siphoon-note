@@ -15,9 +15,7 @@ axios.defaults.withCredentials = true;
 function App() {
   // 로그인 관련 전역 상태 변수
   const [isLogin, setIsLogin] = useState(false);
-
   // const [accessToken, setAccessToken] = useState(null);
-
   const [userInfo, setUserInfo] = useState({
     email: '',
     username: '',
@@ -71,7 +69,6 @@ function App() {
         // accessToken={accessToken}
       />
       <Routes>
-        <Route exact path="/" element={<Landing isLogin={isLogin} />} />
         <Route
           path="/diary"
           element={
@@ -83,14 +80,21 @@ function App() {
           }
         />
         <Route
+          exact
+          path="/"
+          element={<Landing isLogin={isLogin} setKeyword={setKeyword} />}
+        />
+        <Route
           path="/mypage"
           element={<Mypage user={userInfo} isLogin={isLogin} />}
         />
+
+        <Route path="/diary" element={<Diary keyword={keyword} />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route
           path="/signin"
           element={<Signin handleResponseSuccess={handleResponseSuccess} />}
         />
-
         <Route path="/signup" element={<Signup />} />
         <Route path="/trial" element={<Trial keyword={keyword} />} />
         <Route path="*" element={<Error />} />
