@@ -1,24 +1,18 @@
 const connection = require('../database');
 
-const callback = (error, result) => {
-  if (error) {
-    console.error(error);
-    throw error;
-  }
-  return result;
-};
-
 module.exports = {
   // 1. get list of 'created_at'
-  findAllCreatedAt: (userId = 0) => {
+  findAllCreatedAt: (userId = 0, callback) => {
     const sql = `SELECT DISTINCT ?? FROM ?? WHERE ?? = ?`;
     const values = ['created_at', 'essays', 'user_id', userId];
 
-    connection.query(sql, values, callback);
+    connection.query(sql, values, (err, result) => {
+      callback(err, result);
+    });
   },
 
   // 2. get list of essay_id by user_id for pagination
-  findAllEssayIdByUserId: (userId = 0, limit, offset) => {
+  getEssayListByPagination: (userId = 0, limit = 20, offset = 0, callback) => {
     const sql = `
       SELECT ??
       FROM ??
@@ -28,7 +22,7 @@ module.exports = {
       OFFSET ?
     `;
     const values = [
-      'id',
+      '*',
       'essays',
       'user_id',
       userId,
@@ -37,12 +31,14 @@ module.exports = {
       offset,
     ];
 
-    connection.query(sql, values, callback);
+    connection.query(sql, values, (err, result) => {
+      callback(err, result);
+    });
   },
 
   // 2.의 글 아이디 목록을 순회하면서 각 글의 데이터 조회
   // 3. get list of essays by essay_id
-  findAllEssaysByEssayId: (essayId = 0) => {
+  findAllEssaysByEssayId: (essayId = 0, callback) => {
     const sql = `SELECT ??, ??, ??, ??, ??, ?? FROM ?? WHERE ?? = ?`;
     const values = [
       'id',
@@ -56,6 +52,8 @@ module.exports = {
       essayId,
     ];
 
-    connection.query(sql, values, callback);
+    connection.query(sql, values, (err, result) => {
+      callback(err, result);
+    });
   },
 };

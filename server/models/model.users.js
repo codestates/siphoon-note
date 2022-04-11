@@ -54,9 +54,9 @@ module.exports = {
   //--- 3. find all userinfo by email
   findAllUserInfoByEmail: (email = '', callback) => {
     const sql = `SELECT * FROM ?? WHERE ?? = ?`;
-    const value = ['users', 'email', email];
+    const values = ['users', 'email', email];
 
-    connection.query(sql, value, (err, result) => {
+    connection.query(sql, values, (err, result) => {
       callback(err, result);
     });
   },
