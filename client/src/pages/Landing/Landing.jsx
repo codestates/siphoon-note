@@ -24,7 +24,7 @@ import { Footer } from '../../components';
 import Description from '../../components/Description';
 import Ranking from '../../components/Ranking';
 import PublicEssays from '../../components/PublicEssays';
-import { gsap, Power3 } from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
 import apiUris from '../../config/config';
@@ -78,7 +78,6 @@ export default function Landing({ isLogin, setKeyword }) {
   };
 
   const handleTop = () => {
-    console.log('hi');
     window.scrollTo({
       top: 0,
     });
@@ -158,7 +157,7 @@ export default function Landing({ isLogin, setKeyword }) {
       ) : null}
       <Container2 id="introduction">
         <h1 className="introduction-title">
-          안녕하세요, Siphoon Note 입니다. 📝️
+          안녕하세요, <h1 className="logo">Siphoon Note</h1>입니다. 📝️
         </h1>
       </Container2>
       <Container3>
@@ -166,7 +165,8 @@ export default function Landing({ isLogin, setKeyword }) {
       </Container3>
       <Container4>
         <h3 className="community-title">
-          Siphoon 게시판<br></br>
+          <h2 className="logo">Siphoon</h2> 게시판
+          <br></br>
           <BsFillArrowDownCircleFill className="community-icon"></BsFillArrowDownCircleFill>
         </h3>
       </Container4>
@@ -174,7 +174,10 @@ export default function Landing({ isLogin, setKeyword }) {
         <Ranking topUser={topUser}></Ranking>
       </Container5>
       <Container6 id="public">
-        <h2>다른 유저들은 Siphoon Note를 이렇게 작성했어요!</h2>
+        <h2>
+          다른 유저들은 <h2 className="logo">Siphoon Note</h2>를 이렇게
+          작성했어요!
+        </h2>
         <PublicEssays publicEssay={publicEssay}></PublicEssays>
       </Container6>
       <Footer></Footer>

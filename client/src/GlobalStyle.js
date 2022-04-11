@@ -12,24 +12,31 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-size:18px;
+
+    .logo {
+    font-family:'Coming Soon', cursive;
+
+    }
   }
   h1 {
     font-size:3rem;
     margin:0px;
-    font-family: 'Coming Soon', cursive;
+    display:inline;
+
 
   }
   h2 {
     font-size:2.5rem;
     margin:0px;
-    font-family: 'Coming Soon', cursive;
+    display:inline;
+
 
   }
 
   h3 {
-    font-size : 1.9rem;
+    font-size : 1.8rem;
     margin:0px;
-    font-family: 'Coming Soon', cursive;
+    display:inline;
 
   }
   `;
