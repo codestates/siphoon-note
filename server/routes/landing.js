@@ -1,6 +1,6 @@
 const router = require('express').Router();
-// const landingCtrl = require('../controllers/landing');
+const landingCtrl = require('../controllers/landing');
 
-// router.get('/', landingCtrl.getLanding);
+router.get('/', landingCtrl.getLanding);
 
 module.exports = router;

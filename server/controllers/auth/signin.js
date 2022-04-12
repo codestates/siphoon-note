@@ -1,60 +1,28 @@
-const { findAllUserInfoByEmail } = require('../../models/model.users');
+const User = require('../../models/users');
 const {
   successResponseWithToken,
   errorResponse,
-} = require('../../middlewares/responses/responseHandler');
-const { createAccessToken } = require('../../middlewares/auth');
-const logger = require('../../middlewares/logger');
+} = require('../../middlewares/responses');
 
 const signin = (req, res) => {
   const { email, password } = req.body;
 
-  findAllUserInfoByEmail(email, (err, result) => {
-    if (err) {
-      errorResponse({ res, status: err.status, message: err.message });
-    } else {
-      logger.debug('Result is', result[0]);
+  // 1. 이메일과 비밀번호로 db 조회
 
-      if (result[0].length === 0) {
-        errorResponse({
-          res,
-          status: 400,
-          message: '등록되지 않은 이메일입니다.',
-        });
-      }
-
-      if (result[0].password !== password) {
-        errorResponse({
-          res,
-          status: 400,
-          message: '비밀번호가 일치하지 않습니다.',
-        });
-      }
-
-      const accessToken = createAccessToken({
-        email: result[0].email,
-        username: result[0].name,
-        profileImage: result[0].profile_image,
-      });
-
-      logger.debug('accessToken is', accessToken);
-
-      if (accessToken) {
-        successResponseWithToken({
-          res,
-          token: accessToken,
-          status: 200,
-          message: 'Successfully Signin',
-        });
-      } else {
-        errorResponse({
-          res,
-          status: 500,
-          message: 'Internal Server Error',
-        });
-      }
-    }
+  const userInfo = User.findOne({
+    where: {
+      email,
+      password,
+    },
   });
+
+  // 1) 에러: 계정 없음
+
+  // 2) 성공: 계정 정보의refreshToken 추출
+
+  // 2. accessToken 발급 후 쿠키에 저장
+
+  // 3. 응답 성공 메시지 전송
 };
 
 module.exports = { signin };
