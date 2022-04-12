@@ -47,7 +47,7 @@ import {
 import axios from 'axios';
 import apiUris from '../../config/config.js';
 
-export default function Diary({ userInfo, setUserInfo, keyword }) {
+export default function Diary({ userInfo, setUserInfo, keyword, setKeyword }) {
   // 다이어리 전체 리스트
   const [diaryList, setDiaryList] = useState(dummy);
   const [markList, setMarkList] = useState([

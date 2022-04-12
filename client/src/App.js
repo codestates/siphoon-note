@@ -79,6 +79,8 @@ function App() {
               // accessToken={accessToken}
               userInfo={userInfo}
               setUserInfo={setUserInfo}
+              keyword={keyword}
+              setKeyword={setKeyword}
             />
           }
         />
