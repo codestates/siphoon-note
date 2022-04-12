@@ -8,25 +8,32 @@
 //     createdAt: '2022-04-01',
 //     updatedAt: '2022-04-01',
 //   },
-const {
-  findAllEssayIdByUserId,
-  findAllEssaysByEssayId,
-  findAllTagsByEssayId,
-} = require('../../models');
+
+const { findAllUserInfoByEmail } = require('../../models/model.users');
+const { findAllEssaysByEssayId } = require('../../models/model.essays');
+const { findAllTagsByEssayId } = require('../../models/model.tags');
+const logger = require('../../middlewares/logger');
 
 const getEssayList = async (userId = 0, limit = 20, offset = 0) => {
-  const essayIdList = findAllEssayIdByUserId(userId, limit, offset);
-
-  const essayList = await Promise.all(
-    // 글 아이디 목록을 순회하면서 각 글의 데이터 조회
-    essayIdList.map(essayId => {
-      const essay = findAllEssaysByEssayId(essayId);
-      // findAllEssayIdByUserId에서 구한 essayId로 각 글의 태그 목록을 반복적으로 조회
-      const tags = findAllTagsByEssayId(essayId);
-
-      return { ...essay, tags };
-    })
+  const essayIdList = findAllUserInfoByEmail(
+    userId,
+    limit,
+    offset,
+    (err, result) => {
+      if (err) {
+        return err;
+      } else {
+        return result;
+      }
+    }
   );
+
+  logger.debug('essayIdList is', essayIdList);
+
+  const essayList = await Promise.all([
+    ...essayIdList.map(essayId => findAllEssaysByEssayId(essayId, callback)),
+    ...essayIdList.map(essayId => findAllTagsByEssayId(essayId, callback)),
+  ]);
   return essayList;
 };
 

@@ -3,17 +3,24 @@ const {
   getCurrentStreaks,
   getLongestStreaks,
   countUsageDate,
-} = require('../../models');
+} = require('../../models/model.records');
 
-const getUserRecord = async (userId = 0, createdAt = '') => {
+const callback = (error, result) => {
+  if (error) {
+    logger.error(error);
+    throw error;
+  }
+  logger.debug('Result is', result);
+  return result;
+};
+
+const getUserRecord = async (userId = 0) => {
   const [currentStreaks, longestStreaks, usageDate, totalEssay] =
     await Promise.all([
-      //-- sql 아닌 애플리케이션 코드가 필요할 것 같음
-      getCurrentStreaks(userId),
-      getLongestStreaks(userId),
-      //--
-      countUsageDate(userId, createdAt),
-      countEssayTotal(userId),
+      getCurrentStreaks(userId, callback),
+      getLongestStreaks(userId, callback),
+      countUsageDate(userId, callback),
+      countEssayTotal(userId, callback),
     ]);
 
   return {
@@ -24,4 +31,4 @@ const getUserRecord = async (userId = 0, createdAt = '') => {
   };
 };
 
-module.exports = getUserRecord;
+module.exports = { getUserRecord };

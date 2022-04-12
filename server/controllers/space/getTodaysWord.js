@@ -1,13 +1,14 @@
-const { findWord } = require('../../models');
+const { findWord } = require('../../models/model.inspirations');
+const logger = require('../../middlewares/logger');
 
-const getTodaysWord = async (today = 0) => {
-  const todaysWord = await findWord(today);
-
-  if (!todaysWord) {
-    return 'Happy';
-  } else {
-    return todaysWord;
-  }
+const getTodaysWord = async cb => {
+  findWord((err, word) => {
+    if (err) {
+      logger.error('getTodaysWord error is', err);
+      return cb(err);
+    }
+    return cb(null, word);
+  });
 };
 
-module.exports = getTodaysWord;
+module.exports = { getTodaysWord };

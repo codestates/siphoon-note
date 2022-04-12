@@ -5,7 +5,7 @@ const logger = require('../middlewares/logger');
 // # routes 폴더 내의 각 라우터 로딩
 // const landingRouter = require('./landing');
 const authRouter = require('./auth');
-// const essayRouter = require('./essay');
+const essayRouter = require('./essay');
 // const userRouter = require('./user');
 // const trashRouter = require('./trash');
 // const tagRouter = require('./tag');
@@ -19,7 +19,7 @@ router.use(`/signin`, authRouter.signin);
 // // router.use(`/signout`, authRouter.signout);
 
 // 3. essay
-// router.use(`/essays`, essayRouter);
+router.use(`/essays`, essayRouter);
 
 // // 4. trash
 // router.use(`/trashes`, trashRouter);

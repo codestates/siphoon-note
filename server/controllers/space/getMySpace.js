@@ -1,14 +1,16 @@
-const { getEssayList } = require('./getEssayList');
-const { getMarkList } = require('./getMarkList');
-const { getTodaysWord } = require('./getTodaysWord');
-const { getUserRecord } = require('./getUserRecord');
+const {
+  getEssayListByPagination,
+  findAllCreatedAt,
+} = require('../../models/model.essays');
+const { getInspiration } = require('../../models/model.inspirations');
+const { getUserRecordById } = require('../../models/model.records');
+const { getTagListByEssayId } = require('../../models/model.tags');
 const { tokenValidator } = require('../../middlewares/auth');
-const { getUserEmailFromToken } = require('../../middlewares/user');
-const { findAllUserInfoByEmail } = require('../../models');
 const {
   successResponse,
   errorResponse,
 } = require('../../middlewares/responses/responseHandler');
+const logger = require('../../middlewares/logger');
 
 const getMySpace = async (req, res) => {
   // 0. 페이지네이션을 위한 limit, offset 확인
@@ -34,21 +36,12 @@ const getMySpace = async (req, res) => {
     });
   }
 
-  // 2. 토큰의 유효성 검사
-  const isValidateToken = await tokenValidator(accessToken);
-
-  if (!isValidateToken) {
-    errorResponse({
-      res,
-      status: 401,
-      message: 'Unauthorized Request! AccessToken is invalid',
-    });
-  }
-
   // 3. 마이스페이스 로딩을 위한 사용자 데이터 조회 시작
-  const userEmail = await getUserEmailFromToken(accessToken);
+  const userInfos = tokenValidator(accessToken);
 
-  if (!userEmail) {
+  logger.debug('userInfos is', userInfos);
+
+  if (!userInfos) {
     errorResponse({
       res,
       status: 500,
@@ -56,7 +49,6 @@ const getMySpace = async (req, res) => {
     });
   }
 
-  const userInfo = await findAllUserInfoByEmail(userEmail);
   const {
     id,
     email,
@@ -66,24 +58,77 @@ const getMySpace = async (req, res) => {
     birthday,
     region,
     created_at,
-  } = userInfo;
+  } = userInfos;
 
-  if (birthday === undefined) birthday = created_at;
+  const getTodaysWord = async callback => {
+    getInspiration((err, word) => {
+      if (err) {
+        logger.error('getTodaysWord error is', err);
+        return callback(err);
+      }
+      return callback(null, word);
+    });
+  };
 
-  const { essayList, todaysWord, record, markList } = await Promise.all([
-    // 반복적으로 어떻게 수행?
-    getEssayList(id, limit, offset),
-    getTodaysWord(new Date().getDate()),
-    getUserRecord(id, created_at),
+  const getMarkList = async (id, callback) => {
+    findAllCreatedAt(id, (err, markList) => {
+      if (err) {
+        logger.error('getMarkList error is', err);
+        return callback(err);
+      }
+      return callback(null, markList);
+    });
+  };
+
+  // 사용자 기록 정보 가져오기
+  const getRecord = async (id, callback) => {
+    getUserRecordById(id, (err, record) => {
+      if (err) {
+        logger.error('getRecord error is', err);
+        return callback(err);
+      }
+      return callback(null, record);
+    });
+  };
+
+  const getEssayList = async (id, limit, offset, callback) => {
+    getEssayListByPagination(id, limit, offset, (err, essayList) => {
+      if (err) {
+        logger.error('essayIdList error is', err);
+        return callback(err);
+      }
+      return callback(null, essayList);
+    });
+  };
+
+  const { todaysWord, markList, record, essayList } = await Promise.all([
+    getTodaysWord(),
     getMarkList(id),
+    getRecord(id),
+    getEssayList(id, limit, offset),
   ]);
+
+  // const addTagListToEssay = async (onLyEssayList, callback) => {
+  //   onLyEssayList.map(essay => {
+  //     getTagListByEssayId(essay.id, (err, tagList) => {
+  //       if (err) {
+  //         logger.error('addTagListToEssay error is', err);
+  //         return callback(err);
+  //       }
+  //       essay.tagList = tagList;
+  //       return callback(null, onLyEssayList);
+  //     });
+  //   });
+  // };
+
+  // const essayList = await addTagListToEssay(onLyEssayList);
+  // logger.debug('essayWithTagList is', essayWithTagList);
 
   if (!essayList || !todaysWord || !record || !markList) {
     errorResponse({
       req,
       res,
       status: 500,
-      error,
       message: 'Internal Server Error',
     });
   } else {
@@ -101,7 +146,7 @@ const getMySpace = async (req, res) => {
           region,
           created_at,
         },
-        essayList,
+        essayList: ['아침', '운동', '즐거움'],
         todaysWord,
         record,
         markList,
