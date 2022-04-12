@@ -227,13 +227,11 @@ export default function Diary({ userInfo, setUserInfo, keyword }) {
   const onEvent = () => {
     setLoading(true);
     console.log('pageEnd Event');
-    // console.log(typeof pageDummy[pageNumber]);
-    // console.log(typeof diaryList);
+
     if (pageNumber !== 0 && pageDummy[pageNumber] !== undefined) {
       setDiaryList([...diaryList, ...pageDummy[pageNumber]]);
     }
     setLoading(false);
-    // setPageNumber(pageNumber => pageNumber + 1);
   };
 
   useEffect(() => {
@@ -373,7 +371,7 @@ export default function Diary({ userInfo, setUserInfo, keyword }) {
               <div />
               <LoadingWrapper>
                 {/* {loading && <Loading />} */}
-                <Loading />
+                {/* <Loading /> */}
               </LoadingWrapper>
             </Main>
           </>
