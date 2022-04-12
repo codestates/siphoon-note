@@ -16,7 +16,7 @@ module.exports = {
     });
   },
 
-  getTagListBelongToEssay: (essayId = 0, callback) => {
+  getTagListByEssayId: (essayId = 0, callback) => {
     const sql = `
       SELECT t.tag_name
       FROM tags t

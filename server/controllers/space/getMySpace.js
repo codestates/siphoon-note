@@ -1,7 +1,10 @@
-const { getEssayListByPagination } = require('../../models/model.essays');
-const { findAllCreatedAt } = require('../../models/model.essays');
+const {
+  getEssayListByPagination,
+  findAllCreatedAt,
+} = require('../../models/model.essays');
 const { getInspiration } = require('../../models/model.inspirations');
 const { getUserRecordById } = require('../../models/model.records');
+const { getTagListByEssayId } = require('../../models/model.tags');
 const { tokenValidator } = require('../../middlewares/auth');
 const {
   successResponse,
@@ -66,7 +69,6 @@ const getMySpace = async (req, res) => {
       return callback(null, word);
     });
   };
-  logger.debug('todaysWord is', getTodaysWord);
 
   const getMarkList = async (id, callback) => {
     findAllCreatedAt(id, (err, markList) => {
@@ -77,7 +79,6 @@ const getMySpace = async (req, res) => {
       return callback(null, markList);
     });
   };
-  logger.debug('markList is', getMarkList);
 
   // 사용자 기록 정보 가져오기
   const getRecord = async (id, callback) => {
@@ -89,7 +90,6 @@ const getMySpace = async (req, res) => {
       return callback(null, record);
     });
   };
-  logger.debug('record is', getRecord);
 
   const getEssayList = async (id, limit, offset, callback) => {
     getEssayListByPagination(id, limit, offset, (err, essayList) => {
@@ -100,29 +100,35 @@ const getMySpace = async (req, res) => {
       return callback(null, essayList);
     });
   };
-  logger.debug('essayList is', getEssayList);
-
-  // getEssayIdList => get each TagList
-  // essay: {
-  // tagList: [ 1, 2, 3]
-  // }
-
-  // const essayList = await getEssayList(id, limit, offset, cb);
-  // logger.debug('essayList is', essayList);
 
   const { todaysWord, markList, record, essayList } = await Promise.all([
-    getTodaysWord(new Date().getDate()), //
-    getMarkList(id), //
-    getRecord(id), //
-    getEssayList(id, limit, offset), //
+    getTodaysWord(),
+    getMarkList(id),
+    getRecord(id),
+    getEssayList(id, limit, offset),
   ]);
+
+  // const addTagListToEssay = async (onLyEssayList, callback) => {
+  //   onLyEssayList.map(essay => {
+  //     getTagListByEssayId(essay.id, (err, tagList) => {
+  //       if (err) {
+  //         logger.error('addTagListToEssay error is', err);
+  //         return callback(err);
+  //       }
+  //       essay.tagList = tagList;
+  //       return callback(null, onLyEssayList);
+  //     });
+  //   });
+  // };
+
+  // const essayList = await addTagListToEssay(onLyEssayList);
+  // logger.debug('essayWithTagList is', essayWithTagList);
 
   if (!essayList || !todaysWord || !record || !markList) {
     errorResponse({
       req,
       res,
       status: 500,
-      error,
       message: 'Internal Server Error',
     });
   } else {
@@ -140,7 +146,7 @@ const getMySpace = async (req, res) => {
           region,
           created_at,
         },
-        essayList,
+        essayList: ['아침', '운동', '즐거움'],
         todaysWord,
         record,
         markList,
