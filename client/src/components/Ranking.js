@@ -29,7 +29,9 @@ export default function Ranking({ topUser }) {
           </div>
         </RankingCard>
         <div className="second">
-          <h3>가장 많은 Siphoon Note를 작성한 유저 </h3>
+          <h3>
+            가장 많은 <h3 className="logo">Siphoon Note</h3>를 작성한 유저
+          </h3>
         </div>
       </Description>
       <Content>

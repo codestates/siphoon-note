@@ -62,10 +62,10 @@ export default function Trial({ keyword }) {
   });
 
   const [record, setRecord] = useState({
-    totalEssay: 11,
-    currentStreaks: '로그인 필요',
-    longestStreaks: '로그인 필요',
-    usageDate: '로그인 필요',
+    totalEssay: 18,
+    currentStreaks: '0',
+    longestStreaks: '8',
+    usageDate: markList.length,
   });
 
   // 태그리스트
