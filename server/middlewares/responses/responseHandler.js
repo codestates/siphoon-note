@@ -4,7 +4,6 @@ const successResponse = ({ req, res, data = {}, status = 0, message = '' }) =>
 const successResponseWithToken = ({
   res,
   token = '',
-  data = {},
   status = 0,
   message = '',
 }) => {
@@ -16,13 +15,7 @@ const successResponseWithToken = ({
   res.status(status).json({ status, message, data });
 };
 
-const errorResponse = ({
-  req,
-  res,
-  error = null,
-  status = 0,
-  message = '',
-}) => {
+const errorResponse = ({ res, error = null, status = 0, message = '' }) => {
   if (error) {
     error.status = status;
     error.message = message;

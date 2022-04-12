@@ -1,14 +1,10 @@
 const router = require('express').Router();
-const { getMySpace } = require('../controllers/space');
-// const {
-//   createEssay,
-//   updateEssay,
-//   getEssayListByfilter,
-// } = require('../controllers/essays');
+const { getMySpace, getEssayListByfilter } = require('../controllers/space');
+const { createEssay, updateEssay } = require('../controllers/essays');
 
-// router.post('/', createEssay);
 router.get('/', getMySpace);
-// router.get('/:filter', getEssayListByfilter);
-// router.patch('/:essayId', updateEssay);
+router.post('/', createEssay);
+router.patch('/:essayId', updateEssay);
+router.get('/:filter', getEssayListByfilter);
 
 module.exports = router;
