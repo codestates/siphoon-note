@@ -1,7 +1,7 @@
 // SWAGGER API DOCUMENTATION: https://app.swaggerhub.com/apis/gomarag/Diary/1.0.2-oas3
 
 const SERVER_HOST =
-  'https://ec2-13-231-136-118.ap-northeast-1.compute.amazonaws.com';
+  'https://alb-tokyo-5639828.ap-northeast-1.elb.amazonaws.com';
 
 const apiUris = {
   //------------- 1. main -------------
