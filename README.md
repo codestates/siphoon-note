@@ -1,11 +1,11 @@
-# SIPHOON NOTE
-
-로고 이미지 제작 후 이미지 추가예정
+# SIPHOON NOTE⏰
+<img width="190" alt="logo" src="https://user-images.githubusercontent.com/66128037/165028600-eff10030-89a2-429a-83d9-b57909b1268b.png">
+ 
 <br><br>
 [🔗서비스 페이지로 GO🌞!](http://dev-diary-bucket.s3-website.ap-northeast-2.amazonaws.com/)
 
 ## 📖 글쓰기 습관을 기르는 10분
-- _랜딩페이지 완성되면 선명하게 gif로 이미지 추가해서 소스 보지 않고도 서비스 시연 확인 가능하도록 추가할 예정_
+![10분노트](https://user-images.githubusercontent.com/86139013/162714765-73de6de2-da64-4202-a572-51430eac1273.gif)
 <br>
 바쁜 일상 속에서 중요한 기억, 기억하고 싶은 순간들..
 정신없이 잊혀지고 지나간 적이 있으신가요?
