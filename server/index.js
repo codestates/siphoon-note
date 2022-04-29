@@ -5,7 +5,6 @@ const fs = require('fs');
 const https = require('https');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const indexRouter = require('./routes');
 
 const port = process.env.HTTPS_PORT || 5500;
 
@@ -24,7 +23,7 @@ app.use(
   })
 );
 
-app.use('/', indexRouter);
+app.use(require('./routes'));
 
 const credentials = {
   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),

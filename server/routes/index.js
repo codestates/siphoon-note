@@ -2,42 +2,38 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../middlewares/logger');
 
-// # routes 폴더 내의 각 라우터 로딩
-// const landingRouter = require('./landing');
-const authRouter = require('./auth');
-const essayRouter = require('./essay');
-// const userRouter = require('./user');
-// const trashRouter = require('./trash');
-// const tagRouter = require('./tag');
-
 // 1. landing
-// router.get('/', landingRouter);
+router.get('/', require('./landing'));
 
 // 2. auth: signin, signup, signout
-// router.use(`/signup`, authRouter.signup);
-router.use(`/signin`, authRouter.signin);
-// // router.use(`/signout`, authRouter.signout);
+router.use(`/signup`, require('./auth'));
+router.use(`/signin`, require('./auth'));
+router.use(`/signout`, require('./auth'));
 
 // 3. essay
-router.use(`/essays`, essayRouter);
+router.use(`/essays`, require('./essay'));
 
-// // 4. trash
-// router.use(`/trashes`, trashRouter);
+// 4. trash
+router.use(`/trashes`, require('./trash'));
 
-// // 5. user
-// router.use(`/usersinfo`, userRouter);
+// 5. user
+router.use(`/usersinfo`, require('./user'));
 
-// // 6. tag
-// router.use(`/tags`, tagRouter);
+// 6. tag
+router.use(`/tags`, require('./tag'));
 
 router.use((req, res, next) => {
   const err = new Error(`😈 ${req.method} ${req.url} Router Not Found 😈`);
+
   logger.error(err);
+
   err.status = 404;
   next(err);
 });
 
 router.use((err, req, res, next) => {
+  logger.error(err);
+
   res.status(err.status || 500);
   res.json({
     message: err.message,
