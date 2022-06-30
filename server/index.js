@@ -1,20 +1,39 @@
 require('dotenv').config();
-const express = require('express');
-const http = require('http');
+const logger = require('./middlewares/logger');
+const path = require('path');
+const fs = require('fs');
+const https = require('https');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
+
+const port = process.env.HTTPS_PORT || 5500;
+
+const express = require('express');
 const app = express();
 
-app.set('port', process.env.PORT || 5500);
-app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello From Server!😀');
+app.use(
+  cors({
+    origin: process.env.ORIGIN_URL,
+    credentials: true,
+    methods: ['GET', 'POST', 'PATCH', 'OPTIONS', 'DELETE'],
+  })
+);
+
+app.use(require('./routes'));
+
+const credentials = {
+  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+};
+
+const secureServer = https.createServer(credentials, app);
+
+secureServer.listen(port, () => {
+  logger.info(`Secure Server on ${port}!🚀`);
 });
 
-const server = http.createServer(app);
-
-server.listen(app.get('port'), () => {
-  console.log(`서버가 ${app.get('port')}에서 실행 중!`);
-});
-
-module.exports = server;
+module.exports = secureServer;
