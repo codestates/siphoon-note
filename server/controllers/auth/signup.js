@@ -1,17 +1,14 @@
+const User = require('../../models/users');
 const {
-  checkEmailUnique,
-  setRandomImageToUser,
-} = require('../../middlewares/user');
+  successResponseWithToken,
+  errorResponse,
+} = require('../../middlewares/responses/responseHandler');
 const {
   createAccessToken,
   createRefreshToken,
 } = require('../../middlewares/auth');
 const { encrypt } = require('../../middlewares/utils');
-const { users } = require('../../models');
-const {
-  successResponseWithToken,
-  errorResponse,
-} = require('../../middlewares/responses/responseHandler');
+const logger = require('../../middlewares/logger');
 
 const signup = async (req, res) => {
   const { email, username, password, gender, birthday, region } = req.body;
@@ -27,54 +24,60 @@ const signup = async (req, res) => {
 
   // isExist: null -> 가입 가능
   // isExist: '__' -> 가입 불가
-  const isExist = checkEmailUnique(email);
-
-  if (isExist) {
-    errorResponse({
-      res,
-      status: 409,
-      message: 'Email already Exists! Please enter another address!',
-    });
-  }
-
-  const accountInfoForToken = {
-    email,
-    username,
-    profileImage: setRandomImageToUser(),
-  };
-
-  const accessToken = createAccessToken(accountInfoForToken);
-  const refreshToken = createRefreshToken(accountInfoForToken);
-  const encryptedPasswd = encrypt(password);
-
   try {
-    const newUser = await users.createAccouont(
+    const isExist = await User.findOne({
+      where: { email },
+    });
+
+    if (isExist) {
+      errorResponse({
+        res,
+        status: 409,
+        message: 'Email already Exists! Please enter another address!',
+      });
+    }
+
+    const getRandomIdx = () => {
+      return Math.floor(Math.random() * 16);
+    };
+
+    const accountInfoForToken = {
       email,
       username,
-      accountInfoForToken.profileImage,
+      profileImage: getRandomIdx(),
+    };
+
+    const accessToken = createAccessToken(accountInfoForToken);
+    const refreshToken = createRefreshToken(accountInfoForToken);
+    const encryptedPasswd = encrypt(password);
+
+    const newUser = await User.create({
       refreshToken,
-      encryptedPasswd,
+      email,
+      name: username,
+      password: encryptedPasswd,
       gender,
       birthday,
-      region
-    );
+      region,
+      profile_image: accountInfoForToken.profileImage,
+    });
+
+    logger.debug('Created UserInfo is', newUser);
+
     successResponseWithToken({
       res,
-      data: newUser,
-      token: accessToken,
+      accessToken,
       status: 201,
-      message: 'Susscessfully Created New User!',
+      message: 'Successfully signed up',
     });
   } catch (error) {
     errorResponse({
       res,
       status: 500,
-      message: 'Internal Server Error!',
+      message: 'Sorry, Cannot Create New User Account! Internal Server Error',
     });
   }
 };
-
 //여기에서 res.redirect('/essays')로 넘어감
 
 module.exports = { signup };
-// module.exports = signup;
