@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index.js');
+const app = require('../src/index.js');
 
 describe('메인 서버 실행 테스트', () => {
   it('서버가 GET /에서 성공적으로 응답', done => {
