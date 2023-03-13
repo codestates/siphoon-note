@@ -31,28 +31,66 @@
 ![image](https://user-images.githubusercontent.com/86139013/224611089-fd0e72ba-ff79-4fde-a89e-facc130e1bbb.png)
 
 # 🔎️ 주요 기능 시연 GIF
-## 타이머 & 자동저장
-![10 타이머 툴팁](https://user-images.githubusercontent.com/86139013/224612274-365e7535-f53b-4afc-a02e-a633e34e47e8.gif)
-![11 글 자동 저장](https://user-images.githubusercontent.com/86139013/224612261-2b66fc26-4fa0-451d-ba58-98f27a9223a5.gif)
+# 랜딩 페이지
+![랜딩페이지1](https://user-images.githubusercontent.com/86139013/164174433-b3b0b14f-1abb-4abc-899a-bf72b4dd912d.gif)
 
-## 글 삭제/수정/필터
-![17 글 삭제](https://user-images.githubusercontent.com/86139013/224612370-38de407f-6a04-4d7b-be0d-5211a95f7276.gif)
-![20 검색바](https://user-images.githubusercontent.com/86139013/224612377-1a559276-8e61-42c5-9cc0-931376644114.gif)
-![19 태그](https://user-images.githubusercontent.com/86139013/224612383-9f31f9de-4339-44c6-bcdc-96988b2958c1.gif)
-![9 타이머 시작 (1)](https://user-images.githubusercontent.com/86139013/224612826-0fd96113-9e33-46e5-a15a-a1eab50ea073.gif)
+# 랜딩 페이지 (스크롤다운)
+![스크롤다운](https://user-images.githubusercontent.com/86139013/164175714-9667d8e7-b490-4261-a548-f27d9a31a818.gif)
 
-## 카드 애니메이션
-![15 카드 뒤집기](https://user-images.githubusercontent.com/86139013/224612285-11db8d03-1414-4ac5-9622-6cdf4b5a05a6.gif)
+# 글쓰기 상위 랭킹 유저 소개
+![상위랭킹](https://user-images.githubusercontent.com/86139013/164177318-5d518d07-330a-4682-aa60-7eee68a7d7ea.gif)
 
-## 컬러 변경
-![18  컬러테마 변경](https://user-images.githubusercontent.com/86139013/224612305-f5d3c6c4-f3fb-44a4-a617-90a74671c8ff.gif)
+# 공개노트 
+![공개글 4](https://user-images.githubusercontent.com/86139013/164177645-9c45bcbe-1238-45a2-89d0-43c217919c85.gif)
 
-## 오늘의 키워드
-![13 오늘의 키워드](https://user-images.githubusercontent.com/86139013/224612290-beabfabb-d685-4dd2-b4a7-d91b0dc34147.gif)
+# 노트 페이지
+![메인- 노트](https://user-images.githubusercontent.com/86139013/164177736-8267c511-a1c4-44bc-9766-4e8b219fec2d.gif)
 
-## 달력 스탬프, 상위 랭킹
-![달력 스탬프](https://user-images.githubusercontent.com/86139013/224612195-6ec5d506-1a9d-4085-b423-c4b8c3ebc902.gif)
-![공개글 4](https://user-images.githubusercontent.com/86139013/224612363-7fd9d10e-d54d-43fd-9354-a650fad446e0.gif)
+# 컬러 테마 5종
+![18  컬러테마 변경](https://user-images.githubusercontent.com/86139013/164178422-083905bb-f694-4c24-add7-530882315c77.gif)
+
+# 글쓰기 습관분석 페이지
+![달력 스탬프](https://user-images.githubusercontent.com/86139013/164177870-50b0d632-a62f-4240-b044-caaf8cea3f8a.gif)
+
+# 노트 출력창 (앞면/뒷면)
+![7 카드블록 그리드](https://user-images.githubusercontent.com/86139013/164178118-5c55193e-e9b1-4cf0-9e4b-f52673c06735.gif)
+![15 카드 뒤집기](https://user-images.githubusercontent.com/86139013/164178711-31d69fdc-db97-45de-95d5-3aa039450b19.gif)
+
+# 노트 입력창
+![9 타이머 시작](https://user-images.githubusercontent.com/86139013/164178151-3ff6cbc6-121b-4b09-b5e8-375a5ca01ffa.gif)
+
+# 타이머 기능(노트 자동저장)
+![11 글 자동 저장](https://user-images.githubusercontent.com/86139013/164178215-da1e8f38-d36c-450a-9026-3bcd3fa215ac.gif)
+
+# 타이머 안내 말풍선
+![10 타이머 툴팁](https://user-images.githubusercontent.com/86139013/164179665-48735f1b-8428-444a-83ae-c64cf774403f.gif)
+
+# 오늘의 키워드 
+![13 오늘의 키워드](https://user-images.githubusercontent.com/86139013/164178284-7b89f483-00c0-4e03-b7d9-8d13403419b1.gif)
+
+# 노트 에디터/전체보기
+![16 글 수정](https://user-images.githubusercontent.com/86139013/164178367-dd9c5e10-4561-4900-a2bb-38b184d878f2.gif)
+![14 더보기](https://user-images.githubusercontent.com/86139013/164178395-17c223a8-74b3-4756-a3ce-95ccd7f78697.gif)
+
+# 휴지통
+![17 글 삭제](https://user-images.githubusercontent.com/86139013/164178520-191f1a9e-906f-4917-bdea-c6d820d72c35.gif)
+
+# 검색창
+![20 검색바](https://user-images.githubusercontent.com/86139013/164178551-44c4caf4-35a0-4cd8-b194-8df3a7d223d8.gif)
+
+# 태그 관리
+![19 태그](https://user-images.githubusercontent.com/86139013/164178607-2fc6f13f-8c32-427b-b8d4-0ace0189517e.gif)
+
+# 회원 관리 페이지
+## 회원용 드롭다운
+![랜딩(로그인)](https://user-images.githubusercontent.com/86139013/164175027-4186619b-2ce0-4530-a69e-509a1f387d00.gif)
+## 로그인
+![로그인](https://user-images.githubusercontent.com/86139013/164181551-537ae7ed-2138-465a-a45a-e9539a4f5643.gif)
+## 회원가입
+![회원가입](https://user-images.githubusercontent.com/86139013/164181565-f6d96a88-fa5e-45a3-bd03-4d87475a9d4e.gif)
+
+# 에러페이지
+![22 쿠키](https://user-images.githubusercontent.com/86139013/164178767-c2f70085-82e6-45ac-ba08-5c011a92d18c.gif)
 
 
 # 🌝 만든 사람들
